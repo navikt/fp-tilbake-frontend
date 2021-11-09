@@ -7,7 +7,7 @@ const IndexOrInput: FunctionComponent = () => (
   <BehandlingTilbakekrevingIndex
     behandlingUuid="d4674d96-d99c-40e1-b32a-ff132cc4d432"
     fagsak={{
-      dekningsgrad: 100,
+      dekningsgrad: 80,
       fagsakYtelseType: {
         kode: 'FP',
         kodeverk: 'FAGSAK_YTELSE',
