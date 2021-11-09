@@ -1,0 +1,11 @@
+{
+  "name": "@fpsak-frontend/kodeverk",
+  "version": "1.0.0",
+  "module": "index.jsx",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@fpsak-frontend/types": "1.0.0"
+  },
+  "devDependencies": {}
+}
