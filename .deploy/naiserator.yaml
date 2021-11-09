@@ -46,12 +46,10 @@ spec:
     - name: APP_PORT
       value: "9005"
     - name: APP_URL
-      value: "http://fpsak"
+      value: "http://fptilbake"
     - name: APP_URL_FPSAK
       value: "http://fpsak"
     - name: APP_URL_FPOPPDRAG
       value: "http://fpoppdrag"
-    - name: APP_URL_FPTILBAKE
-      value: "http://fptilbake"
     - name: APP_URL_FPFORMIDLING
       value: "http://fpformidling"
