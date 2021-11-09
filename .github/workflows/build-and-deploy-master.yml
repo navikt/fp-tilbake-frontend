@@ -1,4 +1,4 @@
-name: Build, push and deploy Fpsak-tilbake-frontend
+name: Build, push and deploy fp-tilbake-frontend
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - '.gitignore'
       - 'CODEOWNERS'
     branches:
-      - master
+      - main
 env:
   GITHUB_USERNAME: x-access-token
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -99,13 +99,14 @@ jobs:
         if: success()
         uses: actions/github-script@v4.1
         with:
-          github-token: ${{secrets.GH_P_TOKEN}}
+          github-token: ${{secrets.GH_ACCESS_TOKEN}}
           script: |
               github.issues.create( {
                 owner: context.issue.owner,
                 repo: context.issue.repo,
                 labels: ['bygg'],
-                title: 'Deploy av ${{ env.TAG }}'})
+                title: 'Deploy av ${{ env.TAG }}',
+                body: '${{ github.sha }}'})
               .then(response => {
                       const issue = { owner: context.issue.owner,
                       repo: context.issue.repo,

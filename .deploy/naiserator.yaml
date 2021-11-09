@@ -55,14 +55,3 @@ spec:
       value: "http://fptilbake"
     - name: APP_URL_FPFORMIDLING
       value: "http://fpformidling"
-    - name: REDIS_HOST
-      value: "fpsak-redis.teamforeldrepenger.svc.nais.local"
-    - name: REDIS_PORT
-      value: "6379"
-#  envFrom:
-#    - secret: redis-password
-#  accessPolicy:
-#    outbound:
-#      rules:
-#        - application: fpsak-redis
-
