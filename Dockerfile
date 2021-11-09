@@ -13,7 +13,7 @@ ENV APP_DIR="/app" \
 #FPSAK spesifkk
 COPY dist /usr/share/nginx/html/fpsak
 
-EXPOSE 9005
+EXPOSE 9000
 
 # using bash over sh for better signal-handling
 CMD sh /start-server.sh
