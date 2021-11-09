@@ -1,4 +1,4 @@
-name: Build, push and deploy Fpsak-frontend
+name: Build, push and deploy Fpsak-tilbake-frontend
 
 on:
   push:

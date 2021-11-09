@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const commonDevAndProd = require('./webpack.common');
-const { ModuleFederationPlugin } = require('webpack').container;
 
 const ROOT_DIR = path.resolve(__dirname, '../public/client');
 const PACKAGES_DIR = path.join(__dirname, '../packages');
@@ -21,15 +20,6 @@ const config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ModuleFederationPlugin({
-      name: "fp_tilbake_frontend",
-      library: { type: "var", name: "fp_tilbake_frontend" },
-      filename: "remoteEntry.js",
-      exposes: {
-        "./BehandlingTilbakekrevingIndex": "./packages/behandling-tilbakekreving/src/BehandlingTilbakekrevingIndex",
-      },
-      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
-    }),
   ],
 };
 

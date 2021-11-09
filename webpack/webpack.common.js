@@ -3,6 +3,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 const webpack = require('webpack');
 const path = require('path');
 const PACKAGE = require('./../package.json');
@@ -167,6 +168,15 @@ const config = {
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
+    }),
+    new ModuleFederationPlugin({
+      name: "fp_tilbake_frontend",
+      library: { type: "var", name: "fp_tilbake_frontend" },
+      filename: "remoteEntry.js",
+      exposes: {
+        "./BehandlingTilbakekrevingIndex": "./packages/behandling-tilbakekreving/src/BehandlingTilbakekrevingIndex",
+      },
+      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
     }),
   ],
 };
