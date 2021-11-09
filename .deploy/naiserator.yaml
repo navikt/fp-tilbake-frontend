@@ -44,7 +44,7 @@ spec:
     - name: APP_NAME
       value: fp-tilbake-frontend
     - name: APP_PORT
-      value: "9005"
+      value: "9000"
     - name: APP_URL
       value: "http://fptilbake"
     - name: APP_URL_FPSAK
