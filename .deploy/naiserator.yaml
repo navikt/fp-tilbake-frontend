@@ -10,7 +10,7 @@ metadata:
     nais.io/read-only-file-system: "false" # Fix permissions for nginx
 spec:
   image: {{image}}
-  port: 9005
+  port: 9000
   ingresses:
   {{#each ingresses as |url|}}
      - {{url}}
