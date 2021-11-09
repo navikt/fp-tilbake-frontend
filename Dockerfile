@@ -1,6 +1,6 @@
 FROM nginxinc/nginx-unprivileged:1.21.3-alpine
 
-LABEL org.opencontainers.image.source=https://github.com/navikt/fp-frontend
+LABEL org.opencontainers.image.source=https://github.com/navikt/fp-tilbake-frontend
 
 ADD proxy.nginx /etc/nginx/conf.d/app.conf.template
 ADD start-server.sh /start-server.sh

@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: fp-frontend
+  name: fp-tilbake-frontend
   namespace: teamforeldrepenger
   labels:
     team: teamforeldrepenger
@@ -9,7 +9,7 @@ metadata:
     nais.io/run-as-user: "101" # Fix permissions for nginx
     nais.io/read-only-file-system: "false" # Fix permissions for nginx
 spec:
-  image: ghcr.io/navikt/fp-frontend:latest
+  image: ghcr.io/navikt/fp-tilbake-frontend:latest
   port: 9000
   ingresses:
      - "https://app-q1.adeo.no/fpsak"
@@ -40,9 +40,9 @@ spec:
     enabled: true
   env:
     - name: APP_NAME
-      value: fp-frontend
+      value: fp-tilbake-frontend
     - name: APP_PORT
-      value: "9000"
+      value: "9005"
     - name: APP_URL
       value: "http://fpsak"
     - name: APP_URL_FPSAK
