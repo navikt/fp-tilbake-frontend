@@ -44,13 +44,13 @@ const options = {
       changeOrigin: (!!process.env.APP_URL_FPFORMIDLING),
     },
     '/fpsak/(api|jetty)/**': {
-      target: process.env.APP_URL_FPSAK || 'http://localhost:8080',
+      target: process.env.APP_URL || 'http://localhost:8080',
       secure: false,
-      changeOrigin: (!!process.env.APP_URL_FPSAK),
+      changeOrigin: (!!process.env.APP_URL),
       onProxyRes: function onProxyRes(proxyRes, req, res) {
         // For å håndtere redirects på 202 Accepted responser med location headers...
-        if (proxyRes.headers.location && proxyRes.headers.location.startsWith(process.env.APP_URL_FPSAK)) {
-          proxyRes.headers.location = proxyRes.headers.location.split(process.env.APP_URL_FPSAK)[1];
+        if (proxyRes.headers.location && proxyRes.headers.location.startsWith(process.env.APP_URL)) {
+          proxyRes.headers.location = proxyRes.headers.location.split(process.env.APP_URL)[1];
         }
       },
     },
