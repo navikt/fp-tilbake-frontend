@@ -57,7 +57,6 @@ const endpoints = new RestApiConfigBuilder()
   .withRel('opprett-verge', TilbakekrevingBehandlingApiKeys.VERGE_OPPRETT)
   .withRel('fjern-verge', TilbakekrevingBehandlingApiKeys.VERGE_FJERN)
 
-  /* FPFORMIDLING */
   .withPost('/fptilbake/api/dokument/forhandsvis-vedtaksbrev', TilbakekrevingBehandlingApiKeys.PREVIEW_VEDTAKSBREV, { isResponseBlob: true })
 
   .build();
