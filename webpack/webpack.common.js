@@ -7,6 +7,7 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const webpack = require('webpack');
 const path = require('path');
 const PACKAGE = require('./../package.json');
+const deps = require('../package.json').dependencies;
 const VERSION = PACKAGE.version;
 
 const ROOT_DIR = path.resolve(__dirname, '../public/client');
@@ -176,7 +177,16 @@ const config = {
       exposes: {
         "./BehandlingTilbakekrevingIndex": "./packages/behandling-tilbakekreving/src/BehandlingTilbakekrevingIndex",
       },
-      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
+      shared: {
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+      },
     }),
   ],
 };
