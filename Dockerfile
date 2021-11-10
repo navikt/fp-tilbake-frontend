@@ -7,11 +7,11 @@ ADD start-server.sh /start-server.sh
 
 # FPSAK spesifikk
 ENV APP_DIR="/app" \
-	APP_PATH_PREFIX="/fptilbake" \
+	APP_PATH_PREFIX="/fp/web/tilbake" \
 	APP_CALLBACK_PATH="/fptilbake/cb"
 
-#FPSAK spesifkk
-COPY dist /usr/share/nginx/html/fpsak
+#FPTILBAKE spesifkk
+COPY dist /usr/share/nginx/html/fp/web/tilbake
 
 EXPOSE 9000
 

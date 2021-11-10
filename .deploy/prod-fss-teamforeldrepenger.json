@@ -3,6 +3,6 @@
   "minReplicas": "2",
   "maxReplicas": "5",
   "ingresses": [
-    "https://app.adeo.no/fptilbake"
+    "https://app.adeo.no/fp/web/tilbake"
   ]
 }
