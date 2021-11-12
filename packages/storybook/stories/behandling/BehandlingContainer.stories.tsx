@@ -5,10 +5,10 @@ import vilkarUtfallType from '@fpsak-frontend/kodeverk/src/vilkarUtfallType';
 import { Behandling } from '@fpsak-frontend/types';
 import { BehandlingContainer, FaktaPanelInitProps, ProsessPanelInitProps } from '@fpsak-frontend/behandling-felles';
 
-const FaktaPanelTest1: FunctionComponent<FaktaPanelInitProps> = function ({
+const FaktaPanelTest1: FunctionComponent<FaktaPanelInitProps> = ({
   registrerFaktaPanel,
   valgtFaktaSteg,
-}) {
+}) => {
   useEffect(() => {
     registrerFaktaPanel({
       id: '1',
@@ -29,10 +29,10 @@ const FaktaPanelTest1: FunctionComponent<FaktaPanelInitProps> = function ({
     </div>
   );
 };
-const FaktaPanelTest2: FunctionComponent<FaktaPanelInitProps> = function ({
+const FaktaPanelTest2: FunctionComponent<FaktaPanelInitProps> = ({
   registrerFaktaPanel,
   valgtFaktaSteg,
-}) {
+}) => {
   useEffect(() => {
     registrerFaktaPanel({
       id: '2',
@@ -54,10 +54,10 @@ const FaktaPanelTest2: FunctionComponent<FaktaPanelInitProps> = function ({
   );
 };
 
-const ProsessPanelTest1: FunctionComponent<ProsessPanelInitProps> = function ({
+const ProsessPanelTest1: FunctionComponent<ProsessPanelInitProps> = ({
   registrerProsessPanel,
   valgtProsessSteg,
-}) {
+}) => {
   useEffect(() => {
     registrerProsessPanel({
       id: '1',
@@ -80,10 +80,10 @@ const ProsessPanelTest1: FunctionComponent<ProsessPanelInitProps> = function ({
   );
 };
 
-const ProsessPanelTest2: FunctionComponent<ProsessPanelInitProps> = function ({
+const ProsessPanelTest2: FunctionComponent<ProsessPanelInitProps> = ({
   registrerProsessPanel,
   valgtProsessSteg,
-}) {
+}) => {
   useEffect(() => {
     registrerProsessPanel({
       id: '2',

@@ -25,7 +25,6 @@ class CustomNavSelect extends Component<OwnProps> {
     super(props);
     this.getOptionValues = this.getOptionValues.bind(this);
     this.checkCorrespondingOptionForValue = this.checkCorrespondingOptionForValue.bind(this);
-    this.handleSelectRef = this.handleSelectRef.bind(this);
     this.selectedValue = this.selectedValue.bind(this);
   }
 
@@ -37,20 +36,12 @@ class CustomNavSelect extends Component<OwnProps> {
     this.checkCorrespondingOptionForValue();
   }
 
-  handleSelectRef(selectRef?: ReactNode): void {
-    if (selectRef) {
-      this.selectElement = selectRef;
-    }
-  }
-
   getOptionValues(): any {
     const { props: { selectValues } } = this;
     return selectValues
       .map((option) => option.props)
       .map((props = {}) => props.value);
   }
-
-  selectElement: ReactNode;
 
   selectedValue(value: ReactNode): any {
     const selectedValue = this.getOptionValues().find((optionValue: ReactNode) => optionValue === value);
@@ -70,7 +61,6 @@ class CustomNavSelect extends Component<OwnProps> {
 
   render() {
     const {
-      handleSelectRef,
       selectedValue,
       props: {
         placeholder, selectValues, value, hideValueOnDisable, disabled, label, ...otherProps
@@ -79,7 +69,6 @@ class CustomNavSelect extends Component<OwnProps> {
     return (
       <NavSelect
         {...otherProps}
-        selectRef={handleSelectRef}
         value={hideValueOnDisable && disabled ? '' : selectedValue(value)}
         disabled={disabled}
         label={<Label input={label} readOnly={false} />}

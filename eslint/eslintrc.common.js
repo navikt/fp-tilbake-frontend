@@ -72,6 +72,7 @@ const config = {
     '@typescript-eslint/no-unused-vars': [ERROR],
 
     // TODO (TOR) Ignorert inntil videre grunnet kost/nytte
+    'react/no-unstable-nested-components': OFF,
     'max-classes-per-file': OFF,
     'jsx-a11y/anchor-is-valid': OFF,
     'jsx-a11y/control-has-associated-label': OFF,
