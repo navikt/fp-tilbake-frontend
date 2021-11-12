@@ -1,2 +1,2 @@
-export { default as withRouter } from './decorators/withRouter';
+// eslint-disable-next-line import/prefer-default-export
 export { default as alleKodeverk } from './mocks/alleKodeverk.json';
