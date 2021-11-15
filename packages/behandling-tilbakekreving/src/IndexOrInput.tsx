@@ -9,20 +9,23 @@ const IndexOrInput: FunctionComponent = () => {
   const [valgtFaktaSteg, setFaktaSteg] = useState('default');
 
   if (!behandlingUuid) {
-    return (
-      <>
-        BehandlingUuid:
-        <input type="text" id="bUuid" />
-        <button
-          type="button"
-          onClick={() => {
-            setBehandlingUuid((document.getElementById('bUuid') as HTMLInputElement).value);
-          }}
-        >
-          Hent behandling
-        </button>
-      </>
-    );
+    if (process.env.NODE_ENV === 'development') {
+      return (
+        <>
+          BehandlingUuid:
+          <input type="text" id="bUuid" />
+          <button
+            type="button"
+            onClick={() => {
+              setBehandlingUuid((document.getElementById('bUuid') as HTMLInputElement).value);
+            }}
+          >
+            Hent behandling
+          </button>
+        </>
+      );
+    }
+    return <div>Micro frontend - FPTILBAKE</div>;
   }
 
   const oppdaterProsessStegOgFaktaPanelIUrl = (punktnavn?: string, faktanavn?: string) => {

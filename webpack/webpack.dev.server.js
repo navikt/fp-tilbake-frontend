@@ -75,16 +75,7 @@ const wds = new WebpackDevServer(webpack(config), options);
     return console.log(err); // NOSONAR
   }
 
-  console.log('Listening at http://localhost:9000/');
+  console.log('Listening at http://localhost:9005/');
 
-  console.log('If running agains VTP you can login or change user here: http://localhost:9000/login-with-vtp');
+  console.log('If running agains VTP you can login or change user here: http://localhost:9005/login-with-vtp');
 })();
-
-/*wds.listen(9000, 'localhost', function (err) {
-  if (err) {
-    return console.log(err); // NOSONAR
-  }
-  console.log('Listening at http://localhost:9000/');
-
-  console.log('If running agains VTP you can login or change user here: http://localhost:9000/login-with-vtp');
-});*/
