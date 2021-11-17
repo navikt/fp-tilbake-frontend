@@ -18,7 +18,7 @@ yarn dev
 ````
 
 ## Intellj og stubs
-Disse må installeres manuelt, følg denne tråden:
+Disse må installeres manuelt, følg denne tråde. n:
 
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/207725245-React-import-are-not-resolved-in-WebStrom-and-Intellij-2016-2
 
