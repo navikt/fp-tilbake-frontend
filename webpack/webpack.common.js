@@ -178,6 +178,7 @@ const config = {
         "./BehandlingTilbakekrevingIndex": "./packages/behandling-tilbakekreving/src/BehandlingTilbakekrevingIndex",
       },
       shared: {
+        ...deps,
         react: {
           singleton: true,
           requiredVersion: deps.react,

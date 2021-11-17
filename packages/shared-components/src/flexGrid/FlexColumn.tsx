@@ -14,7 +14,7 @@ const FlexColumn: FunctionComponent<OwnProps> = ({
   children,
   className,
 }) => (
-  <div className={classNames('flexColumn', className)}>
+  <div className={classNames('flexColumnNew', className)}>
     {children}
   </div>
 );
