@@ -11,5 +11,9 @@
   "Verge.VergeFullmektig": "Verge/fullmektig",
   "Verge.Soker": "Søker",
   "Verge.BrukerErUnderTvungenForvaltning": "Søker er under tvungen forvaltning",
-  "Verge.Organisasjonsnummer": "Organisasjonsnummer"
+  "Verge.Organisasjonsnummer": "Organisasjonsnummer",
+
+  "SubmitButton.ConfirmInformation": "Bekreft og fortsett",
+  "FaktaBegrunnelseTextField.BegrunnEndringene": "Begrunn endringene",
+  "FaktaBegrunnelseTextField.Vurdering": "Vurdering"
 }

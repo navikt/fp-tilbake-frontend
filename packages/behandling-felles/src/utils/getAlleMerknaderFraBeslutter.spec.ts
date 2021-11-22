@@ -28,7 +28,7 @@ describe('<getAlleMerknaderFraBeslutter>', () => {
       kodeverk: 'AKSJONSPUNKT_STATUS',
     },
     definisjon: {
-      kode: aksjonspunktCodes.AVKLAR_OM_STONAD_GJELDER_SAMME_BARN,
+      kode: aksjonspunktCodes.AVKLAR_VERGE,
       kodeverk: 'AKSJONSPUNKT_KODE',
     },
     kanLoses: true,

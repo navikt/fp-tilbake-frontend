@@ -53,7 +53,7 @@ describe('useStandardFaktaPanelProps', () => {
   it('skal kalkulere data som skal brukes av prosess-paneler', () => {
     const aksjonspunkter = [{
       definisjon: {
-        kode: aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR,
+        kode: aksjonspunktCodes.AVKLAR_VERGE,
         kodeverk: '',
       },
       status: {
@@ -64,7 +64,7 @@ describe('useStandardFaktaPanelProps', () => {
       erAktivt: true,
     }, {
       definisjon: {
-        kode: aksjonspunktCodes.AVKLAR_AKTIVITETER,
+        kode: aksjonspunktCodes.FORESLA_VEDTAK,
         kodeverk: '',
       },
       status: {
@@ -95,7 +95,7 @@ describe('useStandardFaktaPanelProps', () => {
       aksjonspunkter,
       vilkar,
     };
-    const aksjonspunktKoder = [aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR];
+    const aksjonspunktKoder = [aksjonspunktCodes.AVKLAR_VERGE];
     const vilkarKoder = [vilkarType.MEDLEMSKAPSVILKÅRET_LØPENDE];
 
     useContextMock.mockReturnValue({
@@ -124,7 +124,7 @@ describe('useStandardFaktaPanelProps', () => {
   it('skal være readonly', () => {
     const aksjonspunkter = [{
       definisjon: {
-        kode: aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR,
+        kode: aksjonspunktCodes.AVKLAR_VERGE,
         kodeverk: '',
       },
       status: {
@@ -150,7 +150,7 @@ describe('useStandardFaktaPanelProps', () => {
       aksjonspunkter,
       vilkar,
     };
-    const aksjonspunktKoder = [aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR];
+    const aksjonspunktKoder = [aksjonspunktCodes.AVKLAR_VERGE];
     const vilkarKoder = [vilkarType.MEDLEMSKAPSVILKÅRET_LØPENDE];
 
     useContextMock.mockReturnValue({
@@ -173,7 +173,7 @@ describe('useStandardFaktaPanelProps', () => {
   it('skal lagre aksjonspunkt', () => {
     const aksjonspunkter = [{
       definisjon: {
-        kode: aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR,
+        kode: aksjonspunktCodes.AVKLAR_VERGE,
         kodeverk: '',
       },
       status: {
@@ -199,7 +199,7 @@ describe('useStandardFaktaPanelProps', () => {
       aksjonspunkter,
       vilkar,
     };
-    const aksjonspunktKoder = [aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR];
+    const aksjonspunktKoder = [aksjonspunktCodes.AVKLAR_VERGE];
     const vilkarKoder = [vilkarType.MEDLEMSKAPSVILKÅRET_LØPENDE];
 
     const lagreAksjonspunkter = sinon.stub().resolves('');
@@ -220,7 +220,7 @@ describe('useStandardFaktaPanelProps', () => {
     const { hook } = wrapper.find('div').props();
 
     const aksjonspunktModeller = [{
-      kode: aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR,
+      kode: aksjonspunktCodes.AVKLAR_VERGE,
     }];
     hook.submitCallback(aksjonspunktModeller);
 
@@ -232,8 +232,8 @@ describe('useStandardFaktaPanelProps', () => {
       behandlingUuid: behandling.uuid,
       behandlingVersjon: behandling.versjon,
       bekreftedeAksjonspunktDtoer: [{
-        '@type': '6012',
-        kode: '6012',
+        '@type': '5030',
+        kode: '5030',
       }],
     });
     expect(args[1]).toBe(true);
@@ -242,7 +242,7 @@ describe('useStandardFaktaPanelProps', () => {
   it('skal lagre overstyrt aksjonspunkt', () => {
     const aksjonspunkter = [{
       definisjon: {
-        kode: aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR,
+        kode: aksjonspunktCodes.AVKLAR_VERGE,
         kodeverk: '',
       },
       status: {
@@ -268,8 +268,8 @@ describe('useStandardFaktaPanelProps', () => {
       aksjonspunkter,
       vilkar,
     };
-    const aksjonspunktKoder = [aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR];
-    const overstyringApCodes = [aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR];
+    const aksjonspunktKoder = [aksjonspunktCodes.AVKLAR_VERGE];
+    const overstyringApCodes = [aksjonspunktCodes.AVKLAR_VERGE];
 
     const lagreOverstyrteAksjonspunkter = sinon.stub().resolves('');
     const oppdaterProsessStegOgFaktaPanelIUrl = sinon.spy();
@@ -289,7 +289,7 @@ describe('useStandardFaktaPanelProps', () => {
     const { hook } = wrapper.find('div').props();
 
     const aksjonspunktModeller = [{
-      kode: aksjonspunktCodes.OVERSTYR_LØPENDE_MEDLEMSKAPSVILKAR,
+      kode: aksjonspunktCodes.AVKLAR_VERGE,
     }];
     hook.submitCallback(aksjonspunktModeller);
 
@@ -301,8 +301,8 @@ describe('useStandardFaktaPanelProps', () => {
       behandlingUuid: behandling.uuid,
       behandlingVersjon: behandling.versjon,
       overstyrteAksjonspunktDtoer: [{
-        '@type': '6012',
-        kode: '6012',
+        '@type': '5030',
+        kode: '5030',
       }],
     });
     expect(args[1]).toBe(true);
