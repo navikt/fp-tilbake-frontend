@@ -34,7 +34,7 @@ describe('<FaktaDefaultInitPanel>', () => {
     readOnly: false,
     aksjonspunkter: [{
       definisjon: {
-        kode: aksjonspunktCodes.MANUELL_VURDERING_AV_ANKE,
+        kode: aksjonspunktCodes.FORESLA_VEDTAK,
         kodeverk: '',
       },
       erAktivt: true,
@@ -68,7 +68,7 @@ describe('<FaktaDefaultInitPanel>', () => {
           initEndepunkter={[AKSJONSPUNKTER_KEY]}
           skalPanelVisesIMeny={() => true}
           renderPanel={() => <div>Dette er et panel</div>}
-          faktaPanelKode={FaktaPanelCode.AKTIVITETSKRAV}
+          faktaPanelKode={FaktaPanelCode.FEILUTBETALING}
           faktaPanelMenyTekst="Dette er en tekst"
         />
       </RestApiMock>,

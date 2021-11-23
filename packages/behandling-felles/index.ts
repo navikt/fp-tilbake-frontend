@@ -1,5 +1,4 @@
 export { default as BehandlingContainer } from './src/components/BehandlingContainer';
-export { default as OverstyringPanelDef } from './src/components/prosess/OverstyringPanelDef';
 export { default as FatterVedtakStatusModal } from './src/components/modaler/vedtak/FatterVedtakStatusModal';
 export { default as IverksetterVedtakStatusModal } from './src/components/modaler/vedtak/IverksetterVedtakStatusModal';
 export { default as BehandlingPaVent } from './src/components/modaler/paVent/BehandlingPaVent';
@@ -10,10 +9,7 @@ export { default as FaktaDefaultInitPanel } from './src/components/fakta/FaktaDe
 export type { OwnProps as FaktaDefaultInitPanelProps } from './src/components/fakta/FaktaDefaultInitPanel';
 export { default as ProsessDefaultInitPanel } from './src/components/prosess/ProsessDefaultInitPanel';
 export type { OwnProps as ProsessDefaultInitPanelProps } from './src/components/prosess/ProsessDefaultInitPanel';
-export { default as InngangsvilkarDefaultInitWrapper } from './src/components/prosess/InngangsvilkarDefaultInitWrapper';
 export { default as BehandlingHenlagtPanel } from './src/components/prosess/BehandlingHenlagtPanel';
-export { default as InngangsvilkarDefaultInitPanel } from './src/components/prosess/InngangsvilkarDefaultInitPanel';
-export type { OwnProps as InngangsvilkarDefaultInitPanelProps } from './src/components/prosess/InngangsvilkarDefaultInitPanel';
 export type { default as StandardBehandlingProps, BehandlingEventHandler } from './src/types/standardBehandlingProps';
 export type { default as ProsessPanelMenyData } from './src/types/prosessPanelMenyData';
 export type { default as FaktaPanelMenyData } from './src/types/faktaPanelMenyData';

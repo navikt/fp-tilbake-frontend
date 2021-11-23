@@ -7,11 +7,12 @@ import {
   Aksjonspunkt, Verge, AlleKodeverk, AlleKodeverkTilbakekreving,
 } from '@fpsak-frontend/types';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
-import { FaktaBegrunnelseTextFieldNew, FaktaSubmitButtonNew } from '@fpsak-frontend/fakta-felles';
 import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import { AksjonspunktHelpTextTemp, VerticalSpacer } from '@fpsak-frontend/shared-components';
 import { AvklarVergeAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
+import FaktaBegrunnelseTextField from './FaktaBegrunnelseTextField';
+import FaktaSubmitButton from './FaktaSubmitButton';
 import RegistrereVergeFaktaForm, { FormValues as RegistrereFormValues } from './RegistrereVergeFaktaForm';
 
 type FormValues = RegistrereFormValues & {
@@ -19,7 +20,7 @@ type FormValues = RegistrereFormValues & {
 }
 
 const buildInitialValues = (verge: Verge, aksjonspunkter: Aksjonspunkt[]): FormValues => ({
-  begrunnelse: FaktaBegrunnelseTextFieldNew.buildInitialValues(aksjonspunkter
+  begrunnelse: FaktaBegrunnelseTextField.buildInitialValues(aksjonspunkter
     .filter((ap) => ap.definisjon.kode === aksjonspunktCodes.AVKLAR_VERGE)[0]).begrunnelse,
   ...RegistrereVergeFaktaForm.buildInitialValues(verge || {}),
 });
@@ -89,9 +90,9 @@ const RegistrereVergeInfoPanel: FunctionComponent<PureOwnProps> = ({
           alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
         />
         <VerticalSpacer twentyPx />
-        <FaktaBegrunnelseTextFieldNew isSubmittable={submittable} isReadOnly={readOnly} hasBegrunnelse={!!begrunnelse} />
+        <FaktaBegrunnelseTextField isSubmittable={submittable} isReadOnly={readOnly} hasBegrunnelse={!!begrunnelse} />
         <VerticalSpacer twentyPx />
-        <FaktaSubmitButtonNew
+        <FaktaSubmitButton
           isSubmittable={submittable && !!valgtVergeType}
           isReadOnly={readOnly}
           isSubmitting={formMethods.formState.isSubmitting}

@@ -4,28 +4,11 @@ export {
   isArrayEmpty,
 } from './src/arrayUtils';
 export {
-  isIE11,
-  isEdge,
-  getRelatedTargetIE11,
-  forhandsvisDokument,
-} from './src/browserUtils';
-export {
   formatCurrencyWithKr,
   formatCurrencyNoKr,
   removeSpacesFromNumber,
   parseCurrencyInput,
 } from './src/currencyUtils';
-export {
-  addDaysToDate,
-  calcDays,
-  calcDaysAndWeeks,
-  calcDaysAndWeeksWithWeekends,
-  dateFormat,
-  findDifferenceInMonthsAndDays,
-  TIDENES_ENDE,
-  timeFormat,
-  getRangeOfMonths,
-} from './src/dateUtils';
 export { default as decodeHtmlEntity } from './src/decodeHtmlEntity';
 export {
   fodselsnummerPattern,
@@ -40,11 +23,6 @@ export {
   YYYY_MM_FORMAT,
   ACCEPTED_DATE_INPUT_FORMATS,
 } from './src/formats';
-export { default as guid } from './src/guid';
-export {
-  replaceNorwegianCharacters,
-  getLanguageFromSprakkode,
-} from './src/languageUtils';
 export {
   notNull,
   isObjectEmpty,
@@ -55,13 +33,12 @@ export {
   omitOne,
   omitMany,
 } from './src/objectUtils';
-export { default as getAddresses } from './src/getAddresses';
-export type { Adresser } from './src/getAddresses';
 export {
-  parseQueryString,
-  buildPath,
-  formatQueryString,
-} from './src/urlUtils';
+  isIE11,
+  isEdge,
+  getRelatedTargetIE11,
+  forhandsvisDokument,
+} from './src/browserUtils';
 export {
   ariaCheck,
   validateProsentandel,
@@ -125,6 +102,16 @@ export {
   merEn100ProsentMessage,
   arbeidsprosentMåVare100VidUtsettelseAvArbeidMessage,
 } from './src/validation/messages';
-
+export {
+  addDaysToDate,
+  calcDays,
+  calcDaysAndWeeks,
+  calcDaysAndWeeksWithWeekends,
+  dateFormat,
+  findDifferenceInMonthsAndDays,
+  TIDENES_ENDE,
+  timeFormat,
+  getRangeOfMonths,
+} from './src/dateUtils';
 export { getKodeverknavnFn } from './src/kodeverkUtils';
 export { default as createIntl } from './src/createIntl';

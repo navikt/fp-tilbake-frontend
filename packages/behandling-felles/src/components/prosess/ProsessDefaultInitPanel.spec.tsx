@@ -36,7 +36,7 @@ const defaultProps = {
   readOnlySubmitButton: false,
   aksjonspunkter: [{
     definisjon: {
-      kode: aksjonspunktCodes.VURDER_FEILUTBETALING,
+      kode: aksjonspunktCodes.AVKLAR_VERGE,
       kodeverk: '',
     },
     erAktivt: true,
@@ -72,7 +72,7 @@ describe('<ProsessDefaultInitPanel>', () => {
           initEndepunkter={[AKSJONSPUNKTER_KEY]}
           skalPanelVisesIMeny={() => true}
           renderPanel={() => <div>Dette er komponenten</div>}
-          prosessPanelKode={ProsessStegCode.AVREGNING}
+          prosessPanelKode={ProsessStegCode.FORELDELSE}
           prosessPanelMenyTekst="Dette er en tekst"
         />
       </RestApiMock>,

@@ -151,7 +151,7 @@ describe('<TilbakekrevingProsessStegInitPanel>', () => {
     readOnlySubmitButton: false,
     aksjonspunkter: [{
       definisjon: {
-        kode: aksjonspunktCodes.MANUELL_VURDERING_AV_ANKE,
+        kode: aksjonspunktCodes.AVKLAR_VERGE,
         kodeverk: '',
       },
       erAktivt: true,
