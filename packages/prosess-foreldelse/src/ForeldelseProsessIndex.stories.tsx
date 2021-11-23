@@ -21,6 +21,14 @@ const perioderForeldelse = {
     },
     foreldelsesfrist: '2020-04-01',
   }, {
+    fom: '2019-03-01',
+    tom: '2019-03-31',
+    belop: 3000,
+    foreldelseVurderingType: {
+      kode: foreldelseVurderingType.UDEFINERT,
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+  }, {
     fom: '2019-02-01',
     tom: '2019-02-28',
     belop: 3000,
@@ -32,16 +40,6 @@ const perioderForeldelse = {
     foreldelsesfrist: '2020-04-01',
     oppdagelsesDato: '2019-11-01',
   }, {
-    fom: '2019-03-01',
-    tom: '2019-03-31',
-    belop: 3000,
-    begrunnelse: 'Ikke foreldet',
-    foreldelseVurderingType: {
-      kode: foreldelseVurderingType.IKKE_FORELDET,
-      kodeverk: 'FORELDELSE_VURDERING',
-    },
-  },
-  {
     fom: '2019-04-01',
     tom: '2019-04-30',
     belop: 4000,
