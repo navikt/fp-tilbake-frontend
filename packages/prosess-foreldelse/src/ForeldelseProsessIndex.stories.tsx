@@ -1,5 +1,6 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions'; // eslint-disable-line import/no-extraneous-dependencies
+import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
+import { action } from '@storybook/addon-actions';
 
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
@@ -7,7 +8,9 @@ import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import ForeldelseProsessIndex from '@fpsak-frontend/prosess-foreldelse';
-import { AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper } from '@fpsak-frontend/types';
+import {
+  AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper, Aksjonspunkt,
+} from '@fpsak-frontend/types';
 
 const perioderForeldelse = {
   perioder: [{
@@ -74,27 +77,6 @@ const merknaderFraBeslutter = {
   notAccepted: false,
 };
 
-const standardProsessProps = {
-  behandling: {
-    uuid: '1',
-    versjon: 1,
-  } as Behandling,
-  alleKodeverk,
-  aksjonspunkter: [],
-  submitCallback: action('button-click') as () => Promise<any>,
-  isReadOnly: false,
-  isAksjonspunktOpen: true,
-  readOnlySubmitButton: false,
-  status: '',
-  vilkar: [],
-  setFormData: () => undefined,
-};
-
-export default {
-  title: 'prosess/tilbakekreving/prosess-foreldelse',
-  component: ForeldelseProsessIndex,
-};
-
 const beregnBelop = (params: {perioder: any[]}) => {
   const { perioder } = params;
   return Promise.resolve({
@@ -102,23 +84,33 @@ const beregnBelop = (params: {perioder: any[]}) => {
   });
 };
 
-export const visAksjonspunktForForeldelse = () => (
+export default {
+  title: 'prosess/tilbakekreving/prosess-foreldelse',
+  component: ForeldelseProsessIndex,
+};
+
+const Template: Story<{
+  submitCallback: (aksjonspunktData: any) => Promise<void>;
+  aksjonspunkter?: Aksjonspunkt[];
+}> = ({
+  submitCallback,
+  aksjonspunkter = [],
+}) => (
   <ForeldelseProsessIndex
-    {...standardProsessProps}
+    behandling={{
+      uuid: '1',
+      versjon: 1,
+    } as Behandling}
+    alleKodeverk={alleKodeverk}
+    submitCallback={submitCallback}
+    isReadOnly={false}
+    isAksjonspunktOpen
+    readOnlySubmitButton={false}
+    status=""
+    vilkar={[]}
+    setFormData={() => undefined}
     perioderForeldelse={perioderForeldelse}
-    aksjonspunkter={[{
-      definisjon: {
-        kode: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
-        kodeverk: '',
-      },
-      status: {
-        kode: aksjonspunktStatus.OPPRETTET,
-        kodeverk: '',
-      },
-      begrunnelse: undefined,
-      kanLoses: true,
-      erAktivt: true,
-    }]}
+    aksjonspunkter={aksjonspunkter}
     navBrukerKjonn={NavBrukerKjonn.KVINNE}
     alleMerknaderFraBeslutter={{
       [aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE]: merknaderFraBeslutter,
@@ -126,3 +118,26 @@ export const visAksjonspunktForForeldelse = () => (
     beregnBelop={(params) => beregnBelop(params)}
   />
 );
+
+export const Default = Template.bind({});
+Default.args = {
+  submitCallback: action('button-click') as (data: any) => Promise<any>,
+  aksjonspunkter: [{
+    definisjon: {
+      kode: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
+      kodeverk: '',
+    },
+    status: {
+      kode: aksjonspunktStatus.OPPRETTET,
+      kodeverk: '',
+    },
+    begrunnelse: undefined,
+    kanLoses: true,
+    erAktivt: true,
+  }],
+};
+
+export const UtenAksjonspunkt = Template.bind({});
+UtenAksjonspunkt.args = {
+  submitCallback: action('button-click') as (data: any) => Promise<any>,
+};

@@ -173,7 +173,7 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
   const merknaderFraBeslutter = alleMerknaderFraBeslutter[aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE];
 
   const perioderFormatertForTidslinje = formaterPerioderForTidslinje(foreldelseresultatAktiviteter);
-  const isApOpen = aksjonspunkt.status.kode === aksjonspunktStatus.OPPRETTET;
+  const isApOpen = aksjonspunkt && aksjonspunkt.status.kode === aksjonspunktStatus.OPPRETTET;
   const erAlleAksjonspunktLøst = perioderFormatertForTidslinje.every((p) => !p.isAksjonspunktOpen);
   const valgtPeriodeFormatertForTidslinje = valgtPeriode
     ? perioderFormatertForTidslinje.find((p) => p.fom === valgtPeriode.fom && p.tom === valgtPeriode.tom)
