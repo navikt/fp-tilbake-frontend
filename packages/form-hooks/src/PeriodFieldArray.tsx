@@ -59,11 +59,6 @@ interface OwnProps<PERIOD_TYPE> {
   append: (value: PERIOD_TYPE, options?: FieldArrayMethodProps) => void
 }
 
-/**
- * PeriodFieldArray
- *
- * Overbygg over FieldArray (Redux-form) som håndterer å legge til og fjerne perioder
- */
 const PeriodFieldArray = <PERIOD_TYPE, >({
   fields,
   readOnly = true,
