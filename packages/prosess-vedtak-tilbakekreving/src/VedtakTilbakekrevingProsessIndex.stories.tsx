@@ -1,5 +1,6 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions'; // eslint-disable-line import/no-extraneous-dependencies
+import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
+import { action } from '@storybook/addon-actions';
 
 import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import vedtakResultatType from '@fpsak-frontend/kodeverk/src/vedtakResultatType';
@@ -156,33 +157,41 @@ const alleKodeverk = {
   }],
 } as AlleKodeverkTilbakekreving;
 
-const standardProsessProps = {
-  behandling: {
-    uuid: '1',
-    versjon: 1,
-  } as Behandling,
-  alleKodeverk,
-  aksjonspunkter: [],
-  submitCallback: action('button-click') as () => Promise<any>,
-  isReadOnly: false,
-  isAksjonspunktOpen: true,
-  readOnlySubmitButton: false,
-  status: '',
-  vilkar: [],
-  alleMerknaderFraBeslutter: {},
-  setFormData: () => undefined,
-};
-
 export default {
   title: 'prosess/tilbakekreving/prosess-vedtak-tilbakekreving',
   component: VedtakTilbakekrevingProsessIndex,
 };
 
-export const visVedtakspanel = () => (
+const Template: Story<{
+  submitCallback: (aksjonspunktData: any) => Promise<void>;
+  fetchPreviewVedtaksbrev: () => Promise<void>;
+}> = ({
+  submitCallback,
+  fetchPreviewVedtaksbrev,
+}) => (
   <VedtakTilbakekrevingProsessIndex
+    behandling={{
+      uuid: '1',
+      versjon: 1,
+    } as Behandling}
+    alleKodeverk={alleKodeverk}
+    aksjonspunkter={[]}
+    submitCallback={submitCallback}
+    isReadOnly={false}
+    isAksjonspunktOpen
+    readOnlySubmitButton={false}
+    status=""
+    vilkar={[]}
+    alleMerknaderFraBeslutter={{}}
+    setFormData={() => undefined}
     beregningsresultat={beregningsresultat}
     vedtaksbrev={vedtaksbrev}
-    fetchPreviewVedtaksbrev={action('button-click') as () => Promise<any>}
-    {...standardProsessProps}
+    fetchPreviewVedtaksbrev={fetchPreviewVedtaksbrev}
   />
 );
+
+export const Default = Template.bind({});
+Default.args = {
+  submitCallback: action('button-click') as (data: any) => Promise<any>,
+  fetchPreviewVedtaksbrev: action('button-click') as () => Promise<any>,
+};

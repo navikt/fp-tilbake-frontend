@@ -1,14 +1,13 @@
 import React, { FunctionComponent, useState } from 'react';
-import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
-import { formValueSelector } from 'redux-form';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useFormContext } from 'react-hook-form';
 import { Undertekst } from 'nav-frontend-typografi';
 
 import addCircleIcon from '@fpsak-frontend/assets/images/add-circle.svg';
 import {
   required, hasValidText, maxLength, minLength,
 } from '@fpsak-frontend/utils';
-import { TextAreaField } from '@fpsak-frontend/form';
+import { TextAreaField } from '@fpsak-frontend/form-hooks';
 import { Image, VerticalSpacer } from '@fpsak-frontend/shared-components';
 
 import styles from './tilbakekrevingVedtakUtdypendeTekstPanel.less';
@@ -19,7 +18,7 @@ const maxLength4000 = maxLength(4000);
 const valideringsregler = [minLength3, hasValidText];
 const valideringsreglerPakrevet = [required, minLength3, hasValidText];
 
-interface PureOwnProps {
+interface OwnProps {
   type: string;
   readOnly: boolean;
   fritekstPakrevet: boolean;
@@ -27,18 +26,16 @@ interface PureOwnProps {
   formName: string;
 }
 
-interface MappedOwnProps {
-  isEmpty: boolean;
-}
-
-export const TilbakekrevingVedtakUtdypendeTekstPanel: FunctionComponent<PureOwnProps & MappedOwnProps & WrappedComponentProps> = ({
-  intl,
-  isEmpty,
+export const TilbakekrevingVedtakUtdypendeTekstPanel: FunctionComponent<OwnProps> = ({
   type,
   readOnly,
   fritekstPakrevet,
   maximumLength,
 }) => {
+  const intl = useIntl();
+  const { watch } = useFormContext();
+  const isEmpty = watch(type) === undefined;
+
   const [isTextfieldHidden, hideTextField] = useState(isEmpty && !fritekstPakrevet);
   const valideringsRegler = fritekstPakrevet ? valideringsreglerPakrevet : valideringsregler;
   valideringsRegler.push(maximumLength ? maxLength(maximumLength) : maxLength4000);
@@ -81,8 +78,4 @@ export const TilbakekrevingVedtakUtdypendeTekstPanel: FunctionComponent<PureOwnP
   );
 };
 
-const mapStateToProps = (state: any, ownProps: PureOwnProps): MappedOwnProps => ({
-  isEmpty: formValueSelector(ownProps.formName)(state, ownProps.type) === undefined,
-});
-
-export default connect(mapStateToProps)(injectIntl(TilbakekrevingVedtakUtdypendeTekstPanel));
+export default TilbakekrevingVedtakUtdypendeTekstPanel;
