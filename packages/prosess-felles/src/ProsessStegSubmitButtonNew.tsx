@@ -41,7 +41,7 @@ const ProsessStegSubmitButton: FunctionComponent<OwnProps> = ({
         spinner={isSubmitting}
         disabled={isDisabled(isDirty, isSubmitting, isSubmittable)}
         onClick={onClick || ariaCheck}
-        htmlType="button"
+        htmlType={onClick ? 'button' : 'submit'}
       >
         {text || intl.formatMessage({ id: 'SubmitButton.ConfirmInformation' })}
       </Hovedknapp>

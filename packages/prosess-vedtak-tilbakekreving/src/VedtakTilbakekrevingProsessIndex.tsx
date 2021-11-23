@@ -6,7 +6,6 @@ import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakTyp
 import {
   BeregningsresultatTilbakekreving, Kodeverk, StandardProsessPanelPropsTilbakekreving, Vedtaksbrev,
 } from '@fpsak-frontend/types';
-import { ReduxWrapper } from '@fpsak-frontend/form';
 
 import { ForhandsvisData } from './components/TilbakekrevingVedtakForm';
 import TilbakekrevingVedtak from './components/TilbakekrevingVedtak';
@@ -43,20 +42,20 @@ const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardPro
     && behandlingArsakType.RE_FEILUTBETALT_BELØP_REDUSERT === behandling.førsteÅrsak.behandlingArsakType.kode;
   return (
     <RawIntlProvider value={intl}>
-      <ReduxWrapper formName="VedtakTilbakekrevingProsessIndex" formData={formData} setFormData={setFormData}>
-        <TilbakekrevingVedtak
-          behandlingUuid={behandling.uuid}
-          perioder={beregningsresultat.beregningResultatPerioder}
-          resultat={beregningsresultat.vedtakResultatType}
-          avsnittsliste={vedtaksbrev.avsnittsliste}
-          submitCallback={submitCallback}
-          readOnly={isReadOnly}
-          alleKodeverk={alleKodeverk}
-          fetchPreviewVedtaksbrev={fetchPreviewVedtaksbrev}
-          erRevurderingTilbakekrevingKlage={erRevurderingTilbakekrevingKlage}
-          erRevurderingTilbakekrevingFeilBeløpBortfalt={erRevurderingTilbakekrevingFeilBeløpBortfalt}
-        />
-      </ReduxWrapper>
+      <TilbakekrevingVedtak
+        behandlingUuid={behandling.uuid}
+        perioder={beregningsresultat.beregningResultatPerioder}
+        resultat={beregningsresultat.vedtakResultatType}
+        avsnittsliste={vedtaksbrev.avsnittsliste}
+        submitCallback={submitCallback}
+        readOnly={isReadOnly}
+        alleKodeverk={alleKodeverk}
+        fetchPreviewVedtaksbrev={fetchPreviewVedtaksbrev}
+        erRevurderingTilbakekrevingKlage={erRevurderingTilbakekrevingKlage}
+        erRevurderingTilbakekrevingFeilBeløpBortfalt={erRevurderingTilbakekrevingFeilBeløpBortfalt}
+        formData={formData}
+        setFormData={setFormData}
+      />
     </RawIntlProvider>
   );
 };
