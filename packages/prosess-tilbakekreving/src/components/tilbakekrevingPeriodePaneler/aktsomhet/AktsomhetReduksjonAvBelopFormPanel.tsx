@@ -56,7 +56,7 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
         <VerticalSpacer eightPx />
         <RadioGroupField
           validate={[required]}
-          name={`${name}harGrunnerTilReduksjon`}
+          name={`${name}.harGrunnerTilReduksjon`}
           readOnly={readOnly}
           parse={(value: string) => value === 'true'}
         >
@@ -95,7 +95,8 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
                       name={`${name}.andelSomTilbakekrevesManuell`}
                       readOnly={readOnly}
                       validate={[required, minValue1, maxValue100]}
-                      format={(value: string) => (Number.isNaN(value) ? value : parseFloat(value).toFixed(2))}
+                      normalizeOnBlur={(value: string) => (Number.isNaN(value) ? value : parseFloat(value).toFixed(2))}
+                      format={(value: string) => value.replace('.', ',')}
                       bredde="S"
                     />
                   </FlexColumn>

@@ -96,7 +96,7 @@ const AktsomhetFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
       readOnly={readOnly}
       onChange={resetFields}
     >
-      {aktsomhetTyper.map((vrt: any) => (
+      {aktsomhetTyper.map((vrt) => (
         <RadioOption
           key={vrt.kode}
           label={erValgtResultatTypeForstoBurdeForstaatt ? <FormattedMessage id={forstoBurdeForstattTekster[vrt.kode]} /> : vrt.navn}
@@ -106,7 +106,7 @@ const AktsomhetFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
     </RadioGroupField>
     { uaktsomhetCodes.includes(handletUaktsomhetGrad) && (
       <AktsomhetGradFormPanel
-        name={`${name}.handletUaktsomhetGrad`}
+        name={`${name}.${handletUaktsomhetGrad}`}
         harGrunnerTilReduksjon={harGrunnerTilReduksjon}
         readOnly={readOnly}
         handletUaktsomhetGrad={handletUaktsomhetGrad}

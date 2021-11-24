@@ -129,37 +129,34 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
       }
     }
 
-    // changeValue('valgtVilkarResultatType', vilkårResultatType, true, false);
-    // changeValue('begrunnelse', kopierDenne.begrunnelse, true, false);
-    // changeValue('vurderingBegrunnelse', kopierDenne.vurderingBegrunnelse, true, false);
-    // changeValue(vilkårResultatType, resultatTypeKopi);
+    formMethods.setValue('valgtVilkarResultatType', vilkårResultatType, { shouldDirty: true });
+    formMethods.setValue('begrunnelse', kopierDenne.begrunnelse, { shouldDirty: true });
+    formMethods.setValue('vurderingBegrunnelse', kopierDenne.vurderingBegrunnelse, { shouldDirty: true });
+    formMethods.setValue('vilkårResultatType', resultatTypeKopi, { shouldDirty: true });
 
     event.preventDefault();
   };
 
   const saveForm = () => {
     setShowModal(!showModal);
-    // @ts-ignore Kva med parametere?
-    formProps.handleSubmit();
+    oppdaterPeriode(formMethods.getValues());
   };
 
-  const saveOrToggleModal = () => {
+  const saveOrToggleModal = (values: any) => {
     if (antallPerioderMedAksjonspunkt > 1 && data.erTotalBelopUnder4Rettsgebyr && tilbakekrevSelvOmBeloepErUnder4Rettsgebyr === false) {
       setShowModal(!showModal);
     } else {
-      // @ts-ignore Kva med parametere?
-      formProps.handleSubmit();
+      oppdaterPeriode(values);
     }
   };
 
   const resetFields = () => {
-    // const fields = [valgtVilkarResultatType];
-    // clearFormFields(TILBAKEKREVING_PERIODE_FORM_NAME, false, false, ...fields);
+    formMethods.reset();
   };
 
   const vurdertePerioder = vilkarsVurdertePerioder.filter((per) => !per.erForeldet && per.valgtVilkarResultatType != null);
   return (
-    <Form formMethods={formMethods} onSubmit={(values: any) => oppdaterPeriode(values)}>
+    <Form formMethods={formMethods} onSubmit={saveOrToggleModal}>
       {reduserteBelop.map((belop) => (
         <React.Fragment key={belop.belop}>
           <Normaltekst>
@@ -299,8 +296,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
         <FlexColumn>
           <Hovedknapp
             mini
-            htmlType="button"
-            onClick={saveOrToggleModal}
+            htmlType="submit"
             disabled={!formMethods.formState.isDirty || readOnly}
           >
             <FormattedMessage id="TilbakekrevingPeriodeForm.Oppdater" />

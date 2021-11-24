@@ -19,14 +19,18 @@ import styles from './aktsomhetGradUaktsomhetFormPanel.less';
 const minLength3 = minLength(3);
 const maxLength1500 = maxLength(1500);
 
-const sarligGrunnerBegrunnelseDiv = (readOnly: boolean, intl: IntlShape) => (
+const sarligGrunnerBegrunnelseDiv = (
+  name: string,
+  readOnly: boolean,
+  intl: IntlShape,
+) => (
   <div>
     <Element>
       <FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.SærligGrunner" />
     </Element>
     <VerticalSpacer eightPx />
     <TextAreaField
-      name="sarligGrunnerBegrunnelse"
+      name={`${name}.sarligGrunnerBegrunnelse`}
       label={intl.formatMessage({ id: 'AktsomhetGradUaktsomhetFormPanel.VurderSærligGrunner' })}
       validate={[required, minLength3, maxLength1500, hasValidText]}
       maxLength={1500}
@@ -80,7 +84,7 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
           parse={(value: string) => value === 'true'}
         >
           <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Ja" />} value="true">
-            {sarligGrunnerBegrunnelseDiv(readOnly, intl)}
+            {sarligGrunnerBegrunnelseDiv(name, readOnly, intl)}
             <AktsomhetSarligeGrunnerFormPanel
               name={name}
               harGrunnerTilReduksjon={harGrunnerTilReduksjon}
@@ -104,7 +108,7 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
       )}
       {(handletUaktsomhetGrad !== aktsomhet.SIMPEL_UAKTSOM || !erTotalBelopUnder4Rettsgebyr) && (
       <>
-        {sarligGrunnerBegrunnelseDiv(readOnly, intl)}
+        {sarligGrunnerBegrunnelseDiv(name, readOnly, intl)}
         <AktsomhetSarligeGrunnerFormPanel
           name={name}
           harGrunnerTilReduksjon={harGrunnerTilReduksjon}

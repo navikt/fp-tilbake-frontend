@@ -18,6 +18,7 @@ interface OwnProps {
   autoFocus?: boolean;
   parse?: (value: string | number) => string | number;
   format?: (value: string | number) => string | number;
+  normalizeOnBlur?: (value: string | number) => string | number;
   isEdited?: boolean;
 }
 
@@ -34,6 +35,7 @@ const InputField: FunctionComponent<OwnProps> = ({
   autoFocus,
   parse = (value) => value,
   format = (value) => value,
+  normalizeOnBlur = (value) => value,
   isEdited,
 }) => {
   const { formState: { errors }, trigger } = useFormContext();
@@ -68,6 +70,9 @@ const InputField: FunctionComponent<OwnProps> = ({
           }
         } else if (onBlur) {
           onBlur(event?.target?.value);
+        }
+        if (normalizeOnBlur) {
+          field.onChange(event?.target?.value ? normalizeOnBlur(event?.target?.value) : undefined);
         }
       }}
     />
