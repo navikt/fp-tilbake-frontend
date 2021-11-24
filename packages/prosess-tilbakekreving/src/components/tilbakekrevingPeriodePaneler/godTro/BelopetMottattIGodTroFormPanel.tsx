@@ -8,7 +8,7 @@ import {
 import { VerticalSpacer, ArrowBox } from '@fpsak-frontend/shared-components';
 import {
   RadioOption, RadioGroupField, InputField,
-} from '@fpsak-frontend/form';
+} from '@fpsak-frontend/form-hooks';
 
 import styles from './belopetMottattIGodTroFormPanel.less';
 
@@ -26,6 +26,7 @@ export interface InitialValuesGodTroForm {
 }
 
 interface OwnProps {
+  name: string;
   readOnly: boolean;
   erBelopetIBehold?: boolean;
 }
@@ -41,6 +42,7 @@ interface StaticFunctions {
 }
 
 const BelopetMottattIGodTroFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
+  name,
   readOnly,
   erBelopetIBehold,
 }) => (
@@ -49,18 +51,19 @@ const BelopetMottattIGodTroFormPanel: FunctionComponent<OwnProps> & StaticFuncti
     <VerticalSpacer eightPx />
     <RadioGroupField
       validate={[required]}
-      name="erBelopetIBehold"
+      name={`${name}.erBelopetIBehold`}
       readOnly={readOnly}
+      parse={(value: string) => value === 'true'}
     >
-      <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Ja" />} value />
-      <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Nei" />} value={false} />
+      <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Ja" />} value="true" />
+      <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Nei" />} value="false" />
     </RadioGroupField>
     <div className={styles.arrowbox}>
       {erBelopetIBehold === true && (
         <ArrowBox alignOffset={25}>
           <InputField
-            name="tilbakekrevdBelop"
-            label={{ id: 'BelopetMottattIGodTroFormPanel.AngiBelop' }}
+            name={`${name}.tilbakekrevdBelop`}
+            label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.AngiBelop" />}
             validate={[required, minValue1]}
             readOnly={readOnly}
             format={formatCurrencyNoKr}

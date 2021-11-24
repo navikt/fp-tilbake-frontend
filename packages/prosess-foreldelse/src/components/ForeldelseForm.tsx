@@ -15,7 +15,7 @@ import {
   FeilutbetalingPeriode, FeilutbetalingPerioderWrapper, AlleKodeverkTilbakekreving, Aksjonspunkt,
 } from '@fpsak-frontend/types';
 import { VurderForeldelseAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
-import { ProsessStegSubmitButtonNew } from '@fpsak-frontend/prosess-felles';
+import { ProsessStegSubmitButton } from '@fpsak-frontend/prosess-felles';
 
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import ForeldelsePeriodeForm, { FormValues as PeriodeFormValues } from './ForeldelsePeriodeForm';
@@ -239,7 +239,7 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
               </div>
             )}
           <VerticalSpacer twentyPx />
-          <ProsessStegSubmitButtonNew
+          <ProsessStegSubmitButton
             isReadOnly={readOnly}
             isDirty={isDirty}
             isSubmittable={!valgtPeriode && !readOnlySubmitButton && erAlleAksjonspunktLøst}

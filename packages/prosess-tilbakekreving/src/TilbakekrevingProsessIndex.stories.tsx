@@ -147,7 +147,7 @@ const standardProsessProps = {
 };
 
 export default {
-  title: 'prosess/tilbakekreving/prosess-tilbakekreving',
+  title: 'prosess/prosess-tilbakekreving',
   component: TilbakekrevingProsessIndex,
 };
 

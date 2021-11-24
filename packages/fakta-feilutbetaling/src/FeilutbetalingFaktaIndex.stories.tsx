@@ -141,7 +141,7 @@ const fpSakAlleKodeverk = {
 } as AlleKodeverk;
 
 export default {
-  title: 'fakta/tilbakekreving/fakta-feilutbetaling',
+  title: 'fakta/fakta-feilutbetaling',
   component: FeilutbetalingFaktaIndex,
 };
 

@@ -5,7 +5,7 @@ import {
 import { Element, Undertekst } from 'nav-frontend-typografi';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupField, RadioOption, TextAreaField } from '@fpsak-frontend/form';
+import { RadioGroupField, RadioOption, TextAreaField } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
@@ -27,7 +27,7 @@ const sarligGrunnerBegrunnelseDiv = (readOnly: boolean, intl: IntlShape) => (
     <VerticalSpacer eightPx />
     <TextAreaField
       name="sarligGrunnerBegrunnelse"
-      label={{ id: 'AktsomhetGradUaktsomhetFormPanel.VurderSærligGrunner' }}
+      label={intl.formatMessage({ id: 'AktsomhetGradUaktsomhetFormPanel.VurderSærligGrunner' })}
       validate={[required, minLength3, maxLength1500, hasValidText]}
       maxLength={1500}
       readOnly={readOnly}
@@ -49,6 +49,7 @@ interface OwnProps {
   sarligGrunnTyper?: KodeverkMedNavn[];
   andelSomTilbakekreves?: string;
   erValgtResultatTypeForstoBurdeForstaatt?: boolean;
+  name: string;
 }
 
 const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComponentProps> = ({
@@ -63,6 +64,7 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
   erTotalBelopUnder4Rettsgebyr,
   andelSomTilbakekreves,
   erValgtResultatTypeForstoBurdeForstaatt,
+  name,
 }) => {
   const grovUaktsomOffset = erValgtResultatTypeForstoBurdeForstaatt ? 180 : 200;
   return (
@@ -73,12 +75,14 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
         <VerticalSpacer eightPx />
         <RadioGroupField
           validate={[required]}
-          name="tilbakekrevSelvOmBeloepErUnder4Rettsgebyr"
+          name={`${name}.tilbakekrevSelvOmBeloepErUnder4Rettsgebyr`}
           readOnly={readOnly}
+          parse={(value: string) => value === 'true'}
         >
-          <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Ja" />} value>
+          <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Ja" />} value="true">
             {sarligGrunnerBegrunnelseDiv(readOnly, intl)}
             <AktsomhetSarligeGrunnerFormPanel
+              name={name}
               harGrunnerTilReduksjon={harGrunnerTilReduksjon}
               erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
               sarligGrunnTyper={sarligGrunnTyper}
@@ -89,7 +93,7 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
               andelSomTilbakekreves={andelSomTilbakekreves}
             />
           </RadioOption>
-          <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Nei" />} value={false}>
+          <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Nei" />} value="false">
             <ArrowBox alignOffset={20}>
               <FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.AllePerioderBehandlesLikt" />
             </ArrowBox>
@@ -102,6 +106,7 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
       <>
         {sarligGrunnerBegrunnelseDiv(readOnly, intl)}
         <AktsomhetSarligeGrunnerFormPanel
+          name={name}
           harGrunnerTilReduksjon={harGrunnerTilReduksjon}
           erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
           sarligGrunnTyper={sarligGrunnTyper}

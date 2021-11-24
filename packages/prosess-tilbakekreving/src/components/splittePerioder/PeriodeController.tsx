@@ -149,16 +149,13 @@ export class PeriodeController extends Component<OwnProps & WrappedComponentProp
               <FormattedMessage id="PeriodeController.DelOppPerioden" />
             </span>
           )}
-          {showDelPeriodeModal
-          && (
+          {showDelPeriodeModal && (
             <DelOppPeriodeModal
-              // @ts-ignore Fiks
               cancelEvent={this.hideModal}
               showModal={showDelPeriodeModal}
               periodeData={periode}
               splitPeriod={this.splitPeriod}
               finnesBelopMed0Verdi={finnesBelopMed0Verdi}
-              intl={intl}
             />
           )}
         </Column>

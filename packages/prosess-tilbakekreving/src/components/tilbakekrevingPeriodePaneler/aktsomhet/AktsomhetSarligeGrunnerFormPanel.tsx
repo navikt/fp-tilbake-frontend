@@ -4,7 +4,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
 
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { CheckboxField, TextAreaField } from '@fpsak-frontend/form';
+import { CheckboxField, TextAreaField } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
@@ -24,9 +24,11 @@ interface OwnProps {
   feilutbetalingBelop: number;
   andelSomTilbakekreves?: string;
   sarligGrunnTyper?: KodeverkMedNavn[];
+  name: string;
 }
 
 const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
+  name,
   harGrunnerTilReduksjon,
   readOnly,
   handletUaktsomhetGrad,
@@ -45,7 +47,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
       <React.Fragment key={sgt.kode}>
         <CheckboxField
           key={sgt.kode}
-          name={sgt.kode}
+          name={`${name}.${sgt.kode}`}
           label={sgt.navn}
           readOnly={readOnly}
         />
@@ -57,7 +59,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
         <Column md="1" />
         <Column md="10">
           <TextAreaField
-            name="annetBegrunnelse"
+            name={`${name}.annetBegrunnelse`}
             label=""
             validate={[required, minLength3, maxLength1500, hasValidText]}
             maxLength={1500}
@@ -67,6 +69,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
       </Row>
     )}
     <AktsomhetReduksjonAvBelopFormPanel
+      name={name}
       harGrunnerTilReduksjon={harGrunnerTilReduksjon}
       readOnly={readOnly}
       handletUaktsomhetGrad={handletUaktsomhetGrad}
