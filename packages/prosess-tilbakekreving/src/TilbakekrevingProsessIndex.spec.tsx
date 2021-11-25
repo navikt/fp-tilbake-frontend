@@ -67,4 +67,87 @@ describe('<TilbakekrevingProsessIndex>', () => {
       }],
     });
   });
+
+  it('skal vurdere perioden som Forsto eller burde forstått og så bekrefte', async () => {
+    const lagre = jest.fn(() => Promise.resolve());
+
+    const utils = render(<Default submitCallback={lagre} />);
+
+    expect(await screen.findByText('Tilbakekreving')).toBeInTheDocument();
+    expect(screen.getByText('Bekreft og fortsett')).toBeDisabled();
+
+    userEvent.type(utils.getByLabelText('Vurder hvilken hjemmel i § 22-15 1. ledd som skal benyttes'), 'Dette er en vurdering');
+
+    // Velg først 'Feil opplysninger' for å sjekke at denne informasjonen blir resatt når en bytter
+    userEvent.click(screen.getByText('Feil opplysninger'));
+    userEvent.click(screen.getByText('Forsett'));
+    expect(await screen.findByText('Andel som skal tilbakekreves')).toBeInTheDocument();
+    expect(screen.getByText('100 %')).toBeInTheDocument();
+    expect(screen.getByText('Det legges til 10 % renter')).toBeInTheDocument();
+
+    // Velg så 'Forsto eller burde forstått'
+    userEvent.click(screen.getByText('Forsto eller burde forstått'));
+
+    // Velg først 'Forsto' får å sjekk at dette blir resatt korrekt ved bytte
+    userEvent.click(screen.getByText('Forsto'));
+    expect(await screen.findByText('Skal det tillegges renter?')).toBeInTheDocument();
+    userEvent.click(screen.getByText('Ja'));
+
+    userEvent.click(screen.getByText('Må ha forstått'));
+    expect(await screen.findByText('Særlige grunner 4. ledd')).toBeInTheDocument();
+    expect(screen.queryByText('Totalbeløpet er under 4 rettsgebyr (6. ledd). Skal det tilbakekreves?')).not.toBeInTheDocument();
+
+    userEvent.type(utils.getByLabelText('Vurder i hvilken grad mottaker har handlet uaktsomt'), 'Dette er en vurdering a god tro');
+
+    userEvent.click(screen.getByText('Burde ha forstått'));
+    expect(await screen.findByText('Totalbeløpet er under 4 rettsgebyr (6. ledd). Skal det tilbakekreves?')).toBeInTheDocument();
+    userEvent.click(screen.getByText('Ja'));
+
+    userEvent.type(utils.getByLabelText('Vurder særlige grunner du har vektlagt for resultatet'), 'Begrunnelse for særlige grunner');
+
+    userEvent.click(screen.getAllByText('Ja')[1]);
+    userEvent.selectOptions(screen.getByRole('combobox', { hidden: true }), '30');
+
+    userEvent.click(screen.getByText('Oppdater'));
+
+    expect(await screen.findByText('Du må velge minst en Særlig grunn')).toBeInTheDocument();
+    userEvent.click(screen.getByText('Grad av uaktsomhet'));
+
+    userEvent.click(screen.getByText('Oppdater'));
+
+    await waitFor(() => expect(screen.queryByText('Detaljer for valgt periode')).not.toBeInTheDocument());
+
+    userEvent.click(screen.getByText('Bekreft og fortsett'));
+
+    await waitFor(() => expect(lagre).toHaveBeenCalledTimes(1));
+    expect(lagre).toHaveBeenNthCalledWith(1, {
+      kode: '5002',
+      vilkarsVurdertePerioder: [{
+        begrunnelse: 'Dette er en vurdering',
+        fom: '2019-01-01',
+        tom: '2019-04-01',
+        vilkarResultat: 'FORSTO_BURDE_FORSTAATT',
+        vilkarResultatInfo: {
+          '@type': 'annet',
+          aktsomhet: 'SIMPEL_UAKTSOM',
+          aktsomhetInfo: {
+            andelTilbakekreves: 30,
+            annetBegrunnelse: undefined,
+            harGrunnerTilReduksjon: true,
+            ileggRenter: undefined,
+            sarligGrunner: [
+              'GRAD_AV_UAKTSOMHET',
+            ],
+            sarligGrunnerBegrunnelse: 'Begrunnelse for særlige grunner',
+            tilbakekrevSelvOmBeloepErUnder4Rettsgebyr: true,
+            tilbakekrevesBelop: undefined,
+          },
+          begrunnelse: 'Dette er en vurdering a god tro',
+        },
+      }],
+    });
+  });
+
+  // test for 6ledd
+  // test for deling av perioder
 });
