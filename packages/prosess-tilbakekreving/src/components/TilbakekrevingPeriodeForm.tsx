@@ -13,7 +13,7 @@ import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
 } from '@fpsak-frontend/utils';
 import {
-  AdvarselModal, FlexColumn, FlexRow, VerticalSpacer,
+  AdvarselModal, FlexColumn, FlexRow, VerticalSpacer, usePrevious,
 } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import {
@@ -107,6 +107,9 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
   const erSerligGrunnAnnetValgt = formMethods.watch(`${valgtVilkarResultatType}.${handletUaktsomhetsgrad}.${sarligGrunn.ANNET}`);
   const erBelopetIBehold = formMethods.watch(`${valgtVilkarResultatType}.erBelopetIBehold`);
 
+  const forrigeVilkarResultatType = usePrevious(valgtVilkarResultatType);
+  const forrigeHandletUaktsomhetsgrad = usePrevious(handletUaktsomhetsgrad);
+
   const reduserteBelop = data.redusertBeloper;
   const sarligGrunnTyper = alleKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN];
   const vilkarResultatTyper = alleKodeverk[tilbakekrevingKodeverkTyper.VILKAR_RESULTAT];
@@ -132,7 +135,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
     formMethods.setValue('valgtVilkarResultatType', vilkårResultatType, { shouldDirty: true });
     formMethods.setValue('begrunnelse', kopierDenne.begrunnelse, { shouldDirty: true });
     formMethods.setValue('vurderingBegrunnelse', kopierDenne.vurderingBegrunnelse, { shouldDirty: true });
-    formMethods.setValue('vilkårResultatType', resultatTypeKopi, { shouldDirty: true });
+    formMethods.setValue(vilkårResultatType, resultatTypeKopi, { shouldDirty: true });
 
     event.preventDefault();
   };
@@ -150,8 +153,16 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
     }
   };
 
-  const resetFields = () => {
-    formMethods.reset();
+  const resetVilkarresultatType = () => {
+    if (forrigeVilkarResultatType) {
+      formMethods.resetField(forrigeVilkarResultatType);
+    }
+  };
+
+  const resetUtaktsomhetsgrad = () => {
+    if (forrigeHandletUaktsomhetsgrad) {
+      formMethods.resetField(`${valgtVilkarResultatType}.${forrigeHandletUaktsomhetsgrad}`);
+    }
   };
 
   const vurdertePerioder = vilkarsVurdertePerioder.filter((per) => !per.erForeldet && per.valgtVilkarResultatType != null);
@@ -224,7 +235,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   name="valgtVilkarResultatType"
                   direction="vertical"
                   readOnly={readOnly}
-                  onChange={resetFields}
+                  onChange={resetVilkarresultatType}
                 >
                   {vilkarResultatTyper.map((vrt) => (
                     <RadioOption
@@ -274,7 +285,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                       harGrunnerTilReduksjon={harGrunnerTilReduksjon}
                       readOnly={readOnly}
                       handletUaktsomhetGrad={handletUaktsomhetsgrad}
-                      resetFields={resetFields}
+                      resetFields={resetUtaktsomhetsgrad}
                       erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
                       erValgtResultatTypeForstoBurdeForstaatt={valgtVilkarResultatType === VilkarResultat.FORSTO_BURDE_FORSTAATT}
                       aktsomhetTyper={aktsomhetTyper}

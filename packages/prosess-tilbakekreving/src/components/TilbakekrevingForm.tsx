@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent, useState, useCallback,
+  FunctionComponent, useState, useCallback, useEffect,
 } from 'react';
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
@@ -163,6 +163,33 @@ export const transformValues = (
     .map((p: CustomVilkarsVurdertePeriode) => periodeFormTransformValues(p, sarligGrunnTyper)),
 });
 
+const validerOm6LeddBrukesPåAllePerioder = (
+  vilkarsVurdertePerioder: CustomVilkarsVurdertePeriode[],
+) => {
+  if (!vilkarsVurdertePerioder) {
+    return undefined;
+  }
+  const antallPerioderMedAksjonspunkt = vilkarsVurdertePerioder.reduce((sum: number, periode) => (!periode.erForeldet ? sum + 1 : sum), 0);
+  if (antallPerioderMedAksjonspunkt < 2) {
+    return undefined;
+  }
+
+  const antallValgt = vilkarsVurdertePerioder.reduce((sum: number, periode: CustomVilkarsVurdertePeriode) => {
+    const { valgtVilkarResultatType } = periode;
+    const vilkarResultatInfo = periode[valgtVilkarResultatType];
+    const { handletUaktsomhetGrad } = vilkarResultatInfo;
+    const info = vilkarResultatInfo[handletUaktsomhetGrad];
+    if (info) {
+      return info.tilbakekrevSelvOmBeloepErUnder4Rettsgebyr === false ? sum + 1 : sum;
+    }
+    return sum;
+  }, 0);
+  if (antallValgt > 0 && antallValgt !== vilkarsVurdertePerioder.length) {
+    return 'TilbakekrevingPeriodeForm.TotalbelopetUnder4Rettsgebyr';
+  }
+  return undefined;
+};
+
 interface OwnProps {
   perioderForeldelse: FeilutbetalingPerioderWrapper;
   alleKodeverk: AlleKodeverkTilbakekreving;
@@ -209,12 +236,14 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
   const [isDirty, setDirty] = useState(!!formData);
   const [valgtPeriode, setValgtPeriode] = useState<CustomVilkarsVurdertePeriode | undefined>(vilkårsvurdertePerioder?.find(harApentAksjonspunkt));
   const [isSubmitting, setSubmitting] = useState(false);
+  const [valideringsmeldingId, setValideringsmeldingId] = useState<string | undefined>();
 
   // const periodFormValues = getFormValues(TILBAKEKREVING_PERIODE_FORM_NAME)(state) as { erForeldet: boolean }
   //   || { erForeldet: false };
 
-  // TODO
-  const formProps = { error: undefined };
+  useEffect(() => {
+    setValideringsmeldingId(validerOm6LeddBrukesPåAllePerioder(vilkårsvurdertePerioder));
+  }, [vilkårsvurdertePerioder]);
 
   const dataForDetailForm = settOppPeriodeDataForDetailForm(sammenslåttePerioder, vilkårsvurdertePerioder);
   const isReadOnly = readOnly;// || periodFormValues.erForeldet === true;
@@ -338,10 +367,10 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
         </>
       )}
       <VerticalSpacer twentyPx />
-      {formProps.error && (
+      {valideringsmeldingId && (
         <>
           <AlertStripe type="feil">
-            <FormattedMessage id={formProps.error} />
+            <FormattedMessage id={valideringsmeldingId} />
           </AlertStripe>
           <VerticalSpacer twentyPx />
         </>
@@ -349,42 +378,12 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
       <ProsessStegSubmitButton
         isReadOnly={isReadOnly}
         isDirty={isDirty}
-        isSubmittable={!isApOpen && !valgtPeriode && !readOnlySubmitButton && !formProps.error}
+        isSubmittable={!isApOpen && !valgtPeriode && !readOnlySubmitButton && !valideringsmeldingId}
         onClick={lagrePerioder}
         isSubmitting={isSubmitting}
       />
     </FaktaGruppe>
   );
 };
-
-/* const validateForm = (values: { vilkarsVurdertePerioder: CustomVilkarsVurdertePeriode[] }) => {
-  const errors = {};
-  if (!values.vilkarsVurdertePerioder) {
-    return errors;
-  }
-  const perioder = values.vilkarsVurdertePerioder;
-  const antallPerioderMedAksjonspunkt = perioder.reduce((sum: number, periode) => (!periode.erForeldet ? sum + 1 : sum), 0);
-  if (antallPerioderMedAksjonspunkt < 2) {
-    return errors;
-  }
-
-  const antallValgt = perioder.reduce((sum: number, periode: CustomVilkarsVurdertePeriode) => {
-    const { valgtVilkarResultatType } = periode;
-    const vilkarResultatInfo = periode[valgtVilkarResultatType];
-    const { handletUaktsomhetGrad } = vilkarResultatInfo;
-    const info = vilkarResultatInfo[handletUaktsomhetGrad];
-    if (info) {
-      return info.tilbakekrevSelvOmBeloepErUnder4Rettsgebyr === false ? sum + 1 : sum;
-    }
-    return sum;
-  }, 0);
-  if (antallValgt > 0 && antallValgt !== perioder.length) {
-    // eslint-disable-next-line no-underscore-dangle
-    return {
-      _error: 'TilbakekrevingPeriodeForm.TotalbelopetUnder4Rettsgebyr',
-    };
-  }
-  return errors;
-}; */
 
 export default TilbakekrevingForm;
