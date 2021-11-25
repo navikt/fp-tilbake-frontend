@@ -243,7 +243,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
   }, [vilkårsvurdertePerioder]);
 
   const dataForDetailForm = settOppPeriodeDataForDetailForm(sammenslåttePerioder, vilkårsvurdertePerioder);
-  const isReadOnly = readOnly || valgtPeriode.erForeldet === true;
+  const isReadOnly = readOnly || valgtPeriode?.erForeldet === true;
   const antallPerioderMedAksjonspunkt = vilkårsvurdertePerioder.reduce((sum: number, periode) => (!periode.erForeldet ? sum + 1 : sum), 0);
   const merknaderFraBeslutter = alleMerknaderFraBeslutter[aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING];
 
