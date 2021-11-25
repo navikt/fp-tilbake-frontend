@@ -277,6 +277,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                       name={valgtVilkarResultatType}
                       readOnly={readOnly}
                       erBelopetIBehold={erBelopetIBehold}
+                      feilutbetalingBelop={data.feilutbetaling}
                     />
                   )}
                   {valgtVilkarResultatType !== VilkarResultat.GOD_TRO && (
@@ -324,46 +325,6 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
     </Form>
   );
 };
-
-/* const validate = (values: any, sarligGrunnTyper: KodeverkMedNavn[], data: DataForPeriode, intl: IntlShape) => {
-  let errors = {};
-  if (!values) {
-    return errors;
-  }
-  const vilkarResultatInfo = values[values.valgtVilkarResultatType];
-  if (vilkarResultatInfo && vilkarResultatInfo.handletUaktsomhetGrad && vilkarResultatInfo.handletUaktsomhetGrad !== Aktsomhet.FORSETT) {
-    const aktsomhetInfo = vilkarResultatInfo[vilkarResultatInfo.handletUaktsomhetGrad];
-    if (aktsomhetInfo && !sarligGrunnTyper.some((type: KodeverkMedNavn) => aktsomhetInfo[type.kode])) {
-      errors = {
-        [values.valgtVilkarResultatType]: {
-          [vilkarResultatInfo.handletUaktsomhetGrad]: {
-            [sarligGrunn.ANNET]: intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.MaVelgeSarligGrunn' }),
-          },
-        },
-      };
-    }
-    if (aktsomhetInfo && aktsomhetInfo.belopSomSkalTilbakekreves && aktsomhetInfo.belopSomSkalTilbakekreves >= data.feilutbetaling) {
-      errors = {
-        ...errors,
-        [values.valgtVilkarResultatType]: {
-          [vilkarResultatInfo.handletUaktsomhetGrad]: {
-            belopSomSkalTilbakekreves: intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.BelopMaVereMindreEnnFeilutbetalingen' }),
-          },
-        },
-      };
-    }
-  }
-  if (vilkarResultatInfo && vilkarResultatInfo.tilbakekrevdBelop && vilkarResultatInfo.tilbakekrevdBelop > data.feilutbetaling) {
-    errors = {
-      ...errors,
-      [values.valgtVilkarResultatType]: {
-        tilbakekrevdBelop: intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.BelopKanIkkeVereStorreEnnFeilutbetalingen' }),
-      },
-    };
-  }
-
-  return errors;
-}; */
 
 export const periodeFormBuildInitialValues = (periode: any, foreldelsePerioder: FeilutbetalingPerioderWrapper): InitialValuesDetailForm => {
   const { vilkarResultat, begrunnelse, vilkarResultatInfo } = periode;

@@ -238,15 +238,12 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
   const [isSubmitting, setSubmitting] = useState(false);
   const [valideringsmeldingId, setValideringsmeldingId] = useState<string | undefined>();
 
-  // const periodFormValues = getFormValues(TILBAKEKREVING_PERIODE_FORM_NAME)(state) as { erForeldet: boolean }
-  //   || { erForeldet: false };
-
   useEffect(() => {
     setValideringsmeldingId(validerOm6LeddBrukesPåAllePerioder(vilkårsvurdertePerioder));
   }, [vilkårsvurdertePerioder]);
 
   const dataForDetailForm = settOppPeriodeDataForDetailForm(sammenslåttePerioder, vilkårsvurdertePerioder);
-  const isReadOnly = readOnly;// || periodFormValues.erForeldet === true;
+  const isReadOnly = readOnly || valgtPeriode.erForeldet === true;
   const antallPerioderMedAksjonspunkt = vilkårsvurdertePerioder.reduce((sum: number, periode) => (!periode.erForeldet ? sum + 1 : sum), 0);
   const merknaderFraBeslutter = alleMerknaderFraBeslutter[aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING];
 

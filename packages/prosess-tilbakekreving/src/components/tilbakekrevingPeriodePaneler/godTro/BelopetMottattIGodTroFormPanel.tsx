@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import { Undertekst, Normaltekst } from 'nav-frontend-typografi';
 
 import {
@@ -20,6 +20,16 @@ const parseCurrencyInput = (input: any) => {
   return Number.isNaN(parsedValue) ? '' : parsedValue;
 };
 
+const validerAtMindreEnn = (
+  intl: IntlShape,
+  feilutbetalingBelop: number,
+) => (tilbakekrevdBelop: number) => {
+  if (tilbakekrevdBelop > feilutbetalingBelop) {
+    return intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.BelopKanIkkeVereStorreEnnFeilutbetalingen' });
+  }
+  return undefined;
+};
+
 export interface InitialValuesGodTroForm {
   erBelopetIBehold: boolean;
   tilbakekrevdBelop?: number;
@@ -29,6 +39,7 @@ interface OwnProps {
   name: string;
   readOnly: boolean;
   erBelopetIBehold?: boolean;
+  feilutbetalingBelop: number;
 }
 
 interface StaticFunctions {
@@ -45,43 +56,47 @@ const BelopetMottattIGodTroFormPanel: FunctionComponent<OwnProps> & StaticFuncti
   name,
   readOnly,
   erBelopetIBehold,
-}) => (
-  <>
-    <Undertekst><FormattedMessage id="BelopetMottattIGodTroFormPanel.BelopetIBehold" /></Undertekst>
-    <VerticalSpacer eightPx />
-    <RadioGroupField
-      validate={[required]}
-      name={`${name}.erBelopetIBehold`}
-      readOnly={readOnly}
-      parse={(value: string) => value === 'true'}
-    >
-      <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Ja" />} value="true" />
-      <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Nei" />} value="false" />
-    </RadioGroupField>
-    <div className={styles.arrowbox}>
-      {erBelopetIBehold === true && (
-        <ArrowBox alignOffset={25}>
-          <InputField
-            name={`${name}.tilbakekrevdBelop`}
-            label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.AngiBelop" />}
-            validate={[required, minValue1]}
-            readOnly={readOnly}
-            format={formatCurrencyNoKr}
-            parse={parseCurrencyInput}
-            bredde="S"
-          />
-        </ArrowBox>
-      )}
-      {erBelopetIBehold === false && (
-        <ArrowBox alignOffset={90}>
-          <Normaltekst>
-            <FormattedMessage id="BelopetMottattIGodTroFormPanel.IngenTilbakekreving" />
-          </Normaltekst>
-        </ArrowBox>
-      )}
-    </div>
-  </>
-);
+  feilutbetalingBelop,
+}) => {
+  const intl = useIntl();
+  return (
+    <>
+      <Undertekst><FormattedMessage id="BelopetMottattIGodTroFormPanel.BelopetIBehold" /></Undertekst>
+      <VerticalSpacer eightPx />
+      <RadioGroupField
+        validate={[required]}
+        name={`${name}.erBelopetIBehold`}
+        readOnly={readOnly}
+        parse={(value: string) => value === 'true'}
+      >
+        <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Ja" />} value="true" />
+        <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Nei" />} value="false" />
+      </RadioGroupField>
+      <div className={styles.arrowbox}>
+        {erBelopetIBehold === true && (
+          <ArrowBox alignOffset={25}>
+            <InputField
+              name={`${name}.tilbakekrevdBelop`}
+              label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.AngiBelop" />}
+              validate={[required, minValue1, validerAtMindreEnn(intl, feilutbetalingBelop)]}
+              readOnly={readOnly}
+              format={formatCurrencyNoKr}
+              parse={parseCurrencyInput}
+              bredde="S"
+            />
+          </ArrowBox>
+        )}
+        {erBelopetIBehold === false && (
+          <ArrowBox alignOffset={90}>
+            <Normaltekst>
+              <FormattedMessage id="BelopetMottattIGodTroFormPanel.IngenTilbakekreving" />
+            </Normaltekst>
+          </ArrowBox>
+        )}
+      </div>
+    </>
+  );
+};
 
 BelopetMottattIGodTroFormPanel.transformValues = (info: { erBelopetIBehold: boolean; tilbakekrevdBelop: number }, vurderingBegrunnelse: string) => ({
   '@type': 'godTro',

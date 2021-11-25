@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import { useFormContext, UseFormGetValues } from 'react-hook-form';
 import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
 
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { CheckboxField, TextAreaField } from '@fpsak-frontend/form-hooks';
+import { CheckboxField, TextAreaField, SkjemaGruppeMedFeilviser } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
@@ -15,6 +16,18 @@ import AktsomhetReduksjonAvBelopFormPanel from './AktsomhetReduksjonAvBelopFormP
 const minLength3 = minLength(3);
 const maxLength1500 = maxLength(1500);
 
+const validerAtMinstEnSærligGrunnErValgt = (
+  intl: IntlShape,
+  getValues: UseFormGetValues<any>,
+  name: string,
+  sarligGrunnTyper: KodeverkMedNavn[],
+) => () => {
+  if (sarligGrunnTyper.some((sgt) => !!getValues(`${name}.${sgt.kode}`))) {
+    return undefined;
+  }
+  return intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.MaVelgeSarligGrunn' });
+};
+
 interface OwnProps {
   harGrunnerTilReduksjon?: boolean;
   readOnly: boolean;
@@ -23,7 +36,7 @@ interface OwnProps {
   harMerEnnEnYtelse: boolean;
   feilutbetalingBelop: number;
   andelSomTilbakekreves?: string;
-  sarligGrunnTyper?: KodeverkMedNavn[];
+  sarligGrunnTyper: KodeverkMedNavn[];
   name: string;
 }
 
@@ -37,47 +50,58 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
   harMerEnnEnYtelse,
   feilutbetalingBelop,
   andelSomTilbakekreves,
-}) => (
-  <div>
-    <Undertekst>
-      <FormattedMessage id="AktsomhetSarligeGrunnerFormPanel.GrunnerTilReduksjon" />
-    </Undertekst>
-    <VerticalSpacer eightPx />
-    {sarligGrunnTyper.map((sgt: KodeverkMedNavn) => (
-      <React.Fragment key={sgt.kode}>
-        <CheckboxField
-          key={sgt.kode}
-          name={`${name}.${sgt.kode}`}
-          label={sgt.navn}
-          readOnly={readOnly}
-        />
-        <VerticalSpacer eightPx />
-      </React.Fragment>
-    ))}
-    {erSerligGrunnAnnetValgt && (
-      <Row>
-        <Column md="1" />
-        <Column md="10">
-          <TextAreaField
-            name={`${name}.annetBegrunnelse`}
-            label=""
-            validate={[required, minLength3, maxLength1500, hasValidText]}
-            maxLength={1500}
-            readOnly={readOnly}
-          />
-        </Column>
-      </Row>
-    )}
-    <AktsomhetReduksjonAvBelopFormPanel
-      name={name}
-      harGrunnerTilReduksjon={harGrunnerTilReduksjon}
-      readOnly={readOnly}
-      handletUaktsomhetGrad={handletUaktsomhetGrad}
-      harMerEnnEnYtelse={harMerEnnEnYtelse}
-      feilutbetalingBelop={feilutbetalingBelop}
-      andelSomTilbakekreves={andelSomTilbakekreves}
-    />
-  </div>
-);
+}) => {
+  const intl = useIntl();
+  const {
+    getValues,
+  } = useFormContext();
+  return (
+    <div>
+      <Undertekst>
+        <FormattedMessage id="AktsomhetSarligeGrunnerFormPanel.GrunnerTilReduksjon" />
+      </Undertekst>
+      <VerticalSpacer eightPx />
+      <SkjemaGruppeMedFeilviser
+        name={`${name}.reduksjonsgrunner`}
+        validate={[validerAtMinstEnSærligGrunnErValgt(intl, getValues, name, sarligGrunnTyper)]}
+      >
+        {sarligGrunnTyper.map((sgt: KodeverkMedNavn) => (
+          <React.Fragment key={sgt.kode}>
+            <CheckboxField
+              key={sgt.kode}
+              name={`${name}.${sgt.kode}`}
+              label={sgt.navn}
+              readOnly={readOnly}
+            />
+            <VerticalSpacer eightPx />
+          </React.Fragment>
+        ))}
+        {erSerligGrunnAnnetValgt && (
+          <Row>
+            <Column md="1" />
+            <Column md="10">
+              <TextAreaField
+                name={`${name}.annetBegrunnelse`}
+                label=""
+                validate={[required, minLength3, maxLength1500, hasValidText]}
+                maxLength={1500}
+                readOnly={readOnly}
+              />
+            </Column>
+          </Row>
+        )}
+      </SkjemaGruppeMedFeilviser>
+      <AktsomhetReduksjonAvBelopFormPanel
+        name={name}
+        harGrunnerTilReduksjon={harGrunnerTilReduksjon}
+        readOnly={readOnly}
+        handletUaktsomhetGrad={handletUaktsomhetGrad}
+        harMerEnnEnYtelse={harMerEnnEnYtelse}
+        feilutbetalingBelop={feilutbetalingBelop}
+        andelSomTilbakekreves={andelSomTilbakekreves}
+      />
+    </div>
+  );
+};
 
 export default AktsomhetSarligeGrunnerFormPanel;

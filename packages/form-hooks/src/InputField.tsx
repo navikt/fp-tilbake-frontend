@@ -35,7 +35,7 @@ const InputField: FunctionComponent<OwnProps> = ({
   autoFocus,
   parse = (value) => value,
   format = (value) => value,
-  normalizeOnBlur = (value) => value,
+  normalizeOnBlur,
   isEdited,
 }) => {
   const { formState: { errors }, trigger } = useFormContext();
