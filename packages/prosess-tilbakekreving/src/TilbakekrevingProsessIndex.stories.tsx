@@ -35,7 +35,7 @@ const perioderForeldelse = {
   }],
 } as FeilutbetalingPerioderWrapper;
 
-const vilkarvurderingsperioder = {
+const defaultVilkarvurderingsperioder = {
   perioder: [{
     fom: '2019-01-01',
     tom: '2019-04-01',
@@ -146,9 +146,11 @@ const beregnBelop = (params: { perioder: any[]}) => {
 const Template: Story<{
   submitCallback: (aksjonspunktData: any) => Promise<void>;
   aksjonspunkter?: Aksjonspunkt[];
+  vilkarvurderingsperioder: DetaljerteFeilutbetalingsperioder
 }> = ({
   submitCallback,
   aksjonspunkter = [],
+  vilkarvurderingsperioder,
 }) => (
   <TilbakekrevingProsessIndex
     behandling={{
@@ -191,4 +193,44 @@ Default.args = {
     kanLoses: true,
     erAktivt: true,
   }],
+  vilkarvurderingsperioder: defaultVilkarvurderingsperioder,
+};
+
+export const MedToPerioder = Template.bind({});
+MedToPerioder.args = {
+  submitCallback: action('button-click') as (data: any) => Promise<any>,
+  aksjonspunkter: [{
+    definisjon: {
+      kode: aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING,
+      kodeverk: '',
+    },
+    status: {
+      kode: aksjonspunktStatus.OPPRETTET,
+      kodeverk: '',
+    },
+    begrunnelse: undefined,
+    kanLoses: true,
+    erAktivt: true,
+  }],
+  vilkarvurderingsperioder: {
+    perioder: [defaultVilkarvurderingsperioder.perioder[0], {
+      fom: '2019-04-01',
+      tom: '2019-10-01',
+      foreldet: false,
+      feilutbetaling: 100,
+      årsak: {
+        hendelseType: {
+          kode: 'MEDLEM',
+          kodeverk: '',
+          navn: '§22 Medlemskap',
+        },
+      },
+      redusertBeloper: [],
+      ytelser: [{
+        aktivitet: 'Arbeidstaker',
+        belop: 2050,
+      }],
+    }],
+    rettsgebyr: 1000,
+  } as DetaljerteFeilutbetalingsperioder,
 };

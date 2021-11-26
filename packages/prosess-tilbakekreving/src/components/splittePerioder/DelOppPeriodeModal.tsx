@@ -100,9 +100,9 @@ const DelOppPeriodeModal: FunctionComponent<OwnProps> = ({
           </Normaltekst>
         </div>
         <div className={styles.marginTop}>
-          <Undertekst><FormattedMessage id="DelOppPeriodeModalImpl.AngiTomDato" /></Undertekst>
           <DatepickerField
             name="forstePeriodeTomDato"
+            label={<FormattedMessage id="DelOppPeriodeModalImpl.AngiTomDato" />}
             className={styles.datePicker}
             validate={[required, hasValidDate, validerMotPeriode(periodeData, intl)]}
             disabledDays={{ before: moment(periodeData.fom).toDate(), after: moment(periodeData.tom).toDate() }}
