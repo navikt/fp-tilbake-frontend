@@ -72,7 +72,7 @@ const InputField: FunctionComponent<OwnProps> = ({
           onBlur(event?.target?.value);
         }
         if (normalizeOnBlur) {
-          field.onChange(event?.target?.value ? normalizeOnBlur(event?.target?.value) : undefined);
+          field.onChange(event?.target?.value ? normalizeOnBlur(parse(event?.target?.value)) : undefined);
         }
       }}
     />

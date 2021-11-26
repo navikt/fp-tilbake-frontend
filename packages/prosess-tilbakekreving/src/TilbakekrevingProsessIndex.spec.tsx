@@ -262,7 +262,7 @@ describe('<TilbakekrevingProsessIndex>', () => {
     expect(screen.getByText('Bekreft og fortsett')).toBeDisabled();
 
     userEvent.click(screen.getByAltText('Åpne info om første periode'));
-    expect(await screen.findByText('Detaljer for valgt periode')).toBeInTheDocument();
+    expect(await screen.findByText('13 uker')).toBeInTheDocument();
     const nestePeriodeKnapp = screen.getByAltText('Neste periode');
     userEvent.click(nestePeriodeKnapp);
 
