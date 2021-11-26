@@ -63,7 +63,7 @@
     "@commercetools/enzyme-extensions": "^5.0.0",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-docs": "^6.3.12",
-    "@storybook/addons": "^6.3.12",
+    "@storybook/addons": "^6.4.0",
     "@storybook/builder-webpack5": "^6.3.12",
     "@storybook/cli": "^6.3.12",
     "@storybook/manager-webpack5": "^6.3.12",
