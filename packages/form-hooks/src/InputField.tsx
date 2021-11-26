@@ -1,13 +1,13 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { Input as NavInput } from 'nav-frontend-skjema';
-import Label from './Label';
+import Label, { LabelType } from './Label';
 import ReadOnlyField from './ReadOnlyField';
 import { getError, getValidationRules } from './formUtils';
 
 interface OwnProps {
   name: string;
-  label?: string;
+  label?: LabelType;
   bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
   validate?: ((value: string | number) => any)[];
   readOnly?: boolean;
@@ -17,6 +17,8 @@ interface OwnProps {
   shouldValidateOnBlur?: boolean;
   autoFocus?: boolean;
   parse?: (value: string | number) => string | number;
+  format?: (value: string | number) => string | number;
+  normalizeOnBlur?: (value: string | number) => string | number;
   isEdited?: boolean;
 }
 
@@ -32,6 +34,8 @@ const InputField: FunctionComponent<OwnProps> = ({
   placeholder,
   autoFocus,
   parse = (value) => value,
+  format = (value) => value,
+  normalizeOnBlur,
   isEdited,
 }) => {
   const { formState: { errors }, trigger } = useFormContext();
@@ -54,7 +58,7 @@ const InputField: FunctionComponent<OwnProps> = ({
       feil={getError(errors, name)}
       bredde={bredde}
       {...field}
-      value={field.value ? field.value : ''}
+      value={field.value ? format(field.value) : ''}
       autoFocus={autoFocus}
       onChange={(event) => field.onChange(event.currentTarget.value ? parse(event.currentTarget.value) : undefined)}
       onBlur={async (event) => {
@@ -66,6 +70,9 @@ const InputField: FunctionComponent<OwnProps> = ({
           }
         } else if (onBlur) {
           onBlur(event?.target?.value);
+        }
+        if (normalizeOnBlur) {
+          field.onChange(event?.target?.value ? normalizeOnBlur(parse(event?.target?.value)) : undefined);
         }
       }}
     />

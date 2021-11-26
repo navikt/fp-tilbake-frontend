@@ -29,8 +29,6 @@ type FormValues = {
   forstePeriodeTomDato?: string;
 }
 
-// const validate = (values: FormValues) => validateForm(values, ownProps.periodeData, ownProps.intl);
-
 const validerMotPeriode = (
   periodeData: Periode,
   intl: IntlShape,

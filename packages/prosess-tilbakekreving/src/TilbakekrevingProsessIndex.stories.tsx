@@ -1,5 +1,6 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions'; // eslint-disable-line import/no-extraneous-dependencies
+import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
+import { action } from '@storybook/addon-actions';
 
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
@@ -11,7 +12,7 @@ import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurd
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import TilbakekrevingProsessIndex from '@fpsak-frontend/prosess-tilbakekreving';
 import {
-  Behandling, FeilutbetalingPerioderWrapper, DetaljerteFeilutbetalingsperioder, AlleKodeverkTilbakekreving,
+  Behandling, FeilutbetalingPerioderWrapper, DetaljerteFeilutbetalingsperioder, AlleKodeverkTilbakekreving, Aksjonspunkt,
 } from '@fpsak-frontend/types';
 
 const perioderForeldelse = {
@@ -34,7 +35,7 @@ const perioderForeldelse = {
   }],
 } as FeilutbetalingPerioderWrapper;
 
-const vilkarvurderingsperioder = {
+const defaultVilkarvurderingsperioder = {
   perioder: [{
     fom: '2019-01-01',
     tom: '2019-04-01',
@@ -130,24 +131,8 @@ const alleKodeverk = {
   }],
 } as AlleKodeverkTilbakekreving;
 
-const standardProsessProps = {
-  behandling: {
-    uuid: '1',
-    versjon: 1,
-  } as Behandling,
-  alleKodeverk,
-  aksjonspunkter: [],
-  submitCallback: action('button-click') as () => Promise<any>,
-  isReadOnly: false,
-  isAksjonspunktOpen: true,
-  readOnlySubmitButton: false,
-  status: '',
-  vilkar: [],
-  setFormData: () => undefined,
-};
-
 export default {
-  title: 'prosess/tilbakekreving/prosess-tilbakekreving',
+  title: 'prosess/prosess-tilbakekreving',
   component: TilbakekrevingProsessIndex,
 };
 
@@ -158,25 +143,32 @@ const beregnBelop = (params: { perioder: any[]}) => {
   });
 };
 
-export const visAksjonspunktForTilbakekreving = () => (
+const Template: Story<{
+  submitCallback: (aksjonspunktData: any) => Promise<void>;
+  aksjonspunkter?: Aksjonspunkt[];
+  vilkarvurderingsperioder: DetaljerteFeilutbetalingsperioder
+}> = ({
+  submitCallback,
+  aksjonspunkter = [],
+  vilkarvurderingsperioder,
+}) => (
   <TilbakekrevingProsessIndex
-    {...standardProsessProps}
+    behandling={{
+      uuid: '1',
+      versjon: 1,
+    } as Behandling}
+    alleKodeverk={alleKodeverk}
+    isReadOnly={false}
+    isAksjonspunktOpen
+    readOnlySubmitButton={false}
+    status=""
+    vilkar={[]}
+    setFormData={() => undefined}
+    submitCallback={submitCallback}
     perioderForeldelse={perioderForeldelse}
     vilkarvurderingsperioder={vilkarvurderingsperioder}
     vilkarvurdering={vilkarvurdering}
-    aksjonspunkter={[{
-      definisjon: {
-        kode: aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING,
-        kodeverk: '',
-      },
-      status: {
-        kode: aksjonspunktStatus.OPPRETTET,
-        kodeverk: '',
-      },
-      begrunnelse: undefined,
-      kanLoses: true,
-      erAktivt: true,
-    }]}
+    aksjonspunkter={aksjonspunkter}
     navBrukerKjonn={NavBrukerKjonn.KVINNE}
     alleMerknaderFraBeslutter={{
       [aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING]: merknaderFraBeslutter,
@@ -184,3 +176,61 @@ export const visAksjonspunktForTilbakekreving = () => (
     beregnBelop={(params) => beregnBelop(params)}
   />
 );
+
+export const Default = Template.bind({});
+Default.args = {
+  submitCallback: action('button-click') as (data: any) => Promise<any>,
+  aksjonspunkter: [{
+    definisjon: {
+      kode: aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING,
+      kodeverk: '',
+    },
+    status: {
+      kode: aksjonspunktStatus.OPPRETTET,
+      kodeverk: '',
+    },
+    begrunnelse: undefined,
+    kanLoses: true,
+    erAktivt: true,
+  }],
+  vilkarvurderingsperioder: defaultVilkarvurderingsperioder,
+};
+
+export const MedToPerioder = Template.bind({});
+MedToPerioder.args = {
+  submitCallback: action('button-click') as (data: any) => Promise<any>,
+  aksjonspunkter: [{
+    definisjon: {
+      kode: aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING,
+      kodeverk: '',
+    },
+    status: {
+      kode: aksjonspunktStatus.OPPRETTET,
+      kodeverk: '',
+    },
+    begrunnelse: undefined,
+    kanLoses: true,
+    erAktivt: true,
+  }],
+  vilkarvurderingsperioder: {
+    perioder: [defaultVilkarvurderingsperioder.perioder[0], {
+      fom: '2019-04-01',
+      tom: '2019-10-01',
+      foreldet: false,
+      feilutbetaling: 100,
+      årsak: {
+        hendelseType: {
+          kode: 'MEDLEM',
+          kodeverk: '',
+          navn: '§22 Medlemskap',
+        },
+      },
+      redusertBeloper: [],
+      ytelser: [{
+        aktivitet: 'Arbeidstaker',
+        belop: 2050,
+      }],
+    }],
+    rettsgebyr: 1000,
+  } as DetaljerteFeilutbetalingsperioder,
+};

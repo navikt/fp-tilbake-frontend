@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { FormSection } from 'redux-form';
 import { Undertekst } from 'nav-frontend-typografi';
 
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import { decodeHtmlEntity, removeSpacesFromNumber, required } from '@fpsak-frontend/utils';
-import { RadioGroupField, RadioOption } from '@fpsak-frontend/form';
+import { RadioGroupField, RadioOption } from '@fpsak-frontend/form-hooks';
 import { Kodeverk, KodeverkMedNavn, AktsomhetInfo } from '@fpsak-frontend/types';
 
 import Aktsomhet from '../../../kodeverk/aktsomhet';
@@ -62,6 +61,7 @@ interface OwnProps {
   aktsomhetTyper?: KodeverkMedNavn[];
   sarligGrunnTyper?: KodeverkMedNavn[];
   andelSomTilbakekreves?: string;
+  name: string;
 }
 
 interface StaticFunctions {
@@ -83,6 +83,7 @@ const AktsomhetFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
   feilutbetalingBelop,
   erTotalBelopUnder4Rettsgebyr,
   andelSomTilbakekreves,
+  name,
 }) => (
   <>
     <Undertekst>
@@ -91,11 +92,11 @@ const AktsomhetFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
     <VerticalSpacer eightPx />
     <RadioGroupField
       validate={[required]}
-      name="handletUaktsomhetGrad"
+      name={`${name}.handletUaktsomhetGrad`}
       readOnly={readOnly}
       onChange={resetFields}
     >
-      {aktsomhetTyper.map((vrt: any) => (
+      {aktsomhetTyper.map((vrt) => (
         <RadioOption
           key={vrt.kode}
           label={erValgtResultatTypeForstoBurdeForstaatt ? <FormattedMessage id={forstoBurdeForstattTekster[vrt.kode]} /> : vrt.navn}
@@ -104,20 +105,19 @@ const AktsomhetFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
       ))}
     </RadioGroupField>
     { uaktsomhetCodes.includes(handletUaktsomhetGrad) && (
-      <FormSection name={handletUaktsomhetGrad} key={handletUaktsomhetGrad}>
-        <AktsomhetGradFormPanel
-          harGrunnerTilReduksjon={harGrunnerTilReduksjon}
-          readOnly={readOnly}
-          handletUaktsomhetGrad={handletUaktsomhetGrad}
-          erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
-          erValgtResultatTypeForstoBurdeForstaatt={erValgtResultatTypeForstoBurdeForstaatt}
-          sarligGrunnTyper={sarligGrunnTyper}
-          harMerEnnEnYtelse={antallYtelser > 1}
-          feilutbetalingBelop={feilutbetalingBelop}
-          erTotalBelopUnder4Rettsgebyr={erTotalBelopUnder4Rettsgebyr}
-          andelSomTilbakekreves={andelSomTilbakekreves}
-        />
-      </FormSection>
+      <AktsomhetGradFormPanel
+        name={`${name}.${handletUaktsomhetGrad}`}
+        harGrunnerTilReduksjon={harGrunnerTilReduksjon}
+        readOnly={readOnly}
+        handletUaktsomhetGrad={handletUaktsomhetGrad}
+        erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
+        erValgtResultatTypeForstoBurdeForstaatt={erValgtResultatTypeForstoBurdeForstaatt}
+        sarligGrunnTyper={sarligGrunnTyper}
+        harMerEnnEnYtelse={antallYtelser > 1}
+        feilutbetalingBelop={feilutbetalingBelop}
+        erTotalBelopUnder4Rettsgebyr={erTotalBelopUnder4Rettsgebyr}
+        andelSomTilbakekreves={andelSomTilbakekreves}
+      />
     )}
   </>
 );

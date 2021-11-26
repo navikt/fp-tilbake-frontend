@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl, IntlShape } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 
@@ -7,8 +7,8 @@ import {
   ArrowBox, FlexColumn, FlexRow, VerticalSpacer,
 } from '@fpsak-frontend/shared-components';
 import {
-  InputField, RadioGroupField, RadioOption, SelectField, DecimalField,
-} from '@fpsak-frontend/form';
+  InputField, RadioGroupField, RadioOption, SelectField,
+} from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, minValue, maxValue, required,
 } from '@fpsak-frontend/utils';
@@ -26,10 +26,21 @@ const parseCurrencyInput = (input: any) => {
   return Number.isNaN(parsedValue) ? '' : parsedValue;
 };
 
+const validerAtMindreEnn = (
+  intl: IntlShape,
+  feilutbetalingBelop: number,
+) => (belopSomSkalTilbakekreves: number) => {
+  if (belopSomSkalTilbakekreves >= feilutbetalingBelop) {
+    return intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.BelopMaVereMindreEnnFeilutbetalingen' });
+  }
+  return undefined;
+};
+
 export const EGENDEFINERT = 'Egendefinert';
 export const ANDELER = ['30', '50', '70', EGENDEFINERT];
 
 interface OwnProps {
+  name: string;
   harGrunnerTilReduksjon?: boolean;
   readOnly: boolean;
   handletUaktsomhetGrad: string;
@@ -39,118 +50,125 @@ interface OwnProps {
 }
 
 const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
+  name,
   harGrunnerTilReduksjon,
   readOnly,
   handletUaktsomhetGrad,
   harMerEnnEnYtelse,
   feilutbetalingBelop,
   andelSomTilbakekreves,
-}) => (
-  <>
-    <Row>
-      <Column md="12">
-        <VerticalSpacer eightPx />
-        <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalSarligeGrunnerGiReduksjon" /></Undertekst>
-        <VerticalSpacer eightPx />
-        <RadioGroupField
-          validate={[required]}
-          name="harGrunnerTilReduksjon"
-          readOnly={readOnly}
-        >
-          <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value />
-          <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value={false} />
-        </RadioGroupField>
-      </Column>
-    </Row>
-    {harGrunnerTilReduksjon && (
-      <ArrowBox alignOffset={24}>
-        <Row>
-          <Column md="6">
-            {(!harMerEnnEnYtelse && andelSomTilbakekreves !== EGENDEFINERT) && (
-              <>
-                <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiAndelSomTilbakekreves" /></Undertekst>
-                <FlexRow>
-                  <FlexColumn>
-                    <SelectField
-                      name="andelSomTilbakekreves"
-                      label=""
-                      validate={[required]}
-                      selectValues={ANDELER.map((andel) => <option key={andel} value={andel}>{andel}</option>)}
-                      bredde="s"
-                    />
-                  </FlexColumn>
-                  <FlexColumn className={styles.suffix}>%</FlexColumn>
-                </FlexRow>
-              </>
-            )}
-            {(!harMerEnnEnYtelse && andelSomTilbakekreves === EGENDEFINERT) && (
-              <>
-                <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiAndelSomTilbakekreves" /></Undertekst>
-                <FlexRow>
-                  <FlexColumn>
-                    <DecimalField
-                      name="andelSomTilbakekrevesManuell"
-                      readOnly={readOnly}
-                      validate={[required, minValue1, maxValue100]}
-                      // @ts-ignore Fiks!
-                      normalizeOnBlur={(value) => (Number.isNaN(value) ? value : parseFloat(value).toFixed(2))}
-                      bredde="S"
-                    />
-                  </FlexColumn>
-                  <FlexColumn className={handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM ? styles.suffixGrovText : styles.suffix}>%</FlexColumn>
-                </FlexRow>
-              </>
-            )}
-            {(harMerEnnEnYtelse) && (
-              <InputField
-                name="belopSomSkalTilbakekreves"
-                label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiBelopSomSkalTilbakekreves" />}
-                validate={[required, minValue1]}
-                readOnly={readOnly}
-                format={formatCurrencyNoKr}
-                parse={parseCurrencyInput}
-                bredde="S"
-              />
-            )}
-          </Column>
-          {handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM && (
+}) => {
+  const intl = useIntl();
+  return (
+    <>
+      <Row>
+        <Column md="12">
+          <VerticalSpacer eightPx />
+          <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalSarligeGrunnerGiReduksjon" /></Undertekst>
+          <VerticalSpacer eightPx />
+          <RadioGroupField
+            validate={[required]}
+            name={`${name}.harGrunnerTilReduksjon`}
+            readOnly={readOnly}
+            parse={(value: string) => value === 'true'}
+          >
+            <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value="true" />
+            <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value="false" />
+          </RadioGroupField>
+        </Column>
+      </Row>
+      {harGrunnerTilReduksjon && (
+        <ArrowBox alignOffset={24}>
+          <Row>
             <Column md="6">
-              <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" /></Undertekst>
-              <Normaltekst className={styles.labelPadding}><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" /></Normaltekst>
+              {(!harMerEnnEnYtelse && andelSomTilbakekreves !== EGENDEFINERT) && (
+                <>
+                  <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiAndelSomTilbakekreves" /></Undertekst>
+                  <FlexRow>
+                    <FlexColumn>
+                      <SelectField
+                        name={`${name}.andelSomTilbakekreves`}
+                        label=""
+                        validate={[required]}
+                        selectValues={ANDELER.map((andel) => <option key={andel} value={andel}>{andel}</option>)}
+                        bredde="s"
+                      />
+                    </FlexColumn>
+                    <FlexColumn className={styles.suffix}>%</FlexColumn>
+                  </FlexRow>
+                </>
+              )}
+              {(!harMerEnnEnYtelse && andelSomTilbakekreves === EGENDEFINERT) && (
+                <>
+                  <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiAndelSomTilbakekreves" /></Undertekst>
+                  <FlexRow>
+                    <FlexColumn>
+                      <InputField
+                        name={`${name}.andelSomTilbakekrevesManuell`}
+                        readOnly={readOnly}
+                        validate={[required, minValue1, maxValue100]}
+                        normalizeOnBlur={(value: string) => (Number.isNaN(value) ? value : parseFloat(value).toFixed(2))}
+                        format={(value: string) => value.replace('.', ',')}
+                        parse={(value: string) => value.replace(',', '.')}
+                        bredde="S"
+                      />
+                    </FlexColumn>
+                    <FlexColumn className={handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM ? styles.suffixGrovText : styles.suffix}>%</FlexColumn>
+                  </FlexRow>
+                </>
+              )}
+              {(harMerEnnEnYtelse) && (
+                <InputField
+                  name={`${name}.belopSomSkalTilbakekreves`}
+                  label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiBelopSomSkalTilbakekreves" />}
+                  validate={[required, minValue1, validerAtMindreEnn(intl, feilutbetalingBelop)]}
+                  readOnly={readOnly}
+                  format={formatCurrencyNoKr}
+                  parse={parseCurrencyInput}
+                  bredde="S"
+                />
+              )}
             </Column>
-          )}
-        </Row>
-      </ArrowBox>
-    )}
-    {harGrunnerTilReduksjon === false && (
-      <ArrowBox alignOffset={90}>
-        <Row>
-          <Column md="6">
-            <Undertekst>
-              <FormattedMessage
-                id={harMerEnnEnYtelse ? 'AktsomhetReduksjonAvBelopFormPanel.BelopSomSkalTilbakekreves'
-                  : 'AktsomhetReduksjonAvBelopFormPanel.andelSomTilbakekreves'}
-              />
-            </Undertekst>
-            <Normaltekst className={styles.labelPadding}>{harMerEnnEnYtelse ? formatCurrencyNoKr(feilutbetalingBelop) : '100%'}</Normaltekst>
-          </Column>
-          { handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM && (
+            {handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM && (
+              <Column md="6">
+                <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" /></Undertekst>
+                <Normaltekst className={styles.labelPadding}><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" /></Normaltekst>
+              </Column>
+            )}
+          </Row>
+        </ArrowBox>
+      )}
+      {harGrunnerTilReduksjon === false && (
+        <ArrowBox alignOffset={90}>
+          <Row>
             <Column md="6">
-              <RadioGroupField
-                label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" />}
-                validate={[required]}
-                name="skalDetTilleggesRenter"
-                readOnly={readOnly}
-              >
-                <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value />
-                <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value={false} />
-              </RadioGroupField>
+              <Undertekst>
+                <FormattedMessage
+                  id={harMerEnnEnYtelse ? 'AktsomhetReduksjonAvBelopFormPanel.BelopSomSkalTilbakekreves'
+                    : 'AktsomhetReduksjonAvBelopFormPanel.andelSomTilbakekreves'}
+                />
+              </Undertekst>
+              <Normaltekst className={styles.labelPadding}>{harMerEnnEnYtelse ? formatCurrencyNoKr(feilutbetalingBelop) : '100%'}</Normaltekst>
             </Column>
-          )}
-        </Row>
-      </ArrowBox>
-    )}
-  </>
-);
+            { handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM && (
+              <Column md="6">
+                <RadioGroupField
+                  name={`${name}.skalDetTilleggesRenter`}
+                  label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" />}
+                  validate={[required]}
+                  readOnly={readOnly}
+                  parse={(value: string) => value === 'true'}
+                >
+                  <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value="true" />
+                  <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value="false" />
+                </RadioGroupField>
+              </Column>
+            )}
+          </Row>
+        </ArrowBox>
+      )}
+    </>
+  );
+};
 
 export default AktsomhetReduksjonAvBelopFormPanel;

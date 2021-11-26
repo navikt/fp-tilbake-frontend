@@ -9,7 +9,7 @@ import { omit } from '@fpsak-frontend/utils';
 import {
   FlexColumn, FlexContainer, FlexRow, Image, VerticalSpacer,
 } from '@fpsak-frontend/shared-components';
-import { ProsessStegSubmitButtonNew } from '@fpsak-frontend/prosess-felles';
+import { ProsessStegSubmitButton } from '@fpsak-frontend/prosess-felles';
 import advarselIcon from '@fpsak-frontend/assets/images/advarsel_ny.svg';
 import { VedtaksbrevAvsnitt } from '@fpsak-frontend/types';
 import { ForeslaVedtakTilbakekrevingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
@@ -154,7 +154,7 @@ export const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
       <FlexContainer>
         <FlexRow>
           <FlexColumn>
-            <ProsessStegSubmitButtonNew
+            <ProsessStegSubmitButton
               text={intl.formatMessage({ id: 'TilbakekrevingVedtakForm.TilGodkjenning' })}
               isReadOnly={readOnly}
               isSubmittable={perioderSomIkkeHarUtfyltObligatoriskVerdi.length === 0 && !fritekstOppsummeringPakrevdMenIkkeUtfylt}

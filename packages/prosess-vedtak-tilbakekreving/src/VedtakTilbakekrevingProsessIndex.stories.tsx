@@ -158,7 +158,7 @@ const alleKodeverk = {
 } as AlleKodeverkTilbakekreving;
 
 export default {
-  title: 'prosess/tilbakekreving/prosess-vedtak-tilbakekreving',
+  title: 'prosess/prosess-vedtak-tilbakekreving',
   component: VedtakTilbakekrevingProsessIndex,
 };
 

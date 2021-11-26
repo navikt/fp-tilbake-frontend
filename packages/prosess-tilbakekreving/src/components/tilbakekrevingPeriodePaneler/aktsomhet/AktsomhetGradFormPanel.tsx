@@ -17,6 +17,7 @@ interface OwnProps {
   erTotalBelopUnder4Rettsgebyr: boolean;
   sarligGrunnTyper?: KodeverkMedNavn[];
   andelSomTilbakekreves?: string;
+  name: string;
 }
 
 const AktsomhetGradFormPanel: FunctionComponent<OwnProps> = ({
@@ -30,16 +31,19 @@ const AktsomhetGradFormPanel: FunctionComponent<OwnProps> = ({
   feilutbetalingBelop,
   erTotalBelopUnder4Rettsgebyr,
   andelSomTilbakekreves,
+  name,
 }) => (
   <>
     { handletUaktsomhetGrad === Aktsomhet.FORSETT && (
       <AktsomhetGradForsettFormPanel
+        name={name}
         readOnly={readOnly}
         erValgtResultatTypeForstoBurdeForstaatt={erValgtResultatTypeForstoBurdeForstaatt}
       />
     )}
     { handletUaktsomhetGrad !== Aktsomhet.FORSETT && (
       <AktsomhetGradUaktsomhetFormPanel
+        name={name}
         harGrunnerTilReduksjon={harGrunnerTilReduksjon}
         readOnly={readOnly}
         handletUaktsomhetGrad={handletUaktsomhetGrad}

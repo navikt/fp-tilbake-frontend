@@ -4,16 +4,19 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupField, RadioOption } from '@fpsak-frontend/form';
+import { RadioGroupField, RadioOption } from '@fpsak-frontend/form-hooks';
 import { required } from '@fpsak-frontend/utils';
+
 import styles from './aktsomhetReduksjonAvBelopFormPanel.less';
 
 interface OwnProps {
+  name: string;
   readOnly: boolean;
   erValgtResultatTypeForstoBurdeForstaatt?: boolean;
 }
 
 const AktsomhetGradForsettFormPanel: FunctionComponent<OwnProps> = ({
+  name,
   readOnly,
   erValgtResultatTypeForstoBurdeForstaatt,
 }) => (
@@ -31,11 +34,12 @@ const AktsomhetGradForsettFormPanel: FunctionComponent<OwnProps> = ({
             <RadioGroupField
               label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" />}
               validate={[required]}
-              name="skalDetTilleggesRenter"
+              name={`${name}.skalDetTilleggesRenter`}
               readOnly={readOnly}
+              parse={(value: string) => value === 'true'}
             >
-              <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value />
-              <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value={false} />
+              <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value="true" />
+              <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value="false" />
             </RadioGroupField>
           </Column>
         </Row>

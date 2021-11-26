@@ -85,7 +85,7 @@ const beregnBelop = (params: {perioder: any[]}) => {
 };
 
 export default {
-  title: 'prosess/tilbakekreving/prosess-foreldelse',
+  title: 'prosess/prosess-foreldelse',
   component: ForeldelseProsessIndex,
 };
 
