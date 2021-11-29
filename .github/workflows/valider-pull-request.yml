@@ -12,6 +12,8 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: 17.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@navikt'
 
       - name: Get yarn cache
         id: yarn-cache
@@ -25,6 +27,8 @@ jobs:
 
       - name: Installere dependencies
         run: yarn install --ignore-optional --no-progress --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: Typescript and linting
         run: yarn less:lint && yarn lint && yarn ts-check
