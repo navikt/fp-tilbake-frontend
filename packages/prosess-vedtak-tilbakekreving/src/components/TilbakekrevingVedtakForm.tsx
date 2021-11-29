@@ -54,9 +54,11 @@ const formatVedtakData = (
 
 const harFritekstOppsummeringPakrevdMenIkkeUtfylt = (
   vedtaksbrevAvsnitt: VedtaksbrevAvsnitt[],
+  formVerdier: FormValues,
 ): boolean => vedtaksbrevAvsnitt
-  .filter((avsnitt) => avsnitt.avsnittstype === underavsnittType.OPPSUMMERING)
-  .some((avsnitt) => avsnitt.underavsnittsliste.some((underAvsnitt) => underAvsnitt.fritekstPåkrevet && !underAvsnitt.fritekst));
+  .some((avsnitt) => avsnitt.avsnittstype === underavsnittType.OPPSUMMERING
+  && avsnitt.underavsnittsliste.some((ua) => ua.fritekstPåkrevet)
+  && !formVerdier[underavsnittType.OPPSUMMERING]);
 
 const transformValues = (values: FormValues): ForeslaVedtakTilbakekrevingAp => ({
   kode: aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK,
@@ -111,7 +113,7 @@ interface OwnProps {
   setFormData: (data: FormValues) => void;
 }
 
-export const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
+const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
   submitCallback,
   readOnly,
   fetchPreviewVedtaksbrev,
@@ -131,7 +133,7 @@ export const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
 
   const formVerdier = formMethods.watch();
 
-  const fritekstOppsummeringPakrevdMenIkkeUtfylt = harFritekstOppsummeringPakrevdMenIkkeUtfylt(vedtaksbrevAvsnitt);
+  const fritekstOppsummeringPakrevdMenIkkeUtfylt = harFritekstOppsummeringPakrevdMenIkkeUtfylt(vedtaksbrevAvsnitt, formVerdier);
   const perioderSomIkkeHarUtfyltObligatoriskVerdi = finnPerioderSomIkkeHarVerdiForObligatoriskFelt(vedtaksbrevAvsnitt, formVerdier);
 
   return (
