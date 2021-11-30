@@ -9,21 +9,12 @@ jobs:
         uses: actions/checkout@v2.4.0
 
       - name: Sette opp Node
-        uses: actions/setup-node@v2.4.0
+        uses: actions/setup-node@v2.5.0
         with:
           node-version: 17.x
           registry-url: https://npm.pkg.github.com/
           scope: '@navikt'
-
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache node modules
-        uses: actions/cache@v2.1.7
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          cache: 'yarn'
 
       - name: Installere dependencies
         run: yarn install --ignore-optional --no-progress --frozen-lockfile
