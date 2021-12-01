@@ -7,7 +7,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 
 import {
-  RadioGroupField, RadioOption, TextAreaField, DatepickerField, Form,
+  TextAreaField, DatepickerField, Form, RadioGroupPanel,
 } from '@fpsak-frontend/form-hooks';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
@@ -78,15 +78,16 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
       <VerticalSpacer twentyPx />
       <Row>
         <Column md="5">
-          <Undertekst><FormattedMessage id="ForeldelsePeriodeForm.RadioGroup.Foreldet" /></Undertekst>
-          <RadioGroupField
-            validate={[required]}
+          <RadioGroupPanel
             name="foreldet"
-            direction="vertical"
-            readOnly={readOnly}
-          >
-            {foreldelseVurderingTyper.map((type) => <RadioOption key={type.kode} label={type.navn} value={type.kode} />)}
-          </RadioGroupField>
+            label={<Undertekst><FormattedMessage id="ForeldelsePeriodeForm.RadioGroup.Foreldet" /></Undertekst>}
+            validate={[required]}
+            radios={foreldelseVurderingTyper.map((type) => ({
+              label: type.navn,
+              value: type.kode,
+            }))}
+            isReadOnly={readOnly}
+          />
         </Column>
         <Column md="3">
           {(erForeldet || erMedTilleggsfrist) && (

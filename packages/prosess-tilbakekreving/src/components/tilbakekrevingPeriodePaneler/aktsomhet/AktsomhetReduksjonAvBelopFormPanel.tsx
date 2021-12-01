@@ -6,9 +6,7 @@ import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import {
   ArrowBox, FlexColumn, FlexRow, VerticalSpacer,
 } from '@fpsak-frontend/shared-components';
-import {
-  InputField, RadioGroupField, RadioOption, SelectField,
-} from '@fpsak-frontend/form-hooks';
+import { InputField, SelectField, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, minValue, maxValue, required,
 } from '@fpsak-frontend/utils';
@@ -64,17 +62,21 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
       <Row>
         <Column md="12">
           <VerticalSpacer eightPx />
-          <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalSarligeGrunnerGiReduksjon" /></Undertekst>
-          <VerticalSpacer eightPx />
-          <RadioGroupField
-            validate={[required]}
+          <RadioGroupPanel
             name={`${name}.harGrunnerTilReduksjon`}
-            readOnly={readOnly}
+            label={<Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalSarligeGrunnerGiReduksjon" /></Undertekst>}
+            validate={[required]}
+            radios={[{
+              label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />,
+              value: 'true',
+            }, {
+              label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />,
+              value: 'false',
+            }]}
+            isReadOnly={readOnly}
             parse={(value: string) => value === 'true'}
-          >
-            <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value="true" />
-            <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value="false" />
-          </RadioGroupField>
+            isHorizontal
+          />
         </Column>
       </Row>
       {harGrunnerTilReduksjon && (
@@ -152,16 +154,21 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
             </Column>
             { handletUaktsomhetGrad === aktsomhet.GROVT_UAKTSOM && (
               <Column md="6">
-                <RadioGroupField
+                <RadioGroupPanel
                   name={`${name}.skalDetTilleggesRenter`}
-                  label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" />}
+                  label={<Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" /></Undertekst>}
                   validate={[required]}
-                  readOnly={readOnly}
+                  radios={[{
+                    label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />,
+                    value: 'true',
+                  }, {
+                    label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />,
+                    value: 'false',
+                  }]}
+                  isReadOnly={readOnly}
                   parse={(value: string) => value === 'true'}
-                >
-                  <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />} value="true" />
-                  <RadioOption label={<FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />} value="false" />
-                </RadioGroupField>
+                  isHorizontal
+                />
               </Column>
             )}
           </Row>

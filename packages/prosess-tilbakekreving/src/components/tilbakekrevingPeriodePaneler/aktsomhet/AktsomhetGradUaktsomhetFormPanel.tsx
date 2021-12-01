@@ -5,7 +5,7 @@ import {
 import { Element, Undertekst } from 'nav-frontend-typografi';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupField, RadioOption, TextAreaField } from '@fpsak-frontend/form-hooks';
+import { RadioGroupPanel, TextAreaField } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
@@ -77,32 +77,41 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
       <>
         <Undertekst><FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Tilbakekrev" /></Undertekst>
         <VerticalSpacer eightPx />
-        <RadioGroupField
-          validate={[required]}
+        <RadioGroupPanel
           name={`${name}.tilbakekrevSelvOmBeloepErUnder4Rettsgebyr`}
-          readOnly={readOnly}
+          label={<Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.SkalTilleggesRenter" /></Undertekst>}
+          validate={[required]}
           parse={(value: string) => value === 'true'}
-        >
-          <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Ja" />} value="true">
-            {sarligGrunnerBegrunnelseDiv(name, readOnly, intl)}
-            <AktsomhetSarligeGrunnerFormPanel
-              name={name}
-              harGrunnerTilReduksjon={harGrunnerTilReduksjon}
-              erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
-              sarligGrunnTyper={sarligGrunnTyper}
-              harMerEnnEnYtelse={harMerEnnEnYtelse}
-              feilutbetalingBelop={feilutbetalingBelop}
-              readOnly={readOnly}
-              handletUaktsomhetGrad={handletUaktsomhetGrad}
-              andelSomTilbakekreves={andelSomTilbakekreves}
-            />
-          </RadioOption>
-          <RadioOption label={<FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.Nei" />} value="false">
-            <ArrowBox alignOffset={20}>
-              <FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.AllePerioderBehandlesLikt" />
-            </ArrowBox>
-          </RadioOption>
-        </RadioGroupField>
+          isHorizontal
+          radios={[{
+            label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />,
+            value: 'true',
+            element: (
+              <>
+                {sarligGrunnerBegrunnelseDiv(name, readOnly, intl)}
+                <AktsomhetSarligeGrunnerFormPanel
+                  name={name}
+                  harGrunnerTilReduksjon={harGrunnerTilReduksjon}
+                  erSerligGrunnAnnetValgt={erSerligGrunnAnnetValgt}
+                  sarligGrunnTyper={sarligGrunnTyper}
+                  harMerEnnEnYtelse={harMerEnnEnYtelse}
+                  feilutbetalingBelop={feilutbetalingBelop}
+                  readOnly={readOnly}
+                  handletUaktsomhetGrad={handletUaktsomhetGrad}
+                  andelSomTilbakekreves={andelSomTilbakekreves}
+                />
+              </>
+            ),
+          }, {
+            label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Nei" />,
+            value: 'false',
+            element: (
+              <ArrowBox alignOffset={20}>
+                <FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.AllePerioderBehandlesLikt" />
+              </ArrowBox>
+            ),
+          }]}
+        />
         <VerticalSpacer eightPx />
       </>
       )}

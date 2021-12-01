@@ -7,7 +7,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 
 import {
-  RadioGroupField, RadioOption, TextAreaField, SelectField, Form,
+  TextAreaField, SelectField, Form, RadioGroupPanel,
 } from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
@@ -228,23 +228,17 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   placeholder={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.Vurdering.Hjelpetekst' })}
                 />
                 <VerticalSpacer twentyPx />
-                <Undertekst><FormattedMessage id="TilbakekrevingPeriodeForm.oppfylt" /></Undertekst>
-                <VerticalSpacer eightPx />
-                <RadioGroupField
-                  validate={[required]}
+                <RadioGroupPanel
                   name="valgtVilkarResultatType"
-                  direction="vertical"
-                  readOnly={readOnly}
+                  label={<Undertekst><FormattedMessage id="TilbakekrevingPeriodeForm.oppfylt" /></Undertekst>}
+                  validate={[required]}
+                  radios={vilkarResultatTyper.map((vrt) => ({
+                    label: vrt.navn,
+                    value: vrt.kode,
+                  }))}
+                  isReadOnly={readOnly}
                   onChange={resetVilkarresultatType}
-                >
-                  {vilkarResultatTyper.map((vrt) => (
-                    <RadioOption
-                      key={vrt.kode}
-                      label={vrt.navn}
-                      value={vrt.kode}
-                    />
-                  ))}
-                </RadioGroupField>
+                />
               </Column>
             )}
           </Row>

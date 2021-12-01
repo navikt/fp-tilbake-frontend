@@ -2,9 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Undertekst } from 'nav-frontend-typografi';
 
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import { decodeHtmlEntity, removeSpacesFromNumber, required } from '@fpsak-frontend/utils';
-import { RadioGroupField, RadioOption } from '@fpsak-frontend/form-hooks';
+import { RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 import { Kodeverk, KodeverkMedNavn, AktsomhetInfo } from '@fpsak-frontend/types';
 
 import Aktsomhet from '../../../kodeverk/aktsomhet';
@@ -86,25 +85,19 @@ const AktsomhetFormPanel: FunctionComponent<OwnProps> & StaticFunctions = ({
   name,
 }) => (
   <>
-    <Undertekst>
-      <FormattedMessage id="AktsomhetFormPanel.HandletUaktsomhetGrad" />
-    </Undertekst>
-    <VerticalSpacer eightPx />
-    <RadioGroupField
-      validate={[required]}
+    <RadioGroupPanel
       name={`${name}.handletUaktsomhetGrad`}
-      readOnly={readOnly}
+      label={<Undertekst><FormattedMessage id="AktsomhetFormPanel.HandletUaktsomhetGrad" /></Undertekst>}
+      validate={[required]}
+      radios={aktsomhetTyper.map((vrt) => ({
+        label: erValgtResultatTypeForstoBurdeForstaatt ? <FormattedMessage id={forstoBurdeForstattTekster[vrt.kode]} /> : vrt.navn,
+        value: vrt.kode,
+      }))}
+      isReadOnly={readOnly}
       onChange={resetFields}
-    >
-      {aktsomhetTyper.map((vrt) => (
-        <RadioOption
-          key={vrt.kode}
-          label={erValgtResultatTypeForstoBurdeForstaatt ? <FormattedMessage id={forstoBurdeForstattTekster[vrt.kode]} /> : vrt.navn}
-          value={vrt.kode}
-        />
-      ))}
-    </RadioGroupField>
-    { uaktsomhetCodes.includes(handletUaktsomhetGrad) && (
+      isHorizontal
+    />
+    {uaktsomhetCodes.includes(handletUaktsomhetGrad) && (
       <AktsomhetGradFormPanel
         name={`${name}.${handletUaktsomhetGrad}`}
         harGrunnerTilReduksjon={harGrunnerTilReduksjon}
