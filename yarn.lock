@@ -1402,6 +1402,14 @@
     "@formatjs/intl-localematcher" "0.2.21"
     tslib "^2.1.0"
 
+"@formatjs/ecma402-abstract@1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.11.0.tgz#7e91e6cc7cfebdc07171e00a3288719705e0108c"
+  integrity sha512-TOp5La9wmSh9G5bqFGN/ApmOXtJDzBGkYW+OTRd3ukY7J32RVGZPpN4O9BD651JUy66nj3g9CIENTNCgm4IRXQ==
+  dependencies:
+    "@formatjs/intl-localematcher" "0.2.21"
+    tslib "^2.1.0"
+
 "@formatjs/fast-memoize@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@formatjs/fast-memoize/-/fast-memoize-1.2.0.tgz#1123bfcc5d21d761f15d8b1c32d10e1b6530355d"
@@ -1460,12 +1468,12 @@
   dependencies:
     tslib "^2.1.0"
 
-"@formatjs/intl-numberformat@^7.2.5":
-  version "7.2.5"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-7.2.5.tgz#d9425bc3cfda6193b11d6e59c2c3c45e46461c63"
-  integrity sha512-vscEGB5FduaMbkdplIBd8aENVkfyyjpBfJ9pKxkckCHdd3CY/AuLxzbcIyXAOmadYQQzTxMDDgyv0eRbGxCKtg==
+"@formatjs/intl-numberformat@^7.2.6":
+  version "7.2.6"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-7.2.6.tgz#84adf0d38bb50f19af6eaeaa9fdc48d85ee79762"
+  integrity sha512-7fgp5++ui30HzK89Aq9MxU8AfBJGzLzdGcabkJFt9g57YxqqneoDM/HSJ7IAASAAX/PLnsXzOgHgjSS5QDsBiQ==
   dependencies:
-    "@formatjs/ecma402-abstract" "1.10.0"
+    "@formatjs/ecma402-abstract" "1.11.0"
     tslib "^2.1.0"
 
 "@formatjs/intl@1.16.0":
