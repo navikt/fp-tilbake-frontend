@@ -7,7 +7,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 
 import {
-  TextAreaField, SelectField, Form, RadioGroupPanel,
+  TextArea, Select, Form, RadioGroupPanel,
 } from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
@@ -188,7 +188,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
               <Element>
                 <FormattedMessage id="TilbakekrevingPeriodeForm.KopierVilkårsvurdering" />
               </Element>
-              <SelectField
+              <Select
                 name="perioderForKopi"
                 selectValues={vurdertePerioder.map((per) => {
                   const perId = `${per.fom}_${per.tom}`;
@@ -218,7 +218,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   <FormattedMessage id="TilbakekrevingPeriodeForm.VilkarForTilbakekreving" />
                 </Element>
                 <VerticalSpacer eightPx />
-                <TextAreaField
+                <TextArea
                   name="begrunnelse"
                   label={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.Vurdering' })}
                   validate={[required, minLength3, maxLength1500, hasValidText]}
@@ -254,7 +254,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                     />
                   </Element>
                   <VerticalSpacer eightPx />
-                  <TextAreaField
+                  <TextArea
                     name="vurderingBegrunnelse"
                     label={intl.formatMessage({
                       id: valgtVilkarResultatType === VilkarResultat.GOD_TRO

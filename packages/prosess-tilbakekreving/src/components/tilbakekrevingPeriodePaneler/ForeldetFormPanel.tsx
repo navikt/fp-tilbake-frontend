@@ -3,12 +3,12 @@ import { FormattedMessage } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
 
-import { RadioGroupPanel, TextAreaField } from '@fpsak-frontend/form-hooks';
+import { RadioGroupPanel, TextArea } from '@fpsak-frontend/form-hooks';
 
 const ForeldetFormPanel = () => (
   <Row>
     <Column md="6">
-      <TextAreaField
+      <TextArea
         name="foreldetBegrunnelse"
         label={<FormattedMessage id="ForeldetPanel.Vurdering" />}
         readOnly

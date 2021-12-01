@@ -4,7 +4,6 @@ export { default as AksjonspunktHelpTextTemp } from './src/AksjonspunktHelpTextT
 export { default as ArrowBox } from './src/ArrowBox';
 export { default as BorderBox } from './src/BorderBox';
 export { default as AksjonspunktBox } from './src/AksjonspunktBox';
-export { default as Datepicker } from './src/datepicker/Datepicker';
 export { default as EditedIcon } from './src/EditedIcon';
 export { default as FadingPanel } from './src/FadingPanel';
 export { default as FlexColumn } from './src/flexGrid/FlexColumn';

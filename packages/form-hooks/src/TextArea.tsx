@@ -5,7 +5,7 @@ import EtikettFokus from 'nav-frontend-etiketter';
 
 import Label, { LabelType } from './Label';
 
-import styles from './textAreaField.less';
+import styles from './textArea.less';
 import ReadOnlyField from './ReadOnlyField';
 import { getError, getValidationRules } from './formUtils';
 
@@ -28,7 +28,7 @@ interface OwnProps {
   placeholder?: string;
 }
 
-const TextAreaField: FunctionComponent<OwnProps> = ({
+const TextArea: FunctionComponent<OwnProps> = ({
   name,
   label,
   validate = [],
@@ -71,4 +71,4 @@ const TextAreaField: FunctionComponent<OwnProps> = ({
   );
 };
 
-export default TextAreaField;
+export default TextArea;

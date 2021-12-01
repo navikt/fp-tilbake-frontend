@@ -29,8 +29,8 @@ const RadioGroupPanel: FunctionComponent<RadioGroupPanelProps> = ({
   validate,
   radios,
   onChange,
-  disabled,
-  isReadOnly,
+  disabled = false,
+  isReadOnly = false,
   isHorizontal = false,
   parse = (value) => value,
 }) => {
@@ -48,7 +48,7 @@ const RadioGroupPanel: FunctionComponent<RadioGroupPanelProps> = ({
         {!isHorizontal && radios.map((radio) => (
           <React.Fragment key={radio.value}>
             <Radio
-              id={radio.value}
+              value={radio.value}
               label={radio.label}
               name={name}
               onChange={() => {
@@ -69,7 +69,7 @@ const RadioGroupPanel: FunctionComponent<RadioGroupPanelProps> = ({
               {radios.map((radio) => (
                 <FlexColumn key={radio.value}>
                   <Radio
-                    id={radio.value}
+                    value={radio.value}
                     label={radio.label}
                     name={name}
                     onChange={() => {

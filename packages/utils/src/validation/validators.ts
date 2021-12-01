@@ -150,7 +150,7 @@ export const dateRangesNotOverlappingCrossTypes = (ranges: string[][]): FormVali
   ? null : dateRangesOverlappingBetweenPeriodTypesMessage());
 
 export const dateBeforeToday = (text?: moment.Moment | string): FormValidationResult => dateBeforeOrEqual(yesterday())(text);
-export const dateBeforeOrEqualToToday = (text?: moment.Moment | string): FormValidationResult => dateBeforeOrEqual(moment().startOf('day'))(text);
+export const dateBeforeOrEqualToToday = (text?: string): FormValidationResult => dateBeforeOrEqual(moment().startOf('day'))(text);
 export const dateAfterToday = (text?: moment.Moment | string): FormValidationResult => dateAfterOrEqual(tomorrow())(text);
 export const dateAfterOrEqualToToday = (text?: moment.Moment | string): FormValidationResult => dateAfterOrEqual(moment().startOf('day'))(text);
 

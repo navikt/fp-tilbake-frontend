@@ -7,7 +7,7 @@ import addCircleIcon from '@fpsak-frontend/assets/images/add-circle.svg';
 import {
   required, hasValidText, maxLength, minLength,
 } from '@fpsak-frontend/utils';
-import { TextAreaField } from '@fpsak-frontend/form-hooks';
+import { TextArea } from '@fpsak-frontend/form-hooks';
 import { Image, VerticalSpacer } from '@fpsak-frontend/shared-components';
 
 import styles from './tilbakekrevingVedtakUtdypendeTekstPanel.less';
@@ -65,7 +65,7 @@ export const TilbakekrevingVedtakUtdypendeTekstPanel: FunctionComponent<OwnProps
       {!isTextfieldHidden && (
         <>
           <VerticalSpacer eightPx />
-          <TextAreaField
+          <TextArea
             name={type}
             label={intl.formatMessage({ id: 'TilbakekrevingVedtakUtdypendeTekstPanel.UtdypendeTekst' })}
             validate={valideringsRegler}

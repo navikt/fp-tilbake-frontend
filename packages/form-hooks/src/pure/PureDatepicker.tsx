@@ -4,10 +4,11 @@ import { CalendarPlacement } from 'nav-datovelger/lib/types';
 import { DatepickerProps } from 'nav-datovelger/lib/Datepicker';
 import { Label } from 'nav-frontend-skjema';
 import FieldError from './FieldError';
+import { LabelType } from '../Label';
 import './datepicker.less';
 
 interface CustomDatepickerProps {
-    label: string;
+    label: LabelType;
     errorMessage?: string;
     ariaLabel?: string;
     inputId?: string;
@@ -16,6 +17,10 @@ interface CustomDatepickerProps {
     };
     disabled?: boolean;
     initialMonth?: Date;
+    disabledDays?: {
+      before: Date;
+      after?: Date;
+    };
 }
 
 const PureDatepicker = ({
@@ -29,8 +34,12 @@ const PureDatepicker = ({
   calendarSettings,
   disabled,
   initialMonth,
+  disabledDays,
 }: DatepickerProps & CustomDatepickerProps): JSX.Element => {
-  const dayPickerProps = { initialMonth: initialMonth ? new Date(initialMonth) : undefined };
+  const dayPickerProps = {
+    initialMonth: initialMonth ? new Date(initialMonth) : undefined,
+    disabledDays,
+  };
 
   return (
     <div className="datepicker">

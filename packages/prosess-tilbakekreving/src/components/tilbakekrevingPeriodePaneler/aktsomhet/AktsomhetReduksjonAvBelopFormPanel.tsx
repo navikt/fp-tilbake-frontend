@@ -6,7 +6,7 @@ import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import {
   ArrowBox, FlexColumn, FlexRow, VerticalSpacer,
 } from '@fpsak-frontend/shared-components';
-import { InputField, SelectField, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
+import { InputField, Select, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, minValue, maxValue, required,
 } from '@fpsak-frontend/utils';
@@ -88,7 +88,7 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
                   <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiAndelSomTilbakekreves" /></Undertekst>
                   <FlexRow>
                     <FlexColumn>
-                      <SelectField
+                      <Select
                         name={`${name}.andelSomTilbakekreves`}
                         label=""
                         validate={[required]}

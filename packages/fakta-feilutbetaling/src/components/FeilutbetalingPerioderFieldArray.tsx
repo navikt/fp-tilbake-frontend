@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Table, TableRow, TableColumn } from '@fpsak-frontend/shared-components';
 import { FeilutbetalingAarsak, FeilutbetalingFakta } from '@fpsak-frontend/types';
 import { DDMMYYYY_DATE_FORMAT, required } from '@fpsak-frontend/utils';
-import { SelectField } from '@fpsak-frontend/form-hooks';
+import { Select } from '@fpsak-frontend/form-hooks';
 
 import styles from './feilutbetalingPerioderFieldArray.less';
 
@@ -84,7 +84,7 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
                 {`${moment(periode.fom).format(DDMMYYYY_DATE_FORMAT)} - ${moment(periode.tom).format(DDMMYYYY_DATE_FORMAT)}`}
               </TableColumn>
               <TableColumn>
-                <SelectField
+                <Select
                   name={`${FIELD_ARRAY_NAME}.${index}.årsak`}
                   selectValues={årsaker.map((a) => <option key={a.hendelseType.kode} value={a.hendelseType.kode}>{a.hendelseType.navn}</option>)}
                   validate={[required]}
@@ -94,7 +94,7 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
                   label=""
                 />
                 {hendelseUndertyper && (
-                  <SelectField
+                  <Select
                     name={`${FIELD_ARRAY_NAME}.${index}.${årsak}.underÅrsak`}
                     selectValues={hendelseUndertyper.map((a) => <option key={a.kode} value={a.kode}>{a.navn}</option>)}
                     validate={[required]}

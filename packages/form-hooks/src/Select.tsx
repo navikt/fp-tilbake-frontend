@@ -3,7 +3,7 @@ import { useController, useFormContext } from 'react-hook-form';
 import classnames from 'classnames/bind';
 
 import CustomNavSelect from './CustomNavSelect';
-import styles from './selectField.less';
+import styles from './select.less';
 import ReadOnlyField from './ReadOnlyField';
 import { getError, getValidationRules } from './formUtils';
 
@@ -23,7 +23,7 @@ interface OwnProps {
   disabled?: boolean;
 }
 
-const SelectField: FunctionComponent<OwnProps> = ({
+const Select: FunctionComponent<OwnProps> = ({
   name,
   label,
   selectValues,
@@ -71,4 +71,4 @@ const SelectField: FunctionComponent<OwnProps> = ({
   );
 };
 
-export default SelectField;
+export default Select;

@@ -5,7 +5,7 @@ import {
 import { Element, Undertekst } from 'nav-frontend-typografi';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupPanel, TextAreaField } from '@fpsak-frontend/form-hooks';
+import { RadioGroupPanel, TextArea } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
@@ -29,7 +29,7 @@ const sarligGrunnerBegrunnelseDiv = (
       <FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.SærligGrunner" />
     </Element>
     <VerticalSpacer eightPx />
-    <TextAreaField
+    <TextArea
       name={`${name}.sarligGrunnerBegrunnelse`}
       label={intl.formatMessage({ id: 'AktsomhetGradUaktsomhetFormPanel.VurderSærligGrunner' })}
       validate={[required, minLength3, maxLength1500, hasValidText]}

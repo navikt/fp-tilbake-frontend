@@ -7,7 +7,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 
 import {
-  TextAreaField, DatepickerField, Form, RadioGroupPanel,
+  TextArea, Datepicker, Form, RadioGroupPanel,
 } from '@fpsak-frontend/form-hooks';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
@@ -66,7 +66,7 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
       <VerticalSpacer twentyPx />
       <Row>
         <Column md="8">
-          <TextAreaField
+          <TextArea
             name="begrunnelse"
             label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.Vurdering' })}
             validate={[required, minLength3, maxLength1500, hasValidText]}
@@ -91,21 +91,21 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
         </Column>
         <Column md="3">
           {(erForeldet || erMedTilleggsfrist) && (
-            <DatepickerField
+            <Datepicker
               name="foreldelsesfrist"
               label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.Foreldelsesfrist' })}
               validate={[required]}
-              readOnly={readOnly}
+              isReadOnly={readOnly}
             />
           )}
           {erMedTilleggsfrist && (
             <>
               <VerticalSpacer eightPx />
-              <DatepickerField
+              <Datepicker
                 name="oppdagelsesDato"
                 label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.OppdagelsesDato' })}
                 validate={[required, dateBeforeOrEqualToToday]}
-                readOnly={readOnly}
+                isReadOnly={readOnly}
                 disabledDays={{ before: moment('1970-01-01').toDate(), after: moment(moment.now()).toDate() }}
               />
             </>
