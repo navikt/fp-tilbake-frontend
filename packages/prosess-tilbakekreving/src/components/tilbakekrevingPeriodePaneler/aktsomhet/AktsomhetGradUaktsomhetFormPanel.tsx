@@ -83,6 +83,7 @@ const AktsomhetGradUaktsomhetFormPanel: FunctionComponent<OwnProps & WrappedComp
           validate={[required]}
           parse={(value: string) => value === 'true'}
           isHorizontal
+          isReadOnly={readOnly}
           radios={[{
             label: <FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.Ja" />,
             value: 'true',
