@@ -5,10 +5,8 @@ import { Undertekst, Normaltekst } from 'nav-frontend-typografi';
 import {
   minValue, required, removeSpacesFromNumber, formatCurrencyNoKr,
 } from '@fpsak-frontend/utils';
-import { VerticalSpacer, ArrowBox } from '@fpsak-frontend/shared-components';
-import {
-  RadioOption, RadioGroupField, InputField,
-} from '@fpsak-frontend/form-hooks';
+import { ArrowBox } from '@fpsak-frontend/shared-components';
+import { InputField, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 
 import styles from './belopetMottattIGodTroFormPanel.less';
 
@@ -61,17 +59,20 @@ const BelopetMottattIGodTroFormPanel: FunctionComponent<OwnProps> & StaticFuncti
   const intl = useIntl();
   return (
     <>
-      <Undertekst><FormattedMessage id="BelopetMottattIGodTroFormPanel.BelopetIBehold" /></Undertekst>
-      <VerticalSpacer eightPx />
-      <RadioGroupField
-        validate={[required]}
+      <RadioGroupPanel
         name={`${name}.erBelopetIBehold`}
-        readOnly={readOnly}
+        label={<Undertekst><FormattedMessage id="BelopetMottattIGodTroFormPanel.BelopetIBehold" /></Undertekst>}
+        validate={[required]}
+        radios={[{
+          label: <FormattedMessage id="BelopetMottattIGodTroFormPanel.Ja" />,
+          value: 'true',
+        }, {
+          label: <FormattedMessage id="BelopetMottattIGodTroFormPanel.Nei" />,
+          value: 'false',
+        }]}
+        isReadOnly={readOnly}
         parse={(value: string) => value === 'true'}
-      >
-        <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Ja" />} value="true" />
-        <RadioOption label={<FormattedMessage id="BelopetMottattIGodTroFormPanel.Nei" />} value="false" />
-      </RadioGroupField>
+      />
       <div className={styles.arrowbox}>
         {erBelopetIBehold === true && (
           <ArrowBox alignOffset={25}>

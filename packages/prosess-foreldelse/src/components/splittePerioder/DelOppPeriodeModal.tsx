@@ -8,7 +8,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { DatepickerField, Form } from '@fpsak-frontend/form-hooks';
+import { Datepicker, Form } from '@fpsak-frontend/form-hooks';
 import {
   dateAfterOrEqual, dateBeforeOrEqual, DDMMYYYY_DATE_FORMAT, hasValidDate, ISO_DATE_FORMAT, required,
 } from '@fpsak-frontend/utils';
@@ -100,10 +100,9 @@ const DelOppPeriodeModal: FunctionComponent<PureOwnProps> = ({
           </Normaltekst>
         </div>
         <div className={styles.marginTop}>
-          <DatepickerField
+          <Datepicker
             name="forstePeriodeTomDato"
             label={<FormattedMessage id="DelOppPeriodeModalImpl.AngiTomDato" />}
-            className={styles.datePicker}
             validate={[required, hasValidDate, validerMotPeriode(periodeData, intl)]}
             disabledDays={{ before: moment(periodeData.fom).toDate(), after: moment(periodeData.tom).toDate() }}
             initialMonth={moment(periodeData.tom).toDate()}

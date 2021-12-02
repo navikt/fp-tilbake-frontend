@@ -5,7 +5,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
 
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { CheckboxField, TextAreaField, SkjemaGruppeMedFeilviser } from '@fpsak-frontend/form-hooks';
+import { Checkbox, TextArea, SkjemaGruppeMedFeilviser } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
@@ -67,7 +67,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
       >
         {sarligGrunnTyper.map((sgt: KodeverkMedNavn) => (
           <React.Fragment key={sgt.kode}>
-            <CheckboxField
+            <Checkbox
               key={sgt.kode}
               name={`${name}.${sgt.kode}`}
               label={sgt.navn}
@@ -80,7 +80,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
           <Row>
             <Column md="1" />
             <Column md="10">
-              <TextAreaField
+              <TextArea
                 name={`${name}.annetBegrunnelse`}
                 label=""
                 validate={[required, minLength3, maxLength1500, hasValidText]}

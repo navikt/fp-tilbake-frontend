@@ -7,12 +7,11 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 
 import {
-  RadioGroupField, RadioOption, TextAreaField, DatepickerField, Form,
+  TextArea, Datepicker, Form, RadioGroupPanel,
 } from '@fpsak-frontend/form-hooks';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
-  dateBeforeOrEqualToToday,
-  hasValidText, maxLength, minLength, required,
+  dateBeforeOrEqualToToday, hasValidText, maxLength, minLength, required, hasValidDate,
 } from '@fpsak-frontend/utils';
 import { FlexColumn, FlexRow, VerticalSpacer } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
@@ -66,7 +65,7 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
       <VerticalSpacer twentyPx />
       <Row>
         <Column md="8">
-          <TextAreaField
+          <TextArea
             name="begrunnelse"
             label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.Vurdering' })}
             validate={[required, minLength3, maxLength1500, hasValidText]}
@@ -78,33 +77,34 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
       <VerticalSpacer twentyPx />
       <Row>
         <Column md="5">
-          <Undertekst><FormattedMessage id="ForeldelsePeriodeForm.RadioGroup.Foreldet" /></Undertekst>
-          <RadioGroupField
-            validate={[required]}
+          <RadioGroupPanel
             name="foreldet"
-            direction="vertical"
-            readOnly={readOnly}
-          >
-            {foreldelseVurderingTyper.map((type) => <RadioOption key={type.kode} label={type.navn} value={type.kode} />)}
-          </RadioGroupField>
+            label={<Undertekst><FormattedMessage id="ForeldelsePeriodeForm.RadioGroup.Foreldet" /></Undertekst>}
+            validate={[required]}
+            radios={foreldelseVurderingTyper.map((type) => ({
+              label: type.navn,
+              value: type.kode,
+            }))}
+            isReadOnly={readOnly}
+          />
         </Column>
         <Column md="3">
           {(erForeldet || erMedTilleggsfrist) && (
-            <DatepickerField
+            <Datepicker
               name="foreldelsesfrist"
               label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.Foreldelsesfrist' })}
-              validate={[required]}
-              readOnly={readOnly}
+              validate={[required, hasValidDate]}
+              isReadOnly={readOnly}
             />
           )}
           {erMedTilleggsfrist && (
             <>
               <VerticalSpacer eightPx />
-              <DatepickerField
+              <Datepicker
                 name="oppdagelsesDato"
                 label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.OppdagelsesDato' })}
-                validate={[required, dateBeforeOrEqualToToday]}
-                readOnly={readOnly}
+                validate={[required, hasValidDate, dateBeforeOrEqualToToday]}
+                isReadOnly={readOnly}
                 disabledDays={{ before: moment('1970-01-01').toDate(), after: moment(moment.now()).toDate() }}
               />
             </>

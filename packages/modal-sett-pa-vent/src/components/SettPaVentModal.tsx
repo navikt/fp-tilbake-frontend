@@ -9,7 +9,7 @@ import Modal from 'nav-frontend-modal';
 
 import { Image, VerticalSpacer } from '@fpsak-frontend/shared-components';
 import innvilgetImageUrl from '@fpsak-frontend/assets/images/innvilget_valgt.svg';
-import { DatepickerField, SelectField, Form } from '@fpsak-frontend/form-hooks';
+import { Datepicker, Select, Form } from '@fpsak-frontend/form-hooks';
 import {
   ariaCheck, dateAfterOrEqualToToday, hasValidDate, required, dateBeforeToday,
 } from '@fpsak-frontend/utils';
@@ -147,7 +147,7 @@ const SettPaVentModal: FunctionComponent<PureOwnProps> = ({
             {(hasManualPaVent || fristFraFelt) && (
               <Column xs="2">
                 <div className={styles.datePicker}>
-                  <DatepickerField
+                  <Datepicker
                     name="frist"
                     validate={[required, hasValidDate, dateAfterOrEqualToToday]}
                   />
@@ -158,7 +158,7 @@ const SettPaVentModal: FunctionComponent<PureOwnProps> = ({
           <Row className={styles.marginTop}>
             <Column xs="1" />
             <Column xs="11">
-              <SelectField
+              <Select
                 name="ventearsak"
                 label={intl.formatMessage({ id: 'SettPaVentModal.Arsak' })}
                 placeholder={intl.formatMessage({ id: 'SettPaVentModal.SelectPlaceholder' })}

@@ -4,7 +4,7 @@ import { RawIntlProvider } from 'react-intl';
 import {
   decodeHtmlEntity, hasValidText, maxLength, minLength, required, createIntl,
 } from '@fpsak-frontend/utils';
-import { TextAreaField } from '@fpsak-frontend/form-hooks';
+import { TextArea } from '@fpsak-frontend/form-hooks';
 import { Aksjonspunkt } from '@fpsak-frontend/types';
 
 import styles from './faktaBegrunnelseTextField.less';
@@ -55,7 +55,7 @@ const FaktaBegrunnelseTextField: FunctionComponent<OwnProps> & StaticFunctions =
     <RawIntlProvider value={intl}>
       {(isSubmittable || hasBegrunnelse) && (
         <div className={styles.begrunnelseTextField}>
-          <TextAreaField
+          <TextArea
             name={name}
             label={isReadOnly ? '' : textAreaLabel}
             validate={[required, minLength3, maxLength1500, hasValidText]}

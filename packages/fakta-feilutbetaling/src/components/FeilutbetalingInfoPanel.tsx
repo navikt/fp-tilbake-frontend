@@ -10,7 +10,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 
 import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import { TextAreaField, CheckboxField, Form } from '@fpsak-frontend/form-hooks';
+import { TextArea, Checkbox, Form } from '@fpsak-frontend/form-hooks';
 import { VerticalSpacer, AksjonspunktHelpTextTemp, FaktaGruppe } from '@fpsak-frontend/shared-components';
 import {
   DDMMYYYY_DATE_FORMAT, hasValidText, maxLength, minLength, required, getKodeverknavnFn, decodeHtmlEntity,
@@ -208,7 +208,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
             </Row>
             <Row className={styles.smallMarginTop}>
               <Column xs="11">
-                <CheckboxField
+                <Checkbox
                   name="behandlePerioderSamlet"
                   label={intl.formatMessage({ id: 'FeilutbetalingInfoPanel.BehandlePerioderSamlet' })}
                   readOnly={readOnly}
@@ -300,7 +300,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
         </Row>
         <Row>
           <Column md="6">
-            <TextAreaField
+            <TextArea
               name="begrunnelse"
               label={intl.formatMessage({ id: 'FeilutbetalingInfoPanel.Begrunnelse' })}
               validate={[required, minLength3, maxLength1500, hasValidText]}

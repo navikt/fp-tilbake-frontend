@@ -16,7 +16,7 @@ interface OwnProps {
   disabled?: boolean;
 }
 
-const CheckboxField: FunctionComponent<OwnProps> = ({
+const Checkbox: FunctionComponent<OwnProps> = ({
   name,
   label,
   validate = [],
@@ -58,4 +58,4 @@ const CheckboxField: FunctionComponent<OwnProps> = ({
   );
 };
 
-export default CheckboxField;
+export default Checkbox;

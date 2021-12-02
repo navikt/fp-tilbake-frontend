@@ -1,26 +1,29 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
+import { Undertekst } from 'nav-frontend-typografi';
 
-import { RadioGroupField, RadioOption, TextAreaField } from '@fpsak-frontend/form-hooks';
+import { RadioGroupPanel, TextArea } from '@fpsak-frontend/form-hooks';
 
 const ForeldetFormPanel = () => (
   <Row>
     <Column md="6">
-      <TextAreaField
+      <TextArea
         name="foreldetBegrunnelse"
         label={<FormattedMessage id="ForeldetPanel.Vurdering" />}
         readOnly
       />
     </Column>
     <Column md="6">
-      <RadioGroupField
+      <RadioGroupPanel
         name="periodenErForeldet"
-        readOnly
-        label={<FormattedMessage id="ForeldetPanel.VurderOmPeriodenErForeldet" />}
-      >
-        {[<RadioOption key={1} label={<FormattedMessage id="ForeldetPanel.PeriodenErForeldet" />} value="true" />]}
-      </RadioGroupField>
+        label={<Undertekst><FormattedMessage id="ForeldetPanel.VurderOmPeriodenErForeldet" /></Undertekst>}
+        radios={[{
+          label: <FormattedMessage id="ForeldetPanel.PeriodenErForeldet" />,
+          value: 'true',
+        }]}
+        isReadOnly
+      />
     </Column>
   </Row>
 );

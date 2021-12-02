@@ -9,7 +9,7 @@ import {
   FlexColumn, FlexContainer, FlexRow, VerticalSpacer, FaktaGruppe,
 } from '@fpsak-frontend/shared-components';
 import {
-  DatepickerField, InputField, SelectField,
+  Datepicker, InputField, Select,
 } from '@fpsak-frontend/form-hooks';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { KodeverkMedNavn, Verge } from '@fpsak-frontend/types';
@@ -62,7 +62,7 @@ export const RegistrereVergeFaktaForm: FunctionComponent<OwnProps & WrappedCompo
   <FaktaGruppe merknaderFraBeslutter={alleMerknaderFraBeslutter[aksjonspunktCodes.AVKLAR_VERGE]}>
     <Row>
       <Column xs="5">
-        <SelectField
+        <Select
           name="vergeType"
           label={intl.formatMessage({ id: 'Verge.TypeVerge' })}
           placeholder={intl.formatMessage({ id: 'Verge.TypeVerge' })}
@@ -110,19 +110,19 @@ export const RegistrereVergeFaktaForm: FunctionComponent<OwnProps & WrappedCompo
         <FlexContainer>
           <FlexRow>
             <FlexColumn>
-              <DatepickerField
+              <Datepicker
                 name="gyldigFom"
                 label={intl.formatMessage({ id: 'Verge.PeriodeFOM' })}
                 validate={[required, hasValidDate]}
-                readOnly={readOnly}
+                isReadOnly={readOnly}
               />
             </FlexColumn>
             <FlexColumn>
-              <DatepickerField
+              <Datepicker
                 name="gyldigTom"
                 label={intl.formatMessage({ id: 'Verge.PeriodeTOM' })}
                 validate={[hasValidDate]}
-                readOnly={readOnly}
+                isReadOnly={readOnly}
               />
             </FlexColumn>
           </FlexRow>

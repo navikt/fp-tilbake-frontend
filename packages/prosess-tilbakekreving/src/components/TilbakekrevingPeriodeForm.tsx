@@ -7,7 +7,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 
 import {
-  RadioGroupField, RadioOption, TextAreaField, SelectField, Form,
+  TextArea, Select, Form, RadioGroupPanel,
 } from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
@@ -188,7 +188,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
               <Element>
                 <FormattedMessage id="TilbakekrevingPeriodeForm.KopierVilkårsvurdering" />
               </Element>
-              <SelectField
+              <Select
                 name="perioderForKopi"
                 selectValues={vurdertePerioder.map((per) => {
                   const perId = `${per.fom}_${per.tom}`;
@@ -218,7 +218,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   <FormattedMessage id="TilbakekrevingPeriodeForm.VilkarForTilbakekreving" />
                 </Element>
                 <VerticalSpacer eightPx />
-                <TextAreaField
+                <TextArea
                   name="begrunnelse"
                   label={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.Vurdering' })}
                   validate={[required, minLength3, maxLength1500, hasValidText]}
@@ -228,23 +228,17 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   placeholder={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.Vurdering.Hjelpetekst' })}
                 />
                 <VerticalSpacer twentyPx />
-                <Undertekst><FormattedMessage id="TilbakekrevingPeriodeForm.oppfylt" /></Undertekst>
-                <VerticalSpacer eightPx />
-                <RadioGroupField
-                  validate={[required]}
+                <RadioGroupPanel
                   name="valgtVilkarResultatType"
-                  direction="vertical"
-                  readOnly={readOnly}
+                  label={<Undertekst><FormattedMessage id="TilbakekrevingPeriodeForm.oppfylt" /></Undertekst>}
+                  validate={[required]}
+                  radios={vilkarResultatTyper.map((vrt) => ({
+                    label: vrt.navn,
+                    value: vrt.kode,
+                  }))}
+                  isReadOnly={readOnly}
                   onChange={resetVilkarresultatType}
-                >
-                  {vilkarResultatTyper.map((vrt) => (
-                    <RadioOption
-                      key={vrt.kode}
-                      label={vrt.navn}
-                      value={vrt.kode}
-                    />
-                  ))}
-                </RadioGroupField>
+                />
               </Column>
             )}
           </Row>
@@ -260,7 +254,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                     />
                   </Element>
                   <VerticalSpacer eightPx />
-                  <TextAreaField
+                  <TextArea
                     name="vurderingBegrunnelse"
                     label={intl.formatMessage({
                       id: valgtVilkarResultatType === VilkarResultat.GOD_TRO
