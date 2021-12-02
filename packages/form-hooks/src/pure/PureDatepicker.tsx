@@ -3,6 +3,7 @@ import { Datepicker } from 'nav-datovelger';
 import { CalendarPlacement } from 'nav-datovelger/lib/types';
 import { DatepickerProps } from 'nav-datovelger/lib/Datepicker';
 import { Label } from 'nav-frontend-skjema';
+import { Undertekst } from 'nav-frontend-typografi';
 import FieldError from './FieldError';
 import { LabelType } from '../Label';
 import './datepicker.less';
@@ -43,7 +44,7 @@ const PureDatepicker = ({
 
   return (
     <div className="datepicker">
-      {label && <Label htmlFor={inputId}>{label}</Label>}
+      {label && <Label htmlFor={inputId}><Undertekst>{label}</Undertekst></Label>}
       <Datepicker
         onChange={onChange}
         value={value}

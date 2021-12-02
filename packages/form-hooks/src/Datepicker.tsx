@@ -67,7 +67,7 @@ const Datepicker: FunctionComponent<DatepickerProps> = ({
     <PureDatepicker
       label={label}
       onChange={(date) => onChange(parse(date))}
-      value={value}
+      value={value || undefined}
       errorMessage={error || getError(errors, name)}
       limitations={limitations}
       ariaLabel={ariaLabel}

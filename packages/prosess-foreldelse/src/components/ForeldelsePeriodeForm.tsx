@@ -11,8 +11,7 @@ import {
 } from '@fpsak-frontend/form-hooks';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
-  dateBeforeOrEqualToToday,
-  hasValidText, maxLength, minLength, required,
+  dateBeforeOrEqualToToday, hasValidText, maxLength, minLength, required, hasValidDate,
 } from '@fpsak-frontend/utils';
 import { FlexColumn, FlexRow, VerticalSpacer } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
@@ -94,7 +93,7 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
             <Datepicker
               name="foreldelsesfrist"
               label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.Foreldelsesfrist' })}
-              validate={[required]}
+              validate={[required, hasValidDate]}
               isReadOnly={readOnly}
             />
           )}
@@ -104,7 +103,7 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
               <Datepicker
                 name="oppdagelsesDato"
                 label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.OppdagelsesDato' })}
-                validate={[required, dateBeforeOrEqualToToday]}
+                validate={[required, hasValidDate, dateBeforeOrEqualToToday]}
                 isReadOnly={readOnly}
                 disabledDays={{ before: moment('1970-01-01').toDate(), after: moment(moment.now()).toDate() }}
               />
