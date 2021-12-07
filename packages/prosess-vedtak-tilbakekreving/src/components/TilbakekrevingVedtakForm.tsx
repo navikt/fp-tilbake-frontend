@@ -136,6 +136,8 @@ const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
   const fritekstOppsummeringPakrevdMenIkkeUtfylt = harFritekstOppsummeringPakrevdMenIkkeUtfylt(vedtaksbrevAvsnitt, formVerdier);
   const perioderSomIkkeHarUtfyltObligatoriskVerdi = finnPerioderSomIkkeHarVerdiForObligatoriskFelt(vedtaksbrevAvsnitt, formVerdier);
 
+  const harObligatoriskeFelterSomIkkeErUtfylt = fritekstOppsummeringPakrevdMenIkkeUtfylt || perioderSomIkkeHarUtfyltObligatoriskVerdi.length > 0;
+
   return (
     <Form
       formMethods={formMethods}
@@ -162,6 +164,7 @@ const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
               isSubmittable={perioderSomIkkeHarUtfyltObligatoriskVerdi.length === 0 && !fritekstOppsummeringPakrevdMenIkkeUtfylt}
               isSubmitting={formMethods.formState.isSubmitting}
               isDirty={formMethods.formState.isDirty}
+              hasEmptyRequiredFields={harObligatoriskeFelterSomIkkeErUtfylt}
             />
           </FlexColumn>
           {perioderSomIkkeHarUtfyltObligatoriskVerdi.length === 0 && (

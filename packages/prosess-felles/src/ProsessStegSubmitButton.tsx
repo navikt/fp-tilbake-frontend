@@ -7,11 +7,19 @@ import messages from '../i18n/nb_NO.json';
 
 const intl = createIntl(messages);
 
-const isDisabled = (isDirty: boolean, isSubmitting: boolean, isSubmittable: boolean): boolean => {
+const isDisabled = (
+  isDirty: boolean,
+  isSubmitting: boolean,
+  isSubmittable: boolean,
+  hasEmptyRequiredFields: boolean,
+): boolean => {
   if (!isSubmittable || isSubmitting) {
     return true;
   }
-  return !isDirty;
+  if (hasEmptyRequiredFields === undefined) {
+    return !isDirty;
+  }
+  return (!isDirty && hasEmptyRequiredFields) || hasEmptyRequiredFields;
 };
 
 interface OwnProps {
@@ -21,6 +29,7 @@ interface OwnProps {
   isDirty: boolean;
   text?: string;
   onClick?: (event: React.MouseEvent) => void;
+  hasEmptyRequiredFields?: boolean;
 }
 
 /**
@@ -33,13 +42,14 @@ const ProsessStegSubmitButton: FunctionComponent<OwnProps> = ({
   isDirty,
   text,
   onClick,
+  hasEmptyRequiredFields,
 }) => {
   if (!isReadOnly) {
     return (
       <Hovedknapp
         mini
         spinner={isSubmitting}
-        disabled={isDisabled(isDirty, isSubmitting, isSubmittable)}
+        disabled={isDisabled(isDirty, isSubmitting, isSubmittable, hasEmptyRequiredFields)}
         onClick={onClick || ariaCheck}
         htmlType={onClick ? 'button' : 'submit'}
       >
