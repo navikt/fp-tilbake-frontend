@@ -59,7 +59,7 @@
     "@babel/helper-regex": "^7.10.5",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.5",
     "@babel/register": "^7.16.0",
     "@commercetools/enzyme-extensions": "^5.0.0",
     "@storybook/addon-actions": "^6.4.0",
