@@ -4845,10 +4845,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-responsive@^8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@types/react-responsive/-/react-responsive-8.0.4.tgz#13fe66fcecc23eb96d14ffcb90abdcee81d3619e"
-  integrity sha512-/IrXSbm5aeSvtAD2vFGgPpQsHRQEJ2eWr6EdPEBPlTvad/qJYjXZax4CfOi5xCM5fjq/xpNW3WIHwKOrcdIGcA==
+"@types/react-responsive@^8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-responsive/-/react-responsive-8.0.5.tgz#77769862d2a0711434feb972be08e3e6c334440a"
+  integrity sha512-k3gQJgI87oP5IrVZe//3LKJFnAeFaqqWmmtl5eoYL2H3HqFcIhUaE30kRK1CsW3DHdojZxcVj4ZNc2ClsEu2PA==
   dependencies:
     "@types/react" "*"
 
@@ -4866,16 +4866,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16 || 17", "@types/react@>=16.9.0":
-  version "17.0.34"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.34.tgz#797b66d359b692e3f19991b6b07e4b0c706c0102"
-  integrity sha512-46FEGrMjc2+8XhHXILr+3+/sTe3OfzSPU9YGKILLrUYbQ1CLQC9Daqo1KzENGXAWwrFwiY0l4ZbF20gRvgpWTg==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@^17.0.37":
+"@types/react@*", "@types/react@16 || 17", "@types/react@>=16.9.0", "@types/react@^17.0.37":
   version "17.0.37"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.37.tgz#6884d0aa402605935c397ae689deed115caad959"
   integrity sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg==
