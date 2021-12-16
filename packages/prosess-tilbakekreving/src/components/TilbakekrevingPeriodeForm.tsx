@@ -154,6 +154,8 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
   };
 
   const resetVilkarresultatType = () => {
+    debugger;
+    console.log(formMethods.getValues());
     if (forrigeVilkarResultatType) {
       formMethods.resetField(forrigeVilkarResultatType);
     }
@@ -276,6 +278,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   )}
                   {valgtVilkarResultatType !== VilkarResultat.GOD_TRO && (
                     <AktsomhetFormPanel
+                      key={valgtVilkarResultatType}
                       name={valgtVilkarResultatType}
                       harGrunnerTilReduksjon={harGrunnerTilReduksjon}
                       readOnly={readOnly}
