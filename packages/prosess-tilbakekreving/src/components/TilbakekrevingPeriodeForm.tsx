@@ -154,8 +154,6 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
   };
 
   const resetVilkarresultatType = () => {
-    debugger;
-    console.log(formMethods.getValues());
     if (forrigeVilkarResultatType) {
       formMethods.resetField(forrigeVilkarResultatType);
     }
