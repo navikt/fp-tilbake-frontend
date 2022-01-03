@@ -51,7 +51,7 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
           faktaAvsnitt: 'Dette er en utdypende tekst',
           fom: '2016-03-16',
           foreldelseAvsnitt: undefined,
-          saerligeGrunnerAnnetAvsnitt: 'De',  //TODO Kvifor er denne teksten feil?
+          saerligeGrunnerAnnetAvsnitt: 'De', // TODO Kvifor er denne teksten feil?
           saerligeGrunnerAvsnitt: undefined,
           tom: '2016-05-26',
           vilkaarAvsnitt: undefined,
@@ -82,7 +82,7 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
           faktaAvsnitt: 'Dette er en utdypende tekst',
           fom: '2016-03-16',
           foreldelseAvsnitt: undefined,
-          saerligeGrunnerAnnetAvsnitt: 'De',  //TODO Kvifor er denne teksten feil?
+          saerligeGrunnerAnnetAvsnitt: 'De', // TODO Kvifor er denne teksten feil?
           saerligeGrunnerAvsnitt: undefined,
           tom: '2016-05-26',
           vilkaarAvsnitt: undefined,
