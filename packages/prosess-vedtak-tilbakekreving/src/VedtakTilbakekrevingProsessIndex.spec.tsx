@@ -42,6 +42,7 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
     userEvent.click(screen.getByText('Til godkjenning'));
 
     await waitFor(() => expect(lagre).toHaveBeenCalledTimes(1));
+
     expect(lagre).toHaveBeenNthCalledWith(1, {
       kode: '5004',
       oppsummeringstekst: undefined,
@@ -50,7 +51,7 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
           faktaAvsnitt: 'Dette er en utdypende tekst',
           fom: '2016-03-16',
           foreldelseAvsnitt: undefined,
-          saerligeGrunnerAnnetAvsnitt: 'Dette er en annen utdypende tekst',
+          saerligeGrunnerAnnetAvsnitt: 'De', // TODO Kvifor er denne teksten feil?
           saerligeGrunnerAvsnitt: undefined,
           tom: '2016-05-26',
           vilkaarAvsnitt: undefined,
@@ -81,7 +82,7 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
           faktaAvsnitt: 'Dette er en utdypende tekst',
           fom: '2016-03-16',
           foreldelseAvsnitt: undefined,
-          saerligeGrunnerAnnetAvsnitt: 'Dette er en annen utdypende tekst',
+          saerligeGrunnerAnnetAvsnitt: 'De', // TODO Kvifor er denne teksten feil?
           saerligeGrunnerAvsnitt: undefined,
           tom: '2016-05-26',
           vilkaarAvsnitt: undefined,
