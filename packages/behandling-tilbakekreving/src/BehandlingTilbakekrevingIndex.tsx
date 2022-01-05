@@ -1,19 +1,22 @@
 import React, { FunctionComponent } from 'react';
 
-import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import {
   BehandlingContainer, StandardBehandlingProps, StandardPropsProvider, BehandlingPaVent,
   useInitRequestApi, useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger,
 } from '@fpsak-frontend/behandling-felles';
-import { Kodeverk } from '@fpsak-frontend/types';
+import {
+  LoadingPanel,
+} from '@fpsak-frontend/shared-components';
+import {
+  Kodeverk,
+} from '@fpsak-frontend/types';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
-import FeilutbetalingFaktaInitPanel from './faktaPaneler/FeilutbetalingFaktaInitPanel';
-import VergeFaktaInitPanel from './faktaPaneler/VergeFaktaInitPanel';
 import ForeldelseProsessStegInitPanel from './prosessPaneler/ForeldelseProsessStegInitPanel';
 import TilbakekrevingProsessStegInitPanel from './prosessPaneler/TilbakekrevingProsessStegInitPanel';
 import VedtakTilbakekrevingProsessStegInitPanel from './prosessPaneler/VedtakTilbakekrevingProsessStegInitPanel';
+import FaktaIndex from './FaktaIndex';
 
 interface OwnProps {
   fagsakKjønn: Kodeverk;
@@ -79,12 +82,6 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
           valgtProsessSteg={valgtProsessSteg}
           valgtFaktaSteg={valgtFaktaSteg}
           oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
-          hentFaktaPaneler={(props) => (
-            <>
-              <FeilutbetalingFaktaInitPanel {...props} fptilbakeKodeverk={tilbakekrevingKodeverk} fagsak={fagsak} />
-              <VergeFaktaInitPanel {...props} />
-            </>
-          )}
           hentProsessPaneler={(props) => (
             <>
               <ForeldelseProsessStegInitPanel {...props} fagsakKjønn={fagsakKjønn} fptilbakeKodeverk={tilbakekrevingKodeverk} />
@@ -98,6 +95,16 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
               />
             </>
           )}
+        />
+        <FaktaIndex
+          fagsak={fagsak}
+          behandling={behandling}
+          tilbakekrevingKodeverk={tilbakekrevingKodeverk}
+          fpsakKodeverk={fpsakKodeverk}
+          valgtFaktaSteg={valgtFaktaSteg}
+          oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
+          rettigheter={rettigheter}
+          hasFetchError={behandlingState === RestApiState.ERROR}
         />
       </StandardPropsProvider>
     </>

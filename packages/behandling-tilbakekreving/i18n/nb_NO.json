@@ -7,5 +7,24 @@
 
   "FatterTilbakekrevingVedtakStatusModal.Sendt": "Forslag til vedtak er sendt til beslutter",
   "BehandlingTilbakekrevingIndex.ApenRevurdering": "Det finnes en åpen revurdering som kan påvirke denne tilbakekrevingsbehandlingen. Vurder konsekvens ved behandling.",
-  "BehandlingTilbakekrevingIndex.ApenRevurderingHeader": "Åpen revurdering"
+  "BehandlingTilbakekrevingIndex.ApenRevurderingHeader": "Åpen revurdering",
+
+  "FeilutbetalingInfoPanel.Revurdering": "Revurdering",
+  "FeilutbetalingInfoPanel.Feilutbetaling": "Feilutbetaling",
+  "FeilutbetalingInfoPanel.Årsaker": "Årsak(er) til revurdering",
+  "FeilutbetalingInfoPanel.DatoForRevurdering": "Dato for revurderingsvedtak",
+  "FeilutbetalingInfoPanel.Konsekvens": "Konsekvens",
+  "FeilutbetalingInfoPanel.Tilbakekrevingsvalg": "Tilbakekrevingsvalg",
+  "FeilutbetalingInfoPanel.PeriodeMedFeilutbetaling": "Periode med feilutbetaling",
+  "FeilutbetalingInfoPanel.FeilutbetaltBeløp": "Feilutbetalt beløp totalt",
+  "FeilutbetalingInfoPanel.TidligereVarseltBeløp": "Tidligere varslet beløp",
+  "FeilutbetalingInfoPanel.Period": "Period",
+  "FeilutbetalingInfoPanel.Hendelse": "Hendelse",
+  "FeilutbetalingInfoPanel.Beløp": "Feilutbetalt beløp",
+  "FeilutbetalingInfoPanel.Resultat": "Resultat",
+  "FeilutbetalingInfoPanel.Begrunnelse": "Forklar årsaken(e) til feilutbetalingen",
+  "FeilutbetalingInfoPanel.Aksjonspunkt": "Kontroller at korrekt hendelse er satt",
+  "FeilutbetalingInfoPanel.Confirm": "Bekreft og fortsett",
+  "FeilutbetalingInfoPanel.IkkeVarslet": "Ikke varslet",
+  "FeilutbetalingInfoPanel.BehandlePerioderSamlet": "Behandle alle perioder samlet"
 }

@@ -29,7 +29,6 @@ export type OwnProps<INIT_DATA, PANEL_DATA> = {
 const FaktaDefaultInitPanel = <INIT_DATA, PANEL_DATA = void, >({
   valgtFaktaSteg,
   behandlingVersjon,
-  registrerFaktaPanel,
   requestApi,
   initEndepunkter,
   panelEndepunkter = [],
@@ -51,10 +50,8 @@ const FaktaDefaultInitPanel = <INIT_DATA, PANEL_DATA = void, >({
   const standardPanelProps = useStandardFaktaPanelProps(initData, aksjonspunktKoder, overstyringApKoder);
 
   const erPanelValgt = useFaktaMenyRegistrerer(
-    registrerFaktaPanel,
     initState,
     faktaPanelKode,
-    faktaPanelMenyTekst,
     valgtFaktaSteg,
     skalPanelVisesIMeny(initData),
     standardPanelProps.harApneAksjonspunkter,
