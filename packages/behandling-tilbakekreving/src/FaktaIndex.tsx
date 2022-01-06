@@ -6,9 +6,6 @@ import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import {
-  StandardBehandlingProps,
-} from '@fpsak-frontend/behandling-felles';
-import {
   FlexColumn, FlexContainer, FlexRow,
 } from '@fpsak-frontend/shared-components';
 import {
@@ -16,6 +13,7 @@ import {
 } from '@fpsak-frontend/types';
 import { createIntl } from '@fpsak-frontend/utils';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
+import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import FeilutbetalingFaktaIndex from './feilutbetalingFakta/FeilutbetalingFaktaIndex';
 import VergeFaktaIndex from './vergeFakta/VergeFaktaIndex';
@@ -43,19 +41,19 @@ interface OwnProps {
   tilbakekrevingKodeverk: AlleKodeverkTilbakekreving;
   fpsakKodeverk: AlleKodeverk;
   valgtFaktaSteg?: string;
-  oppdaterProsessStegOgFaktaPanelIUrl: (punktnavn?: string, faktanavn?: string) => void;
-  submitCallback: () => undefined;
+  oppdaterFaktaPanelIUrl: (faktanavn: string) => void;
+  submitCallback: (aksjonspunkter: FaktaAksjonspunkt | FaktaAksjonspunkt[]) => Promise<any>;
   rettigheter: AksessRettigheter;
   hasFetchError: boolean;
 }
 
-const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
+const FaktaIndex: FunctionComponent<OwnProps> = ({
   behandling,
   fagsak,
   tilbakekrevingKodeverk,
   fpsakKodeverk,
   valgtFaktaSteg,
-  oppdaterProsessStegOgFaktaPanelIUrl,
+  oppdaterFaktaPanelIUrl,
   submitCallback,
   rettigheter,
   hasFetchError,
@@ -107,9 +105,8 @@ const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
     });
   }
 
-  const oppdaterFaktaPanelIUrl = (index: number) => {
-    // TODO
-    oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PANEL_VALGT, menyData[index].id);
+  const oppdaterFaktaPanel = (index: number) => {
+    oppdaterFaktaPanelIUrl(menyData[index].id);
   };
 
   return (
@@ -119,7 +116,7 @@ const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
           <FlexColumn className={styles.sideMenu}>
             <FaktaMeny
               menyData={menyData}
-              oppdaterFaktaPanelIUrl={oppdaterFaktaPanelIUrl}
+              oppdaterFaktaPanelIUrl={oppdaterFaktaPanel}
             />
           </FlexColumn>
           <FlexColumn className={styles.content}>

@@ -17,6 +17,7 @@ import ForeldelseProsessStegInitPanel from './prosessPaneler/ForeldelseProsessSt
 import TilbakekrevingProsessStegInitPanel from './prosessPaneler/TilbakekrevingProsessStegInitPanel';
 import VedtakTilbakekrevingProsessStegInitPanel from './prosessPaneler/VedtakTilbakekrevingProsessStegInitPanel';
 import FaktaIndex from './FaktaIndex';
+import getBekreftAksjonspunktFaktaCallback from './submit';
 
 interface OwnProps {
   fagsakKjønn: Kodeverk;
@@ -57,6 +58,12 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
   if (!behandling || !tilbakekrevingKodeverk) {
     return <LoadingPanel />;
   }
+
+  const oppdaterFaktaPanelIUrl = (nyttProsessSteg: string): void => {
+    oppdaterProsessStegOgFaktaPanelIUrl(valgtProsessSteg, nyttProsessSteg);
+  };
+
+  const submitCallback = getBekreftAksjonspunktFaktaCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
 
   return (
     <>
@@ -103,9 +110,10 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         tilbakekrevingKodeverk={tilbakekrevingKodeverk}
         fpsakKodeverk={fpsakKodeverk}
         valgtFaktaSteg={valgtFaktaSteg}
-        oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
+        oppdaterFaktaPanelIUrl={oppdaterFaktaPanelIUrl}
         rettigheter={rettigheter}
         hasFetchError={behandlingState === RestApiState.ERROR}
+        submitCallback={submitCallback}
       />
     </>
   );
