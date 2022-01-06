@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 
+import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
-import { Aksjonspunkt, Behandling, Verge } from '@fpsak-frontend/types';
+import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
+import {
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper, Verge,
+} from '@fpsak-frontend/types';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import behandlingResultatType from '@fpsak-frontend/kodeverk/src/behandlingResultatType';
 import konsekvensForYtelsen from '@fpsak-frontend/kodeverk/src/konsekvensForYtelsen';
@@ -55,13 +59,17 @@ const behandling = {
     rel: 'feilutbetalingFakta',
     type: 'GET',
   }, {
+    href: TilbakekrevingBehandlingApiKeys.PERIODER_FORELDELSE.name,
+    rel: 'perioderForeldelse',
+    type: 'GET',
+  }, {
     href: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_AARSAK.name,
     rel: 'feilutbetalingAarsak',
     type: 'GET',
   }],
 } as Behandling;
 
-const aksjonspunkter = [{
+const faktaAksjonspunkter = [{
   definisjon: {
     kode: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
     kodeverk: '',
@@ -83,6 +91,19 @@ const aksjonspunkter = [{
   begrunnelse: 'Dette er en begrunnelse',
   kanLoses: true,
   erAktivt: false,
+}] as Aksjonspunkt[];
+
+const prosessAksjonspunkter = [{
+  definisjon: {
+    kode: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
+    kodeverk: '',
+  },
+  status: {
+    kode: aksjonspunktStatus.OPPRETTET,
+    kodeverk: '',
+  },
+  kanLoses: true,
+  erAktivt: true,
 }] as Aksjonspunkt[];
 
 const feilutbetalingFakta = {
@@ -170,6 +191,47 @@ const feilutbetalingAarsak = [{
   }],
 }];
 
+const perioderForeldelse = {
+  perioder: [{
+    fom: '2019-01-01',
+    tom: '2019-01-31',
+    belop: 1000,
+    begrunnelse: 'Foreldet',
+    foreldelseVurderingType: {
+      kode: foreldelseVurderingType.FORELDET,
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+    foreldelsesfrist: '2020-04-01',
+  }, {
+    fom: '2019-03-01',
+    tom: '2019-03-31',
+    belop: 3000,
+    foreldelseVurderingType: {
+      kode: foreldelseVurderingType.UDEFINERT,
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+  }, {
+    fom: '2019-02-01',
+    tom: '2019-02-28',
+    belop: 3000,
+    begrunnelse: 'Over foreldelsesfrist, med tillegsfrist brukes',
+    foreldelseVurderingType: {
+      kode: foreldelseVurderingType.TILLEGGSFRIST,
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+    foreldelsesfrist: '2020-04-01',
+    oppdagelsesDato: '2019-11-01',
+  }, {
+    fom: '2019-04-01',
+    tom: '2019-04-30',
+    belop: 4000,
+    foreldelseVurderingType: {
+      kode: foreldelseVurderingType.UDEFINERT,
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+  }],
+} as FeilutbetalingPerioderWrapper;
+
 const verge = {
   navn: 'Espen Utvikler',
   gyldigFom: '2021-01-01',
@@ -180,12 +242,37 @@ const verge = {
   },
 } as Verge;
 
+const tilbakeKodeverk = {
+  [tilbakekrevingKodeverkTyper.VENTEARSAK]: alleKodeverk.Venteårsak,
+  [tilbakekrevingKodeverkTyper.FORELDELSE_VURDERING]: [
+    {
+      kode: foreldelseVurderingType.FORELDET,
+      navn: 'Foreldet',
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+    {
+      kode: foreldelseVurderingType.TILLEGGSFRIST,
+      navn: 'Ikke foreldet, med tilleggsfrist',
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+    {
+      kode: foreldelseVurderingType.IKKE_FORELDET,
+      navn: 'Ikke foreldet',
+      kodeverk: 'FORELDELSE_VURDERING',
+    },
+  ],
+} as AlleKodeverkTilbakekreving;
+
 export default {
   title: 'behandling/tilbakekreving',
   component: BehandlingTilbakekrevingIndex,
 };
 
-const Template: Story = () => {
+const Template: Story<{
+  aksjonspunkter: Aksjonspunkt[];
+}> = ({
+  aksjonspunkter,
+}) => {
   const [valgtProsessSteg, setProsessSteg] = useState('default');
   const [valgtFaktaSteg, setFaktaSteg] = useState('default');
 
@@ -197,11 +284,12 @@ const Template: Story = () => {
   const data = [
     { key: TilbakekrevingBehandlingApiKeys.BEHANDLING_TILBAKE.name, data: behandling },
     { key: TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD.name, data: undefined },
-    { key: TilbakekrevingBehandlingApiKeys.TILBAKE_KODEVERK.name, global: true, data: alleKodeverk },
+    { key: TilbakekrevingBehandlingApiKeys.TILBAKE_KODEVERK.name, global: true, data: tilbakeKodeverk },
     { key: TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER.name, data: aksjonspunkter },
     { key: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_FAKTA.name, data: feilutbetalingFakta },
     { key: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_AARSAK.name, data: feilutbetalingAarsak },
     { key: TilbakekrevingBehandlingApiKeys.VERGE.name, data: verge },
+    { key: TilbakekrevingBehandlingApiKeys.PERIODER_FORELDELSE.name, data: perioderForeldelse },
   ];
 
   return (
@@ -253,4 +341,12 @@ const Template: Story = () => {
   );
 };
 
-export const Default = Template.bind({});
+export const FaktaPaneler = Template.bind({});
+FaktaPaneler.args = {
+  aksjonspunkter: faktaAksjonspunkter,
+};
+
+export const ProsessPaneler = Template.bind({});
+ProsessPaneler.args = {
+  aksjonspunkter: prosessAksjonspunkter,
+};
