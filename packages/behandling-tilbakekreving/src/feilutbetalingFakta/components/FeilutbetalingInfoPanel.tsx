@@ -16,7 +16,7 @@ import {
   DDMMYYYY_DATE_FORMAT, hasValidText, maxLength, minLength, required, getKodeverknavnFn, decodeHtmlEntity,
 } from '@fpsak-frontend/utils';
 import {
-  Aksjonspunkt, FeilutbetalingFakta, AlleKodeverk, FeilutbetalingAarsak, AlleKodeverkTilbakekreving,
+  FeilutbetalingFakta, AlleKodeverk, FeilutbetalingAarsak, AlleKodeverkTilbakekreving,
 } from '@fpsak-frontend/types';
 import { AvklartFaktaFeilutbetalingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 

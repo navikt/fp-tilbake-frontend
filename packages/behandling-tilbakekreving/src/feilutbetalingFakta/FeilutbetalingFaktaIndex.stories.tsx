@@ -2,6 +2,7 @@ import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
+import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import fagsakYtelseType from '@fpsak-frontend/kodeverk/src/fagsakYtelseType';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
@@ -10,21 +11,17 @@ import behandlingResultatType from '@fpsak-frontend/kodeverk/src/behandlingResul
 import tilbakekrevingVidereBehandling from '@fpsak-frontend/kodeverk/src/tilbakekrevingVidereBehandling';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
-import FeilutbetalingFaktaIndex from '@fpsak-frontend/fakta-feilutbetaling';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import {
-  Behandling, FeilutbetalingFakta, FeilutbetalingAarsak, AlleKodeverkTilbakekreving, AlleKodeverk,
+  FeilutbetalingFakta, FeilutbetalingAarsak, AlleKodeverkTilbakekreving, AlleKodeverk,
 } from '@fpsak-frontend/types';
+import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../data/tilbakekrevingBehandlingApi';
+import FeilutbetalingFaktaIndex from './FeilutbetalingFaktaIndex';
 
 const BEHANDLING_AARSAK_KODEVERK = 'BEHANDLING_AARSAK';
 const TILBAKEKR_VIDERE_BEH_KODEVERK = 'TILBAKEKR_VIDERE_BEH';
 const BEHANDLING_RESULTAT_TYPE_KODEVERK = 'BEHANDLING_RESULTAT_TYPE';
 const KONSEKVENS_FOR_YTELSEN_KODEVERK = 'KONSEKVENS_FOR_YTELSEN';
-
-const behandling = {
-  uuid: '1',
-  versjon: 1,
-} as Behandling;
 
 const feilutbetalingFakta = {
   behandlingFakta: {
@@ -109,7 +106,7 @@ const feilutbetalingAarsak = [{
       navn: 'Ikke bosatt',
     }],
   }],
-}];
+}] as FeilutbetalingAarsak[];
 
 const alleKodeverk = {} as AlleKodeverkTilbakekreving;
 
@@ -149,39 +146,43 @@ const Template: Story<{
   submitCallback: (aksjonspunktData: FaktaAksjonspunkt | FaktaAksjonspunkt[]) => Promise<void>;
 }> = ({
   submitCallback,
-}) => (
-  <FeilutbetalingFaktaIndex
-    submitCallback={submitCallback}
-    readOnly={false}
-    harApneAksjonspunkter
-    submittable
-    setFormData={() => undefined}
-    behandling={behandling}
-    feilutbetalingFakta={feilutbetalingFakta as FeilutbetalingFakta}
-    feilutbetalingAarsak={feilutbetalingAarsak as FeilutbetalingAarsak[]}
-    aksjonspunkter={[{
-      definisjon: {
-        kode: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
-        kodeverk: '',
-      },
-      status: {
-        kode: aksjonspunktStatus.OPPRETTET,
-        kodeverk: '',
-      },
-      begrunnelse: undefined,
-      kanLoses: true,
-      erAktivt: true,
-    }]}
-    alleKodeverk={alleKodeverk}
-    fpsakKodeverk={fpSakAlleKodeverk}
-    alleMerknaderFraBeslutter={{
-      [aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING]: {
-        notAccepted: false,
-      },
-    }}
-    fagsakYtelseTypeKode={fagsakYtelseType.FORELDREPENGER}
-  />
-);
+}) => {
+  const data = [
+    { key: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_AARSAK.name, data: feilutbetalingAarsak },
+  ];
+
+  return (
+    <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+      <FeilutbetalingFaktaIndex
+        submitCallback={submitCallback}
+        readOnly={false}
+        setFormData={() => undefined}
+        feilutbetalingFakta={feilutbetalingFakta as FeilutbetalingFakta}
+        aksjonspunkter={[{
+          definisjon: {
+            kode: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
+            kodeverk: '',
+          },
+          status: {
+            kode: aksjonspunktStatus.OPPRETTET,
+            kodeverk: '',
+          },
+          begrunnelse: undefined,
+          kanLoses: true,
+          erAktivt: true,
+        }]}
+        alleKodeverk={alleKodeverk}
+        fpsakKodeverk={fpSakAlleKodeverk}
+        alleMerknaderFraBeslutter={{
+          [aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING]: {
+            notAccepted: false,
+          },
+        }}
+        fagsakYtelseTypeKode={fagsakYtelseType.FORELDREPENGER}
+      />
+    </RestApiMock>
+  );
+};
 
 export const AksjonspunktForFeilutbetaling = Template.bind({});
 AksjonspunktForFeilutbetaling.args = {

@@ -2,11 +2,12 @@ import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
+import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
-import VergeFaktaIndex from '@fpsak-frontend/fakta-verge';
-import { Behandling } from '@fpsak-frontend/types';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
+import VergeFaktaIndex from './VergeFaktaIndex';
+import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../data/tilbakekrevingBehandlingApi';
 
 const aksjonspunkter = [{
   definisjon: {
@@ -34,33 +35,31 @@ export default {
 };
 
 const Template: Story<{
-  behandling: Behandling,
   submitCallback: (aksjonspunktData: any) => Promise<void>;
 }> = ({
-  behandling,
   submitCallback,
-}) => (
-  <VergeFaktaIndex
-    submitCallback={submitCallback}
-    readOnly={false}
-    harApneAksjonspunkter
-    submittable
-    setFormData={() => undefined}
-    behandling={behandling}
-    verge={verge}
-    aksjonspunkter={aksjonspunkter}
-    alleKodeverk={alleKodeverk as any}
-    alleMerknaderFraBeslutter={{
-      [aksjonspunktCodes.AVKLAR_VERGE]: merknaderFraBeslutter,
-    }}
-  />
-);
+}) => {
+  const data = [
+    { key: TilbakekrevingBehandlingApiKeys.VERGE.name, data: verge },
+  ];
+
+  return (
+    <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+      <VergeFaktaIndex
+        submitCallback={submitCallback}
+        readOnly={false}
+        setFormData={() => undefined}
+        aksjonspunkter={aksjonspunkter}
+        alleKodeverk={alleKodeverk as any}
+        alleMerknaderFraBeslutter={{
+          [aksjonspunktCodes.AVKLAR_VERGE]: merknaderFraBeslutter,
+        }}
+      />
+    </RestApiMock>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
-  behandling: {
-    uuid: '1',
-    versjon: 1,
-  } as Behandling,
   submitCallback: action('button-click') as (data: any) => Promise<any>,
 };
