@@ -4,6 +4,13 @@
   "Behandlingspunkt.Vedtak": "Vedtak",
   "TilbakekrevingFakta.FaktaFeilutbetaling": "Feilutbetaling",
   "RegistrereVergeInfoPanel.Info": "Verge/fullmektig",
+  "Behandlingspunkt.Inngangsvilkar": "Inngangsvilkår",
+  "InngangsvilkarProsessStegPanelDef.AvventerAvklaringAv": "Avventer avklaring av fakta om ",
+  "ProsessPanelWrapper.IkkeBehandlet": "Dette steget er ikke behandlet",
+  "BehandlingHenlagtPanel.Header": "Henlagt",
+  "BehandlingHenlagtPanel.Henlagt": "Behandlingen er henlagt",
+  "FaktaPanel.FaktaOm": "Fakta om",
+  "HelpText.Aksjonspunkt": "Aksjonspunkt",
 
   "FatterTilbakekrevingVedtakStatusModal.Sendt": "Forslag til vedtak er sendt til beslutter",
   "BehandlingTilbakekrevingIndex.ApenRevurdering": "Det finnes en åpen revurdering som kan påvirke denne tilbakekrevingsbehandlingen. Vurder konsekvens ved behandling.",
