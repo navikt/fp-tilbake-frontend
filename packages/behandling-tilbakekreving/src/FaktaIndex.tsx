@@ -115,6 +115,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
         <FlexRow>
           <FlexColumn className={styles.sideMenu}>
             <FaktaMeny
+              intl={intl}
               menyData={menyData}
               oppdaterFaktaPanelIUrl={oppdaterFaktaPanel}
             />
