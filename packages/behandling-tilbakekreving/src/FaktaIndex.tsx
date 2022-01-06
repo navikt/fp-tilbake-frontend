@@ -2,6 +2,7 @@ import React, {
   FunctionComponent, useEffect, useState, useMemo,
 } from 'react';
 
+import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import {
@@ -17,8 +18,8 @@ import { createIntl } from '@fpsak-frontend/utils';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 
 import FeilutbetalingFaktaIndex from './feilutbetalingFakta/FeilutbetalingFaktaIndex';
+import VergeFaktaIndex from './vergeFakta/VergeFaktaIndex';
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
-import VergeFaktaInitPanel from './faktaPaneler/VergeFaktaInitPanel';
 import FaktaMeny from './FaktaMeny';
 import getAlleMerknaderFraBeslutter from './getAlleMerknaderFraBeslutter';
 import messages from '../i18n/nb_NO.json';
@@ -67,15 +68,20 @@ const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
     });
 
   const skalFeilutbetalingspanelVises = !!initData?.feilutbetalingFakta;
+  const skalVergepanelVises = !!initData?.aksjonspunkter?.some((ap) => ap.definisjon.kode === aksjonspunktCodes.AVKLAR_VERGE);
 
   const aksjonspunkterForFeilutbetalingFakta = useMemo(() => (initData?.aksjonspunkter
     ? initData.aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING === ap.definisjon.kode) : []),
   [initData?.aksjonspunkter]);
 
-  const [formData, setFormData] = useState();
+  const aksjonspunkterForVergeFakta = useMemo(() => (initData?.aksjonspunkter
+    ? initData.aksjonspunkter.filter((ap) => aksjonspunktCodes.AVKLAR_VERGE === ap.definisjon.kode) : []),
+  [initData?.aksjonspunkter]);
+
+  const [formData, setFormData] = useState({});
   useEffect(() => {
     if (formData) {
-      setFormData(undefined);
+      setFormData({});
     }
   }, [behandling.versjon]);
 
@@ -84,11 +90,27 @@ const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
     const harApneAksjonspunkter = aksjonspunkterForFeilutbetalingFakta.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
     const erAktiv = valgtFaktaSteg === FaktaPanelCode.FEILUTBETALING || (harApneAksjonspunkter && valgtFaktaSteg === DEFAULT_PANEL_VALGT);
     menyData.push({
+      id: FaktaPanelCode.FEILUTBETALING,
       label: intl.formatMessage({ id: 'TilbakekrevingFakta.FaktaFeilutbetaling' }),
       erAktiv,
       harApneAksjonspunkter,
     });
   }
+  if (skalVergepanelVises) {
+    const harApneAksjonspunkter = aksjonspunkterForVergeFakta.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
+    const erAktiv = valgtFaktaSteg === FaktaPanelCode.VERGE || (harApneAksjonspunkter && valgtFaktaSteg === DEFAULT_PANEL_VALGT);
+    menyData.push({
+      id: FaktaPanelCode.VERGE,
+      label: intl.formatMessage({ id: 'RegistrereVergeInfoPanel.Info' }),
+      erAktiv,
+      harApneAksjonspunkter,
+    });
+  }
+
+  const oppdaterFaktaPanelIUrl = (index: number) => {
+    // TODO
+    oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PANEL_VALGT, menyData[index].id);
+  };
 
   return (
     <div className={styles.container}>
@@ -97,11 +119,11 @@ const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
           <FlexColumn className={styles.sideMenu}>
             <FaktaMeny
               menyData={menyData}
-              oppdaterFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
+              oppdaterFaktaPanelIUrl={oppdaterFaktaPanelIUrl}
             />
           </FlexColumn>
           <FlexColumn className={styles.content}>
-            {skalFeilutbetalingspanelVises && (
+            {menyData.some((d) => d.id === FaktaPanelCode.FEILUTBETALING && d.erAktiv) && (
               <FeilutbetalingFaktaIndex
                 fagsakYtelseTypeKode={fagsak.fagsakYtelseType.kode}
                 fpsakKodeverk={fpsakKodeverk}
@@ -111,11 +133,27 @@ const FaktaIndex: FunctionComponent<OwnProps & StandardBehandlingProps> = ({
                 alleMerknaderFraBeslutter={getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForFeilutbetalingFakta)}
                 submitCallback={submitCallback}
                 readOnly={erReadOnly(behandling, aksjonspunkterForFeilutbetalingFakta, [], rettigheter, hasFetchError)}
-                formData={formData}
-                setFormData={setFormData}
+                formData={formData[FaktaPanelCode.FEILUTBETALING]}
+                setFormData={(data: any) => setFormData((oldData) => ({
+                  ...oldData,
+                  [FaktaPanelCode.FEILUTBETALING]: data,
+                }))}
               />
             )}
-            <VergeFaktaInitPanel valgtFaktaSteg={valgtFaktaSteg} />
+            {menyData.some((d) => d.id === FaktaPanelCode.VERGE && d.erAktiv) && (
+              <VergeFaktaIndex
+                aksjonspunkter={aksjonspunkterForVergeFakta}
+                alleMerknaderFraBeslutter={getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForVergeFakta)}
+                alleKodeverk={fpsakKodeverk}
+                submitCallback={submitCallback}
+                readOnly={erReadOnly(behandling, aksjonspunkterForVergeFakta, [], rettigheter, hasFetchError)}
+                formData={formData[FaktaPanelCode.VERGE]}
+                setFormData={(data: any) => setFormData((oldData) => ({
+                  ...oldData,
+                  [FaktaPanelCode.VERGE]: data,
+                }))}
+              />
+            )}
           </FlexColumn>
         </FlexRow>
       </FlexContainer>

@@ -5,6 +5,7 @@ import advarselIkonUrl from '@fpsak-frontend/assets/images/advarsel_ny.svg';
 
 interface OwnProps {
   menyData: {
+    id: string;
     label: string;
     erAktiv: boolean;
     harApneAksjonspunkter: boolean;

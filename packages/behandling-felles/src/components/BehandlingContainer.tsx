@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent, ReactElement, useState,
+  FunctionComponent, ReactElement,
 } from 'react';
 import { RawIntlProvider } from 'react-intl';
 

@@ -26,5 +26,23 @@
   "FeilutbetalingInfoPanel.Aksjonspunkt": "Kontroller at korrekt hendelse er satt",
   "FeilutbetalingInfoPanel.Confirm": "Bekreft og fortsett",
   "FeilutbetalingInfoPanel.IkkeVarslet": "Ikke varslet",
-  "FeilutbetalingInfoPanel.BehandlePerioderSamlet": "Behandle alle perioder samlet"
+  "FeilutbetalingInfoPanel.BehandlePerioderSamlet": "Behandle alle perioder samlet",
+
+  "RegistrereVergeInfoPanel.CheckInformation": "Fyll ut og kontroller vergeopplysninger",
+
+  "Verge.KontaktPerson": "Kontaktperson",
+  "Verge.Navn": "Navn",
+  "Verge.Mandat": "Mandat",
+  "Verge.FodselsNummer": "Fødselsnummer",
+  "Verge.PeriodeFOM": "Periode f.o.m.",
+  "Verge.PeriodeTOM": "Periode t.o.m.",
+  "Verge.TypeVerge": "Type verge",
+  "Verge.VergeFullmektig": "Verge/fullmektig",
+  "Verge.Soker": "Søker",
+  "Verge.BrukerErUnderTvungenForvaltning": "Søker er under tvungen forvaltning",
+  "Verge.Organisasjonsnummer": "Organisasjonsnummer",
+
+  "SubmitButton.ConfirmInformation": "Bekreft og fortsett",
+  "FaktaBegrunnelseTextField.BegrunnEndringene": "Begrunn endringene",
+  "FaktaBegrunnelseTextField.Vurdering": "Vurdering"
 }

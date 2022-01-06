@@ -96,17 +96,17 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
             </>
           )}
         />
-        <FaktaIndex
-          fagsak={fagsak}
-          behandling={behandling}
-          tilbakekrevingKodeverk={tilbakekrevingKodeverk}
-          fpsakKodeverk={fpsakKodeverk}
-          valgtFaktaSteg={valgtFaktaSteg}
-          oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
-          rettigheter={rettigheter}
-          hasFetchError={behandlingState === RestApiState.ERROR}
-        />
       </StandardPropsProvider>
+      <FaktaIndex
+        fagsak={fagsak}
+        behandling={behandling}
+        tilbakekrevingKodeverk={tilbakekrevingKodeverk}
+        fpsakKodeverk={fpsakKodeverk}
+        valgtFaktaSteg={valgtFaktaSteg}
+        oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
+        rettigheter={rettigheter}
+        hasFetchError={behandlingState === RestApiState.ERROR}
+      />
     </>
   );
 };

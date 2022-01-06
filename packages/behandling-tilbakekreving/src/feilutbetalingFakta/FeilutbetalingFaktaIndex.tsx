@@ -7,8 +7,8 @@ import {
 } from '@fpsak-frontend/types';
 import { createIntl } from '@fpsak-frontend/utils';
 import { LoadingPanel } from '@fpsak-frontend/shared-components';
-
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
+
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../data/tilbakekrevingBehandlingApi';
 import FeilutbetalingInfoPanel from './components/FeilutbetalingInfoPanel';
 import messages from '../../i18n/nb_NO.json';

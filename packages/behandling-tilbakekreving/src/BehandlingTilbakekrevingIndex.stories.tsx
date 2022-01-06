@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
+import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
-import { Aksjonspunkt, Behandling } from '@fpsak-frontend/types';
+import { Aksjonspunkt, Behandling, Verge } from '@fpsak-frontend/types';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import behandlingResultatType from '@fpsak-frontend/kodeverk/src/behandlingResultatType';
 import konsekvensForYtelsen from '@fpsak-frontend/kodeverk/src/konsekvensForYtelsen';
@@ -17,6 +18,7 @@ import fagsakYtelseType from '@fpsak-frontend/kodeverk/src/fagsakYtelseType';
 import BehandlingEventHandler from './BehandlingEventHandler';
 import BehandlingTilbakekrevingIndex from './BehandlingTilbakekrevingIndex';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from './data/tilbakekrevingBehandlingApi';
+import VergeType from './vergeFakta/kodeverk/vergeType';
 
 const BEHANDLING_AARSAK_KODEVERK = 'BEHANDLING_AARSAK';
 const TILBAKEKR_VIDERE_BEH_KODEVERK = 'TILBAKEKR_VIDERE_BEH';
@@ -44,6 +46,11 @@ const behandling = {
     rel: 'aksjonspunkter',
     type: 'GET',
   }, {
+    href: TilbakekrevingBehandlingApiKeys.VERGE.name,
+    rel: 'soeker-verge',
+    type: 'GET',
+  }, {
+  }, {
     href: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_FAKTA.name,
     rel: 'feilutbetalingFakta',
     type: 'GET',
@@ -64,6 +71,18 @@ const aksjonspunkter = [{
     kodeverk: '',
   },
   kanLoses: true,
+}, {
+  definisjon: {
+    kode: aksjonspunktCodes.AVKLAR_VERGE,
+    kodeverk: '',
+  },
+  status: {
+    kode: aksjonspunktStatus.UTFORT,
+    kodeverk: '',
+  },
+  begrunnelse: 'Dette er en begrunnelse',
+  kanLoses: true,
+  erAktivt: false,
 }] as Aksjonspunkt[];
 
 const feilutbetalingFakta = {
@@ -151,6 +170,16 @@ const feilutbetalingAarsak = [{
   }],
 }];
 
+const verge = {
+  navn: 'Espen Utvikler',
+  gyldigFom: '2021-01-01',
+  fnr: '23232323',
+  vergeType: {
+    kode: VergeType.BARN,
+    kodeverk: '',
+  },
+} as Verge;
+
 export default {
   title: 'behandling/tilbakekreving',
   component: BehandlingTilbakekrevingIndex,
@@ -172,6 +201,7 @@ const Template: Story = () => {
     { key: TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER.name, data: aksjonspunkter },
     { key: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_FAKTA.name, data: feilutbetalingFakta },
     { key: TilbakekrevingBehandlingApiKeys.FEILUTBETALING_AARSAK.name, data: feilutbetalingAarsak },
+    { key: TilbakekrevingBehandlingApiKeys.VERGE.name, data: verge },
   ];
 
   return (
