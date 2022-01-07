@@ -50,12 +50,14 @@ export const getBekreftAksjonspunktProsessCallback = (
     behandlingVersjon: behandling.versjon,
   };
 
+  const etterLagringCallback = lagringSideEffectsCallback ? lagringSideEffectsCallback(apListe) : undefined;
+
   return lagreAksjonspunkter({
     ...params,
     bekreftedeAksjonspunktDtoer: models,
   }, true).then(() => {
-    if (lagringSideEffectsCallback) {
-      return lagringSideEffectsCallback(apListe)();
+    if (etterLagringCallback) {
+      return etterLagringCallback();
     }
     return oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PROSESS_STEG_KODE, DEFAULT_FAKTA_KODE);
   });
