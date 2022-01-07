@@ -4,7 +4,7 @@ import {
   Aksjonspunkt, Behandling, BeregningsresultatTilbakekreving, DetaljerteFeilutbetalingsperioder, FeilutbetalingAarsak,
   FeilutbetalingFakta, FeilutbetalingPerioderWrapper, Kodeverk, Vedtaksbrev, Verge, VilkarsVurdertePerioderWrapper, AlleKodeverkTilbakekreving,
 } from '@fpsak-frontend/types';
-import { SettPaVentParams } from '@fpsak-frontend/behandling-felles';
+import { SettPaVentParams } from '../felles/BehandlingPaVent';
 
 export const TilbakekrevingBehandlingApiKeys = {
   BEHANDLING_TILBAKE: new RestKey<Behandling, { behandlingUuid: string }>('BEHANDLING_TILBAKE'),

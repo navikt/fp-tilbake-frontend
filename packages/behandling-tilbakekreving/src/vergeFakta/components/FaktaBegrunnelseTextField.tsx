@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { useIntl } from 'react-intl';
 
 import {
   decodeHtmlEntity, hasValidText, maxLength, minLength, required,
@@ -44,6 +45,7 @@ const FaktaBegrunnelseTextField: FunctionComponent<OwnProps> & StaticFunctions =
   hasVurderingText,
   name,
 }) => {
+  const intl = useIntl();
   const code = hasVurderingText ? 'FaktaBegrunnelseTextField.Vurdering' : 'FaktaBegrunnelseTextField.BegrunnEndringene';
   const textAreaLabel = label || intl.formatMessage({ id: code });
 

@@ -3,8 +3,7 @@ import { RawIntlProvider } from 'react-intl';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import {
-  BehandlingContainer, StandardBehandlingProps, StandardPropsProvider, BehandlingPaVent,
-  useInitRequestApi, useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger,
+  StandardBehandlingProps, useInitRequestApi, useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger,
 } from '@fpsak-frontend/behandling-felles';
 import {
   LoadingPanel,
@@ -15,12 +14,10 @@ import {
 import { createIntl } from '@fpsak-frontend/utils';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
-import ForeldelseProsessStegInitPanel from './prosessPaneler/ForeldelseProsessStegInitPanel';
-import TilbakekrevingProsessStegInitPanel from './prosessPaneler/TilbakekrevingProsessStegInitPanel';
-import VedtakTilbakekrevingProsessStegInitPanel from './prosessPaneler/VedtakTilbakekrevingProsessStegInitPanel';
 import FaktaIndex from './FaktaIndex';
 import ProsessIndex from './ProsessIndex';
-import getBekreftAksjonspunktFaktaCallback from './submit';
+import BehandlingPaVent from './felles/BehandlingPaVent';
+import { getBekreftAksjonspunktFaktaCallback, getBekreftAksjonspunktProsessCallback } from './submit';
 import messages from '../i18n/nb_NO.json';
 
 const intl = createIntl(messages);
@@ -73,6 +70,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
   };
 
   const submitCallback = getBekreftAksjonspunktFaktaCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
+  const submitCallbackProsess = getBekreftAksjonspunktProsessCallback(fagsak, behandling, lagreAksjonspunkter);
 
   return (
     <RawIntlProvider value={intl}>
@@ -84,35 +82,6 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         oppdaterPaVentKey={TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD}
         aksjonspunktKey={TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER}
       />
-      <StandardPropsProvider
-        behandling={behandling}
-        fagsak={fagsak}
-        rettigheter={rettigheter}
-        hasFetchError={behandlingState === RestApiState.ERROR}
-        alleKodeverk={fpsakKodeverk}
-        lagreAksjonspunkter={lagreAksjonspunkter}
-        oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
-      >
-        <BehandlingContainer
-          behandling={behandling}
-          valgtProsessSteg={valgtProsessSteg}
-          valgtFaktaSteg={valgtFaktaSteg}
-          oppdaterProsessStegOgFaktaPanelIUrl={oppdaterProsessStegOgFaktaPanelIUrl}
-          hentProsessPaneler={(props) => (
-            <>
-              <ForeldelseProsessStegInitPanel {...props} fagsakKjønn={fagsakKjønn} fptilbakeKodeverk={tilbakekrevingKodeverk} />
-              <TilbakekrevingProsessStegInitPanel {...props} fagsakKjønn={fagsakKjønn} fptilbakeKodeverk={tilbakekrevingKodeverk} />
-              <VedtakTilbakekrevingProsessStegInitPanel
-                {...props}
-                fptilbakeKodeverk={tilbakekrevingKodeverk}
-                harApenRevurdering={harApenRevurdering}
-                opneSokeside={opneSokeside}
-                toggleOppdatereFagsakContext={toggleOppdateringAvFagsakOgBehandling}
-              />
-            </>
-          )}
-        />
-      </StandardPropsProvider>
       <ProsessIndex
         behandling={behandling}
         fagsakKjønn={fagsakKjønn}
@@ -121,7 +90,10 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         oppdaterProsessPanelIUrl={oppdaterProsessPanelIUrl}
         rettigheter={rettigheter}
         hasFetchError={behandlingState === RestApiState.ERROR}
-        submitCallback={submitCallback}
+        submitCallback={submitCallbackProsess}
+        harApenRevurdering={harApenRevurdering}
+        opneSokeside={opneSokeside}
+        toggleOppdatereFagsakContext={toggleOppdateringAvFagsakOgBehandling}
       />
       <FaktaIndex
         fagsak={fagsak}

@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
-import { FeilutbetalingPerioderWrapper, StandardProsessPanelPropsTilbakekreving } from '@fpsak-frontend/types';
+import { Aksjonspunkt, FeilutbetalingPerioderWrapper, StandardProsessPanelPropsTilbakekreving } from '@fpsak-frontend/types';
+import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../data/tilbakekrevingBehandlingApi';
 import ForeldelseForm from './components/ForeldelseForm';
@@ -8,6 +9,10 @@ import ForeldelseForm from './components/ForeldelseForm';
 interface OwnProps {
   perioderForeldelse: FeilutbetalingPerioderWrapper;
   navBrukerKjonn: string;
+  submitCallback: (aksjonspunktData: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<void>;
+  aksjonspunkter: Aksjonspunkt[];
+  readOnlySubmitButton: boolean;
+  alleMerknaderFraBeslutter: { [key: string] : { notAccepted?: boolean }};
 }
 
 const ForeldelseProsessIndex: FunctionComponent<OwnProps & StandardProsessPanelPropsTilbakekreving> = ({

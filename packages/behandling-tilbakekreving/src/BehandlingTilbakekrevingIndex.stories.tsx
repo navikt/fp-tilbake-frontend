@@ -29,7 +29,7 @@ const TILBAKEKR_VIDERE_BEH_KODEVERK = 'TILBAKEKR_VIDERE_BEH';
 const BEHANDLING_RESULTAT_TYPE_KODEVERK = 'BEHANDLING_RESULTAT_TYPE';
 const KONSEKVENS_FOR_YTELSEN_KODEVERK = 'KONSEKVENS_FOR_YTELSEN';
 
-const behandling = {
+const defaultBehandling = {
   uuid: 'test-uuid',
   versjon: 1,
   status: {
@@ -270,8 +270,10 @@ export default {
 
 const Template: Story<{
   aksjonspunkter: Aksjonspunkt[];
+  behandling: Behandling;
 }> = ({
   aksjonspunkter,
+  behandling,
 }) => {
   const [valgtProsessSteg, setProsessSteg] = useState('default');
   const [valgtFaktaSteg, setFaktaSteg] = useState('default');
@@ -343,10 +345,21 @@ const Template: Story<{
 
 export const FaktaPaneler = Template.bind({});
 FaktaPaneler.args = {
+  behandling: defaultBehandling,
   aksjonspunkter: faktaAksjonspunkter,
 };
 
 export const ProsessPaneler = Template.bind({});
 ProsessPaneler.args = {
+  behandling: defaultBehandling,
+  aksjonspunkter: prosessAksjonspunkter,
+};
+
+export const HenlagtBehandling = Template.bind({});
+HenlagtBehandling.args = {
+  behandling: {
+    ...defaultBehandling,
+    behandlingHenlagt: true,
+  },
   aksjonspunkter: prosessAksjonspunkter,
 };

@@ -2,18 +2,20 @@ import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
-import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
-import vilkarResultat from '@fpsak-frontend/prosess-tilbakekreving/src/kodeverk/vilkarResultat';
-import sarligGrunn from '@fpsak-frontend/prosess-tilbakekreving/src/kodeverk/sarligGrunn';
-import aktsomhet from '@fpsak-frontend/prosess-tilbakekreving/src/kodeverk/aktsomhet';
-import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
-import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
-import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import TilbakekrevingProsessIndex from '@fpsak-frontend/prosess-tilbakekreving';
+import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import {
   Behandling, FeilutbetalingPerioderWrapper, DetaljerteFeilutbetalingsperioder, AlleKodeverkTilbakekreving, Aksjonspunkt,
 } from '@fpsak-frontend/types';
+import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
+import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
+import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
+import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
+import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
+import TilbakekrevingProsessIndex from './TilbakekrevingProsessIndex';
+import vilkarResultat from './kodeverk/vilkarResultat';
+import sarligGrunn from './kodeverk/sarligGrunn';
+import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../data/tilbakekrevingBehandlingApi';
+import aktsomhet from './kodeverk/aktsomhet';
 
 const perioderForeldelse = {
   perioder: [{
@@ -136,13 +138,6 @@ export default {
   component: TilbakekrevingProsessIndex,
 };
 
-const beregnBelop = (params: { perioder: any[]}) => {
-  const { perioder } = params;
-  return Promise.resolve({
-    perioder,
-  });
-};
-
 const Template: Story<{
   submitCallback: (aksjonspunktData: any) => Promise<void>;
   aksjonspunkter?: Aksjonspunkt[];
@@ -151,28 +146,34 @@ const Template: Story<{
   submitCallback,
   aksjonspunkter = [],
   vilkarvurderingsperioder,
-}) => (
-  <TilbakekrevingProsessIndex
-    behandling={{
-      uuid: '1',
-      versjon: 1,
-    } as Behandling}
-    alleKodeverk={alleKodeverk}
-    isReadOnly={false}
-    readOnlySubmitButton={false}
-    setFormData={() => undefined}
-    submitCallback={submitCallback}
-    perioderForeldelse={perioderForeldelse}
-    vilkarvurderingsperioder={vilkarvurderingsperioder}
-    vilkarvurdering={vilkarvurdering}
-    aksjonspunkter={aksjonspunkter}
-    navBrukerKjonn={NavBrukerKjonn.KVINNE}
-    alleMerknaderFraBeslutter={{
-      [aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING]: merknaderFraBeslutter,
-    }}
-    beregnBelop={(params) => beregnBelop(params)}
-  />
-);
+}) => {
+  const data = [
+    { key: TilbakekrevingBehandlingApiKeys.VILKARVURDERINGSPERIODER.name, data: vilkarvurderingsperioder },
+    { key: TilbakekrevingBehandlingApiKeys.VILKARVURDERING.name, data: vilkarvurdering },
+  ];
+
+  return (
+    <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+      <TilbakekrevingProsessIndex
+        behandling={{
+          uuid: '1',
+          versjon: 1,
+        } as Behandling}
+        alleKodeverk={alleKodeverk}
+        isReadOnly={false}
+        readOnlySubmitButton={false}
+        setFormData={() => undefined}
+        submitCallback={submitCallback}
+        perioderForeldelse={perioderForeldelse}
+        aksjonspunkter={aksjonspunkter}
+        navBrukerKjonn={NavBrukerKjonn.KVINNE}
+        alleMerknaderFraBeslutter={{
+          [aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING]: merknaderFraBeslutter,
+        }}
+      />
+    </RestApiMock>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {

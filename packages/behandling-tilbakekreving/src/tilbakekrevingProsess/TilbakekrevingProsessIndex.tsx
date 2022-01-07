@@ -1,10 +1,12 @@
 import React, { FunctionComponent } from 'react';
 
 import {
+  Aksjonspunkt,
   DetaljerteFeilutbetalingsperioder, FeilutbetalingPerioderWrapper, StandardProsessPanelPropsTilbakekreving, VilkarsVurdertePerioderWrapper,
 } from '@fpsak-frontend/types';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import { LoadingPanel } from '@fpsak-frontend/shared-components';
+import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import TilbakekrevingForm from './components/TilbakekrevingForm';
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../data/tilbakekrevingBehandlingApi';
@@ -12,16 +14,18 @@ import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../
 const ENDEPUNKTER_PANEL_DATA = [
   TilbakekrevingBehandlingApiKeys.VILKARVURDERINGSPERIODER,
   TilbakekrevingBehandlingApiKeys.VILKARVURDERING,
-  TilbakekrevingBehandlingApiKeys.PERIODER_FORELDELSE,
 ];
 type EndepunktPanelData = {
   vilkarvurderingsperioder: DetaljerteFeilutbetalingsperioder;
   vilkarvurdering: VilkarsVurdertePerioderWrapper;
-  perioderForeldelse: FeilutbetalingPerioderWrapper;
 }
 
 interface OwnProps {
   navBrukerKjonn: string;
+  perioderForeldelse: FeilutbetalingPerioderWrapper;
+  submitCallback: (aksjonspunktData: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<void>;
+  aksjonspunkter: Aksjonspunkt[];
+  readOnlySubmitButton: boolean;
   alleMerknaderFraBeslutter: { [key: string] : { notAccepted?: boolean }};
 }
 
@@ -29,6 +33,7 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardProsessPa
   behandling,
   submitCallback,
   isReadOnly,
+  perioderForeldelse,
   readOnlySubmitButton,
   navBrukerKjonn,
   alleMerknaderFraBeslutter,
@@ -52,7 +57,7 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardProsessPa
   return (
     <TilbakekrevingForm
       behandlingUuid={behandling.uuid}
-      perioderForeldelse={initData.perioderForeldelse}
+      perioderForeldelse={perioderForeldelse}
       perioder={initData.vilkarvurderingsperioder.perioder}
       rettsgebyr={initData.vilkarvurderingsperioder.rettsgebyr}
       vilkarvurdering={initData.vilkarvurdering}

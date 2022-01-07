@@ -1,18 +1,14 @@
-import {
-  Behandling, Fagsak,
-} from '@fpsak-frontend/types';
-import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
+import { Behandling, Fagsak } from '@fpsak-frontend/types';
+import { FaktaAksjonspunkt, ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 export const DEFAULT_FAKTA_KODE = 'default';
 export const DEFAULT_PROSESS_STEG_KODE = 'default';
 
-const getBekreftAksjonspunktFaktaCallback = (
+export const getBekreftAksjonspunktFaktaCallback = (
   fagsak: Fagsak,
   behandling: Behandling,
   oppdaterProsessStegOgFaktaPanelIUrl: (prosessPanel?: string, faktanavn?: string) => void,
   lagreAksjonspunkter: (params: any, keepData?: boolean) => Promise<Behandling | undefined>,
-  lagreOverstyrteAksjonspunkter?: (params: any, keepData?: boolean) => Promise<Behandling>,
-  overstyringApCodes?: string[],
 ) => (aksjonspunkter: FaktaAksjonspunkt | FaktaAksjonspunkt[]): Promise<void> => {
   const apListe = Array.isArray(aksjonspunkter) ? aksjonspunkter : [aksjonspunkter];
   const model = apListe.map((ap) => ({
@@ -26,17 +22,37 @@ const getBekreftAksjonspunktFaktaCallback = (
     behandlingVersjon: behandling.versjon,
   };
 
-  if (model && lagreOverstyrteAksjonspunkter && overstyringApCodes && overstyringApCodes.includes(model[0].kode)) {
-    return lagreOverstyrteAksjonspunkter({
-      ...params,
-      overstyrteAksjonspunktDtoer: model,
-    }, true).then(() => oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PROSESS_STEG_KODE, DEFAULT_FAKTA_KODE));
-  }
-
   return lagreAksjonspunkter({
     ...params,
     bekreftedeAksjonspunktDtoer: model,
   }, true).then(() => oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PROSESS_STEG_KODE, DEFAULT_FAKTA_KODE));
 };
 
-export default getBekreftAksjonspunktFaktaCallback;
+export const getBekreftAksjonspunktProsessCallback = (
+  fagsak: Fagsak,
+  behandling: Behandling,
+  lagreAksjonspunkter: (params: any, keepData?: boolean) => Promise<any>,
+) => (
+  lagringSideEffectsCallback: (aksjonspunktModeller: any) => () => void,
+) => (
+  aksjonspunkterSomSkalLagres: ProsessAksjonspunkt | ProsessAksjonspunkt[],
+) => {
+  const apListe = Array.isArray(aksjonspunkterSomSkalLagres) ? aksjonspunkterSomSkalLagres : [aksjonspunkterSomSkalLagres];
+  const models = apListe.map((ap) => ({
+    '@type': ap.kode,
+    ...ap,
+  }));
+
+  const params = {
+    saksnummer: fagsak.saksnummer,
+    behandlingUuid: behandling.uuid,
+    behandlingVersjon: behandling.versjon,
+  };
+
+  const etterLagringCallback = lagringSideEffectsCallback(apListe);
+
+  return lagreAksjonspunkter({
+    ...params,
+    bekreftedeAksjonspunktDtoer: models,
+  }, true).then(etterLagringCallback);
+};
