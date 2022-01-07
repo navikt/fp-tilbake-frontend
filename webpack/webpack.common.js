@@ -175,7 +175,7 @@ const config = {
       library: { type: "var", name: "fp_tilbake_frontend" },
       filename: "remoteEntry.js",
       exposes: {
-        "./BehandlingTilbakekrevingIndex": "./packages/behandling-tilbakekreving/src/BehandlingTilbakekrevingIndex",
+        "./BehandlingTilbakekrevingIndex": "./packages/app/src/BehandlingTilbakekrevingIndex",
       },
       shared: {
         ...deps,
