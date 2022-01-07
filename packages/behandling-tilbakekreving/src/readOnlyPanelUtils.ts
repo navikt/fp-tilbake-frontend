@@ -1,5 +1,5 @@
 import {
-  Behandling, Aksjonspunkt, Vilkar, AksessRettigheter,
+  Behandling, Aksjonspunkt, AksessRettigheter,
 } from '@fpsak-frontend/types';
 
 export const harBehandlingReadOnlyStatus = (behandling: Behandling) => (behandling.taskStatus && behandling.taskStatus.readOnly
@@ -8,13 +8,12 @@ export const harBehandlingReadOnlyStatus = (behandling: Behandling) => (behandli
 export const erReadOnly = (
   behandling: Behandling,
   aksjonspunkterForPunkt: Aksjonspunkt[],
-  vilkarlisteForPunkt: Vilkar[],
   rettigheter: AksessRettigheter,
   hasFetchError: boolean,
 ) => {
   const { behandlingPaaVent } = behandling;
   const isBehandlingReadOnly = hasFetchError || harBehandlingReadOnlyStatus(behandling);
-  const hasNonActivOrNonOverstyrbar = aksjonspunkterForPunkt.some((ap) => !ap.erAktivt) || vilkarlisteForPunkt.some((v) => !v.overstyrbar);
+  const hasNonActivOrNonOverstyrbar = aksjonspunkterForPunkt.some((ap) => !ap.erAktivt);
 
   return !rettigheter.writeAccess.isEnabled || behandlingPaaVent || isBehandlingReadOnly || hasNonActivOrNonOverstyrbar;
 };

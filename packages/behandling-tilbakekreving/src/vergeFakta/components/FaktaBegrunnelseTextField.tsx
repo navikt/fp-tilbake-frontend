@@ -1,17 +1,12 @@
 import React, { FunctionComponent } from 'react';
-import { RawIntlProvider } from 'react-intl';
 
 import {
-  decodeHtmlEntity, hasValidText, maxLength, minLength, required, createIntl,
+  decodeHtmlEntity, hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
 import { TextArea } from '@fpsak-frontend/form-hooks';
 import { Aksjonspunkt } from '@fpsak-frontend/types';
 
 import styles from './faktaBegrunnelseTextField.less';
-
-import messages from '../../../i18n/nb_NO.json';
-
-const intl = createIntl(messages);
 
 const minLength3 = minLength(3);
 const maxLength1500 = maxLength(1500);
@@ -51,22 +46,22 @@ const FaktaBegrunnelseTextField: FunctionComponent<OwnProps> & StaticFunctions =
 }) => {
   const code = hasVurderingText ? 'FaktaBegrunnelseTextField.Vurdering' : 'FaktaBegrunnelseTextField.BegrunnEndringene';
   const textAreaLabel = label || intl.formatMessage({ id: code });
-  return (
-    <RawIntlProvider value={intl}>
-      {(isSubmittable || hasBegrunnelse) && (
-        <div className={styles.begrunnelseTextField}>
-          <TextArea
-            name={name}
-            label={isReadOnly ? '' : textAreaLabel}
-            validate={[required, minLength3, maxLength1500, hasValidText]}
-            textareaClass={isReadOnly ? styles.explanationTextareaReadOnly : styles.explanationTextarea}
-            maxLength={1500}
-            readOnly={isReadOnly}
-          />
-        </div>
-      )}
-    </RawIntlProvider>
-  );
+
+  if (isSubmittable || hasBegrunnelse) {
+    return (
+      <div className={styles.begrunnelseTextField}>
+        <TextArea
+          name={name}
+          label={isReadOnly ? '' : textAreaLabel}
+          validate={[required, minLength3, maxLength1500, hasValidText]}
+          textareaClass={isReadOnly ? styles.explanationTextareaReadOnly : styles.explanationTextarea}
+          maxLength={1500}
+          readOnly={isReadOnly}
+        />
+      </div>
+    );
+  }
+  return null;
 };
 
 FaktaBegrunnelseTextField.defaultProps = {

@@ -277,7 +277,7 @@ const Template: Story<{
   const [valgtFaktaSteg, setFaktaSteg] = useState('default');
 
   const oppdaterProsessStegOgFaktaPanelIUrl = (punktnavn?: string, faktanavn?: string) => {
-    setProsessSteg(punktnavn);
+    setProsessSteg((gammeltPunktnavn) => (gammeltPunktnavn === punktnavn || gammeltPunktnavn === 'default' ? undefined : punktnavn));
     setFaktaSteg(faktanavn);
   };
 

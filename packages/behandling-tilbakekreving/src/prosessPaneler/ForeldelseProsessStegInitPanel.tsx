@@ -1,6 +1,7 @@
 import React, {
   FunctionComponent,
 } from 'react';
+import { useIntl } from 'react-intl';
 
 import vilkarUtfallType from '@fpsak-frontend/kodeverk/src/vilkarUtfallType';
 import ForeldelseProsessIndex from '@fpsak-frontend/prosess-foreldelse';
@@ -10,12 +11,8 @@ import {
   Aksjonspunkt, AlleKodeverkTilbakekreving, FeilutbetalingPerioderWrapper, Kodeverk,
 } from '@fpsak-frontend/types';
 import { ProsessDefaultInitPanel, ProsessPanelInitProps } from '@fpsak-frontend/behandling-felles';
-import { createIntl } from '@fpsak-frontend/utils';
 
-import messages from '../../i18n/nb_NO.json';
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from '../data/tilbakekrevingBehandlingApi';
-
-const intl = createIntl(messages);
 
 const AKSJONSPUNKT_KODER = [aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE];
 
@@ -35,6 +32,7 @@ const ForeldelseProsessStegInitPanel: FunctionComponent<OwnProps & ProsessPanelI
   fptilbakeKodeverk,
   ...props
 }) => {
+  const intl = useIntl();
   const { startRequest: beregnBelop } = restApiTilbakekrevingHooks.useRestApiRunner(TilbakekrevingBehandlingApiKeys.BEREGNE_BELØP);
 
   return (

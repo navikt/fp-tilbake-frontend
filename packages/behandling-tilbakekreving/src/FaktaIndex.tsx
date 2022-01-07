@@ -1,6 +1,7 @@
 import React, {
   FunctionComponent, useEffect, useState, useMemo,
 } from 'react';
+import { useIntl } from 'react-intl';
 
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
@@ -11,7 +12,6 @@ import {
 import {
   Aksjonspunkt, FeilutbetalingFakta, AlleKodeverkTilbakekreving, Fagsak, Behandling, AlleKodeverk, AksessRettigheter,
 } from '@fpsak-frontend/types';
-import { createIntl } from '@fpsak-frontend/utils';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
@@ -20,12 +20,9 @@ import VergeFaktaIndex from './vergeFakta/VergeFaktaIndex';
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
 import FaktaMeny from './FaktaMeny';
 import getAlleMerknaderFraBeslutter from './getAlleMerknaderFraBeslutter';
-import messages from '../i18n/nb_NO.json';
-
-import styles from './faktaContainer.less';
 import { erReadOnly } from './readOnlyPanelUtils';
 
-const intl = createIntl(messages);
+import styles from './faktaContainer.less';
 
 const DEFAULT_PANEL_VALGT = 'default';
 
@@ -58,6 +55,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
   rettigheter,
   hasFetchError,
 }) => {
+  const intl = useIntl();
   const formaterteEndepunkter = ENDEPUNKTER_INIT_DATA.map((e) => ({ key: e }));
   const { data: initData } = restApiTilbakekrevingHooks
     .useMultipleRestApi<EndepunktInitData, any>(formaterteEndepunkter, {
@@ -115,7 +113,6 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
         <FlexRow>
           <FlexColumn className={styles.sideMenu}>
             <FaktaMeny
-              intl={intl}
               menyData={menyData}
               oppdaterFaktaPanelIUrl={oppdaterFaktaPanel}
             />
@@ -130,7 +127,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
                 aksjonspunkter={aksjonspunkterForFeilutbetalingFakta}
                 alleMerknaderFraBeslutter={getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForFeilutbetalingFakta)}
                 submitCallback={submitCallback}
-                readOnly={erReadOnly(behandling, aksjonspunkterForFeilutbetalingFakta, [], rettigheter, hasFetchError)}
+                readOnly={erReadOnly(behandling, aksjonspunkterForFeilutbetalingFakta, rettigheter, hasFetchError)}
                 formData={formData[FaktaPanelCode.FEILUTBETALING]}
                 setFormData={(data: any) => setFormData((oldData) => ({
                   ...oldData,
@@ -144,7 +141,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
                 alleMerknaderFraBeslutter={getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForVergeFakta)}
                 alleKodeverk={fpsakKodeverk}
                 submitCallback={submitCallback}
-                readOnly={erReadOnly(behandling, aksjonspunkterForVergeFakta, [], rettigheter, hasFetchError)}
+                readOnly={erReadOnly(behandling, aksjonspunkterForVergeFakta, rettigheter, hasFetchError)}
                 formData={formData[FaktaPanelCode.VERGE]}
                 setFormData={(data: any) => setFormData((oldData) => ({
                   ...oldData,

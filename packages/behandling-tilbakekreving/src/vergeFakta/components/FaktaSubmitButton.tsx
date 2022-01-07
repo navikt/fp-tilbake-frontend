@@ -1,12 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { RawIntlProvider, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
-import { createIntl, ariaCheck } from '@fpsak-frontend/utils';
-
-import messages from '../../../i18n/nb_NO.json';
-
-const intl = createIntl(messages);
+import { ariaCheck } from '@fpsak-frontend/utils';
 
 const isDisabled = (
   isDirty: boolean,
@@ -38,9 +34,9 @@ export const FaktaSubmitButton: FunctionComponent<OwnProps> = ({
   onClick,
   isSubmitting,
   isDirty,
-}) => (
-  <RawIntlProvider value={intl}>
-    {!isReadOnly && (
+}) => {
+  if (!isReadOnly) {
+    return (
       <Hovedknapp
         mini
         spinner={isSubmitting}
@@ -51,8 +47,9 @@ export const FaktaSubmitButton: FunctionComponent<OwnProps> = ({
         {!!buttonText && buttonText}
         {!buttonText && <FormattedMessage id="SubmitButton.ConfirmInformation" />}
       </Hovedknapp>
-    )}
-  </RawIntlProvider>
-);
+    );
+  }
+  return null;
+};
 
 export default FaktaSubmitButton;

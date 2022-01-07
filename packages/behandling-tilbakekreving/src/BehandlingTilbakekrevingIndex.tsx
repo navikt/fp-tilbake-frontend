@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { RawIntlProvider } from 'react-intl';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import {
@@ -11,13 +12,18 @@ import {
 import {
   Kodeverk,
 } from '@fpsak-frontend/types';
+import { createIntl } from '@fpsak-frontend/utils';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
 import ForeldelseProsessStegInitPanel from './prosessPaneler/ForeldelseProsessStegInitPanel';
 import TilbakekrevingProsessStegInitPanel from './prosessPaneler/TilbakekrevingProsessStegInitPanel';
 import VedtakTilbakekrevingProsessStegInitPanel from './prosessPaneler/VedtakTilbakekrevingProsessStegInitPanel';
 import FaktaIndex from './FaktaIndex';
+import ProsessIndex from './ProsessIndex';
 import getBekreftAksjonspunktFaktaCallback from './submit';
+import messages from '../i18n/nb_NO.json';
+
+const intl = createIntl(messages);
 
 interface OwnProps {
   fagsakKjønn: Kodeverk;
@@ -59,14 +65,17 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
     return <LoadingPanel />;
   }
 
-  const oppdaterFaktaPanelIUrl = (nyttProsessSteg: string): void => {
-    oppdaterProsessStegOgFaktaPanelIUrl(valgtProsessSteg, nyttProsessSteg);
+  const oppdaterFaktaPanelIUrl = (nyttFaktaSteg: string): void => {
+    oppdaterProsessStegOgFaktaPanelIUrl(valgtProsessSteg, nyttFaktaSteg);
+  };
+  const oppdaterProsessPanelIUrl = (nyttProsessSteg: string): void => {
+    oppdaterProsessStegOgFaktaPanelIUrl(nyttProsessSteg, valgtFaktaSteg);
   };
 
   const submitCallback = getBekreftAksjonspunktFaktaCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
 
   return (
-    <>
+    <RawIntlProvider value={intl}>
       <BehandlingPaVent
         behandling={behandling}
         hentBehandling={hentBehandling}
@@ -104,6 +113,16 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
           )}
         />
       </StandardPropsProvider>
+      <ProsessIndex
+        behandling={behandling}
+        fagsakKjønn={fagsakKjønn}
+        tilbakekrevingKodeverk={tilbakekrevingKodeverk}
+        valgtProsessSteg={valgtProsessSteg}
+        oppdaterProsessPanelIUrl={oppdaterProsessPanelIUrl}
+        rettigheter={rettigheter}
+        hasFetchError={behandlingState === RestApiState.ERROR}
+        submitCallback={submitCallback}
+      />
       <FaktaIndex
         fagsak={fagsak}
         behandling={behandling}
@@ -115,7 +134,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         hasFetchError={behandlingState === RestApiState.ERROR}
         submitCallback={submitCallback}
       />
-    </>
+    </RawIntlProvider>
   );
 };
 
