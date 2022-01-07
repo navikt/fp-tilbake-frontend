@@ -3,9 +3,6 @@ import { RawIntlProvider } from 'react-intl';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import {
-  StandardBehandlingProps, useInitRequestApi, useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger,
-} from '@fpsak-frontend/behandling-felles';
-import {
   LoadingPanel,
 } from '@fpsak-frontend/shared-components';
 import {
@@ -18,6 +15,10 @@ import FaktaIndex from './FaktaIndex';
 import ProsessIndex from './ProsessIndex';
 import BehandlingPaVent from './felles/BehandlingPaVent';
 import { getBekreftAksjonspunktFaktaCallback, getBekreftAksjonspunktProsessCallback } from './submit';
+import StandardBehandlingProps from './types/standardBehandlingProps';
+import {
+  useInitRequestApi, useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger,
+} from './indexHooks';
 import messages from '../i18n/nb_NO.json';
 
 const intl = createIntl(messages);

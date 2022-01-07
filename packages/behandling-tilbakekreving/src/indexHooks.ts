@@ -7,10 +7,8 @@ import { RestApiHooks, useRestApiErrorDispatcher } from '@fpsak-frontend/rest-ap
 import { RequestApi, RestKey } from '@fpsak-frontend/rest-api';
 import { usePrevious } from '@fpsak-frontend/shared-components';
 
-export type BehandlingEventHandler = {
-  setHandler: (events: {[key: string]: (params: any) => Promise<any> }) => void;
-  clear: () => void;
-};
+import { BehandlingEventHandler } from './types/standardBehandlingProps';
+
 const DUMMY_KEY = new RestKey<any, any>('');
 
 export type NyBehandlendeEnhetParams = {
