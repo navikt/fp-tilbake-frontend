@@ -71,7 +71,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
   };
 
   const submitCallback = getBekreftAksjonspunktFaktaCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
-  const submitCallbackProsess = getBekreftAksjonspunktProsessCallback(fagsak, behandling, lagreAksjonspunkter);
+  const submitCallbackProsess = getBekreftAksjonspunktProsessCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
 
   return (
     <RawIntlProvider value={intl}>

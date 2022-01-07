@@ -31,9 +31,10 @@ export const getBekreftAksjonspunktFaktaCallback = (
 export const getBekreftAksjonspunktProsessCallback = (
   fagsak: Fagsak,
   behandling: Behandling,
+  oppdaterProsessStegOgFaktaPanelIUrl: (prosessPanel?: string, faktanavn?: string) => void,
   lagreAksjonspunkter: (params: any, keepData?: boolean) => Promise<any>,
 ) => (
-  lagringSideEffectsCallback: (aksjonspunktModeller: any) => () => void,
+  lagringSideEffectsCallback?: (aksjonspunktModeller: any) => () => void,
 ) => (
   aksjonspunkterSomSkalLagres: ProsessAksjonspunkt | ProsessAksjonspunkt[],
 ) => {
@@ -49,10 +50,13 @@ export const getBekreftAksjonspunktProsessCallback = (
     behandlingVersjon: behandling.versjon,
   };
 
-  const etterLagringCallback = lagringSideEffectsCallback(apListe);
-
   return lagreAksjonspunkter({
     ...params,
     bekreftedeAksjonspunktDtoer: models,
-  }, true).then(etterLagringCallback);
+  }, true).then(() => {
+    if (lagringSideEffectsCallback) {
+      return lagringSideEffectsCallback(apListe)();
+    }
+    return oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PROSESS_STEG_KODE, DEFAULT_FAKTA_KODE);
+  });
 };

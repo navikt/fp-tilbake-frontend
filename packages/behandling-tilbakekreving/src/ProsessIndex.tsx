@@ -17,6 +17,7 @@ import {
 } from '@fpsak-frontend/types';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
+import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 
 import getAlleMerknaderFraBeslutter from './getAlleMerknaderFraBeslutter';
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
@@ -136,7 +137,8 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
 
   const harApentAksjonspunktForVedtak = aksjonspunkterForVedtak.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
   const erAktivForVedtak = valgtProsessSteg === ProsessStegCode.VEDTAK
-    || (harApentAksjonspunktForVedtak && valgtProsessSteg === DEFAULT_PANEL_VALGT);
+    || (harApentAksjonspunktForVedtak && valgtProsessSteg === DEFAULT_PANEL_VALGT)
+    || (behandling.status.kode === behandlingStatus.AVSLUTTET && valgtProsessSteg === DEFAULT_PANEL_VALGT);
   menyData.push({
     id: ProsessStegCode.VEDTAK,
     tekst: intl.formatMessage({ id: 'Behandlingspunkt.Vedtak' }),
@@ -146,7 +148,9 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
   });
 
   const oppdaterProsessPanel = (index: number) => {
-    oppdaterProsessPanelIUrl(menyData[index].id);
+    const panel = menyData[index];
+    const nyvalgtProsessSteg = panel.erAktiv ? undefined : panel.id;
+    oppdaterProsessPanelIUrl(nyvalgtProsessSteg);
   };
 
   return (
@@ -212,7 +216,7 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
             >
               <VedtakTilbakekrevingProsessIndex
                 behandling={behandling}
-                beregningsresultat={initData.beregningsresultat}
+                beregningsresultat={initData?.beregningsresultat}
                 submitCallback={submitCallback}
                 opneSokeside={opneSokeside}
                 isReadOnly={erReadOnly(behandling, aksjonspunkterForTilbakekreving, rettigheter, hasFetchError)}
