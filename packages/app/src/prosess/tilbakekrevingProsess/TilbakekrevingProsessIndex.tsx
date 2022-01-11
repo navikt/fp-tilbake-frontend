@@ -1,15 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
 
+import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import {
-  Aksjonspunkt,
-  DetaljerteFeilutbetalingsperioder, FeilutbetalingPerioderWrapper, StandardProsessPanelPropsTilbakekreving, VilkarsVurdertePerioderWrapper,
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, DetaljerteFeilutbetalingsperioder, FeilutbetalingPerioderWrapper, VilkarsVurdertePerioderWrapper,
 } from '@fpsak-frontend/types';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
+import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 
 import TilbakekrevingForm from './components/TilbakekrevingForm';
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
+import getAlleMerknaderFraBeslutter from '../../felles/util/getAlleMerknaderFraBeslutter';
 
 const ENDEPUNKTER_PANEL_DATA = [
   TilbakekrevingBehandlingApiKeys.VILKARVURDERINGSPERIODER,
@@ -21,23 +23,25 @@ type EndepunktPanelData = {
 }
 
 interface OwnProps {
-  navBrukerKjonn: string;
+  behandling: Behandling;
   perioderForeldelse: FeilutbetalingPerioderWrapper;
-  submitCallback: (aksjonspunktData: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<void>;
   aksjonspunkter: Aksjonspunkt[];
-  readOnlySubmitButton: boolean;
-  alleMerknaderFraBeslutter: { [key: string] : { notAccepted?: boolean }};
+  navBrukerKjonn: string;
+  alleKodeverk: AlleKodeverkTilbakekreving;
+  bekreftAksjonspunkter: (aksjonspunktData: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<void>;
+  erReadOnlyFn: (aksjonspunkter: Aksjonspunkt[]) => boolean;
+  formData?: any;
+  setFormData: (data: any) => void;
 }
 
-const TilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardProsessPanelPropsTilbakekreving> = ({
+const TilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
   behandling,
-  submitCallback,
-  isReadOnly,
   perioderForeldelse,
-  readOnlySubmitButton,
+  aksjonspunkter,
   navBrukerKjonn,
-  alleMerknaderFraBeslutter,
   alleKodeverk,
+  bekreftAksjonspunkter,
+  erReadOnlyFn,
   formData,
   setFormData,
 }) => {
@@ -50,6 +54,21 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardProsessPa
       isCachingOn: true,
     });
 
+  const setFormDataTilbakekreving = useCallback((data: any) => setFormData((oldData) => ({
+    ...oldData,
+    [ProsessStegCode.TILBAKEKREVING]: data,
+  })), [setFormData]);
+
+  const aksjonspunkterForTilbakekreving = useMemo(() => (aksjonspunkter
+    ? aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING === ap.definisjon.kode) : []),
+  [aksjonspunkter]);
+
+  const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForTilbakekreving),
+    [behandling, aksjonspunkterForTilbakekreving]);
+  const isReadOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForTilbakekreving), [aksjonspunkterForTilbakekreving]);
+
+  const readOnlySubmitButton = !(aksjonspunkterForTilbakekreving.some((ap) => ap.kanLoses));
+
   if (state !== RestApiState.SUCCESS) {
     return <LoadingPanel />;
   }
@@ -61,15 +80,15 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardProsessPa
       perioder={initData.vilkarvurderingsperioder.perioder}
       rettsgebyr={initData.vilkarvurderingsperioder.rettsgebyr}
       vilkarvurdering={initData.vilkarvurdering}
-      submitCallback={submitCallback}
+      submitCallback={bekreftAksjonspunkter}
       readOnly={isReadOnly}
       readOnlySubmitButton={readOnlySubmitButton}
       navBrukerKjonn={navBrukerKjonn}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
       alleKodeverk={alleKodeverk}
       beregnBelop={beregnBelop}
-      formData={formData}
-      setFormData={setFormData}
+      formData={formData[ProsessStegCode.TILBAKEKREVING]}
+      setFormData={setFormDataTilbakekreving}
     />
   );
 };

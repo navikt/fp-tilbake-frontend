@@ -1,49 +1,70 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
 
-import { Aksjonspunkt, FeilutbetalingPerioderWrapper, StandardProsessPanelPropsTilbakekreving } from '@fpsak-frontend/types';
+import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
+import {
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper,
+} from '@fpsak-frontend/types';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
+import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
 import ForeldelseForm from './components/ForeldelseForm';
+import getAlleMerknaderFraBeslutter from '../../felles/util/getAlleMerknaderFraBeslutter';
 
 interface OwnProps {
+  behandling: Behandling;
+  aksjonspunkter?: Aksjonspunkt[];
   perioderForeldelse: FeilutbetalingPerioderWrapper;
   navBrukerKjonn: string;
-  submitCallback: (aksjonspunktData: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<void>;
-  aksjonspunkter: Aksjonspunkt[];
-  readOnlySubmitButton: boolean;
-  alleMerknaderFraBeslutter: { [key: string] : { notAccepted?: boolean }};
+  erReadOnlyFn: (aksjonspunkter: Aksjonspunkt[]) => boolean;
+  alleKodeverk: AlleKodeverkTilbakekreving;
+  bekreftAksjonspunkter: (aksjonspunktData: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<void>;
+  formData?: any;
+  setFormData: (data: any) => void;
 }
 
-const ForeldelseProsessIndex: FunctionComponent<OwnProps & StandardProsessPanelPropsTilbakekreving> = ({
+const ForeldelseProsessIndex: FunctionComponent<OwnProps> = ({
   behandling,
+  aksjonspunkter = [],
   perioderForeldelse,
   navBrukerKjonn,
-  alleMerknaderFraBeslutter,
+  erReadOnlyFn,
   alleKodeverk,
-  submitCallback,
-  isReadOnly,
-  readOnlySubmitButton,
-  aksjonspunkter,
+  bekreftAksjonspunkter,
   formData,
   setFormData,
 }) => {
   const { startRequest: beregnBelop } = restApiTilbakekrevingHooks.useRestApiRunner(TilbakekrevingBehandlingApiKeys.BEREGNE_BELØP);
 
+  const aksjonspunkterForForeldelse = useMemo(() => (
+    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE === ap.definisjon.kode)),
+  [aksjonspunkter]);
+
+  const readOnlySubmitButton = !(aksjonspunkterForForeldelse.some((ap) => ap.kanLoses));
+
+  const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForForeldelse),
+    [behandling, aksjonspunkterForForeldelse]);
+  const isReadOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForForeldelse), [aksjonspunkterForForeldelse]);
+
+  const setFormDataForeldelse = useCallback((data: any) => setFormData((oldData) => ({
+    ...oldData,
+    [ProsessStegCode.FORELDELSE]: data,
+  })), [setFormData]);
+
   return (
     <ForeldelseForm
       behandlingUuid={behandling.uuid}
       perioderForeldelse={perioderForeldelse}
-      submitCallback={submitCallback}
+      submitCallback={bekreftAksjonspunkter}
       readOnly={isReadOnly}
-      aksjonspunkt={aksjonspunkter[0]}
+      aksjonspunkt={aksjonspunkterForForeldelse[0]}
       readOnlySubmitButton={readOnlySubmitButton}
       navBrukerKjonn={navBrukerKjonn}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
       alleKodeverk={alleKodeverk}
       beregnBelop={beregnBelop}
-      formData={formData}
-      setFormData={setFormData}
+      formData={formData[ProsessStegCode.FORELDELSE]}
+      setFormData={setFormDataForeldelse}
     />
   );
 };

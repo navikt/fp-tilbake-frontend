@@ -4,7 +4,7 @@ import { ProcessMenuStepType, ProcessMenu } from '@navikt/fp-react-components';
 import vilkarUtfallType from '@fpsak-frontend/kodeverk/src/vilkarUtfallType';
 import '@fpsak-frontend/assets/styles/arrowForProcessMenu.less';
 
-type ProsessPanelMenyData = {
+export type ProsessPanelMenyData = {
   id: string;
   tekst?: string;
   erAktiv?: boolean;

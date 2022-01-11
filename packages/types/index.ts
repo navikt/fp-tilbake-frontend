@@ -18,8 +18,6 @@ export type { Kjønnkode } from './src/Kjonnkode';
 export { KjønnkodeEnum } from './src/Kjonnkode';
 export type { default as StandardBehandlingProps } from './src/standardBehandlingProps';
 export type { default as StandardProsessPanelProps } from './src/standardProsessPanelPropsTsType';
-export type { default as StandardFaktaPanelPropsTilbakekreving } from './src/standardFaktaPanelPropsTilbakekrevingTsType';
-export type { default as StandardProsessPanelPropsTilbakekreving } from './src/standardProsessPanelPropsTilbakekrevingTsType';
 export type { default as Verge } from './src/vergeTsType';
 export type { default as FeilutbetalingAarsak } from './src/feilutbetalingAarsakTsType';
 export type { default as Vedtaksbrev } from './src/vedtaksbrevTsType';

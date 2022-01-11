@@ -1,13 +1,17 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import React, {
+  FunctionComponent, useCallback, useState, useMemo,
+} from 'react';
 import { useIntl } from 'react-intl';
 
+import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import { LoadingPanel, AdvarselModal } from '@fpsak-frontend/shared-components';
 import {
-  BeregningsresultatTilbakekreving, Kodeverk, StandardProsessPanelPropsTilbakekreving,
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving, Kodeverk,
 } from '@fpsak-frontend/types';
 import { forhandsvisDokument } from '@fpsak-frontend/utils';
+import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import { ForhandsvisData } from './components/TilbakekrevingVedtakForm';
@@ -35,26 +39,33 @@ const getLagringSideeffekter = (
 };
 
 interface OwnProps {
+  behandling: Behandling;
   beregningsresultat: BeregningsresultatTilbakekreving;
+  aksjonspunkter?: Aksjonspunkt[];
   harApenRevurdering: boolean;
-  submitCallback: (
+  bekreftAksjonspunkterMedSideeffekter: (
     lagringSideEffectsCallback?: (aksjonspunktModeller: any) => () => void,
   ) => (aksjonspunkter: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<any>;
   opneSokeside: () => void;
   toggleOppdatereFagsakContext: (skalOppdatereFagsak: boolean) => void;
+  erReadOnlyFn: (aksjonspunkter: Aksjonspunkt[]) => boolean;
+  alleKodeverk: AlleKodeverkTilbakekreving;
+  formData?: any;
+  setFormData: (data: any) => void;
 }
 
-const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardProsessPanelPropsTilbakekreving> = ({
+const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
   behandling,
   beregningsresultat,
-  submitCallback,
-  isReadOnly,
+  aksjonspunkter,
+  harApenRevurdering,
+  bekreftAksjonspunkterMedSideeffekter,
+  opneSokeside,
+  toggleOppdatereFagsakContext,
+  erReadOnlyFn,
   alleKodeverk,
   formData,
   setFormData,
-  harApenRevurdering,
-  opneSokeside,
-  toggleOppdatereFagsakContext,
 }) => {
   const intl = useIntl();
   const [visApenRevurderingModal, toggleApenRevurderingModal] = useState(harApenRevurdering);
@@ -68,6 +79,17 @@ const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardPro
   const fetchPreviewVedtaksbrev = useCallback((param: ForhandsvisData) => forhandsvisVedtaksbrev(param).then((response) => forhandsvisDokument(response)), []);
 
   const { data: vedtaksbrev, state } = restApiTilbakekrevingHooks.useRestApi(TilbakekrevingBehandlingApiKeys.VEDTAKSBREV);
+
+  const aksjonspunkterForVedtak = useMemo(() => (
+    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK === ap.definisjon.kode)),
+  [aksjonspunkter]);
+
+  const isReadOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForVedtak), [aksjonspunkterForVedtak]);
+
+  const setFormDataVedtak = useCallback((data: any) => setFormData((oldData) => ({
+    ...oldData,
+    [ProsessStegCode.VEDTAK]: data,
+  })), [setFormData]);
 
   if (state !== RestApiState.SUCCESS) {
     return <LoadingPanel />;
@@ -96,14 +118,14 @@ const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps & StandardPro
         perioder={beregningsresultat.beregningResultatPerioder}
         resultat={beregningsresultat.vedtakResultatType}
         avsnittsliste={vedtaksbrev.avsnittsliste}
-        submitCallback={submitCallback(lagringSideeffekterCallback)}
+        submitCallback={bekreftAksjonspunkterMedSideeffekter(lagringSideeffekterCallback)}
         readOnly={isReadOnly}
         alleKodeverk={alleKodeverk}
         fetchPreviewVedtaksbrev={fetchPreviewVedtaksbrev}
         erRevurderingTilbakekrevingKlage={erRevurderingTilbakekrevingKlage}
         erRevurderingTilbakekrevingFeilBeløpBortfalt={erRevurderingTilbakekrevingFeilBeløpBortfalt}
-        formData={formData}
-        setFormData={setFormData}
+        formData={formData[ProsessStegCode.VEDTAK]}
+        setFormData={setFormDataVedtak}
       />
     </>
   );

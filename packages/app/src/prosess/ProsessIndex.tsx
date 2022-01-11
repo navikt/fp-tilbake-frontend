@@ -1,7 +1,7 @@
 import React, {
-  FunctionComponent, useEffect, useState, useMemo,
+  FunctionComponent, useEffect, useState, useMemo, useCallback,
 } from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage, IntlShape } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
@@ -19,10 +19,9 @@ import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktSta
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 
-import getAlleMerknaderFraBeslutter from '../felles/util/getAlleMerknaderFraBeslutter';
-import { erReadOnly } from '../felles/util/readOnlyPanelUtils';
+import { erReadOnlyCurried } from '../felles/util/readOnlyPanelUtils';
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../data/tilbakekrevingBehandlingApi';
-import ProsessMeny from './ProsessMeny';
+import ProsessMeny, { ProsessPanelMenyData } from './ProsessMeny';
 import ForeldelseProsessIndex from './foreldelseProsess/ForeldelseProsessIndex';
 import TilbakekrevingProsessIndex from './tilbakekrevingProsess/TilbakekrevingProsessIndex';
 import VedtakTilbakekrevingProsessIndex from './vedtakProsess/VedtakTilbakekrevingProsessIndex';
@@ -43,7 +42,14 @@ type EndepunktInitData = {
   beregningsresultat: BeregningsresultatTilbakekreving;
 }
 
-const getOverstyrtVedtakStatus = (beregningsresultat?: BeregningsresultatTilbakekreving): string => {
+const finnTilbakekrevingStatus = (aksjonspunkter: Aksjonspunkt[]): string => {
+  if (aksjonspunkter.length > 0) {
+    return aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode)) ? vilkarUtfallType.IKKE_VURDERT : vilkarUtfallType.OPPFYLT;
+  }
+  return vilkarUtfallType.IKKE_VURDERT;
+};
+
+const getVedtakStatus = (beregningsresultat?: BeregningsresultatTilbakekreving): string => {
   if (!beregningsresultat) {
     return vilkarUtfallType.IKKE_VURDERT;
   }
@@ -51,11 +57,62 @@ const getOverstyrtVedtakStatus = (beregningsresultat?: BeregningsresultatTilbake
   return vedtakResultatType.kode === VedtakResultatType.INGEN_TILBAKEBETALING ? vilkarUtfallType.IKKE_OPPFYLT : vilkarUtfallType.OPPFYLT;
 };
 
-const finnStatus = (aksjonspunkter: Aksjonspunkt[]) => {
-  if (aksjonspunkter.length > 0) {
-    return aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode)) ? vilkarUtfallType.IKKE_VURDERT : vilkarUtfallType.OPPFYLT;
-  }
-  return vilkarUtfallType.IKKE_VURDERT;
+const hentAksjonspunkterFor = (
+  aksjonspunktKode: string,
+  aksjonspunkter?: Aksjonspunkt[],
+): Aksjonspunkt[] => (aksjonspunkter ? aksjonspunkter.filter((ap) => aksjonspunktKode === ap.definisjon.kode) : []);
+
+const leggTilProsessPanel = (
+  prosessStegKode: string,
+  tekst: string,
+  aksjonspunkter: Aksjonspunkt[],
+  status: string,
+  valgtProsessSteg?: string,
+  ekstraAktivSjekk?: boolean,
+): ProsessPanelMenyData => {
+  const harApentAksjonspunkt = aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
+  const erAktiv = valgtProsessSteg === prosessStegKode || (harApentAksjonspunkt && valgtProsessSteg === DEFAULT_PANEL_VALGT) || ekstraAktivSjekk;
+  return {
+    id: prosessStegKode,
+    tekst,
+    erAktiv,
+    harApentAksjonspunkt,
+    status,
+  };
+};
+
+const utledProsessPaneler = (
+  intl: IntlShape,
+  behandling: Behandling,
+  initData?: EndepunktInitData,
+  valgtProsessSteg?: string,
+): ProsessPanelMenyData[] => {
+  const apForTilbakekreving = hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING, initData?.aksjonspunkter);
+
+  return [
+    leggTilProsessPanel(
+      ProsessStegCode.FORELDELSE,
+      intl.formatMessage({ id: 'Behandlingspunkt.Foreldelse' }),
+      hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING, initData?.aksjonspunkter),
+      initData?.perioderForeldelse ? vilkarUtfallType.OPPFYLT : vilkarUtfallType.IKKE_VURDERT,
+      valgtProsessSteg,
+    ),
+    leggTilProsessPanel(
+      ProsessStegCode.TILBAKEKREVING,
+      intl.formatMessage({ id: 'Behandlingspunkt.Tilbakekreving' }),
+      apForTilbakekreving,
+      finnTilbakekrevingStatus(apForTilbakekreving),
+      valgtProsessSteg,
+    ),
+    leggTilProsessPanel(
+      ProsessStegCode.VEDTAK,
+      intl.formatMessage({ id: 'Behandlingspunkt.Vedtak' }),
+      hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK, initData?.aksjonspunkter),
+      getVedtakStatus(initData?.beregningsresultat),
+      valgtProsessSteg,
+      behandling.status.kode === behandlingStatus.AVSLUTTET && valgtProsessSteg === DEFAULT_PANEL_VALGT,
+    ),
+  ];
 };
 
 interface OwnProps {
@@ -64,7 +121,7 @@ interface OwnProps {
   tilbakekrevingKodeverk: AlleKodeverkTilbakekreving;
   valgtProsessSteg?: string;
   oppdaterProsessPanelIUrl: (faktanavn: string) => void;
-  submitCallback: (
+  bekreftAksjonspunkterMedSideeffekter: (
     lagringSideEffectsCallback?: (aksjonspunktModeller: any) => () => void,
   ) => (aksjonspunkter: ProsessAksjonspunkt | ProsessAksjonspunkt[]) => Promise<any>;
   rettigheter: AksessRettigheter;
@@ -80,7 +137,7 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
   tilbakekrevingKodeverk,
   valgtProsessSteg,
   oppdaterProsessPanelIUrl,
-  submitCallback,
+  bekreftAksjonspunkterMedSideeffekter,
   rettigheter,
   hasFetchError,
   harApenRevurdering,
@@ -88,22 +145,13 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
   toggleOppdatereFagsakContext,
 }) => {
   const intl = useIntl();
+
   const formaterteEndepunkter = ENDEPUNKTER_INIT_DATA.map((e) => ({ key: e }));
   const { data: initData, state } = restApiTilbakekrevingHooks
     .useMultipleRestApi<EndepunktInitData, any>(formaterteEndepunkter, {
       updateTriggers: [behandling.versjon],
       isCachingOn: true,
     });
-
-  const aksjonspunkterForForeldelse = useMemo(() => (initData?.aksjonspunkter
-    ? initData.aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE === ap.definisjon.kode) : []),
-  [initData?.aksjonspunkter]);
-  const aksjonspunkterForTilbakekreving = useMemo(() => (initData?.aksjonspunkter
-    ? initData.aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING === ap.definisjon.kode) : []),
-  [initData?.aksjonspunkter]);
-  const aksjonspunkterForVedtak = useMemo(() => (initData?.aksjonspunkter
-    ? initData.aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK === ap.definisjon.kode) : []),
-  [initData?.aksjonspunkter]);
 
   const [formData, setFormData] = useState({});
   useEffect(() => {
@@ -112,136 +160,81 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
     }
   }, [behandling.versjon]);
 
-  const menyData = [];
+  const prosessPanelerData = useMemo(() => utledProsessPaneler(intl, behandling, initData, valgtProsessSteg),
+    [behandling, initData, valgtProsessSteg]);
 
-  const harApentAksjonspunkt = aksjonspunkterForForeldelse.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
-  const erAktiv = (valgtProsessSteg === ProsessStegCode.FORELDELSE || (harApentAksjonspunkt && valgtProsessSteg === DEFAULT_PANEL_VALGT));
-  menyData.push({
-    id: ProsessStegCode.FORELDELSE,
-    tekst: intl.formatMessage({ id: 'Behandlingspunkt.Foreldelse' }),
-    erAktiv,
-    harApentAksjonspunkt,
-    status: initData?.perioderForeldelse ? vilkarUtfallType.OPPFYLT : vilkarUtfallType.IKKE_VURDERT,
-  });
+  const oppdaterProsessPanel = useCallback((index: number) => {
+    const panel = prosessPanelerData[index];
+    oppdaterProsessPanelIUrl(panel.erAktiv ? undefined : panel.id);
+  }, [prosessPanelerData]);
 
-  const harApentAksjonspunktForTilbakekreving = aksjonspunkterForTilbakekreving.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
-  const erAktivForTilbakekreving = valgtProsessSteg === ProsessStegCode.TILBAKEKREVING
-    || (harApentAksjonspunktForTilbakekreving && valgtProsessSteg === DEFAULT_PANEL_VALGT);
-  menyData.push({
-    id: ProsessStegCode.TILBAKEKREVING,
-    tekst: intl.formatMessage({ id: 'Behandlingspunkt.Tilbakekreving' }),
-    erAktiv: erAktivForTilbakekreving,
-    harApentAksjonspunkt: harApentAksjonspunktForTilbakekreving,
-    status: finnStatus(aksjonspunkterForTilbakekreving),
-  });
+  const aktivtProsessPanel = prosessPanelerData.find((d) => d.erAktiv);
 
-  const harApentAksjonspunktForVedtak = aksjonspunkterForVedtak.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
-  const erAktivForVedtak = valgtProsessSteg === ProsessStegCode.VEDTAK
-    || (harApentAksjonspunktForVedtak && valgtProsessSteg === DEFAULT_PANEL_VALGT)
-    || (behandling.status.kode === behandlingStatus.AVSLUTTET && valgtProsessSteg === DEFAULT_PANEL_VALGT);
-  menyData.push({
-    id: ProsessStegCode.VEDTAK,
-    tekst: intl.formatMessage({ id: 'Behandlingspunkt.Vedtak' }),
-    erAktiv: erAktivForVedtak,
-    harApentAksjonspunkt: harApentAksjonspunktForVedtak,
-    status: getOverstyrtVedtakStatus(initData?.beregningsresultat),
-  });
+  const erReadOnlyFn = useCallback(erReadOnlyCurried(behandling, rettigheter, hasFetchError),
+    [behandling, rettigheter, hasFetchError]);
 
-  const oppdaterProsessPanel = (index: number) => {
-    const panel = menyData[index];
-    const nyvalgtProsessSteg = panel.erAktiv ? undefined : panel.id;
-    oppdaterProsessPanelIUrl(nyvalgtProsessSteg);
-  };
+  const bekreftAksjonspunkter = useCallback(bekreftAksjonspunkterMedSideeffekter(), []);
 
   return (
     <div className={styles.container}>
       <div className={styles.meny}>
-        <ProsessMeny menyData={menyData} oppdaterProsessPanelIUrl={oppdaterProsessPanel} />
+        <ProsessMeny menyData={prosessPanelerData} oppdaterProsessPanelIUrl={oppdaterProsessPanel} />
       </div>
       {state !== RestApiState.SUCCESS && (
         <LoadingPanel />
       )}
-      {menyData.some((d) => d.id === ProsessStegCode.FORELDELSE && d.erAktiv) && (
+      {state === RestApiState.SUCCESS && aktivtProsessPanel && (
         <ProsessPanelWrapper
-          erAksjonspunktOpent={menyData.find((d) => d.id === ProsessStegCode.FORELDELSE).harApentAksjonspunkt}
-          status={menyData.find((d) => d.id === ProsessStegCode.FORELDELSE).status}
+          erAksjonspunktOpent={aktivtProsessPanel.harApentAksjonspunkt}
+          status={aktivtProsessPanel.status}
         >
-          <ForeldelseProsessIndex
-            navBrukerKjonn={fagsakKjønn.kode}
-            alleKodeverk={tilbakekrevingKodeverk}
-            behandling={behandling}
-            perioderForeldelse={initData?.perioderForeldelse}
-            alleMerknaderFraBeslutter={getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForForeldelse)}
-            submitCallback={submitCallback()}
-            isReadOnly={erReadOnly(behandling, aksjonspunkterForForeldelse, rettigheter, hasFetchError)}
-            readOnlySubmitButton={!(aksjonspunkterForForeldelse.some((ap) => ap.kanLoses))}
-            aksjonspunkter={aksjonspunkterForForeldelse}
-            formData={formData[ProsessStegCode.FORELDELSE]}
-            setFormData={(data: any) => setFormData((oldData) => ({
-              ...oldData,
-              [ProsessStegCode.FORELDELSE]: data,
-            }))}
-          />
-        </ProsessPanelWrapper>
-      )}
-      {menyData.some((d) => d.id === ProsessStegCode.TILBAKEKREVING && d.erAktiv) && (
-        <ProsessPanelWrapper
-          erAksjonspunktOpent={menyData.find((d) => d.id === ProsessStegCode.TILBAKEKREVING).harApentAksjonspunkt}
-          status={menyData.find((d) => d.id === ProsessStegCode.TILBAKEKREVING).status}
-        >
-          <TilbakekrevingProsessIndex
-            navBrukerKjonn={fagsakKjønn.kode}
-            alleKodeverk={tilbakekrevingKodeverk}
-            behandling={behandling}
-            perioderForeldelse={initData?.perioderForeldelse}
-            alleMerknaderFraBeslutter={getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForTilbakekreving)}
-            submitCallback={submitCallback()}
-            isReadOnly={erReadOnly(behandling, aksjonspunkterForTilbakekreving, rettigheter, hasFetchError)}
-            readOnlySubmitButton={!(aksjonspunkterForTilbakekreving.some((ap) => ap.kanLoses))}
-            aksjonspunkter={aksjonspunkterForTilbakekreving}
-            formData={formData[ProsessStegCode.TILBAKEKREVING]}
-            setFormData={(data: any) => setFormData((oldData) => ({
-              ...oldData,
-              [ProsessStegCode.TILBAKEKREVING]: data,
-            }))}
-          />
-        </ProsessPanelWrapper>
-      )}
-      {menyData.some((d) => d.id === ProsessStegCode.VEDTAK && d.erAktiv) && (
-        <>
-          {!behandling.behandlingHenlagt && (
-            <ProsessPanelWrapper
-              erAksjonspunktOpent={menyData.find((d) => d.id === ProsessStegCode.VEDTAK).harApentAksjonspunkt}
-              status={menyData.find((d) => d.id === ProsessStegCode.VEDTAK).status}
-            >
-              <VedtakTilbakekrevingProsessIndex
-                behandling={behandling}
-                beregningsresultat={initData?.beregningsresultat}
-                submitCallback={submitCallback}
-                opneSokeside={opneSokeside}
-                isReadOnly={erReadOnly(behandling, aksjonspunkterForTilbakekreving, rettigheter, hasFetchError)}
-                alleKodeverk={tilbakekrevingKodeverk}
-                harApenRevurdering={harApenRevurdering}
-                toggleOppdatereFagsakContext={toggleOppdatereFagsakContext}
-                formData={formData[ProsessStegCode.VEDTAK]}
-                setFormData={(data: any) => setFormData((oldData) => ({
-                  ...oldData,
-                  [ProsessStegCode.VEDTAK]: data,
-                }))}
-              />
-            </ProsessPanelWrapper>
+          {aktivtProsessPanel.id === ProsessStegCode.FORELDELSE && (
+            <ForeldelseProsessIndex
+              behandling={behandling}
+              aksjonspunkter={initData?.aksjonspunkter}
+              perioderForeldelse={initData?.perioderForeldelse}
+              navBrukerKjonn={fagsakKjønn.kode}
+              erReadOnlyFn={erReadOnlyFn}
+              alleKodeverk={tilbakekrevingKodeverk}
+              bekreftAksjonspunkter={bekreftAksjonspunkter}
+              formData={formData}
+              setFormData={setFormData}
+            />
           )}
-          {behandling.behandlingHenlagt && (
-            <ProsessPanelWrapper
-              erAksjonspunktOpent={false}
-              status={vilkarUtfallType.OPPFYLT}
-            >
-              <Normaltekst>
-                <FormattedMessage id="BehandlingHenlagtPanel.Henlagt" />
-              </Normaltekst>
-            </ProsessPanelWrapper>
+          {aktivtProsessPanel.id === ProsessStegCode.TILBAKEKREVING && (
+            <TilbakekrevingProsessIndex
+              behandling={behandling}
+              perioderForeldelse={initData?.perioderForeldelse}
+              aksjonspunkter={initData?.aksjonspunkter}
+              navBrukerKjonn={fagsakKjønn.kode}
+              alleKodeverk={tilbakekrevingKodeverk}
+              bekreftAksjonspunkter={bekreftAksjonspunkter}
+              erReadOnlyFn={erReadOnlyFn}
+              formData={formData}
+              setFormData={setFormData}
+            />
           )}
-        </>
+          {aktivtProsessPanel.id === ProsessStegCode.VEDTAK && !behandling.behandlingHenlagt && (
+            <VedtakTilbakekrevingProsessIndex
+              behandling={behandling}
+              beregningsresultat={initData?.beregningsresultat}
+              aksjonspunkter={initData?.aksjonspunkter}
+              harApenRevurdering={harApenRevurdering}
+              bekreftAksjonspunkterMedSideeffekter={bekreftAksjonspunkterMedSideeffekter}
+              opneSokeside={opneSokeside}
+              toggleOppdatereFagsakContext={toggleOppdatereFagsakContext}
+              erReadOnlyFn={erReadOnlyFn}
+              alleKodeverk={tilbakekrevingKodeverk}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          )}
+          {aktivtProsessPanel.id === ProsessStegCode.VEDTAK && behandling.behandlingHenlagt && (
+            <Normaltekst>
+              <FormattedMessage id="BehandlingHenlagtPanel.Henlagt" />
+            </Normaltekst>
+          )}
+        </ProsessPanelWrapper>
       )}
     </div>
   );
