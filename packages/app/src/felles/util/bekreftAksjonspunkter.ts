@@ -4,31 +4,7 @@ import { FaktaAksjonspunkt, ProsessAksjonspunkt } from '@fpsak-frontend/types-av
 export const DEFAULT_FAKTA_KODE = 'default';
 export const DEFAULT_PROSESS_STEG_KODE = 'default';
 
-export const getBekreftAksjonspunktFaktaCallback = (
-  fagsak: Fagsak,
-  behandling: Behandling,
-  oppdaterProsessStegOgFaktaPanelIUrl: (prosessPanel?: string, faktanavn?: string) => void,
-  lagreAksjonspunkter: (params: any, keepData?: boolean) => Promise<Behandling | undefined>,
-) => (aksjonspunkter: FaktaAksjonspunkt | FaktaAksjonspunkt[]): Promise<void> => {
-  const apListe = Array.isArray(aksjonspunkter) ? aksjonspunkter : [aksjonspunkter];
-  const model = apListe.map((ap) => ({
-    '@type': ap.kode,
-    ...ap,
-  }));
-
-  const params = {
-    saksnummer: fagsak.saksnummer,
-    behandlingUuid: behandling.uuid,
-    behandlingVersjon: behandling.versjon,
-  };
-
-  return lagreAksjonspunkter({
-    ...params,
-    bekreftedeAksjonspunktDtoer: model,
-  }, true).then(() => oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PROSESS_STEG_KODE, DEFAULT_FAKTA_KODE));
-};
-
-export const getBekreftAksjonspunktProsessCallback = (
+const getBekreftAksjonspunktCallback = (
   fagsak: Fagsak,
   behandling: Behandling,
   oppdaterProsessStegOgFaktaPanelIUrl: (prosessPanel?: string, faktanavn?: string) => void,
@@ -36,7 +12,7 @@ export const getBekreftAksjonspunktProsessCallback = (
 ) => (
   lagringSideEffectsCallback?: (aksjonspunktModeller: any) => () => void,
 ) => (
-  aksjonspunkterSomSkalLagres: ProsessAksjonspunkt | ProsessAksjonspunkt[],
+  aksjonspunkterSomSkalLagres: ProsessAksjonspunkt | ProsessAksjonspunkt[] | FaktaAksjonspunkt | FaktaAksjonspunkt[],
 ) => {
   const apListe = Array.isArray(aksjonspunkterSomSkalLagres) ? aksjonspunkterSomSkalLagres : [aksjonspunkterSomSkalLagres];
   const models = apListe.map((ap) => ({
@@ -62,3 +38,5 @@ export const getBekreftAksjonspunktProsessCallback = (
     return oppdaterProsessStegOgFaktaPanelIUrl(DEFAULT_PROSESS_STEG_KODE, DEFAULT_FAKTA_KODE);
   });
 };
+
+export default getBekreftAksjonspunktCallback;

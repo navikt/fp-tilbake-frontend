@@ -1,23 +1,16 @@
 import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import { RawIntlProvider } from 'react-intl';
 
-import {
-  LoadingPanel,
-} from '@fpsak-frontend/shared-components';
-import {
-  Kodeverk,
-} from '@fpsak-frontend/types';
+import { LoadingPanel } from '@fpsak-frontend/shared-components';
+import { Kodeverk, StandardBehandlingProps } from '@fpsak-frontend/types';
 import { createIntl } from '@fpsak-frontend/utils';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
 import FaktaIndex from './fakta/FaktaIndex';
 import ProsessIndex from './prosess/ProsessIndex';
 import BehandlingPaVent from './felles/komponenter/BehandlingPaVent';
-import { getBekreftAksjonspunktFaktaCallback, getBekreftAksjonspunktProsessCallback } from './submit';
-import StandardBehandlingProps from './felles/types/standardBehandlingProps';
-import {
-  useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger,
-} from './felles/util/indexHooks';
+import getBekreftAksjonspunktCallback from './felles/util/bekreftAksjonspunkter';
+import { useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger } from './felles/util/indexHooks';
 import messages from '../i18n/nb_NO.json';
 
 const intl = createIntl(messages);
@@ -62,14 +55,15 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
     oppdaterProsessStegOgFaktaPanelIUrl(nyttProsessSteg, valgtFaktaSteg);
   }, [valgtFaktaSteg]);
 
+  const bekreftAksjonspunkterMedSideeffekter = useCallback(getBekreftAksjonspunktCallback(
+    fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter,
+  ), [fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl]);
+
   const { data: tilbakekrevingKodeverk } = restApiTilbakekrevingHooks.useRestApi(TilbakekrevingBehandlingApiKeys.TILBAKE_KODEVERK);
 
   if (!behandling || !tilbakekrevingKodeverk) {
     return <LoadingPanel />;
   }
-
-  const submitCallback = getBekreftAksjonspunktFaktaCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
-  const submitCallbackProsess = getBekreftAksjonspunktProsessCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
 
   return (
     <RawIntlProvider value={intl}>
@@ -77,9 +71,6 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         behandling={behandling}
         hentBehandling={hentBehandling}
         kodeverk={tilbakekrevingKodeverk}
-        requestApi={requestTilbakekrevingApi}
-        oppdaterPaVentKey={TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD}
-        aksjonspunktKey={TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER}
       />
       <ProsessIndex
         behandling={behandling}
@@ -89,7 +80,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         oppdaterProsessPanelIUrl={oppdaterProsessPanelIUrl}
         rettigheter={rettigheter}
         hasFetchError={hentingHarFeilet}
-        submitCallback={submitCallbackProsess}
+        bekreftAksjonspunkterMedSideeffekter={bekreftAksjonspunkterMedSideeffekter}
         harApenRevurdering={harApenRevurdering}
         opneSokeside={opneSokeside}
         toggleOppdatereFagsakContext={toggleOppdateringAvFagsakOgBehandling}
@@ -103,7 +94,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         oppdaterFaktaPanelIUrl={oppdaterFaktaPanelIUrl}
         rettigheter={rettigheter}
         hasFetchError={hentingHarFeilet}
-        submitCallback={submitCallback}
+        bekreftAksjonspunkterMedSideeffekter={bekreftAksjonspunkterMedSideeffekter}
       />
     </RawIntlProvider>
   );

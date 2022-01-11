@@ -1,33 +1,57 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo, useCallback } from 'react';
 
+import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import {
-  FeilutbetalingFakta, AlleKodeverk, StandardFaktaPanelPropsTilbakekreving,
+  FeilutbetalingFakta, AlleKodeverk, Behandling, Aksjonspunkt, AlleKodeverkTilbakekreving,
 } from '@fpsak-frontend/types';
 import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
+import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
+import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
 import FeilutbetalingInfoPanel from './components/FeilutbetalingInfoPanel';
+import getAlleMerknaderFraBeslutter from '../../felles/util/getAlleMerknaderFraBeslutter';
 
 interface OwnProps {
+  behandling: Behandling;
   feilutbetalingFakta: FeilutbetalingFakta;
-  fpsakKodeverk: AlleKodeverk;
   fagsakYtelseTypeKode: string;
+  aksjonspunkter: Aksjonspunkt[];
+  erReadOnlyFn: (aksjonspunkter: Aksjonspunkt[]) => boolean;
+  alleKodeverk: AlleKodeverkTilbakekreving;
+  fpsakKodeverk: AlleKodeverk;
+  submitCallback: (aksjonspunktData: FaktaAksjonspunkt | FaktaAksjonspunkt[]) => Promise<void>;
+  formData?: any,
+  setFormData: (data: any) => void
 }
 
-const FeilutbetalingFaktaIndex: FunctionComponent<OwnProps & StandardFaktaPanelPropsTilbakekreving> = ({
+const FeilutbetalingFaktaIndex: FunctionComponent<OwnProps> = ({
+  behandling,
   feilutbetalingFakta,
   fagsakYtelseTypeKode,
   aksjonspunkter,
-  alleMerknaderFraBeslutter,
+  erReadOnlyFn,
   alleKodeverk,
   fpsakKodeverk,
   submitCallback,
-  readOnly,
   formData,
   setFormData,
 }) => {
+  const aksjonspunkterForFeilutbetalingFakta = useMemo(() => (
+    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING === ap.definisjon.kode)),
+  [aksjonspunkter]);
+
+  const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForFeilutbetalingFakta),
+    [behandling, aksjonspunkterForFeilutbetalingFakta]);
+  const readOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForFeilutbetalingFakta), [aksjonspunkterForFeilutbetalingFakta]);
+
+  const setFormDataFeilutbetaling = useCallback((data: any) => setFormData((oldData) => ({
+    ...oldData,
+    [FaktaPanelCode.FEILUTBETALING]: data,
+  })), [setFormData]);
+
   const { data: feilutbetalingAarsak, state } = restApiTilbakekrevingHooks.useRestApi(TilbakekrevingBehandlingApiKeys.FEILUTBETALING_AARSAK);
 
   if (state !== RestApiState.SUCCESS) {
@@ -43,9 +67,9 @@ const FeilutbetalingFaktaIndex: FunctionComponent<OwnProps & StandardFaktaPanelP
       fpsakKodeverk={fpsakKodeverk}
       submitCallback={submitCallback}
       readOnly={readOnly}
-      hasOpenAksjonspunkter={aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses)}
-      formData={formData}
-      setFormData={setFormData}
+      hasOpenAksjonspunkter={aksjonspunkterForFeilutbetalingFakta.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses)}
+      formData={formData[FaktaPanelCode.FEILUTBETALING]}
+      setFormData={setFormDataFeilutbetaling}
     />
   );
 };

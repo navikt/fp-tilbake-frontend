@@ -4,13 +4,15 @@ import { SideMenu } from '@navikt/fp-react-components';
 
 import advarselIkonUrl from '@fpsak-frontend/assets/images/advarsel_ny.svg';
 
+export type MenyData = {
+  id: string;
+  label: string;
+  erAktiv: boolean;
+  harApneAksjonspunkter: boolean;
+}
+
 interface OwnProps {
-  menyData: {
-    id: string;
-    label: string;
-    erAktiv: boolean;
-    harApneAksjonspunkter: boolean;
-  }[];
+  menyData: MenyData[];
   oppdaterFaktaPanelIUrl: (index: number) => void;
 }
 
