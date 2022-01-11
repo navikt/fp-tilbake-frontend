@@ -7,13 +7,14 @@ import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import {
-  FlexColumn, FlexContainer, FlexRow,
+  FlexColumn, FlexContainer, FlexRow, LoadingPanel,
 } from '@fpsak-frontend/shared-components';
 import {
   Aksjonspunkt, FeilutbetalingFakta, AlleKodeverkTilbakekreving, Fagsak, Behandling, AlleKodeverk, AksessRettigheter,
 } from '@fpsak-frontend/types';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
+import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 
 import FeilutbetalingFaktaIndex from './feilutbetalingFakta/FeilutbetalingFaktaIndex';
 import VergeFaktaIndex from './vergeFakta/VergeFaktaIndex';
@@ -110,7 +111,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
   const intl = useIntl();
 
   const formaterteEndepunkter = ENDEPUNKTER_INIT_DATA.map((e) => ({ key: e }));
-  const { data: initData } = restApiTilbakekrevingHooks
+  const { data: initData, state } = restApiTilbakekrevingHooks
     .useMultipleRestApi<EndepunktInitData, any>(formaterteEndepunkter, {
       updateTriggers: [behandling.versjon],
       isCachingOn: true,
@@ -127,7 +128,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
 
   const oppdaterFaktaPanel = useCallback((index: number) => {
     oppdaterFaktaPanelIUrl(faktaPanelerData[index].id);
-  }, [faktaPanelerData]);
+  }, [faktaPanelerData, oppdaterFaktaPanelIUrl]);
 
   const erReadOnlyFn = useCallback(erReadOnlyCurried(behandling, rettigheter, hasFetchError),
     [behandling, rettigheter, hasFetchError]);
@@ -145,30 +146,37 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
             />
           </FlexColumn>
           <FlexColumn className={styles.content}>
-            {erFaktaPanelAktivt(faktaPanelerData, FaktaPanelCode.FEILUTBETALING) && (
-              <FeilutbetalingFaktaIndex
-                fagsakYtelseTypeKode={fagsak.fagsakYtelseType.kode}
-                behandling={behandling}
-                fpsakKodeverk={fpsakKodeverk}
-                alleKodeverk={tilbakekrevingKodeverk}
-                feilutbetalingFakta={initData.feilutbetalingFakta}
-                aksjonspunkter={initData.aksjonspunkter}
-                erReadOnlyFn={erReadOnlyFn}
-                submitCallback={bekreftAksjonspunkter}
-                formData={formData}
-                setFormData={setFormData}
-              />
+            {state !== RestApiState.SUCCESS && (
+              <LoadingPanel />
             )}
-            {erFaktaPanelAktivt(faktaPanelerData, FaktaPanelCode.VERGE) && (
-              <VergeFaktaIndex
-                behandling={behandling}
-                aksjonspunkter={initData.aksjonspunkter}
-                alleKodeverk={fpsakKodeverk}
-                erReadOnlyFn={erReadOnlyFn}
-                submitCallback={bekreftAksjonspunkter}
-                formData={formData}
-                setFormData={setFormData}
-              />
+            {state === RestApiState.SUCCESS && (
+              <>
+                {erFaktaPanelAktivt(faktaPanelerData, FaktaPanelCode.FEILUTBETALING) && (
+                  <FeilutbetalingFaktaIndex
+                    fagsakYtelseTypeKode={fagsak.fagsakYtelseType.kode}
+                    behandling={behandling}
+                    fpsakKodeverk={fpsakKodeverk}
+                    alleKodeverk={tilbakekrevingKodeverk}
+                    feilutbetalingFakta={initData.feilutbetalingFakta}
+                    aksjonspunkter={initData.aksjonspunkter}
+                    erReadOnlyFn={erReadOnlyFn}
+                    submitCallback={bekreftAksjonspunkter}
+                    formData={formData}
+                    setFormData={setFormData}
+                  />
+                )}
+                {erFaktaPanelAktivt(faktaPanelerData, FaktaPanelCode.VERGE) && (
+                  <VergeFaktaIndex
+                    behandling={behandling}
+                    aksjonspunkter={initData.aksjonspunkter}
+                    alleKodeverk={fpsakKodeverk}
+                    erReadOnlyFn={erReadOnlyFn}
+                    submitCallback={bekreftAksjonspunkter}
+                    formData={formData}
+                    setFormData={setFormData}
+                  />
+                )}
+              </>
             )}
           </FlexColumn>
         </FlexRow>

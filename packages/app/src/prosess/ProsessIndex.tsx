@@ -165,14 +165,14 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
   const oppdaterProsessPanel = useCallback((index: number) => {
     const panel = prosessPanelerData[index];
     oppdaterProsessPanelIUrl(panel.erAktiv ? undefined : panel.id);
-  }, [prosessPanelerData]);
+  }, [prosessPanelerData, oppdaterProsessPanelIUrl]);
 
   const aktivtProsessPanel = prosessPanelerData.find((d) => d.erAktiv);
 
   const erReadOnlyFn = useCallback(erReadOnlyCurried(behandling, rettigheter, hasFetchError),
     [behandling, rettigheter, hasFetchError]);
 
-  const bekreftAksjonspunkter = useCallback(bekreftAksjonspunkterMedSideeffekter(), []);
+  const bekreftAksjonspunkter = useCallback(bekreftAksjonspunkterMedSideeffekter(), [behandling.versjon]);
 
   return (
     <div className={styles.container}>
