@@ -40,8 +40,6 @@ const ForeldelseProsessIndex: FunctionComponent<OwnProps> = ({
     aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE === ap.definisjon.kode)),
   [aksjonspunkter]);
 
-  const readOnlySubmitButton = !(aksjonspunkterForForeldelse.some((ap) => ap.kanLoses));
-
   const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForForeldelse),
     [behandling, aksjonspunkterForForeldelse]);
   const isReadOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForForeldelse), [aksjonspunkterForForeldelse]);
@@ -58,7 +56,6 @@ const ForeldelseProsessIndex: FunctionComponent<OwnProps> = ({
       submitCallback={bekreftAksjonspunkter}
       readOnly={isReadOnly}
       aksjonspunkt={aksjonspunkterForForeldelse[0]}
-      readOnlySubmitButton={readOnlySubmitButton}
       navBrukerKjonn={navBrukerKjonn}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
       alleKodeverk={alleKodeverk}

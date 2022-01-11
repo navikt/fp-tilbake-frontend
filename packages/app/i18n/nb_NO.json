@@ -7,8 +7,7 @@
   "Behandlingspunkt.Inngangsvilkar": "Inngangsvilkår",
   "InngangsvilkarProsessStegPanelDef.AvventerAvklaringAv": "Avventer avklaring av fakta om ",
   "ProsessPanelWrapper.IkkeBehandlet": "Dette steget er ikke behandlet",
-  "BehandlingHenlagtPanel.Header": "Henlagt",
-  "BehandlingHenlagtPanel.Henlagt": "Behandlingen er henlagt",
+  "ProsessPanelWrapper.Henlagt": "Behandlingen er henlagt",
   "FaktaPanel.FaktaOm": "Fakta om",
   "HelpText.Aksjonspunkt": "Aksjonspunkt",
 

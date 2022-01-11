@@ -199,7 +199,6 @@ interface OwnProps {
   perioder: DetaljertFeilutbetalingPeriode[];
   vilkarvurdering: VilkarsVurdertePerioderWrapper;
   rettsgebyr: DetaljerteFeilutbetalingsperioder['rettsgebyr'];
-  readOnlySubmitButton: boolean;
   navBrukerKjonn: string;
   beregnBelop: (data: any) => Promise<any>;
   behandlingUuid: string;
@@ -221,7 +220,6 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
   perioder,
   vilkarvurdering,
   rettsgebyr,
-  readOnlySubmitButton,
   navBrukerKjonn,
   beregnBelop,
   behandlingUuid,
@@ -375,7 +373,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
       <ProsessStegSubmitButton
         isReadOnly={isReadOnly}
         isDirty={isDirty}
-        isSubmittable={!isApOpen && !valgtPeriode && !readOnlySubmitButton && !valideringsmeldingId}
+        isSubmittable={!isApOpen && !valgtPeriode && !valideringsmeldingId}
         onClick={lagrePerioder}
         isSubmitting={isSubmitting}
       />

@@ -81,7 +81,6 @@ interface OwnProps {
   alleKodeverk: AlleKodeverkTilbakekreving;
   navBrukerKjonn: string;
   readOnly: boolean;
-  readOnlySubmitButton: boolean;
   beregnBelop: (data: { behandlingUuid: string; perioder: PeriodeMedBelop[]}) => Promise<any>;
   formData?: ForeldelsesresultatActivity[];
   setFormData: (data: ForeldelsesresultatActivity[]) => void;
@@ -91,7 +90,6 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
   submitCallback,
   navBrukerKjonn,
   aksjonspunkt,
-  readOnlySubmitButton,
   alleMerknaderFraBeslutter,
   perioderForeldelse,
   readOnly,
@@ -242,7 +240,7 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
           <ProsessStegSubmitButton
             isReadOnly={readOnly}
             isDirty={isDirty}
-            isSubmittable={!valgtPeriode && !readOnlySubmitButton && erAlleAksjonspunktLøst}
+            isSubmittable={!valgtPeriode && erAlleAksjonspunktLøst}
             onClick={lagrePerioder}
             isSubmitting={isSubmitting}
           />

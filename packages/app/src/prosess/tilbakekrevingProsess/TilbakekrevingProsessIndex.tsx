@@ -67,8 +67,6 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
     [behandling, aksjonspunkterForTilbakekreving]);
   const isReadOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForTilbakekreving), [aksjonspunkterForTilbakekreving]);
 
-  const readOnlySubmitButton = !(aksjonspunkterForTilbakekreving.some((ap) => ap.kanLoses));
-
   if (state !== RestApiState.SUCCESS) {
     return <LoadingPanel />;
   }
@@ -82,7 +80,6 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
       vilkarvurdering={initData.vilkarvurdering}
       submitCallback={bekreftAksjonspunkter}
       readOnly={isReadOnly}
-      readOnlySubmitButton={readOnlySubmitButton}
       navBrukerKjonn={navBrukerKjonn}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
       alleKodeverk={alleKodeverk}

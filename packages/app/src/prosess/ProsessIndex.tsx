@@ -1,8 +1,7 @@
 import React, {
   FunctionComponent, useEffect, useState, useMemo, useCallback,
 } from 'react';
-import { useIntl, FormattedMessage, IntlShape } from 'react-intl';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { useIntl, IntlShape } from 'react-intl';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import vilkarUtfallType from '@fpsak-frontend/kodeverk/src/vilkarUtfallType';
@@ -93,7 +92,7 @@ const utledProsessPaneler = (
     leggTilProsessPanel(
       ProsessStegCode.FORELDELSE,
       intl.formatMessage({ id: 'Behandlingspunkt.Foreldelse' }),
-      hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING, initData?.aksjonspunkter),
+      hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE, initData?.aksjonspunkter),
       initData?.perioderForeldelse ? vilkarUtfallType.OPPFYLT : vilkarUtfallType.IKKE_VURDERT,
       valgtProsessSteg,
     ),
@@ -187,6 +186,7 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
         <ProsessPanelWrapper
           erAksjonspunktOpent={aktivtProsessPanel.harApentAksjonspunkt}
           status={aktivtProsessPanel.status}
+          visHenlagt={aktivtProsessPanel.id === ProsessStegCode.VEDTAK && behandling.behandlingHenlagt}
         >
           {aktivtProsessPanel.id === ProsessStegCode.FORELDELSE && (
             <ForeldelseProsessIndex
@@ -228,11 +228,6 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
               formData={formData}
               setFormData={setFormData}
             />
-          )}
-          {aktivtProsessPanel.id === ProsessStegCode.VEDTAK && behandling.behandlingHenlagt && (
-            <Normaltekst>
-              <FormattedMessage id="BehandlingHenlagtPanel.Henlagt" />
-            </Normaltekst>
           )}
         </ProsessPanelWrapper>
       )}
