@@ -133,7 +133,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
   const erReadOnlyFn = useCallback(erReadOnlyCurried(behandling, rettigheter, hasFetchError),
     [behandling, rettigheter, hasFetchError]);
 
-  const bekreftAksjonspunkter = useCallback(bekreftAksjonspunkterMedSideeffekter(), []);
+  const bekreftAksjonspunkter = useCallback(bekreftAksjonspunkterMedSideeffekter(), [behandling.versjon]);
 
   return (
     <div className={styles.container}>
