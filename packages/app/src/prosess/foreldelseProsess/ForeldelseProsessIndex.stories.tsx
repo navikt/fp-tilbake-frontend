@@ -1,16 +1,22 @@
 import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
+import { RawIntlProvider } from 'react-intl';
 
+import { createIntl } from '@fpsak-frontend/utils';
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
+import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import {
   AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper, Aksjonspunkt,
 } from '@fpsak-frontend/types';
 import ForeldelseProsessIndex from './ForeldelseProsessIndex';
+import messages from '../../../i18n/nb_NO.json';
+
+const intl = createIntl(messages);
 
 const perioderForeldelse = {
   perioder: [{
@@ -73,10 +79,6 @@ const alleKodeverk = {
   ],
 } as AlleKodeverkTilbakekreving;
 
-const merknaderFraBeslutter = {
-  notAccepted: false,
-};
-
 export default {
   title: 'prosess/prosess-foreldelse',
   component: ForeldelseProsessIndex,
@@ -89,23 +91,26 @@ const Template: Story<{
   submitCallback,
   aksjonspunkter = [],
 }) => (
-  <ForeldelseProsessIndex
-    behandling={{
-      uuid: '1',
-      versjon: 1,
-    } as Behandling}
-    alleKodeverk={alleKodeverk}
-    submitCallback={submitCallback}
-    isReadOnly={false}
-    readOnlySubmitButton={false}
-    setFormData={() => undefined}
-    perioderForeldelse={perioderForeldelse}
-    aksjonspunkter={aksjonspunkter}
-    navBrukerKjonn={NavBrukerKjonn.KVINNE}
-    alleMerknaderFraBeslutter={{
-      [aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE]: merknaderFraBeslutter,
-    }}
-  />
+  <RawIntlProvider value={intl}>
+    <ForeldelseProsessIndex
+      behandling={{
+        uuid: '1',
+        versjon: 1,
+        status: {
+          kode: behandlingStatus.BEHANDLING_UTREDES,
+          kodeverk: '',
+        },
+      } as Behandling}
+      alleKodeverk={alleKodeverk}
+      bekreftAksjonspunkter={submitCallback}
+      erReadOnlyFn={() => false}
+      setFormData={() => undefined}
+      formData={{}}
+      perioderForeldelse={perioderForeldelse}
+      aksjonspunkter={aksjonspunkter}
+      navBrukerKjonn={NavBrukerKjonn.KVINNE}
+    />
+  </RawIntlProvider>
 );
 
 export const Default = Template.bind({});

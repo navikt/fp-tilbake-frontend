@@ -11,8 +11,9 @@ const { Default } = composeStories(stories);
 describe('<VedtakTilbakekrevingProsessIndex>', () => {
   it('skal fylle ut to obligatoriske felter for periode og så bekrefte', async () => {
     const lagre = jest.fn(() => Promise.resolve());
+    const lagreMedSideeffekter = jest.fn(() => lagre);
 
-    const utils = render(<Default submitCallback={lagre} />);
+    const utils = render(<Default bekreftAksjonspunkterMedSideeffekter={lagreMedSideeffekter} />);
 
     expect(await screen.findByText('Vedtak')).toBeInTheDocument();
     expect(screen.getByText('01.10.2018-01.01.2019')).toBeInTheDocument();
@@ -57,38 +58,6 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
           vilkaarAvsnitt: undefined,
         },
       ],
-    });
-  });
-
-  it('skal forhåndsvise brev', async () => {
-    const forhåndsvis = jest.fn(() => Promise.resolve());
-
-    const utils = render(<Default fetchPreviewVedtaksbrev={forhåndsvis} />);
-
-    expect(await screen.findByText('Vedtak')).toBeInTheDocument();
-    expect(screen.queryByText('Forhåndsvis brev')).not.toBeInTheDocument();
-
-    const tekstInput = utils.getAllByLabelText('Utdypende tekst');
-    userEvent.type(tekstInput[0], 'Dette er en utdypende tekst');
-    userEvent.type(tekstInput[1], 'Dette er en annen utdypende tekst');
-
-    userEvent.click(screen.getByText('Forhåndsvis brev'));
-
-    await waitFor(() => expect(forhåndsvis).toHaveBeenCalledTimes(1));
-    expect(forhåndsvis).toHaveBeenNthCalledWith(1, {
-      oppsummeringstekst: undefined,
-      perioderMedTekst: [
-        {
-          faktaAvsnitt: 'Dette er en utdypende tekst',
-          fom: '2016-03-16',
-          foreldelseAvsnitt: undefined,
-          saerligeGrunnerAnnetAvsnitt: 'De', // TODO Kvifor er denne teksten feil?
-          saerligeGrunnerAvsnitt: undefined,
-          tom: '2016-05-26',
-          vilkaarAvsnitt: undefined,
-        },
-      ],
-      uuid: '1',
     });
   });
 });

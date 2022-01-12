@@ -279,7 +279,7 @@ const Template: Story<{
   const [valgtFaktaSteg, setFaktaSteg] = useState('default');
 
   const oppdaterProsessStegOgFaktaPanelIUrl = (punktnavn?: string, faktanavn?: string) => {
-    setProsessSteg((gammeltPunktnavn) => (gammeltPunktnavn === punktnavn || gammeltPunktnavn === 'default' ? undefined : punktnavn));
+    setProsessSteg(punktnavn);
     setFaktaSteg(faktanavn);
   };
 
@@ -360,6 +360,16 @@ HenlagtBehandling.args = {
   behandling: {
     ...defaultBehandling,
     behandlingHenlagt: true,
+    status: {
+      kode: behandlingStatus.AVSLUTTET,
+      kodeverk: '',
+    },
   },
-  aksjonspunkter: prosessAksjonspunkter,
+  aksjonspunkter: [{
+    ...prosessAksjonspunkter[0],
+    status: {
+      kode: aksjonspunktStatus.UTFORT,
+      kodeverk: '',
+    },
+  }],
 };

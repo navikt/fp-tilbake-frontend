@@ -1,13 +1,22 @@
 import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
+import { RawIntlProvider } from 'react-intl';
 
+import { createIntl } from '@fpsak-frontend/utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
+import { Behandling } from '@fpsak-frontend/types';
+import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
+
 import VergeFaktaIndex from './VergeFaktaIndex';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
+
+import messages from '../../../i18n/nb_NO.json';
+
+const intl = createIntl(messages);
 
 const aksjonspunkter = [{
   definisjon: {
@@ -25,10 +34,6 @@ const aksjonspunkter = [{
 
 const verge = {};
 
-const merknaderFraBeslutter = {
-  notAccepted: false,
-};
-
 export default {
   title: 'fakta/fakta-verge',
   component: VergeFaktaIndex,
@@ -44,18 +49,24 @@ const Template: Story<{
   ];
 
   return (
-    <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
-      <VergeFaktaIndex
-        submitCallback={submitCallback}
-        readOnly={false}
-        setFormData={() => undefined}
-        aksjonspunkter={aksjonspunkter}
-        alleKodeverk={alleKodeverk as any}
-        alleMerknaderFraBeslutter={{
-          [aksjonspunktCodes.AVKLAR_VERGE]: merknaderFraBeslutter,
-        }}
-      />
-    </RestApiMock>
+    <RawIntlProvider value={intl}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+        <VergeFaktaIndex
+          behandling={{
+            status: {
+              kode: behandlingStatus.BEHANDLING_UTREDES,
+              kodeverk: '',
+            },
+          } as Behandling}
+          submitCallback={submitCallback}
+          erReadOnlyFn={() => false}
+          setFormData={() => undefined}
+          formData={{}}
+          aksjonspunkter={aksjonspunkter}
+          alleKodeverk={alleKodeverk as any}
+        />
+      </RestApiMock>
+    </RawIntlProvider>
   );
 };
 

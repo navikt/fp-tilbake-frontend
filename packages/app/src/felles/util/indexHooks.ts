@@ -3,10 +3,9 @@ import {
 } from 'react';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { Behandling, Kodeverk } from '@fpsak-frontend/types';
+import { Behandling, Kodeverk, BehandlingEventHandler } from '@fpsak-frontend/types';
 import { usePrevious } from '@fpsak-frontend/shared-components';
 
-import { BehandlingEventHandler } from '../types/standardBehandlingProps';
 import { requestTilbakekrevingApi, restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
 
 export type NyBehandlendeEnhetParams = {

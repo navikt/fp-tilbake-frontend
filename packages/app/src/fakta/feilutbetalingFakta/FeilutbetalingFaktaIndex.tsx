@@ -23,7 +23,7 @@ interface OwnProps {
   alleKodeverk: AlleKodeverkTilbakekreving;
   fpsakKodeverk: AlleKodeverk;
   submitCallback: (aksjonspunktData: FaktaAksjonspunkt | FaktaAksjonspunkt[]) => Promise<void>;
-  formData?: any,
+  formData: any,
   setFormData: (data: any) => void
 }
 

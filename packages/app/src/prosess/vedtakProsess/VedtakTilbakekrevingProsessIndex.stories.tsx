@@ -1,14 +1,20 @@
 import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
+import { RawIntlProvider } from 'react-intl';
 
+import { createIntl } from '@fpsak-frontend/utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import vedtakResultatType from '@fpsak-frontend/kodeverk/src/vedtakResultatType';
+import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import { AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving } from '@fpsak-frontend/types';
 import aktsomhet from './kodeverk/aktsomhet';
 import VedtakTilbakekrevingProsessIndex from './VedtakTilbakekrevingProsessIndex';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
+import messages from '../../../i18n/nb_NO.json';
+
+const intl = createIntl(messages);
 
 const vedtaksbrev = {
   avsnittsliste: [{
@@ -165,9 +171,9 @@ export default {
 };
 
 const Template: Story<{
-  submitCallback: () => (aksjonspunktData: any) => Promise<void>;
+  bekreftAksjonspunkterMedSideeffekter: () => (aksjonspunktData: any) => Promise<void>;
 }> = ({
-  submitCallback,
+  bekreftAksjonspunkterMedSideeffekter,
 }) => {
   const data = [
     { key: TilbakekrevingBehandlingApiKeys.VEDTAKSBREV.name, data: vedtaksbrev },
@@ -175,26 +181,34 @@ const Template: Story<{
   ];
 
   return (
-    <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
-      <VedtakTilbakekrevingProsessIndex
-        behandling={{
-          uuid: '1',
-          versjon: 1,
-        } as Behandling}
-        alleKodeverk={alleKodeverk}
-        submitCallback={submitCallback}
-        isReadOnly={false}
-        setFormData={() => undefined}
-        beregningsresultat={beregningsresultat}
-        harApenRevurdering={false}
-        opneSokeside={() => undefined}
-        toggleOppdatereFagsakContext={() => undefined}
-      />
-    </RestApiMock>
+    <RawIntlProvider value={intl}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+        <VedtakTilbakekrevingProsessIndex
+          behandling={{
+            uuid: '1',
+            versjon: 1,
+            status: {
+              kode: behandlingStatus.BEHANDLING_UTREDES,
+              kodeverk: '',
+            },
+          } as Behandling}
+          alleKodeverk={alleKodeverk}
+          bekreftAksjonspunkterMedSideeffekter={bekreftAksjonspunkterMedSideeffekter}
+          erReadOnlyFn={() => false}
+          setFormData={() => undefined}
+          formData={{}}
+          beregningsresultat={beregningsresultat}
+          harApenRevurdering={false}
+          opneSokeside={() => undefined}
+          toggleOppdatereFagsakContext={() => undefined}
+          aksjonspunkter={[]}
+        />
+      </RestApiMock>
+    </RawIntlProvider>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  submitCallback: () => action('button-click') as (data: any) => Promise<any>,
+  bekreftAksjonspunkterMedSideeffekter: () => action('button-click') as (data: any) => Promise<any>,
 };

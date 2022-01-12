@@ -1,7 +1,9 @@
 import React from 'react';
 import { Story } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
+import { RawIntlProvider } from 'react-intl';
 
+import { createIntl } from '@fpsak-frontend/utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import {
   Behandling, FeilutbetalingPerioderWrapper, DetaljerteFeilutbetalingsperioder, AlleKodeverkTilbakekreving, Aksjonspunkt,
@@ -11,11 +13,16 @@ import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekre
 import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
+import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import TilbakekrevingProsessIndex from './TilbakekrevingProsessIndex';
 import vilkarResultat from './kodeverk/vilkarResultat';
 import sarligGrunn from './kodeverk/sarligGrunn';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
 import aktsomhet from './kodeverk/aktsomhet';
+
+import messages from '../../../i18n/nb_NO.json';
+
+const intl = createIntl(messages);
 
 const perioderForeldelse = {
   perioder: [{
@@ -60,10 +67,6 @@ const defaultVilkarvurderingsperioder = {
 } as DetaljerteFeilutbetalingsperioder;
 const vilkarvurdering = {
   vilkarsVurdertePerioder: [],
-};
-
-const merknaderFraBeslutter = {
-  notAccepted: false,
 };
 
 const alleKodeverk = {
@@ -153,25 +156,28 @@ const Template: Story<{
   ];
 
   return (
-    <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
-      <TilbakekrevingProsessIndex
-        behandling={{
-          uuid: '1',
-          versjon: 1,
-        } as Behandling}
-        alleKodeverk={alleKodeverk}
-        isReadOnly={false}
-        readOnlySubmitButton={false}
-        setFormData={() => undefined}
-        submitCallback={submitCallback}
-        perioderForeldelse={perioderForeldelse}
-        aksjonspunkter={aksjonspunkter}
-        navBrukerKjonn={NavBrukerKjonn.KVINNE}
-        alleMerknaderFraBeslutter={{
-          [aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING]: merknaderFraBeslutter,
-        }}
-      />
-    </RestApiMock>
+    <RawIntlProvider value={intl}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+        <TilbakekrevingProsessIndex
+          behandling={{
+            uuid: '1',
+            versjon: 1,
+            status: {
+              kode: behandlingStatus.BEHANDLING_UTREDES,
+              kodeverk: '',
+            },
+          } as Behandling}
+          alleKodeverk={alleKodeverk}
+          erReadOnlyFn={() => false}
+          setFormData={() => undefined}
+          formData={{}}
+          bekreftAksjonspunkter={submitCallback}
+          perioderForeldelse={perioderForeldelse}
+          aksjonspunkter={aksjonspunkter}
+          navBrukerKjonn={NavBrukerKjonn.KVINNE}
+        />
+      </RestApiMock>
+    </RawIntlProvider>
   );
 };
 

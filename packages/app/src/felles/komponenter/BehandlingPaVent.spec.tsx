@@ -8,9 +8,10 @@ import behandlingType from '@fpsak-frontend/kodeverk/src/behandlingType';
 import { Aksjonspunkt, AlleKodeverk, Behandling } from '@fpsak-frontend/types';
 import Modal from 'nav-frontend-modal';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
-import { createRequestApi, RestApiConfigBuilder, RestKey } from '@fpsak-frontend/rest-api';
 
-import BehandlingPaVent, { SettPaVentParams } from './BehandlingPaVent';
+import { requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
+
+import BehandlingPaVent from './BehandlingPaVent';
 
 describe('<BehandlingPaVent>', () => {
   Modal.setAppElement('body');
@@ -34,27 +35,14 @@ describe('<BehandlingPaVent>', () => {
   // @ts-ignore
   const kodeverk = alleKodeverk as AlleKodeverk;
 
-  const AKSJONSPUNKT_KEY = new RestKey<Aksjonspunkt[], void>('AP');
-  const PA_VENT_KEY = new RestKey<void, SettPaVentParams>('PA_VENT');
-
-  const endpoints = new RestApiConfigBuilder()
-    .withRel('test', AKSJONSPUNKT_KEY)
-    .withRel('test_pa', PA_VENT_KEY)
-    .build();
-
-  const requestMock = createRequestApi(endpoints);
-
   it('skal ikke vise modal når behandling ikke er på vent', async () => {
     const data = [
-      { key: AKSJONSPUNKT_KEY.name, data: aksjonspunkter },
+      { key: TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER.name, data: aksjonspunkter },
     ];
     render(
-      <RestApiMock data={data} requestApi={requestMock}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
         <BehandlingPaVent
           behandling={behandling as Behandling}
-          requestApi={requestMock}
-          oppdaterPaVentKey={PA_VENT_KEY}
-          aksjonspunktKey={AKSJONSPUNKT_KEY}
           kodeverk={kodeverk}
           hentBehandling={jest.fn()}
         />
@@ -66,19 +54,16 @@ describe('<BehandlingPaVent>', () => {
 
   it('skal vise modal når behandling er på vent', async () => {
     const data = [
-      { key: AKSJONSPUNKT_KEY.name, data: aksjonspunkter },
+      { key: TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER.name, data: aksjonspunkter },
     ];
 
     render(
-      <RestApiMock data={data} requestApi={requestMock}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
         <BehandlingPaVent
           behandling={{
             ...behandling,
             behandlingPaaVent: true,
           } as Behandling}
-          requestApi={requestMock}
-          oppdaterPaVentKey={PA_VENT_KEY}
-          aksjonspunktKey={AKSJONSPUNKT_KEY}
           kodeverk={kodeverk}
           hentBehandling={jest.fn()}
         />
@@ -90,18 +75,15 @@ describe('<BehandlingPaVent>', () => {
 
   it('skal vise modal og så skjule den ved trykk på knapp', async () => {
     const data = [
-      { key: AKSJONSPUNKT_KEY.name, data: aksjonspunkter },
+      { key: TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER.name, data: aksjonspunkter },
     ];
     render(
-      <RestApiMock data={data} requestApi={requestMock}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
         <BehandlingPaVent
           behandling={{
             ...behandling,
             behandlingPaaVent: true,
           } as Behandling}
-          requestApi={requestMock}
-          oppdaterPaVentKey={PA_VENT_KEY}
-          aksjonspunktKey={AKSJONSPUNKT_KEY}
           kodeverk={kodeverk}
           hentBehandling={jest.fn()}
         />
