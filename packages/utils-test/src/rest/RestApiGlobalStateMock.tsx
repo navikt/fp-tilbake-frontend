@@ -7,7 +7,8 @@ interface Props {
     children: any;
     data: {
       key: string;
-      data: any,
+      data?: any,
+      dataFn?: (config: any) => any;
     }[];
 }
 

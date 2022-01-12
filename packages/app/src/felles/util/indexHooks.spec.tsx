@@ -26,7 +26,6 @@ describe('indexHooks', () => {
 
   it('skal lagre aksjonspunkt og så oppdatere behandling', async () => {
     const setBehandling = jest.fn();
-
     requestTilbakekrevingApi.setLinks([{
       href: TilbakekrevingBehandlingApiKeys.AKSJONSPUNKTER.name,
       rel: 'aksjonspunkter',

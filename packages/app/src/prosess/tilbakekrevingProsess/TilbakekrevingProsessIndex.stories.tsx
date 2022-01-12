@@ -153,6 +153,7 @@ const Template: Story<{
   const data = [
     { key: TilbakekrevingBehandlingApiKeys.VILKARVURDERINGSPERIODER.name, data: vilkarvurderingsperioder },
     { key: TilbakekrevingBehandlingApiKeys.VILKARVURDERING.name, data: vilkarvurdering },
+    { key: TilbakekrevingBehandlingApiKeys.BEREGNE_BELØP.name, dataFn: (config) => [200, config.params] },
   ];
 
   return (

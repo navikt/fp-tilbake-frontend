@@ -13,7 +13,6 @@ describe('<ForeldelseProsessIndex>', () => {
   Modal.setAppElement('body');
   it('skal vurdere to perioder og så bekrefte', async () => {
     const lagre = jest.fn(() => Promise.resolve());
-
     const utils = render(<Default submitCallback={lagre} />);
 
     expect(await screen.findByText(/kan være foreldet. Del opp perioden ved behov og fastsett foreldelse/)).toBeInTheDocument();

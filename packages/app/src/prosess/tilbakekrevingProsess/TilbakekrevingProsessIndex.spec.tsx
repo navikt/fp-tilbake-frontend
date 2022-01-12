@@ -13,7 +13,6 @@ describe('<TilbakekrevingProsessIndex>', () => {
   Modal.setAppElement('body');
   it('skal vurdere perioden som God Tro og så bekrefte', async () => {
     const lagre = jest.fn(() => Promise.resolve());
-
     const utils = render(<Default submitCallback={lagre} />);
 
     expect(await screen.findByText('Tilbakekreving')).toBeInTheDocument();

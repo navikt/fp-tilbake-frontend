@@ -3,6 +3,7 @@ import { Story } from '@storybook/react'; // eslint-disable-line import/no-extra
 import { action } from '@storybook/addon-actions';
 import { RawIntlProvider } from 'react-intl';
 
+import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import { createIntl } from '@fpsak-frontend/utils';
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
@@ -13,6 +14,7 @@ import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import {
   AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper, Aksjonspunkt,
 } from '@fpsak-frontend/types';
+import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
 import ForeldelseProsessIndex from './ForeldelseProsessIndex';
 import messages from '../../../i18n/nb_NO.json';
 
@@ -90,28 +92,36 @@ const Template: Story<{
 }> = ({
   submitCallback,
   aksjonspunkter = [],
-}) => (
-  <RawIntlProvider value={intl}>
-    <ForeldelseProsessIndex
-      behandling={{
-        uuid: '1',
-        versjon: 1,
-        status: {
-          kode: behandlingStatus.BEHANDLING_UTREDES,
-          kodeverk: '',
-        },
-      } as Behandling}
-      alleKodeverk={alleKodeverk}
-      bekreftAksjonspunkter={submitCallback}
-      erReadOnlyFn={() => false}
-      setFormData={() => undefined}
-      formData={{}}
-      perioderForeldelse={perioderForeldelse}
-      aksjonspunkter={aksjonspunkter}
-      navBrukerKjonn={NavBrukerKjonn.KVINNE}
-    />
-  </RawIntlProvider>
-);
+}) => {
+  const data = [
+    { key: TilbakekrevingBehandlingApiKeys.BEREGNE_BELØP.name, dataFn: (config) => [200, config.params] },
+  ];
+
+  return (
+    <RawIntlProvider value={intl}>
+      <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
+        <ForeldelseProsessIndex
+          behandling={{
+            uuid: '1',
+            versjon: 1,
+            status: {
+              kode: behandlingStatus.BEHANDLING_UTREDES,
+              kodeverk: '',
+            },
+          } as Behandling}
+          alleKodeverk={alleKodeverk}
+          bekreftAksjonspunkter={submitCallback}
+          erReadOnlyFn={() => false}
+          setFormData={() => undefined}
+          formData={{}}
+          perioderForeldelse={perioderForeldelse}
+          aksjonspunkter={aksjonspunkter}
+          navBrukerKjonn={NavBrukerKjonn.KVINNE}
+        />
+      </RestApiMock>
+    </RawIntlProvider>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
