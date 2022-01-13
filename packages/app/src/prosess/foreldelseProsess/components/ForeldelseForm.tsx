@@ -164,8 +164,7 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
 
   const lagrePerioder = useCallback(() => {
     setSubmitting(true);
-    submitCallback(transformValues(foreldelseresultatAktiviteter))
-      .then(() => setSubmitting(false));
+    submitCallback(transformValues(foreldelseresultatAktiviteter));
   }, [foreldelseresultatAktiviteter]);
 
   const merknaderFraBeslutter = alleMerknaderFraBeslutter[aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE];

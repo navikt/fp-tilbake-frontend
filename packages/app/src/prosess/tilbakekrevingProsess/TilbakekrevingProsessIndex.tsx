@@ -1,4 +1,6 @@
-import React, { FunctionComponent, useCallback, useMemo } from 'react';
+import React, {
+  FunctionComponent, useCallback, useMemo,
+} from 'react';
 
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import {

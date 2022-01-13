@@ -247,8 +247,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
 
   const lagrePerioder = useCallback(() => {
     setSubmitting(true);
-    submitCallback(transformValues(vilkårsvurdertePerioder, alleKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN]))
-      .then(() => setSubmitting(false));
+    submitCallback(transformValues(vilkårsvurdertePerioder, alleKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN]));
   }, [vilkårsvurdertePerioder]);
 
   const perioderFormatertForTidslinje = formaterPerioderForTidslinje(vilkårsvurdertePerioder, dataForDetailForm);
