@@ -9,7 +9,7 @@ type AvklarVergeAp = {
   gyldigFom: string;
   gyldigTom: string;
   vergeType: Kodeverk | string;
-  organisasjonsnummer: string;
+  organisasjonsnummer?: string;
 } & AksjonspunktTilBekreftelse<AksjonspunktKode.AVKLAR_VERGE>;
 
 export default AvklarVergeAp;

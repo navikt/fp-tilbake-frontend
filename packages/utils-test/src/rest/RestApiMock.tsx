@@ -10,7 +10,8 @@ interface Props {
   data: {
     key: string;
     global?: boolean;
-    data: any,
+    data?: any,
+    dataFn?: (config: any) => any;
     noRelLink?: boolean,
   }[];
   requestApi: RequestApi;

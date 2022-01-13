@@ -5,7 +5,7 @@ const commonDevAndProd = require('./webpack.common');
 
 const ROOT_DIR = path.resolve(__dirname, '../public/client');
 const PACKAGES_DIR = path.join(__dirname, '../packages');
-const APP_DIR = path.resolve(PACKAGES_DIR, 'behandling-tilbakekreving/src');
+const APP_DIR = path.resolve(PACKAGES_DIR, 'app/src');
 
 const config = {
   mode: 'development',
