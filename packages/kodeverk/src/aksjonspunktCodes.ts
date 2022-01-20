@@ -7,6 +7,6 @@ enum AksjonspunktCode {
 }
 
 export const hasAksjonspunkt = (aksjonspunktKode: string, aksjonspunkter: Aksjonspunkt[]): boolean => aksjonspunkter
-  .some((ap) => ap.definisjon.kode === aksjonspunktKode);
+  .some((ap) => ap.definisjon === aksjonspunktKode);
 
 export default AksjonspunktCode;

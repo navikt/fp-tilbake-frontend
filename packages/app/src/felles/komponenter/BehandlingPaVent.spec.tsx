@@ -18,14 +18,8 @@ describe('<BehandlingPaVent>', () => {
   const behandling = {
     uuid: '1',
     versjon: 1,
-    status: {
-      kode: behandlingStatus.BEHANDLING_UTREDES,
-      kodeverk: 'BEHANDLING_STATUS',
-    },
-    type: {
-      kode: behandlingType.FORSTEGANGSSOKNAD,
-      kodeverk: 'BEHANDLING_TYPE',
-    },
+    status: behandlingStatus.BEHANDLING_UTREDES,
+    type: behandlingType.FORSTEGANGSSOKNAD,
     behandlingPaaVent: false,
     behandlingHenlagt: false,
     fristBehandlingPaaVent: '2030-10-10',

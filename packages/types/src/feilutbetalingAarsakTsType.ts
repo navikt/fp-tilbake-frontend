@@ -1,12 +1,9 @@
-import KodeverkMedNavn from './kodeverkMedNavnTsType';
-import Kodeverk from './kodeverkTsType';
-
 type FeilutbetalingAarsak = {
   hendelseTyper: {
-    hendelseType?: KodeverkMedNavn;
-    hendelseUndertyper?: KodeverkMedNavn[];
+    hendelseType?: string;
+    hendelseUndertyper?: string[];
   }[];
-  ytelseType: Kodeverk;
+  ytelseType: string;
 };
 
 export default FeilutbetalingAarsak;

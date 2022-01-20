@@ -6,7 +6,8 @@ import { formatCurrencyNoKr } from '@fpsak-frontend/utils';
 import {
   PeriodLabel, Table, TableColumn, TableRow,
 } from '@fpsak-frontend/shared-components';
-import { BeregningResultatPeriode, Kodeverk } from '@fpsak-frontend/types';
+import { BeregningResultatPeriode } from '@fpsak-frontend/types';
+import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 
 import styles from './tilbakekrevingVedtakPeriodeTabell.less';
 
@@ -22,7 +23,7 @@ const headerTextCodes = [
 
 interface OwnProps {
   perioder: BeregningResultatPeriode[];
-  getKodeverknavn: (kodeverk: Kodeverk) => string;
+  getKodeverknavn: (kode: string, kodeverk: KodeverkType) => string;
 }
 
 const TilbakekrevingVedtakPeriodeTabell: FunctionComponent<OwnProps> = ({
@@ -33,7 +34,7 @@ const TilbakekrevingVedtakPeriodeTabell: FunctionComponent<OwnProps> = ({
     <TableRow key={periode.periode.fom}>
       <TableColumn><Normaltekst><PeriodLabel dateStringFom={periode.periode.fom} dateStringTom={periode.periode.tom} /></Normaltekst></TableColumn>
       <TableColumn><Normaltekst>{formatCurrencyNoKr(periode.feilutbetaltBeløp)}</Normaltekst></TableColumn>
-      <TableColumn><Normaltekst>{getKodeverknavn(periode.vurdering)}</Normaltekst></TableColumn>
+      <TableColumn><Normaltekst>{getKodeverknavn(periode.vurdering, KodeverkType.AKTSOMHET)}</Normaltekst></TableColumn>
       <TableColumn>
         <Normaltekst>{periode.andelAvBeløp !== undefined && periode.andelAvBeløp !== null ? `${periode.andelAvBeløp}%` : ''}</Normaltekst>
       </TableColumn>

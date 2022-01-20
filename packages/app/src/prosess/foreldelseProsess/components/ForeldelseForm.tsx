@@ -32,11 +32,11 @@ const sortPeriods = (periode1: ForeldelsesresultatActivity, periode2: Foreldelse
 
 const getDate = (): string => moment().subtract(30, 'months').format(DDMMYYYY_DATE_FORMAT);
 const getApTekst = (aksjonspunkt: Aksjonspunkt): ReactElement[] => (aksjonspunkt
-  ? [<FormattedMessage id={`ForeldelseForm.AksjonspunktHelpText.${aksjonspunkt.definisjon.kode}`} key="vurderForeldelse" values={{ dato: getDate() }} />]
+  ? [<FormattedMessage id={`ForeldelseForm.AksjonspunktHelpText.${aksjonspunkt.definisjon}`} key="vurderForeldelse" values={{ dato: getDate() }} />]
   : []);
 
 const harApentAksjonspunkt = (periode: ForeldelsesresultatActivity): boolean => ((!periode.foreldelseVurderingType
-  || periode.foreldelseVurderingType.kode === foreldelseVurderingType.UDEFINERT)
+  || periode.foreldelseVurderingType === foreldelseVurderingType.UDEFINERT)
   && (!periode.begrunnelse || !!periode.erSplittet));
 
 const formaterPerioderForTidslinje = (perioder: ForeldelsesresultatActivity[] = []): TidslinjePeriode[] => perioder
@@ -68,7 +68,7 @@ export const lagForeldelsesresultatAktiviteter = (
 ): ForeldelsesresultatActivity[] => foreldelsePerioder.map((p) => ({
   ...p,
   feilutbetaling: p.belop,
-  foreldet: p.foreldelseVurderingType.kode === foreldelseVurderingType.UDEFINERT ? null : p.foreldelseVurderingType.kode,
+  foreldet: p.foreldelseVurderingType === foreldelseVurderingType.UDEFINERT ? null : p.foreldelseVurderingType,
   begrunnelse: decodeHtmlEntity(p.begrunnelse),
 }));
 
@@ -170,7 +170,7 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
   const merknaderFraBeslutter = alleMerknaderFraBeslutter[aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE];
 
   const perioderFormatertForTidslinje = formaterPerioderForTidslinje(foreldelseresultatAktiviteter);
-  const isApOpen = aksjonspunkt && aksjonspunkt.status.kode === aksjonspunktStatus.OPPRETTET;
+  const isApOpen = aksjonspunkt && aksjonspunkt.status === aksjonspunktStatus.OPPRETTET;
   const erAlleAksjonspunktLøst = perioderFormatertForTidslinje.every((p) => !p.isAksjonspunktOpen);
   const valgtPeriodeFormatertForTidslinje = valgtPeriode
     ? perioderFormatertForTidslinje.find((p) => p.fom === valgtPeriode.fom && p.tom === valgtPeriode.tom)

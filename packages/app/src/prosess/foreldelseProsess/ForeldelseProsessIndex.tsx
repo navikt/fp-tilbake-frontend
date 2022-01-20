@@ -37,7 +37,7 @@ const ForeldelseProsessIndex: FunctionComponent<OwnProps> = ({
   const { startRequest: beregnBelop } = restApiTilbakekrevingHooks.useRestApiRunner(TilbakekrevingBehandlingApiKeys.BEREGNE_BELØP);
 
   const aksjonspunkterForForeldelse = useMemo(() => (
-    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE === ap.definisjon.kode)),
+    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE === ap.definisjon)),
   [aksjonspunkter]);
 
   const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForForeldelse),

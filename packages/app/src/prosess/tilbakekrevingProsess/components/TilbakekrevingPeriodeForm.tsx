@@ -17,7 +17,7 @@ import {
 } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import {
-  FeilutbetalingPerioderWrapper, Kodeverk, KodeverkMedNavn, DetaljertFeilutbetalingPeriode, AlleKodeverkTilbakekreving,
+  FeilutbetalingPerioderWrapper, KodeverkMedNavn, DetaljertFeilutbetalingPeriode, AlleKodeverkTilbakekreving,
 } from '@fpsak-frontend/types';
 
 import sarligGrunn from '../kodeverk/sarligGrunn';
@@ -40,7 +40,7 @@ export type CustomPeriode = {
   fom: string;
   tom: string;
   erTotalBelopUnder4Rettsgebyr: boolean;
-  foreldelseVurderingType?: Kodeverk;
+  foreldelseVurderingType?: string;
   begrunnelse?: string;
   harMerEnnEnYtelse: boolean;
 } & DetaljertFeilutbetalingPeriode

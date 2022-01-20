@@ -19,14 +19,8 @@ import messages from '../../../i18n/nb_NO.json';
 const intl = createIntl(messages);
 
 const aksjonspunkter = [{
-  definisjon: {
-    kode: aksjonspunktCodes.AVKLAR_VERGE,
-    kodeverk: '',
-  },
-  status: {
-    kode: aksjonspunktStatus.OPPRETTET,
-    kodeverk: '',
-  },
+  definisjon: aksjonspunktCodes.AVKLAR_VERGE,
+  status: aksjonspunktStatus.OPPRETTET,
   begrunnelse: undefined,
   kanLoses: true,
   erAktivt: true,
@@ -53,10 +47,7 @@ const Template: Story<{
       <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
         <VergeFaktaIndex
           behandling={{
-            status: {
-              kode: behandlingStatus.BEHANDLING_UTREDES,
-              kodeverk: '',
-            },
+            status: behandlingStatus.BEHANDLING_UTREDES,
           } as Behandling}
           submitCallback={submitCallback}
           erReadOnlyFn={() => false}

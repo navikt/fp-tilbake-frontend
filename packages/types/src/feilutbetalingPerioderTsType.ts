@@ -1,10 +1,8 @@
-import { Kodeverk } from '@fpsak-frontend/types';
-
 export type FeilutbetalingPeriode = Readonly<{
   fom: string;
   tom: string;
   belop: number;
-  foreldelseVurderingType: Kodeverk;
+  foreldelseVurderingType: string;
   begrunnelse?: string;
   foreldelsesfrist?: Date;
   oppdagelsesDato?: Date;

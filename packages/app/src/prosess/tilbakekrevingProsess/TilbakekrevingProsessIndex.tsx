@@ -62,7 +62,7 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
   })), [setFormData]);
 
   const aksjonspunkterForTilbakekreving = useMemo(() => (aksjonspunkter
-    ? aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING === ap.definisjon.kode) : []),
+    ? aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING === ap.definisjon) : []),
   [aksjonspunkter]);
 
   const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForTilbakekreving),
@@ -84,7 +84,7 @@ const TilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
       readOnly={isReadOnly}
       navBrukerKjonn={navBrukerKjonn}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
-      alleKodeverk={alleKodeverk}
+      alleTilbakekrevingKodeverk={alleKodeverk}
       beregnBelop={beregnBelop}
       formData={formData[ProsessStegCode.TILBAKEKREVING]}
       setFormData={setFormDataTilbakekreving}

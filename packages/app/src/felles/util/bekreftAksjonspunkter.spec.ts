@@ -1,4 +1,4 @@
-import { Behandling, Fagsak } from '@fpsak-frontend/types';
+import { Behandling } from '@fpsak-frontend/types';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { AvklarVergeAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
@@ -6,23 +6,18 @@ import { AvklarVergeAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import getBekreftAksjonspunktCallback from './bekreftAksjonspunkter';
 
 describe('<bekreftAksjonspunkter>', () => {
-  const fagsak = {
-    saksnummer: '1234',
-  } as Fagsak;
+  const saksnummer = '1234';
   const behandling = {
     uuid: '1',
     versjon: 2,
-    status: {
-      kode: behandlingStatus.OPPRETTET,
-      kodeverk: '',
-    },
+    status: behandlingStatus.OPPRETTET,
     behandlingPaaVent: false,
   } as Behandling;
 
   it('skal lagre aksjonspunkter', async () => {
     const oppdaterProsessStegOgFaktaPanelIUrl = jest.fn(() => Promise.resolve());
     const lagreAksjonspunkter = jest.fn(() => Promise.resolve());
-    const callback = getBekreftAksjonspunktCallback(fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
+    const callback = getBekreftAksjonspunktCallback(saksnummer, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter);
     const lagreAp = callback();
 
     const aksjonspunktModell = {

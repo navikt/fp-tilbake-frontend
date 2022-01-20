@@ -129,7 +129,7 @@ const settOppPeriodeDataForDetailForm = (
   return perioderFormState.map((periodeFormState: CustomVilkarsVurdertePeriode) => {
     const periode = finnOriginalPeriode(periodeFormState, perioder.perioder) as CustomPeriode; // NOSONAR
     const erForeldet = periode.foreldelseVurderingType
-      ? periode.foreldelseVurderingType.kode === foreldelseVurderingType.FORELDET : periode.foreldet;
+      ? periode.foreldelseVurderingType === foreldelseVurderingType.FORELDET : periode.foreldet;
     return {
       redusertBeloper: periode.redusertBeloper,
       ytelser: periode.ytelser,
@@ -192,7 +192,7 @@ const validerOm6LeddBrukesPåAllePerioder = (
 
 interface OwnProps {
   perioderForeldelse: FeilutbetalingPerioderWrapper;
-  alleKodeverk: AlleKodeverkTilbakekreving;
+  alleTilbakekrevingKodeverk: AlleKodeverkTilbakekreving;
   submitCallback: (aksjonspunktData: VilkarsVurderingAp) => Promise<void>;
   readOnly: boolean;
   alleMerknaderFraBeslutter: { [key: string] : { notAccepted?: boolean }};
@@ -213,7 +213,7 @@ interface OwnProps {
  */
 const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
   perioderForeldelse,
-  alleKodeverk,
+  alleTilbakekrevingKodeverk,
   submitCallback,
   readOnly,
   alleMerknaderFraBeslutter,
@@ -247,7 +247,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
 
   const lagrePerioder = useCallback(() => {
     setSubmitting(true);
-    submitCallback(transformValues(vilkårsvurdertePerioder, alleKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN]));
+    submitCallback(transformValues(vilkårsvurdertePerioder, alleTilbakekrevingKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN]));
   }, [vilkårsvurdertePerioder]);
 
   const perioderFormatertForTidslinje = formaterPerioderForTidslinje(vilkårsvurdertePerioder, dataForDetailForm);
@@ -343,6 +343,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
                 readOnly={isReadOnly}
                 behandlingUuid={behandlingUuid}
                 beregnBelop={beregnBelop}
+                alleTilbakekrevingKodeverk={alleTilbakekrevingKodeverk}
               />
               <VerticalSpacer twentyPx />
               <TilbakekrevingPeriodeForm
@@ -353,7 +354,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
                 readOnly={isReadOnly}
                 skjulPeriode={togglePeriode}
                 oppdaterPeriode={oppdaterPeriode}
-                alleKodeverk={alleKodeverk}
+                alleKodeverk={alleTilbakekrevingKodeverk}
                 vilkarsVurdertePerioder={vilkårsvurdertePerioder}
               />
             </div>

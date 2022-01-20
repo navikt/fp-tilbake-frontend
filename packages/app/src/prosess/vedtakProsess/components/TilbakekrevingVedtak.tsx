@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Undertittel, Undertekst, Normaltekst } from 'nav-frontend-typografi';
 
-import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import { getKodeverknavnFn } from '@fpsak-frontend/utils';
 import {
-  BeregningResultatPeriode, Kodeverk, VedtaksbrevAvsnitt, AlleKodeverkTilbakekreving,
+  BeregningResultatPeriode, VedtaksbrevAvsnitt, AlleKodeverkTilbakekreving,
 } from '@fpsak-frontend/types';
 import { ForeslaVedtakTilbakekrevingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
@@ -16,7 +16,7 @@ import TilbakekrevingVedtakForm, { ForhandsvisData } from './TilbakekrevingVedta
 interface OwnProps {
   submitCallback: (aksjonspunktData: ForeslaVedtakTilbakekrevingAp) => Promise<void>;
   readOnly: boolean;
-  resultat: Kodeverk;
+  resultat: string;
   perioder: BeregningResultatPeriode[];
   alleKodeverk: AlleKodeverkTilbakekreving;
   behandlingUuid: string;
@@ -42,7 +42,7 @@ const TilbakekrevingVedtak: FunctionComponent<OwnProps> = ({
   formData,
   setFormData,
 }) => {
-  const getKodeverknavn = getKodeverknavnFn(alleKodeverk, kodeverkTyper);
+  const getKodeverknavn = getKodeverknavnFn(alleKodeverk);
   return (
     <>
       <Undertittel>
@@ -53,7 +53,7 @@ const TilbakekrevingVedtak: FunctionComponent<OwnProps> = ({
         <FormattedMessage id="TilbakekrevingVedtak.Resultat" />
       </Undertekst>
       <Normaltekst>
-        {getKodeverknavn(resultat)}
+        {getKodeverknavn(resultat, KodeverkType.VEDTAK_RESULTAT_TYPE)}
       </Normaltekst>
       <VerticalSpacer sixteenPx />
       <TilbakekrevingVedtakPeriodeTabell perioder={perioder} getKodeverknavn={getKodeverknavn} />

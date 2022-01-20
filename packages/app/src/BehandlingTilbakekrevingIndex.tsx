@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import { RawIntlProvider } from 'react-intl';
 
 import { LoadingPanel } from '@fpsak-frontend/shared-components';
-import { Kodeverk, StandardBehandlingProps } from '@fpsak-frontend/types';
+import { StandardBehandlingProps } from '@fpsak-frontend/types';
 import { createIntl } from '@fpsak-frontend/utils';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
@@ -16,7 +16,10 @@ import messages from '../i18n/nb_NO.json';
 const intl = createIntl(messages);
 
 interface OwnProps {
-  fagsakKjønn: Kodeverk;
+  fagsakKjønn: {
+    kode: string;
+    kodeverk: string;
+  } | string;
   harApenRevurdering: boolean;
 }
 
@@ -56,8 +59,8 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
   }, [valgtFaktaSteg]);
 
   const bekreftAksjonspunkterMedSideeffekter = useCallback(getBekreftAksjonspunktCallback(
-    fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter,
-  ), [fagsak, behandling, oppdaterProsessStegOgFaktaPanelIUrl]);
+    fagsak.saksnummer, behandling, oppdaterProsessStegOgFaktaPanelIUrl, lagreAksjonspunkter,
+  ), [fagsak.saksnummer, behandling, oppdaterProsessStegOgFaktaPanelIUrl]);
 
   const { data: tilbakekrevingKodeverk } = restApiTilbakekrevingHooks.useRestApi(TilbakekrevingBehandlingApiKeys.TILBAKE_KODEVERK);
 
@@ -74,7 +77,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
       />
       <ProsessIndex
         behandling={behandling}
-        fagsakKjønn={fagsakKjønn}
+        fagsakKjønn={typeof fagsakKjønn === 'string' ? fagsakKjønn : fagsakKjønn.kode}
         tilbakekrevingKodeverk={tilbakekrevingKodeverk}
         valgtProsessSteg={valgtProsessSteg}
         oppdaterProsessPanelIUrl={oppdaterProsessPanelIUrl}
@@ -86,7 +89,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         toggleOppdatereFagsakContext={toggleOppdateringAvFagsakOgBehandling}
       />
       <FaktaIndex
-        fagsak={fagsak}
+        fagsakYtelseTypeKode={typeof fagsak.fagsakYtelseType === 'string' ? fagsak.fagsakYtelseType : fagsak.fagsakYtelseType?.kode}
         behandling={behandling}
         tilbakekrevingKodeverk={tilbakekrevingKodeverk}
         fpsakKodeverk={fpsakKodeverk}

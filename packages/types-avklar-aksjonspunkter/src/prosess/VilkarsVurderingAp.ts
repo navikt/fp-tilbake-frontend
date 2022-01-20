@@ -1,10 +1,9 @@
 import AksjonspunktCodeTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import { Kodeverk } from '@fpsak-frontend/types';
 
 import AksjonspunktTilBekreftelse from '../AksjonspunktTilBekreftelse';
 
 type VilkårResultatAktsomhet = {
-  sarligGrunner: Kodeverk[];
+  sarligGrunner: string[];
   harGrunnerTilReduksjon?: number;
   andelTilbakekreves?: number;
   ileggRenter?: boolean;
@@ -15,7 +14,7 @@ type VilkårResultatAktsomhet = {
 }
 
 type VilkårResultatAnnet = {
-  aktsomhet: Kodeverk;
+  aktsomhet: string;
   aktsomhetInfo: VilkårResultatAktsomhet;
 }
 
@@ -28,7 +27,7 @@ type VilkarsVurderingAp = {
   vilkarsVurdertePerioder: {
     fom: string;
     tom: string;
-    vilkarResultat: Kodeverk | string;
+    vilkarResultat: string;
     begrunnelse?: string;
     vilkarResultatInfo: {
       begrunnelse?: string;

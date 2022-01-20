@@ -21,7 +21,7 @@ type FormValues = RegistrereFormValues & {
 
 const buildInitialValues = (verge: Verge, aksjonspunkter: Aksjonspunkt[]): FormValues => ({
   begrunnelse: FaktaBegrunnelseTextField.buildInitialValues(aksjonspunkter
-    .filter((ap) => ap.definisjon.kode === aksjonspunktCodes.AVKLAR_VERGE)[0]).begrunnelse,
+    .filter((ap) => ap.definisjon === aksjonspunktCodes.AVKLAR_VERGE)[0]).begrunnelse,
   ...RegistrereVergeFaktaForm.buildInitialValues(verge || {}),
 });
 

@@ -5,7 +5,6 @@ import { RawIntlProvider } from 'react-intl';
 
 import { createIntl } from '@fpsak-frontend/utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
-import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import fagsakYtelseType from '@fpsak-frontend/kodeverk/src/fagsakYtelseType';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import konsekvensForYtelsen from '@fpsak-frontend/kodeverk/src/konsekvensForYtelsen';
@@ -14,8 +13,9 @@ import tilbakekrevingVidereBehandling from '@fpsak-frontend/kodeverk/src/tilbake
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
+import { alleTilbakekrevingKodeverk, alleKodeverk } from '@fpsak-frontend/storybook-utils';
 import {
-  FeilutbetalingFakta, FeilutbetalingAarsak, AlleKodeverkTilbakekreving, AlleKodeverk, Behandling,
+  FeilutbetalingFakta, FeilutbetalingAarsak, AlleKodeverkTilbakekreving, Behandling,
 } from '@fpsak-frontend/types';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
@@ -24,11 +24,6 @@ import FeilutbetalingFaktaIndex from './FeilutbetalingFaktaIndex';
 import messages from '../../../i18n/nb_NO.json';
 
 const intl = createIntl(messages);
-
-const BEHANDLING_AARSAK_KODEVERK = 'BEHANDLING_AARSAK';
-const TILBAKEKR_VIDERE_BEH_KODEVERK = 'TILBAKEKR_VIDERE_BEH';
-const BEHANDLING_RESULTAT_TYPE_KODEVERK = 'BEHANDLING_RESULTAT_TYPE';
-const KONSEKVENS_FOR_YTELSEN_KODEVERK = 'KONSEKVENS_FOR_YTELSEN';
 
 const feilutbetalingFakta = {
   behandlingFakta: {
@@ -50,99 +45,35 @@ const feilutbetalingFakta = {
     aktuellFeilUtbetaltBeløp: 10000,
     tidligereVarseltBeløp: 5000,
     behandlingÅrsaker: [{
-      behandlingArsakType: {
-        kode: behandlingArsakType.FEIL_I_LOVANDVENDELSE,
-        kodeverk: BEHANDLING_AARSAK_KODEVERK,
-      },
+      behandlingArsakType: behandlingArsakType.FEIL_I_LOVANDVENDELSE,
     }],
     behandlingsresultat: {
-      type: {
-        kode: behandlingResultatType.INNVILGET,
-        kodeverk: BEHANDLING_RESULTAT_TYPE_KODEVERK,
-      },
-      konsekvenserForYtelsen: [{
-        kode: konsekvensForYtelsen.FORELDREPENGER_OPPHØRER,
-        kodeverk: KONSEKVENS_FOR_YTELSEN_KODEVERK,
-      }, {
-        kode: konsekvensForYtelsen.ENDRING_I_BEREGNING,
-        kodeverk: KONSEKVENS_FOR_YTELSEN_KODEVERK,
-      }],
+      type: behandlingResultatType.INNVILGET,
+      konsekvenserForYtelsen: [konsekvensForYtelsen.FORELDREPENGER_OPPHØRER, konsekvensForYtelsen.ENDRING_I_BEREGNING],
     },
     tilbakekrevingValg: {
-      videreBehandling: {
-        kode: tilbakekrevingVidereBehandling.TILBAKEKR_INNTREKK,
-        kodeverk: TILBAKEKR_VIDERE_BEH_KODEVERK,
-      },
+      videreBehandling: tilbakekrevingVidereBehandling.TILBAKEKR_INNTREKK,
     },
     datoForRevurderingsvedtak: '2019-01-01',
   },
 };
 
 const feilutbetalingAarsak = [{
-  ytelseType: {
-    kode: fagsakYtelseType.FORELDREPENGER,
-  },
+  ytelseType: fagsakYtelseType.FORELDREPENGER,
   hendelseTyper: [{
-    hendelseType: {
-      kode: 'OPPTJENING',
-      navn: '§14-6 Opptjening',
-    },
+    hendelseType: 'MEDLEMSKAP',
     hendelseUndertyper: [],
   }, {
-    hendelseType: {
-      kode: 'ANNET',
-      navn: 'Annet',
-    },
-    hendelseUndertyper: [{
-      kode: 'TEST1',
-      navn: 'Årsak 1',
-    }, {
-      kode: 'TEST2',
-      navn: 'Årsak 2',
-    }],
+    hendelseType: 'OKONOMI_FEIL',
+    hendelseUndertyper: ['OKONOMI_FEIL_TREKK'],
   }, {
-    hendelseType: {
-      kode: 'MEDLEM',
-      navn: '§14-2 Medlemskap',
-    },
-    hendelseUndertyper: [{
-      kode: 'IKKE_EØS',
-      navn: 'Ikke oppholdsrett EØS',
-    }, {
-      kode: 'IKKE_BOSATT',
-      navn: 'Ikke bosatt',
-    }],
+    hendelseType: 'BEREGNING_TYPE',
+    hendelseUndertyper: ['IKKE_BOSATT'],
   }],
 }] as FeilutbetalingAarsak[];
 
-const alleKodeverk = {} as AlleKodeverkTilbakekreving;
-
-const fpSakAlleKodeverk = {
-  [kodeverkTyper.BEHANDLING_AARSAK]: [{
-    kode: behandlingArsakType.FEIL_I_LOVANDVENDELSE,
-    navn: 'Feil i lovanvendelse',
-    kodeverk: BEHANDLING_AARSAK_KODEVERK,
-  }],
-  [kodeverkTyper.TILBAKEKR_VIDERE_BEH]: [{
-    kode: tilbakekrevingVidereBehandling.TILBAKEKR_INNTREKK,
-    navn: 'Tilbakekreving inntrekk',
-    kodeverk: TILBAKEKR_VIDERE_BEH_KODEVERK,
-  }],
-  [kodeverkTyper.BEHANDLING_RESULTAT_TYPE]: [{
-    kode: behandlingResultatType.INNVILGET,
-    navn: 'Innvilget',
-    kodeverk: BEHANDLING_RESULTAT_TYPE_KODEVERK,
-  }],
-  [kodeverkTyper.KONSEKVENS_FOR_YTELSEN]: [{
-    kode: konsekvensForYtelsen.FORELDREPENGER_OPPHØRER,
-    navn: 'Foreldrepenger opphører',
-    kodeverk: KONSEKVENS_FOR_YTELSEN_KODEVERK,
-  }, {
-    kode: konsekvensForYtelsen.ENDRING_I_BEREGNING,
-    navn: 'Endring i beregning',
-    kodeverk: KONSEKVENS_FOR_YTELSEN_KODEVERK,
-  }],
-} as AlleKodeverk;
+const fpTilbakekrevingAlleKodeverk = alleTilbakekrevingKodeverk as AlleKodeverkTilbakekreving;
+const fpSakAlleKodeverk = alleKodeverk as any;
 
 export default {
   title: 'fakta/fakta-feilutbetaling',
@@ -163,10 +94,7 @@ const Template: Story<{
       <RestApiMock data={data} requestApi={requestTilbakekrevingApi}>
         <FeilutbetalingFaktaIndex
           behandling={{
-            status: {
-              kode: behandlingStatus.BEHANDLING_UTREDES,
-              kodeverk: '',
-            },
+            status: behandlingStatus.BEHANDLING_UTREDES,
           } as Behandling}
           submitCallback={submitCallback}
           erReadOnlyFn={() => false}
@@ -174,19 +102,13 @@ const Template: Story<{
           formData={{}}
           feilutbetalingFakta={feilutbetalingFakta as FeilutbetalingFakta}
           aksjonspunkter={[{
-            definisjon: {
-              kode: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
-              kodeverk: '',
-            },
-            status: {
-              kode: aksjonspunktStatus.OPPRETTET,
-              kodeverk: '',
-            },
+            definisjon: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
+            status: aksjonspunktStatus.OPPRETTET,
             begrunnelse: undefined,
             kanLoses: true,
             erAktivt: true,
           }]}
-          alleKodeverk={alleKodeverk}
+          alleKodeverk={fpTilbakekrevingAlleKodeverk}
           fpsakKodeverk={fpSakAlleKodeverk}
           fagsakYtelseTypeKode={fagsakYtelseType.FORELDREPENGER}
         />
