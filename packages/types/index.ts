@@ -2,7 +2,6 @@ export type { default as Aksjonspunkt } from './src/aksjonspunktTsType';
 export type { default as Behandling } from './src/behandlingTsType';
 export type { default as BehandlingAppKontekst, BehandlingÅrsak } from './src/behandlingAppKontekstTsType';
 export type { default as Behandlingsresultat } from './src/behandlingsresultatTsType';
-export type { default as Kodeverk } from './src/kodeverkTsType';
 export type { default as KodeverkMedNavn } from './src/kodeverkMedNavnTsType';
 export type { default as AlleKodeverk } from './src/kodeverkAlleTsType';
 export type { default as AlleKodeverkTilbakekreving } from './src/kodeverkAlleTilbakekrevingTsType';

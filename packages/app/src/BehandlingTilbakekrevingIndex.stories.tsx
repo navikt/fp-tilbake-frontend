@@ -32,14 +32,8 @@ const KONSEKVENS_FOR_YTELSEN_KODEVERK = 'KONSEKVENS_FOR_YTELSEN';
 const defaultBehandling = {
   uuid: 'test-uuid',
   versjon: 1,
-  status: {
-    kode: behandlingStatus.OPPRETTET,
-    kodeverk: '',
-  },
-  type: {
-    kode: behandlingType.TILBAKEKREVING,
-    kodeverk: '',
-  },
+  status: behandlingStatus.OPPRETTET,
+  type: behandlingType.TILBAKEKREVING,
   behandlingPaaVent: false,
   links: [{
     href: TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD.name,
@@ -70,38 +64,20 @@ const defaultBehandling = {
 } as Behandling;
 
 const faktaAksjonspunkter = [{
-  definisjon: {
-    kode: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
-    kodeverk: '',
-  },
-  status: {
-    kode: aksjonspunktStatus.OPPRETTET,
-    kodeverk: '',
-  },
+  definisjon: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
+  status: aksjonspunktStatus.OPPRETTET,
   kanLoses: true,
 }, {
-  definisjon: {
-    kode: aksjonspunktCodes.AVKLAR_VERGE,
-    kodeverk: '',
-  },
-  status: {
-    kode: aksjonspunktStatus.UTFORT,
-    kodeverk: '',
-  },
+  definisjon: aksjonspunktCodes.AVKLAR_VERGE,
+  status: aksjonspunktStatus.UTFORT,
   begrunnelse: 'Dette er en begrunnelse',
   kanLoses: true,
   erAktivt: false,
 }] as Aksjonspunkt[];
 
 const prosessAksjonspunkter = [{
-  definisjon: {
-    kode: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
-    kodeverk: '',
-  },
-  status: {
-    kode: aksjonspunktStatus.OPPRETTET,
-    kodeverk: '',
-  },
+  definisjon: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
+  status: aksjonspunktStatus.OPPRETTET,
   kanLoses: true,
   erAktivt: true,
 }] as Aksjonspunkt[];
@@ -155,39 +131,16 @@ const feilutbetalingFakta = {
 };
 
 const feilutbetalingAarsak = [{
-  ytelseType: {
-    kode: fagsakYtelseType.FORELDREPENGER,
-  },
+  ytelseType: fagsakYtelseType.FORELDREPENGER,
   hendelseTyper: [{
-    hendelseType: {
-      kode: 'OPPTJENING',
-      navn: '§14-6 Opptjening',
-    },
+    hendelseType: 'OPPTJENING',
     hendelseUndertyper: [],
   }, {
-    hendelseType: {
-      kode: 'ANNET',
-      navn: 'Annet',
-    },
-    hendelseUndertyper: [{
-      kode: 'TEST1',
-      navn: 'Årsak 1',
-    }, {
-      kode: 'TEST2',
-      navn: 'Årsak 2',
-    }],
+    hendelseType: 'ANNET',
+    hendelseUndertyper: ['TEST1', 'TEST2'],
   }, {
-    hendelseType: {
-      kode: 'MEDLEM',
-      navn: '§14-2 Medlemskap',
-    },
-    hendelseUndertyper: [{
-      kode: 'IKKE_EØS',
-      navn: 'Ikke oppholdsrett EØS',
-    }, {
-      kode: 'IKKE_BOSATT',
-      navn: 'Ikke bosatt',
-    }],
+    hendelseType: 'MEDLEM',
+    hendelseUndertyper: ['IKKE_EØS', 'IKKE_BOSATT'],
   }],
 }];
 
@@ -197,38 +150,26 @@ const perioderForeldelse = {
     tom: '2019-01-31',
     belop: 1000,
     begrunnelse: 'Foreldet',
-    foreldelseVurderingType: {
-      kode: foreldelseVurderingType.FORELDET,
-      kodeverk: 'FORELDELSE_VURDERING',
-    },
+    foreldelseVurderingType: foreldelseVurderingType.FORELDET,
     foreldelsesfrist: '2020-04-01',
   }, {
     fom: '2019-03-01',
     tom: '2019-03-31',
     belop: 3000,
-    foreldelseVurderingType: {
-      kode: foreldelseVurderingType.UDEFINERT,
-      kodeverk: 'FORELDELSE_VURDERING',
-    },
+    foreldelseVurderingType: foreldelseVurderingType.UDEFINERT,
   }, {
     fom: '2019-02-01',
     tom: '2019-02-28',
     belop: 3000,
     begrunnelse: 'Over foreldelsesfrist, med tillegsfrist brukes',
-    foreldelseVurderingType: {
-      kode: foreldelseVurderingType.TILLEGGSFRIST,
-      kodeverk: 'FORELDELSE_VURDERING',
-    },
+    foreldelseVurderingType: foreldelseVurderingType.TILLEGGSFRIST,
     foreldelsesfrist: '2020-04-01',
     oppdagelsesDato: '2019-11-01',
   }, {
     fom: '2019-04-01',
     tom: '2019-04-30',
     belop: 4000,
-    foreldelseVurderingType: {
-      kode: foreldelseVurderingType.UDEFINERT,
-      kodeverk: 'FORELDELSE_VURDERING',
-    },
+    foreldelseVurderingType: foreldelseVurderingType.UDEFINERT,
   }],
 } as FeilutbetalingPerioderWrapper;
 
@@ -236,10 +177,7 @@ const verge = {
   navn: 'Espen Utvikler',
   gyldigFom: '2021-01-01',
   fnr: '23232323',
-  vergeType: {
-    kode: VergeType.BARN,
-    kodeverk: '',
-  },
+  vergeType: VergeType.BARN,
 } as Verge;
 
 const tilbakeKodeverk = {
@@ -300,19 +238,10 @@ const Template: Story<{
         behandlingUuid="12"
         fagsak={{
           dekningsgrad: 100,
-          fagsakYtelseType: {
-            kode: 'FP',
-            kodeverk: 'FAGSAK_YTELSE',
-          },
-          relasjonsRolleType: {
-            kode: 'MORA',
-            kodeverk: 'RELASJONSROLLE_TYPE',
-          },
+          fagsakYtelseType: 'FP',
+          relasjonsRolleType: 'MORA',
           saksnummer: '152001002',
-          status: {
-            kode: 'LOP',
-            kodeverk: 'FAGSAK_STATUS',
-          },
+          status: 'LOP',
         }}
         rettigheter={{
           kanOverstyreAccess: {
@@ -333,10 +262,7 @@ const Template: Story<{
         setRequestPendingMessage={() => undefined}
         // @ts-ignore
         kodeverk={alleKodeverk}
-        fagsakKjønn={{
-          kode: 'K',
-          kodeverk: 'KJONN',
-        }}
+        fagsakKjønn="K"
         harApenRevurdering={false}
       />
     </RestApiMock>
@@ -360,16 +286,10 @@ HenlagtBehandling.args = {
   behandling: {
     ...defaultBehandling,
     behandlingHenlagt: true,
-    status: {
-      kode: behandlingStatus.AVSLUTTET,
-      kodeverk: '',
-    },
+    status: behandlingStatus.AVSLUTTET,
   },
   aksjonspunkter: [{
     ...prosessAksjonspunkter[0],
-    status: {
-      kode: aksjonspunktStatus.UTFORT,
-      kodeverk: '',
-    },
+    status: aksjonspunktStatus.UTFORT,
   }],
 };

@@ -5,8 +5,8 @@ import { RawIntlProvider } from 'react-intl';
 
 import { createIntl } from '@fpsak-frontend/utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
-import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import vedtakResultatType from '@fpsak-frontend/kodeverk/src/vedtakResultatType';
+import { alleTilbakekrevingKodeverk } from '@fpsak-frontend/storybook-utils';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import { AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving } from '@fpsak-frontend/types';
 import aktsomhet from './kodeverk/aktsomhet';
@@ -128,10 +128,7 @@ const beregningsresultat = {
       tom: '2019-01-01',
     },
     feilutbetaltBeløp: 10000,
-    vurdering: {
-      kode: aktsomhet.FORSETT,
-      kodeverk: 'AKTSOMHET',
-    },
+    vurdering: aktsomhet.FORSETT,
     andelAvBeløp: 50,
     renterProsent: 0,
     tilbakekrevingBeløp: 5000,
@@ -142,28 +139,16 @@ const beregningsresultat = {
       tom: '2019-01-01',
     },
     feilutbetaltBeløp: 1000,
-    vurdering: {
-      kode: aktsomhet.FORSETT,
-      kodeverk: 'AKTSOMHET',
-    },
+    vurdering: aktsomhet.FORSETT,
     andelAvBeløp: 50,
     renterProsent: 80,
     tilbakekrevingBeløp: 500,
     tilbakekrevingBeløpEtterSkatt: 400,
   }],
-  vedtakResultatType: {
-    kode: vedtakResultatType.DELVIS_TILBAKEBETALING,
-    kodeverk: 'VEDTAK_RESULTAT_TYPE',
-  },
+  vedtakResultatType: vedtakResultatType.DELVIS_TILBAKEBETALING,
 } as BeregningsresultatTilbakekreving;
 
-const alleKodeverk = {
-  [kodeverkTyper.AKTSOMHET]: [{
-    kode: aktsomhet.FORSETT,
-    navn: 'Forsett',
-    kodeverk: 'AKTSOMHET',
-  }],
-} as AlleKodeverkTilbakekreving;
+const alleKodeverk = alleTilbakekrevingKodeverk as AlleKodeverkTilbakekreving;
 
 export default {
   title: 'prosess/prosess-vedtak-tilbakekreving',
@@ -187,10 +172,7 @@ const Template: Story<{
           behandling={{
             uuid: '1',
             versjon: 1,
-            status: {
-              kode: behandlingStatus.BEHANDLING_UTREDES,
-              kodeverk: '',
-            },
+            status: behandlingStatus.BEHANDLING_UTREDES,
           } as Behandling}
           alleKodeverk={alleKodeverk}
           bekreftAksjonspunkterMedSideeffekter={bekreftAksjonspunkterMedSideeffekter}

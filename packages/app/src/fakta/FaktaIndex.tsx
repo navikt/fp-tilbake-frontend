@@ -10,7 +10,7 @@ import {
   FlexColumn, FlexContainer, FlexRow, LoadingPanel,
 } from '@fpsak-frontend/shared-components';
 import {
-  Aksjonspunkt, FeilutbetalingFakta, AlleKodeverkTilbakekreving, Fagsak, Behandling, AlleKodeverk, AksessRettigheter,
+  Aksjonspunkt, FeilutbetalingFakta, AlleKodeverkTilbakekreving, Behandling, AlleKodeverk, AksessRettigheter,
 } from '@fpsak-frontend/types';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
@@ -31,7 +31,7 @@ const EMPTY_FORM_DATA = {};
 const hentAksjonspunkterFor = (
   aksjonspunktKode: string,
   aksjonspunkter?: Aksjonspunkt[],
-): Aksjonspunkt[] => (aksjonspunkter ? aksjonspunkter.filter((ap) => aksjonspunktKode === ap.definisjon.kode) : []);
+): Aksjonspunkt[] => (aksjonspunkter ? aksjonspunkter.filter((ap) => aksjonspunktKode === ap.definisjon) : []);
 
 const leggTilFaktaPanel = (
   faktaPanelKode: string,
@@ -39,7 +39,7 @@ const leggTilFaktaPanel = (
   aksjonspunkter: Aksjonspunkt[],
   valgtFaktaSteg?: string,
 ): MenyData => {
-  const harApneAksjonspunkter = aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
+  const harApneAksjonspunkter = aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status) && ap.kanLoses);
   const erAktiv = valgtFaktaSteg === faktaPanelKode || (harApneAksjonspunkter && valgtFaktaSteg === DEFAULT_PANEL_VALGT);
   return {
     id: faktaPanelKode,
@@ -62,7 +62,7 @@ const utledFaktaPaneler = (
       hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING, initData?.aksjonspunkter),
       valgtFaktaSteg));
   }
-  if (initData?.aksjonspunkter?.some((ap) => ap.definisjon.kode === aksjonspunktCodes.AVKLAR_VERGE)) {
+  if (initData?.aksjonspunkter?.some((ap) => ap.definisjon === aksjonspunktCodes.AVKLAR_VERGE)) {
     faktaPanelData.push(leggTilFaktaPanel(
       FaktaPanelCode.VERGE,
       intl.formatMessage({ id: 'RegistrereVergeInfoPanel.Info' }),
@@ -85,7 +85,7 @@ type EndepunktInitData = {
 
 interface OwnProps {
   behandling: Behandling;
-  fagsak: Fagsak;
+  fagsakYtelseTypeKode: string;
   tilbakekrevingKodeverk: AlleKodeverkTilbakekreving;
   fpsakKodeverk: AlleKodeverk;
   valgtFaktaSteg?: string;
@@ -99,7 +99,7 @@ interface OwnProps {
 
 const FaktaIndex: FunctionComponent<OwnProps> = ({
   behandling,
-  fagsak,
+  fagsakYtelseTypeKode,
   tilbakekrevingKodeverk,
   fpsakKodeverk,
   valgtFaktaSteg,
@@ -153,7 +153,7 @@ const FaktaIndex: FunctionComponent<OwnProps> = ({
               <>
                 {erFaktaPanelAktivt(faktaPanelerData, FaktaPanelCode.FEILUTBETALING) && (
                   <FeilutbetalingFaktaIndex
-                    fagsakYtelseTypeKode={fagsak.fagsakYtelseType.kode}
+                    fagsakYtelseTypeKode={fagsakYtelseTypeKode}
                     behandling={behandling}
                     fpsakKodeverk={fpsakKodeverk}
                     alleKodeverk={tilbakekrevingKodeverk}

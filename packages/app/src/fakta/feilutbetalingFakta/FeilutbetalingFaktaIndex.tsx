@@ -40,7 +40,7 @@ const FeilutbetalingFaktaIndex: FunctionComponent<OwnProps> = ({
   setFormData,
 }) => {
   const aksjonspunkterForFeilutbetalingFakta = useMemo(() => (
-    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING === ap.definisjon.kode)),
+    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING === ap.definisjon)),
   [aksjonspunkter]);
 
   const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForFeilutbetalingFakta),
@@ -61,13 +61,13 @@ const FeilutbetalingFaktaIndex: FunctionComponent<OwnProps> = ({
   return (
     <FeilutbetalingInfoPanel
       feilutbetalingFakta={feilutbetalingFakta}
-      feilutbetalingAarsak={feilutbetalingAarsak.find((a) => a.ytelseType.kode === fagsakYtelseTypeKode)}
+      feilutbetalingAarsak={feilutbetalingAarsak.find((a) => a.ytelseType === fagsakYtelseTypeKode)}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
       alleKodeverk={alleKodeverk}
       fpsakKodeverk={fpsakKodeverk}
       submitCallback={submitCallback}
       readOnly={readOnly}
-      hasOpenAksjonspunkter={aksjonspunkterForFeilutbetalingFakta.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses)}
+      hasOpenAksjonspunkter={aksjonspunkterForFeilutbetalingFakta.some((ap) => isAksjonspunktOpen(ap.status) && ap.kanLoses)}
       formData={formData[FaktaPanelCode.FEILUTBETALING]}
       setFormData={setFormDataFeilutbetaling}
     />

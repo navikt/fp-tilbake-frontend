@@ -4,7 +4,7 @@ import { Undertekst } from 'nav-frontend-typografi';
 
 import { decodeHtmlEntity, removeSpacesFromNumber, required } from '@fpsak-frontend/utils';
 import { RadioGroupPanel } from '@fpsak-frontend/form-hooks';
-import { Kodeverk, KodeverkMedNavn, AktsomhetInfo } from '@fpsak-frontend/types';
+import { KodeverkMedNavn, AktsomhetInfo } from '@fpsak-frontend/types';
 
 import Aktsomhet from '../../../kodeverk/aktsomhet';
 import AktsomhetGradFormPanel from './AktsomhetGradFormPanel';
@@ -64,7 +64,7 @@ interface OwnProps {
 }
 
 interface StaticFunctions {
-  buildInitalValues?: (vilkarResultatInfo: { aktsomhet: Kodeverk | any; aktsomhetInfo?: AktsomhetInfo }) => InitialValuesAktsomhetForm,
+  buildInitalValues?: (vilkarResultatInfo: { aktsomhet: string | any; aktsomhetInfo?: AktsomhetInfo }) => InitialValuesAktsomhetForm,
   transformValues?: (info: { handletUaktsomhetGrad: string }, sarligGrunnTyper: KodeverkMedNavn[], vurderingBegrunnelse: string) =>
     TransformedValuesAktsomhetForm,
 }
@@ -173,7 +173,7 @@ const lagAktsomhetData = (aktsomhetInfo: AktsomhetInfo, andelSomTilbakekreves: s
   ...(aktsomhetInfo.sarligGrunner ? aktsomhetInfo.sarligGrunner.reduce((acc: any, sg: any) => ({ ...acc, [(sg.kode ? sg.kode : sg)]: true }), {}) : {}),
 });
 
-AktsomhetFormPanel.buildInitalValues = (vilkarResultatInfo: { aktsomhet: Kodeverk | any; aktsomhetInfo?: AktsomhetInfo }): InitialValuesAktsomhetForm => {
+AktsomhetFormPanel.buildInitalValues = (vilkarResultatInfo: { aktsomhet: string | any; aktsomhetInfo?: AktsomhetInfo }): InitialValuesAktsomhetForm => {
   const { aktsomhet, aktsomhetInfo } = vilkarResultatInfo;
   const andelSomTilbakekreves = aktsomhetInfo && aktsomhetInfo.andelTilbakekreves !== undefined ? `${aktsomhetInfo.andelTilbakekreves}` : undefined;
   const aktsomhetData = aktsomhetInfo ? {

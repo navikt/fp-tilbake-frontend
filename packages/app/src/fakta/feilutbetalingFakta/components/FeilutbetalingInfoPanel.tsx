@@ -8,7 +8,7 @@ import {
 } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
-import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import { TextArea, Checkbox, Form } from '@fpsak-frontend/form-hooks';
 import { VerticalSpacer, AksjonspunktHelpTextTemp, FaktaGruppe } from '@fpsak-frontend/shared-components';
@@ -59,9 +59,9 @@ const buildInitialValues = (feilutbetalingFakta: FeilutbetalingFakta): FormValue
 
         return {
           ...period,
-          årsak: hendelseType.kode,
-          [hendelseType.kode]: {
-            underÅrsak: hendelseUndertype ? hendelseUndertype.kode : null,
+          årsak: hendelseType,
+          [hendelseType]: {
+            underÅrsak: hendelseUndertype || null,
           },
         };
       }),
@@ -70,8 +70,8 @@ const buildInitialValues = (feilutbetalingFakta: FeilutbetalingFakta): FormValue
 
 const transformValues = (values: FormValues, årsaker: FeilutbetalingAarsak['hendelseTyper']): AvklartFaktaFeilutbetalingAp => {
   const feilutbetalingFakta = values.perioder.map((periode) => {
-    const feilutbetalingÅrsak = årsaker.find((el) => el.hendelseType.kode === periode.årsak);
-    const feilutbetalingUnderÅrsak = feilutbetalingÅrsak.hendelseUndertyper.find((el) => el.kode === periode[periode.årsak]?.underÅrsak);
+    const feilutbetalingÅrsak = årsaker.find((el) => el.hendelseType === periode.årsak);
+    const feilutbetalingUnderÅrsak = feilutbetalingÅrsak.hendelseUndertyper.find((el) => el === periode[periode.årsak]?.underÅrsak);
 
     return {
       fom: periode.fom,
@@ -90,11 +90,14 @@ const transformValues = (values: FormValues, årsaker: FeilutbetalingAarsak['hen
   };
 };
 
-const getSortedFeilutbetalingArsaker = (feilutbetalingArsaker: FeilutbetalingAarsak): FeilutbetalingAarsak['hendelseTyper'] => {
+const getSortedFeilutbetalingArsaker = (
+  feilutbetalingArsaker: FeilutbetalingAarsak,
+  getFpsakKodeverknavn: (kode: string, kodeverkType: KodeverkType, undertype?: string) => string,
+): FeilutbetalingAarsak['hendelseTyper'] => {
   const { hendelseTyper } = feilutbetalingArsaker;
   return hendelseTyper.sort((ht1, ht2) => {
-    const hendelseType1 = ht1.hendelseType.navn;
-    const hendelseType2 = ht2.hendelseType.navn;
+    const hendelseType1 = getFpsakKodeverknavn(ht1.hendelseType, KodeverkType.HENDELSE_TYPE);
+    const hendelseType2 = getFpsakKodeverknavn(ht2.hendelseType, KodeverkType.HENDELSE_TYPE);
     const hendelseType1ErParagraf = hendelseType1.startsWith('§');
     const hendelseType2ErParagraf = hendelseType2.startsWith('§');
     const ht1v = hendelseType1ErParagraf ? hendelseType1.replace(/\D/g, '') : hendelseType1;
@@ -131,8 +134,8 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
 }) => {
   const intl = useIntl();
 
-  const getKodeverknavn = getKodeverknavnFn(alleKodeverk, kodeverkTyper);
-  const getFpsakKodeverknavn = getKodeverknavnFn(fpsakKodeverk, kodeverkTyper);
+  const getKodeverknavn = getKodeverknavnFn(alleKodeverk);
+  const getFpsakKodeverknavn = getKodeverknavnFn(fpsakKodeverk);
   const feilutbetaling = feilutbetalingFakta.behandlingFakta;
 
   const formMethods = useForm<FormValues>({
@@ -141,7 +144,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
 
   const behandlePerioderSamlet = formMethods.watch('behandlePerioderSamlet');
 
-  const årsaker = getSortedFeilutbetalingArsaker(feilutbetalingAarsak);
+  const årsaker = getSortedFeilutbetalingArsaker(feilutbetalingAarsak, getFpsakKodeverknavn);
 
   return (
     <>
@@ -225,6 +228,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
                     behandlePerioderSamlet={behandlePerioderSamlet}
                     årsaker={årsaker}
                     readOnly={readOnly}
+                    getKodeverknavn={getKodeverknavn}
                   />
                 </FaktaGruppe>
               </Column>
@@ -245,7 +249,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
                 </Undertekst>
                 { feilutbetaling.behandlingÅrsaker && (
                   <Normaltekst className={styles.smallPaddingRight}>
-                    {feilutbetaling.behandlingÅrsaker.map((ba) => getFpsakKodeverknavn(ba.behandlingArsakType)).join(', ')}
+                    {feilutbetaling.behandlingÅrsaker.map((ba) => getFpsakKodeverknavn(ba.behandlingArsakType, KodeverkType.BEHANDLING_AARSAK)).join(', ')}
                   </Normaltekst>
                 )}
               </Column>
@@ -268,7 +272,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
                 </Undertekst>
                 {feilutbetaling.behandlingsresultat && (
                   <Normaltekst className={styles.smallPaddingRight}>
-                    {getFpsakKodeverknavn(feilutbetaling.behandlingsresultat.type)}
+                    {getFpsakKodeverknavn(feilutbetaling.behandlingsresultat.type, KodeverkType.BEHANDLING_AARSAK)}
                   </Normaltekst>
                 )}
               </Column>
@@ -278,7 +282,8 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
                 </Undertekst>
                 {feilutbetaling.behandlingsresultat && (
                   <Normaltekst className={styles.smallPaddingRight}>
-                    {feilutbetaling.behandlingsresultat.konsekvenserForYtelsen.map((ba) => getFpsakKodeverknavn(ba)).join(', ')}
+                    {feilutbetaling.behandlingsresultat.konsekvenserForYtelsen
+                      .map((ba) => getFpsakKodeverknavn(ba, KodeverkType.KONSEKVENS_FOR_YTELSEN)).join(', ')}
                   </Normaltekst>
                 )}
               </Column>
@@ -290,7 +295,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
                 </Undertekst>
                 {feilutbetaling.tilbakekrevingValg && (
                   <Normaltekst className={styles.smallPaddingRight}>
-                    {getKodeverknavn(feilutbetaling.tilbakekrevingValg.videreBehandling)}
+                    {getKodeverknavn(feilutbetaling.tilbakekrevingValg.videreBehandling, KodeverkType.TILBAKEKR_VIDERE_BEH)}
                   </Normaltekst>
                 )}
               </Column>

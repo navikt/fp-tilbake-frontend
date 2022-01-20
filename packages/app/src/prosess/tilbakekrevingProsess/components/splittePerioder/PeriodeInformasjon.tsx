@@ -6,15 +6,13 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 import { calcDaysAndWeeks, DDMMYYYY_DATE_FORMAT, formatCurrencyNoKr } from '@fpsak-frontend/utils';
 
-import DataForPeriode from '../../types/dataForPeriodeTsType';
-
 import styles from './periodeInformasjon.less';
 
 interface OwnProps {
   fom: string;
   tom: string;
   feilutbetaling: number;
-  arsak?: DataForPeriode['årsak'];
+  arsakHendelseNavn?: string;
 }
 
 /**
@@ -28,7 +26,7 @@ const PeriodeInformasjon: FunctionComponent<OwnProps> = ({
   fom,
   tom,
   feilutbetaling,
-  arsak,
+  arsakHendelseNavn,
 }) => {
   const daysAndWeeks = calcDaysAndWeeks(fom, tom);
   return (
@@ -63,9 +61,9 @@ const PeriodeInformasjon: FunctionComponent<OwnProps> = ({
                 </Normaltekst>
               </Column>
               <Column xs="6">
-                {arsak && (
+                {arsakHendelseNavn && (
                   <Normaltekst className={styles.resultName}>
-                    {arsak.hendelseType.navn}
+                    {arsakHendelseNavn}
                   </Normaltekst>
                 )}
               </Column>

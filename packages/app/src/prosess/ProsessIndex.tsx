@@ -12,7 +12,7 @@ import {
   LoadingPanel,
 } from '@fpsak-frontend/shared-components';
 import {
-  Aksjonspunkt, FeilutbetalingPerioderWrapper, AlleKodeverkTilbakekreving, Behandling, AksessRettigheter, Kodeverk, BeregningsresultatTilbakekreving,
+  Aksjonspunkt, FeilutbetalingPerioderWrapper, AlleKodeverkTilbakekreving, Behandling, AksessRettigheter, BeregningsresultatTilbakekreving,
 } from '@fpsak-frontend/types';
 import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
@@ -43,7 +43,7 @@ type EndepunktInitData = {
 
 const finnTilbakekrevingStatus = (aksjonspunkter: Aksjonspunkt[]): string => {
   if (aksjonspunkter.length > 0) {
-    return aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode)) ? vilkarUtfallType.IKKE_VURDERT : vilkarUtfallType.OPPFYLT;
+    return aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status)) ? vilkarUtfallType.IKKE_VURDERT : vilkarUtfallType.OPPFYLT;
   }
   return vilkarUtfallType.IKKE_VURDERT;
 };
@@ -53,13 +53,13 @@ const getVedtakStatus = (beregningsresultat?: BeregningsresultatTilbakekreving):
     return vilkarUtfallType.IKKE_VURDERT;
   }
   const { vedtakResultatType } = beregningsresultat;
-  return vedtakResultatType.kode === VedtakResultatType.INGEN_TILBAKEBETALING ? vilkarUtfallType.IKKE_OPPFYLT : vilkarUtfallType.OPPFYLT;
+  return vedtakResultatType === VedtakResultatType.INGEN_TILBAKEBETALING ? vilkarUtfallType.IKKE_OPPFYLT : vilkarUtfallType.OPPFYLT;
 };
 
 const hentAksjonspunkterFor = (
   aksjonspunktKode: string,
   aksjonspunkter?: Aksjonspunkt[],
-): Aksjonspunkt[] => (aksjonspunkter ? aksjonspunkter.filter((ap) => aksjonspunktKode === ap.definisjon.kode) : []);
+): Aksjonspunkt[] => (aksjonspunkter ? aksjonspunkter.filter((ap) => aksjonspunktKode === ap.definisjon) : []);
 
 const leggTilProsessPanel = (
   prosessStegKode: string,
@@ -69,7 +69,7 @@ const leggTilProsessPanel = (
   valgtProsessSteg?: string,
   ekstraAktivSjekk?: boolean,
 ): ProsessPanelMenyData => {
-  const harApentAksjonspunkt = aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses);
+  const harApentAksjonspunkt = aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status) && ap.kanLoses);
   const erAktiv = valgtProsessSteg === prosessStegKode || (harApentAksjonspunkt && valgtProsessSteg === DEFAULT_PANEL_VALGT) || ekstraAktivSjekk;
   return {
     id: prosessStegKode,
@@ -109,14 +109,14 @@ const utledProsessPaneler = (
       hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK, initData?.aksjonspunkter),
       getVedtakStatus(initData?.beregningsresultat),
       valgtProsessSteg,
-      behandling.status.kode === behandlingStatus.AVSLUTTET && valgtProsessSteg === DEFAULT_PANEL_VALGT,
+      behandling.status === behandlingStatus.AVSLUTTET && valgtProsessSteg === DEFAULT_PANEL_VALGT,
     ),
   ];
 };
 
 interface OwnProps {
   behandling: Behandling;
-  fagsakKjønn: Kodeverk;
+  fagsakKjønn: string;
   tilbakekrevingKodeverk: AlleKodeverkTilbakekreving;
   valgtProsessSteg?: string;
   oppdaterProsessPanelIUrl: (faktanavn: string) => void;
@@ -193,7 +193,7 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
               behandling={behandling}
               aksjonspunkter={initData?.aksjonspunkter}
               perioderForeldelse={initData?.perioderForeldelse}
-              navBrukerKjonn={fagsakKjønn.kode}
+              navBrukerKjonn={fagsakKjønn}
               erReadOnlyFn={erReadOnlyFn}
               alleKodeverk={tilbakekrevingKodeverk}
               bekreftAksjonspunkter={bekreftAksjonspunkter}
@@ -206,7 +206,7 @@ const ProsessIndex: FunctionComponent<OwnProps> = ({
               behandling={behandling}
               perioderForeldelse={initData?.perioderForeldelse}
               aksjonspunkter={initData?.aksjonspunkter}
-              navBrukerKjonn={fagsakKjønn.kode}
+              navBrukerKjonn={fagsakKjønn}
               alleKodeverk={tilbakekrevingKodeverk}
               bekreftAksjonspunkter={bekreftAksjonspunkter}
               erReadOnlyFn={erReadOnlyFn}

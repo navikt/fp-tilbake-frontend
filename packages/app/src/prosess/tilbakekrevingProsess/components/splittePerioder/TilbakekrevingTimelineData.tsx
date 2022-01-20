@@ -1,6 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { Column, Row } from 'nav-frontend-grid';
 
+import { AlleKodeverkTilbakekreving } from '@fpsak-frontend/types';
+import { getKodeverknavnFn } from '@fpsak-frontend/utils';
+import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+
 import PeriodeController from './PeriodeController';
 import PeriodeInformasjon from './PeriodeInformasjon';
 import DataForPeriode from '../../types/dataForPeriodeTsType';
@@ -13,9 +17,10 @@ type OwnProps = {
   readOnly: boolean;
   behandlingUuid: string;
   beregnBelop: (data: any) => Promise<any>;
+  alleTilbakekrevingKodeverk: AlleKodeverkTilbakekreving;
 };
 
-export const TilbakekrevingTimelineData: FunctionComponent<OwnProps> = ({
+const TilbakekrevingTimelineData: FunctionComponent<OwnProps> = ({
   periode,
   callbackForward,
   callbackBackward,
@@ -23,6 +28,7 @@ export const TilbakekrevingTimelineData: FunctionComponent<OwnProps> = ({
   oppdaterSplittedePerioder,
   behandlingUuid,
   beregnBelop,
+  alleTilbakekrevingKodeverk,
 }) => (
   <Row>
     <Column xs="12">
@@ -39,7 +45,7 @@ export const TilbakekrevingTimelineData: FunctionComponent<OwnProps> = ({
         feilutbetaling={periode.feilutbetaling}
         fom={periode.fom}
         tom={periode.tom}
-        arsak={periode.årsak}
+        arsakHendelseNavn={getKodeverknavnFn(alleTilbakekrevingKodeverk)(periode.årsak?.hendelseType, KodeverkType.HENDELSE_TYPE)}
       />
     </Column>
   </Row>

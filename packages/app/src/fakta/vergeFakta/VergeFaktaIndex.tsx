@@ -36,7 +36,7 @@ const VergeFaktaIndex: FunctionComponent<OwnProps> = ({
   const { data: verge, state } = restApiTilbakekrevingHooks.useRestApi(TilbakekrevingBehandlingApiKeys.VERGE);
 
   const aksjonspunkterForVergeFakta = useMemo(() => (
-    aksjonspunkter.filter((ap) => aksjonspunktCodes.AVKLAR_VERGE === ap.definisjon.kode)),
+    aksjonspunkter.filter((ap) => aksjonspunktCodes.AVKLAR_VERGE === ap.definisjon)),
   [aksjonspunkter]);
 
   const alleMerknaderFraBeslutter = useMemo(() => getAlleMerknaderFraBeslutter(behandling, aksjonspunkterForVergeFakta),
@@ -57,11 +57,11 @@ const VergeFaktaIndex: FunctionComponent<OwnProps> = ({
       verge={verge}
       aksjonspunkter={aksjonspunkterForVergeFakta}
       alleMerknaderFraBeslutter={alleMerknaderFraBeslutter}
-      hasOpenAksjonspunkter={aksjonspunkterForVergeFakta.some((ap) => isAksjonspunktOpen(ap.status.kode) && ap.kanLoses)}
+      hasOpenAksjonspunkter={aksjonspunkterForVergeFakta.some((ap) => isAksjonspunktOpen(ap.status) && ap.kanLoses)}
       alleKodeverk={alleKodeverk}
       submitCallback={submitCallback}
       readOnly={readOnly}
-      submittable={!aksjonspunkterForVergeFakta.some((ap) => isAksjonspunktOpen(ap.status.kode)) || aksjonspunkter.some((ap) => ap.kanLoses)}
+      submittable={!aksjonspunkterForVergeFakta.some((ap) => isAksjonspunktOpen(ap.status)) || aksjonspunkter.some((ap) => ap.kanLoses)}
       formData={formData[FaktaPanelCode.VERGE]}
       setFormData={setFormDataVerge}
     />

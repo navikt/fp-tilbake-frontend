@@ -8,7 +8,7 @@ import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakTyp
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import { LoadingPanel, AdvarselModal } from '@fpsak-frontend/shared-components';
 import {
-  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving, Kodeverk,
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving,
 } from '@fpsak-frontend/types';
 import { forhandsvisDokument } from '@fpsak-frontend/utils';
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
@@ -24,7 +24,7 @@ const tilbakekrevingÅrsakTyperKlage = [
   behandlingArsakType.RE_KLAGE_NFP,
 ];
 
-const erTilbakekrevingÅrsakKlage = (årsak: Kodeverk): boolean => årsak && tilbakekrevingÅrsakTyperKlage.includes(årsak.kode);
+const erTilbakekrevingÅrsakKlage = (årsak: string): boolean => årsak && tilbakekrevingÅrsakTyperKlage.includes(årsak);
 
 const getLagringSideeffekter = (
   toggleFatterVedtakModal: (skalViseModal: boolean) => void,
@@ -81,7 +81,7 @@ const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
   const { data: vedtaksbrev, state } = restApiTilbakekrevingHooks.useRestApi(TilbakekrevingBehandlingApiKeys.VEDTAKSBREV);
 
   const aksjonspunkterForVedtak = useMemo(() => (
-    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK === ap.definisjon.kode)),
+    aksjonspunkter.filter((ap) => aksjonspunktCodesTilbakekreving.FORESLA_VEDTAK === ap.definisjon)),
   [aksjonspunkter]);
 
   const isReadOnly = useMemo(() => erReadOnlyFn(aksjonspunkterForVedtak), [aksjonspunkterForVedtak]);
@@ -97,7 +97,7 @@ const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
 
   const erRevurderingTilbakekrevingKlage = behandling.førsteÅrsak && erTilbakekrevingÅrsakKlage(behandling.førsteÅrsak.behandlingArsakType);
   const erRevurderingTilbakekrevingFeilBeløpBortfalt = behandling.førsteÅrsak
-    && behandlingArsakType.RE_FEILUTBETALT_BELØP_REDUSERT === behandling.førsteÅrsak.behandlingArsakType.kode;
+    && behandlingArsakType.RE_FEILUTBETALT_BELØP_REDUSERT === behandling.førsteÅrsak.behandlingArsakType;
   return (
     <>
       <FatterVedtakStatusModal

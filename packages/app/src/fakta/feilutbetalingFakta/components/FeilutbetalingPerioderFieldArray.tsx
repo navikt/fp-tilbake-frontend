@@ -6,6 +6,7 @@ import { Table, TableRow, TableColumn } from '@fpsak-frontend/shared-components'
 import { FeilutbetalingAarsak, FeilutbetalingFakta } from '@fpsak-frontend/types';
 import { DDMMYYYY_DATE_FORMAT, required } from '@fpsak-frontend/utils';
 import { Select } from '@fpsak-frontend/form-hooks';
+import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 
 import styles from './feilutbetalingPerioderFieldArray.less';
 
@@ -17,8 +18,8 @@ const headerTextCodes = [
   'FeilutbetalingInfoPanel.Beløp',
 ];
 
-const getHendelseUndertyper = (årsakNavn: string, årsaker: FeilutbetalingAarsak['hendelseTyper']): { kode: string; navn: string}[] | null => {
-  const årsak = årsaker.find((a) => a.hendelseType.kode === årsakNavn);
+const getHendelseUndertyper = (årsakNavn: string, årsaker: FeilutbetalingAarsak['hendelseTyper']): string[] | null => {
+  const årsak = årsaker.find((a) => a.hendelseType === årsakNavn);
   return årsak && årsak.hendelseUndertyper.length > 0 ? årsak.hendelseUndertyper : null;
 };
 
@@ -35,6 +36,7 @@ type OwnProps = {
   årsaker: FeilutbetalingAarsak['hendelseTyper'];
   readOnly: boolean;
   behandlePerioderSamlet: boolean;
+  getKodeverknavn: (kode: string, kodeverk: KodeverkType) => string;
 };
 
 const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
@@ -42,6 +44,7 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
   årsaker,
   readOnly,
   behandlePerioderSamlet,
+  getKodeverknavn,
 }) => {
   const {
     control, watch, setValue, getValues,
@@ -86,7 +89,9 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
               <TableColumn>
                 <Select
                   name={`${FIELD_ARRAY_NAME}.${index}.årsak`}
-                  selectValues={årsaker.map((a) => <option key={a.hendelseType.kode} value={a.hendelseType.kode}>{a.hendelseType.navn}</option>)}
+                  selectValues={årsaker.map((a) => (
+                    <option key={a.hendelseType} value={a.hendelseType}>{getKodeverknavn(a.hendelseType, KodeverkType.HENDELSE_TYPE)}</option>
+                  ))}
                   validate={[required]}
                   disabled={readOnly}
                   onChange={(event) => settAndreFelter(event.target.value, index)}
@@ -96,7 +101,7 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
                 {hendelseUndertyper && (
                   <Select
                     name={`${FIELD_ARRAY_NAME}.${index}.${årsak}.underÅrsak`}
-                    selectValues={hendelseUndertyper.map((a) => <option key={a.kode} value={a.kode}>{a.navn}</option>)}
+                    selectValues={hendelseUndertyper.map((a) => <option key={a} value={a}>{getKodeverknavn(a, KodeverkType.HENDELSE_UNDERTYPE)}</option>)}
                     validate={[required]}
                     disabled={readOnly}
                     onChange={(event) => settAndreFelter(event.target.value, index, årsak)}

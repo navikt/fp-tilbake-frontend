@@ -15,14 +15,14 @@ import {
 } from '@fpsak-frontend/utils';
 import { FlexColumn, FlexRow, VerticalSpacer } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
-import { AlleKodeverkTilbakekreving, Kodeverk } from '@fpsak-frontend/types';
+import { AlleKodeverkTilbakekreving } from '@fpsak-frontend/types';
 
 import ForeldelsesresultatActivity from '../types/foreldelsesresultatActivitytsType';
 
 const minLength3 = minLength(3);
 const maxLength1500 = maxLength(1500);
 
-const oldForeldetValue = (fvType: Kodeverk): string | null => (fvType.kode !== foreldelseVurderingType.UDEFINERT ? fvType.kode : null);
+const oldForeldetValue = (fvType: string): string | null => (fvType !== foreldelseVurderingType.UDEFINERT ? fvType : null);
 const checkForeldetValue = (selectedItemData: ForeldelsesresultatActivity): string => (selectedItemData.foreldet ? selectedItemData.foreldet
   : oldForeldetValue(selectedItemData.foreldelseVurderingType));
 

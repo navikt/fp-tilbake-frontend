@@ -22,9 +22,9 @@ describe('<FeilutbetalingFaktaIndex>', () => {
     expect(screen.getByText('Bekreft og fortsett')).toBeDisabled();
 
     const selects = utils.getAllByRole('combobox', { hidden: true });
-    userEvent.selectOptions(selects[0], 'OPPTJENING');
-    userEvent.selectOptions(selects[1], 'OPPTJENING');
-    userEvent.selectOptions(selects[2], 'OPPTJENING');
+    userEvent.selectOptions(selects[0], 'MEDLEMSKAP');
+    userEvent.selectOptions(selects[1], 'MEDLEMSKAP');
+    userEvent.selectOptions(selects[2], 'MEDLEMSKAP');
 
     const begrunnValgInput = utils.getByLabelText('Forklar årsaken(e) til feilutbetalingen');
     userEvent.type(begrunnValgInput, 'Dette er en forklaring');
@@ -38,27 +38,21 @@ describe('<FeilutbetalingFaktaIndex>', () => {
         fom: '2018-01-01',
         tom: '2018-01-31',
         årsak: {
-          hendelseType: { kode: 'OPPTJENING', navn: '§14-6 Opptjening' },
+          hendelseType: 'MEDLEMSKAP',
           hendelseUndertype: undefined,
         },
       }, {
         fom: '2018-02-01',
         tom: '2018-02-28',
         årsak: {
-          hendelseType: {
-            kode: 'OPPTJENING',
-            navn: '§14-6 Opptjening',
-          },
+          hendelseType: 'MEDLEMSKAP',
           hendelseUndertype: undefined,
         },
       }, {
         fom: '2018-03-01',
         tom: '2018-03-15',
         årsak: {
-          hendelseType: {
-            kode: 'OPPTJENING',
-            navn: '§14-6 Opptjening',
-          },
+          hendelseType: 'MEDLEMSKAP',
           hendelseUndertype: undefined,
         },
       }],
@@ -78,11 +72,11 @@ describe('<FeilutbetalingFaktaIndex>', () => {
 
     expect(screen.getByText('Bekreft og fortsett')).toBeDisabled();
 
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[0], 'MEDLEM');
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[1], 'IKKE_EØS');
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[2], 'OPPTJENING');
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[3], 'ANNET');
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[4], 'TEST1');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[0], 'MEDLEMSKAP');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[1], 'OKONOMI_FEIL');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[2], 'OKONOMI_FEIL_TREKK');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[3], 'BEREGNING_TYPE');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[4], 'IKKE_BOSATT');
 
     const begrunnValgInput = utils.getByLabelText('Forklar årsaken(e) til feilutbetalingen');
     userEvent.type(begrunnValgInput, 'Dette er en forklaring');
@@ -96,37 +90,22 @@ describe('<FeilutbetalingFaktaIndex>', () => {
         fom: '2018-01-01',
         tom: '2018-01-31',
         årsak: {
-          hendelseType: {
-            kode: 'MEDLEM',
-            navn: '§14-2 Medlemskap',
-          },
-          hendelseUndertype: {
-            kode: 'IKKE_EØS',
-            navn: 'Ikke oppholdsrett EØS',
-          },
+          hendelseType: 'MEDLEMSKAP',
+          hendelseUndertype: undefined,
         },
       }, {
         fom: '2018-02-01',
         tom: '2018-02-28',
         årsak: {
-          hendelseType: {
-            kode: 'OPPTJENING',
-            navn: '§14-6 Opptjening',
-          },
-          hendelseUndertype: undefined,
+          hendelseType: 'OKONOMI_FEIL',
+          hendelseUndertype: 'OKONOMI_FEIL_TREKK',
         },
       }, {
         fom: '2018-03-01',
         tom: '2018-03-15',
         årsak: {
-          hendelseType: {
-            kode: 'ANNET',
-            navn: 'Annet',
-          },
-          hendelseUndertype: {
-            kode: 'TEST1',
-            navn: 'Årsak 1',
-          },
+          hendelseType: 'BEREGNING_TYPE',
+          hendelseUndertype: 'IKKE_BOSATT',
         },
       }],
       kode: '7003',
@@ -147,8 +126,8 @@ describe('<FeilutbetalingFaktaIndex>', () => {
 
     userEvent.click(screen.getByText('Behandle alle perioder samlet'));
 
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[0], 'MEDLEM');
-    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[1], 'IKKE_EØS');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[0], 'BEREGNING_TYPE');
+    userEvent.selectOptions(utils.getAllByRole('combobox', { hidden: true })[1], 'IKKE_BOSATT');
 
     const begrunnValgInput = utils.getByLabelText('Forklar årsaken(e) til feilutbetalingen');
     userEvent.type(begrunnValgInput, 'Dette er en forklaring');
@@ -162,40 +141,22 @@ describe('<FeilutbetalingFaktaIndex>', () => {
         fom: '2018-01-01',
         tom: '2018-01-31',
         årsak: {
-          hendelseType: {
-            kode: 'MEDLEM',
-            navn: '§14-2 Medlemskap',
-          },
-          hendelseUndertype: {
-            kode: 'IKKE_EØS',
-            navn: 'Ikke oppholdsrett EØS',
-          },
+          hendelseType: 'BEREGNING_TYPE',
+          hendelseUndertype: 'IKKE_BOSATT',
         },
       }, {
         fom: '2018-02-01',
         tom: '2018-02-28',
         årsak: {
-          hendelseType: {
-            kode: 'MEDLEM',
-            navn: '§14-2 Medlemskap',
-          },
-          hendelseUndertype: {
-            kode: 'IKKE_EØS',
-            navn: 'Ikke oppholdsrett EØS',
-          },
+          hendelseType: 'BEREGNING_TYPE',
+          hendelseUndertype: 'IKKE_BOSATT',
         },
       }, {
         fom: '2018-03-01',
         tom: '2018-03-15',
         årsak: {
-          hendelseType: {
-            kode: 'MEDLEM',
-            navn: '§14-2 Medlemskap',
-          },
-          hendelseUndertype: {
-            kode: 'IKKE_EØS',
-            navn: 'Ikke oppholdsrett EØS',
-          },
+          hendelseType: 'BEREGNING_TYPE',
+          hendelseUndertype: 'IKKE_BOSATT',
         },
       }],
       kode: '7003',

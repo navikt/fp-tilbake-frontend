@@ -22,7 +22,7 @@ describe('<TilbakekrevingProsessIndex>', () => {
     expect(screen.getByText('13 uker')).toBeInTheDocument();
     expect(screen.getByText('Feilutbetaling:')).toBeInTheDocument();
     expect(screen.getByText('10')).toBeInTheDocument();
-    expect(screen.getByText('§22 Medlemskap')).toBeInTheDocument();
+    expect(screen.getByText('§14-2 Medlemskap')).toBeInTheDocument();
 
     expect(screen.getByText('Aktivitet')).toBeInTheDocument();
     expect(screen.getByText('Arbeidstaker')).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('<TilbakekrevingProsessIndex>', () => {
 
     userEvent.type(utils.getByLabelText('Vurder hvilken hjemmel i § 22-15 1. ledd som skal benyttes'), 'Dette er en vurdering');
 
-    userEvent.click(screen.getByText('God tro'));
+    userEvent.click(screen.getByText('Nei, mottaker har mottatt beløpet i god tro (1. ledd)'));
 
     userEvent.type(utils.getByLabelText('Begrunn hvorfor mottaker er i god tro'), 'Dette er en vurdering a god tro');
 
@@ -80,14 +80,15 @@ describe('<TilbakekrevingProsessIndex>', () => {
     userEvent.type(utils.getByLabelText('Vurder hvilken hjemmel i § 22-15 1. ledd som skal benyttes'), 'Dette er en vurdering');
 
     // Velg først 'Feil opplysninger' for å sjekke at denne informasjonen blir resatt når en bytter
-    userEvent.click(screen.getByText('Feil opplysninger'));
+    userEvent.click(screen.getByText(
+      'Ja, mottaker har forårsaket feilutbetalingen ved forsett eller uaktsomt gitt mangelfulle opplysninger (1. ledd, 2 punkt)'));
     userEvent.click(screen.getByText('Forsett'));
     expect(await screen.findByText('Andel som skal tilbakekreves')).toBeInTheDocument();
     expect(screen.getByText('100 %')).toBeInTheDocument();
     expect(screen.getByText('Det legges til 10 % renter')).toBeInTheDocument();
 
     // Velg så 'Forsto eller burde forstått'
-    userEvent.click(screen.getByText('Forsto eller burde forstått'));
+    userEvent.click(screen.getByText('Ja, mottaker forsto eller burde forstått at utbetalingen skyldtes en feil (1. ledd, 1. punkt)'));
 
     // Velg først 'Forsto' får å sjekk at dette blir resatt korrekt ved bytte
     userEvent.click(screen.getByText('Forsto'));
@@ -112,7 +113,7 @@ describe('<TilbakekrevingProsessIndex>', () => {
     userEvent.click(screen.getByText('Oppdater'));
 
     expect(await screen.findByText('Du må velge minst en Særlig grunn')).toBeInTheDocument();
-    userEvent.click(screen.getByText('Grad av uaktsomhet'));
+    userEvent.click(screen.getByText('Graden av uaktsomhet hos den kravet retter seg mot'));
 
     userEvent.click(screen.getByText('Oppdater'));
 
@@ -137,7 +138,7 @@ describe('<TilbakekrevingProsessIndex>', () => {
             harGrunnerTilReduksjon: true,
             ileggRenter: undefined,
             sarligGrunner: [
-              'GRAD_AV_UAKTSOMHET',
+              'GRAD_UAKTSOMHET',
             ],
             sarligGrunnerBegrunnelse: 'Begrunnelse for særlige grunner',
             tilbakekrevSelvOmBeloepErUnder4Rettsgebyr: true,
@@ -179,7 +180,7 @@ describe('<TilbakekrevingProsessIndex>', () => {
 
     expect(await screen.findByText('01.01.2019 - 11.03.2019')).toBeInTheDocument();
     userEvent.type(utils.getByLabelText('Vurder hvilken hjemmel i § 22-15 1. ledd som skal benyttes'), 'Dette er en vurdering');
-    userEvent.click(screen.getByText('God tro'));
+    userEvent.click(screen.getByText('Nei, mottaker har mottatt beløpet i god tro (1. ledd)'));
     userEvent.type(utils.getByLabelText('Begrunn hvorfor mottaker er i god tro'), 'Dette er en vurdering a god tro');
     userEvent.click(screen.getByText('Ja'));
     userEvent.type(utils.getByLabelText('Angi beløp som skal tilbakekreves'), '10');

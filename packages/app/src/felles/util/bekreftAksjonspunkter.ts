@@ -1,11 +1,11 @@
-import { Behandling, Fagsak } from '@fpsak-frontend/types';
+import { Behandling } from '@fpsak-frontend/types';
 import { FaktaAksjonspunkt, ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 export const DEFAULT_FAKTA_KODE = 'default';
 export const DEFAULT_PROSESS_STEG_KODE = 'default';
 
 const getBekreftAksjonspunktCallback = (
-  fagsak: Fagsak,
+  saksnummer: string,
   behandling: Behandling,
   oppdaterProsessStegOgFaktaPanelIUrl: (prosessPanel?: string, faktanavn?: string) => void,
   lagreAksjonspunkter: (params: any, keepData?: boolean) => Promise<any>,
@@ -21,7 +21,7 @@ const getBekreftAksjonspunktCallback = (
   }));
 
   const params = {
-    saksnummer: fagsak.saksnummer,
+    saksnummer,
     behandlingUuid: behandling.uuid,
     behandlingVersjon: behandling.versjon,
   };
