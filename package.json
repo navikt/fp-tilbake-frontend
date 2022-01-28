@@ -63,7 +63,7 @@
     "@babel/register": "^7.16.9",
     "@commercetools/enzyme-extensions": "^5.0.0",
     "@storybook/addon-actions": "^6.4.14",
-    "@storybook/addon-docs": "^6.4.14",
+    "@storybook/addon-docs": "^6.4.15",
     "@storybook/addons": "^6.4.14",
     "@storybook/builder-webpack5": "^6.4.14",
     "@storybook/cli": "^6.4.14",
