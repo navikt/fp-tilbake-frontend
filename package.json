@@ -34,7 +34,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.16.7",
+    "@babel/runtime": "^7.17.0",
     "@formatjs/intl-datetimeformat": "^4.5.1",
     "@formatjs/intl-numberformat": "^7.4.1",
     "axios": "0.25.0",
