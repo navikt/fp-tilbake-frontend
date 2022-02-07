@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Datepicker } from 'nav-datovelger';
 import { CalendarPlacement } from 'nav-datovelger/lib/types';
 import { DatepickerProps } from 'nav-datovelger/lib/Datepicker';
@@ -8,23 +8,23 @@ import FieldError from './FieldError';
 import { LabelType } from '../Label';
 import './datepicker.less';
 
-interface CustomDatepickerProps {
-    label: LabelType;
-    errorMessage?: string;
-    ariaLabel?: string;
-    inputId?: string;
-    calendarSettings?: {
-        position?: CalendarPlacement;
-    };
-    disabled?: boolean;
-    initialMonth?: Date;
-    disabledDays?: {
-      before: Date;
-      after?: Date;
-    };
+interface PureDatepickerProps {
+  label: LabelType;
+  errorMessage?: string;
+  ariaLabel?: string;
+  inputId?: string;
+  calendarSettings?: {
+    position?: CalendarPlacement;
+  };
+  disabled?: boolean;
+  initialMonth?: Date;
+  disabledDays?: {
+    before: Date;
+    after?: Date;
+  };
 }
 
-const PureDatepicker = ({
+const PureDatepicker: FunctionComponent<PureDatepickerProps & DatepickerProps> = ({
   label,
   value,
   onChange,
@@ -36,7 +36,7 @@ const PureDatepicker = ({
   disabled,
   initialMonth,
   disabledDays,
-}: DatepickerProps & CustomDatepickerProps): JSX.Element => {
+}): JSX.Element => {
   const dayPickerProps = {
     initialMonth: initialMonth ? new Date(initialMonth) : undefined,
     disabledDays,
