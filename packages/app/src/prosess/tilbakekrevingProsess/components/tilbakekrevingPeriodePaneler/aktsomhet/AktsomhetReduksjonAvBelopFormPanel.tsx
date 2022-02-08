@@ -110,7 +110,7 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
                         readOnly={readOnly}
                         validate={[required, minValue1, maxValue100]}
                         normalizeOnBlur={(value: string) => (Number.isNaN(value) ? value : parseFloat(value).toFixed(2))}
-                        format={(value: string) => value.replace('.', ',')}
+                        format={(value: string | number) => value.toString().replace('.', ',')}
                         parse={(value: string) => value.replace(',', '.')}
                         bredde="S"
                       />
