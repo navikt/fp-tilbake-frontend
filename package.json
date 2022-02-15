@@ -34,7 +34,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "@navikt/fp-form": "^1.0.0-beta.1",
     "@babel/runtime": "^7.17.0",
     "@formatjs/intl-datetimeformat": "^5.0.0",
     "@formatjs/intl-numberformat": "^7.4.2",
