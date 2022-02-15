@@ -2,13 +2,14 @@ import React, { FunctionComponent, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useFormContext } from 'react-hook-form';
 import { Undertekst } from 'nav-frontend-typografi';
+import { Image } from '@navikt/fp-react-components';
 
 import addCircleIcon from '@fpsak-frontend/assets/images/add-circle.svg';
 import {
   required, hasValidText, maxLength, minLength,
 } from '@fpsak-frontend/utils';
 import { TextArea } from '@fpsak-frontend/form-hooks';
-import { Image, VerticalSpacer } from '@fpsak-frontend/shared-components';
+import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 
 import styles from './tilbakekrevingVedtakUtdypendeTekstPanel.less';
 

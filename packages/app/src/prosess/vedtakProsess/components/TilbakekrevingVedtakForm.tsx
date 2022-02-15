@@ -2,13 +2,14 @@ import React, { FunctionComponent } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
+import {
+  Image, FlexContainer, FlexColumn, FlexRow,
+} from '@navikt/fp-react-components';
 
 import { Form } from '@fpsak-frontend/form-hooks';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import { omit } from '@fpsak-frontend/utils';
-import {
-  FlexColumn, FlexContainer, FlexRow, Image, VerticalSpacer,
-} from '@fpsak-frontend/shared-components';
+import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import advarselIcon from '@fpsak-frontend/assets/images/advarsel_ny.svg';
 import { VedtaksbrevAvsnitt } from '@fpsak-frontend/types';
 import { ForeslaVedtakTilbakekrevingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { FlexContainer, Image } from '@navikt/fp-react-components';
 
 import { shallowWithIntl } from '@fpsak-frontend/utils-test/src/intl-enzyme-test-helper';
 
@@ -17,11 +18,11 @@ describe('<AksjonspunktHelpTextHTML>', () => {
         />]}
       </AksjonspunktHelpTextHTML>, messages,
     );
-    const flexContainer = wrapper.find('FlexContainer');
+    const flexContainer = wrapper.find(FlexContainer);
     const allMessages = flexContainer.first().find(FormattedMessage);
     expect(allMessages.at(0).prop('id')).toEqual('Beregningsgrunnlag.Helptext.Arbeidstaker2');
     expect(allMessages.at(0).prop('values')).toEqual({ verdi: 23 });
-    const image = flexContainer.first().find('Image');
+    const image = flexContainer.first().find(Image);
     expect(image.length).toBe(1);
   });
 
@@ -31,7 +32,7 @@ describe('<AksjonspunktHelpTextHTML>', () => {
         {[]}
       </AksjonspunktHelpTextHTML>, messages,
     );
-    const flexContainer = wrapper.find('FlexContainer');
+    const flexContainer = wrapper.find(FlexContainer);
     expect(flexContainer.length).toBe(0);
   });
 });

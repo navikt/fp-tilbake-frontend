@@ -3516,36 +3516,36 @@
   resolved "https://registry.yarnpkg.com/@navikt/fnrvalidator/-/fnrvalidator-1.1.4.tgz#22a776ba05a90c1ba5316a4f7567f9a45abcda04"
   integrity sha512-IroYFqa8PpzVxtIk6ifeEQBFzsI2QJX/FSIQyBtJvpp2D8Cb5Z9+hGNFppCILWR+QYbY8Dkk48la7K5fPGXeWQ==
 
-"@navikt/fp-array-utils@^1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/fp-array-utils/1.0.2/0021a3e3406e4b7901dcdf3c165edf3e5ef4a17aed13c8c5ef48a5013e98803a#ac53ed7028c9ca1fdcc489b6f245815b95ac69c8"
-  integrity sha512-/SKm5wNQp1gBnvcW/wSj1ulxXQq/6N+HsD+xH8fqXThCcBrbwT0mQ+s9RLTWbqbaOJryHiO+X1RZg5W9nOlz1g==
+"@navikt/fp-array-utils@^1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/fp-array-utils/1.0.3/0a0a799990076f48ef653ed550eebed4b1a623a7bb380a6d6d823610d48666ee#97f980564aa1b1b818f188d4991fea4f680a041b"
+  integrity sha512-6o9jq0724TM2WevBRpQYFxzCSxFT4hy01M6SAc9OqWF2dvUxYKwjs3D1+3O9eYgUyEbLYNobhiK4xKr2eP+fhA==
 
-"@navikt/fp-bem-utils@^1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/fp-bem-utils/1.0.2/0fbb4ea08b7cb4537d5df64dff3b6033be70693ce211fe7d5924d744d6dcb5e6#8bf151a2da86720958601a5283673a251596cdd2"
-  integrity sha512-/xZoDa6cBHX5ReuKM0qTsI5cGolEdcGRB4DQcqZx58HJs/j4VVrLW+uzI1wNzd7k2DW+goY7DciJ6Wl1Pp2Hyw==
+"@navikt/fp-bem-utils@^1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/fp-bem-utils/1.0.3/76c2932b20b0472d08f4d5ab0ec01c06d3241eb33715937970024b602747a2de#efd272e3619f1ea18e5db7c467a0b5ea7997295d"
+  integrity sha512-G266VuNca7V7Es7TGYRqICGzcr8hzdlIhN3NNpWEPHhWtjtJQ/nGZMabGnTPCmthgS6iBcca9EimUGlafvRESQ==
 
-"@navikt/fp-date-utils@^1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/fp-date-utils/1.0.2/6fea940db452e4dd5bca0b6cc16234f90ba480554fe66fb18d9ea03415397dc7#6ba9b7696bde7f51fee23694b014537dc550657c"
-  integrity sha512-px0lEvUv3QfaXjeiIXmrCWoHdEdou/TAzEFZV2W6KCkyq/ZTeE6tcbnp7a+7oZov/8v/iHRNkYOH7a/75gRZMw==
+"@navikt/fp-date-utils@^1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/fp-date-utils/1.0.3/ecb0059c88560d6730aba24433d56e35d14b0323fe8cc54e6f5937693d892ddd#edf278b6d4dcd31f4687144fd4d31194620034bb"
+  integrity sha512-34GugYzI1R2p5XoU099LlTgYzJHUP6Io3jE6e8/ylt7RoVZMTPJ9CAFNzQaRZw/nNkGHD6VuSnWBHQDZImUSlQ==
 
-"@navikt/fp-period-utils@^1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/fp-period-utils/1.0.2/5b39da51b43af376611d70eb7d661a6b990f4c70376a6941c8f4b527d12eb6d0#f9497ae77b5dcf4cea5dc6f53053b372d123e696"
-  integrity sha512-8RZy9H/rFG3/04kQWm+z5jaCoLWqpxHOENDTd+sJrRYIU9IJ0Y+OLZYpNMr3kTxvlagClaAbhq+fi4iCQymwXA==
+"@navikt/fp-period-utils@^1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/fp-period-utils/1.0.3/767d056680c147d21d2e82c6aee3b8d794b68c14ab6abd32308b266b93b83116#a042f055a33021efb1a01b1263cd582502a04876"
+  integrity sha512-vvUjnJZ2KSWUwmadzZNETraXG3B5pM9IaBHQrpujEbEoqMj0RvBizvVHZCEZHYK8pkNxgdOCV8WDIIeTuKkzVw==
   dependencies:
-    "@navikt/fp-array-utils" "^1.0.2"
-    "@navikt/fp-date-utils" "^1.0.2"
+    "@navikt/fp-array-utils" "^1.0.3"
+    "@navikt/fp-date-utils" "^1.0.3"
 
-"@navikt/fp-react-components@1.0.4":
-  version "1.0.4"
-  resolved "https://npm.pkg.github.com/download/@navikt/fp-react-components/1.0.4/44c275a71e1e45b658c1b24183a03446c0799fcc5676200b15269804e1ec0c63#d7dc41139b4b05bdee049b619a7391cc5ebf0edd"
-  integrity sha512-tQ6DLG4Pff6ViJyTcCYGtuefMiHRq+QU1dRE++m58Fh8Ap1IsYIPGK4fkDqmEkvv0FFXvVF9bxRgm+JNZKbZnA==
+"@navikt/fp-react-components@1.0.11":
+  version "1.0.11"
+  resolved "https://npm.pkg.github.com/download/@navikt/fp-react-components/1.0.11/08bdfcdf7b9fea1563ab21072efaac888d8b2839d00e6f3d83299ee69516c88d#90a2d92268ee0f0f35db987324894f4ac63ba3eb"
+  integrity sha512-PXrbnq9Te7XMsdL3kqexyoQWMxfuYuH8mqlOuDDKCPK04LtiPS4Qf6Cv6yHRWBSg8d8b29wxzIhjscAgDTTJcw==
   dependencies:
-    "@navikt/fp-bem-utils" "^1.0.2"
-    "@navikt/fp-period-utils" "^1.0.2"
+    "@navikt/fp-bem-utils" "^1.0.3"
+    "@navikt/fp-period-utils" "^1.0.3"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

@@ -3,7 +3,7 @@ import {
   useFormContext, useController, ControllerRenderProps, FieldValues,
 } from 'react-hook-form';
 import { RadioGruppe, Radio } from 'nav-frontend-skjema';
-import { FlexContainer, FlexRow, FlexColumn } from '@fpsak-frontend/shared-components';
+import { FlexContainer, FlexColumn, FlexRow } from '@navikt/fp-react-components';
 import { LabelType } from './Label';
 import { getError, getValidationRules } from './formUtils';
 
