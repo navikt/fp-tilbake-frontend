@@ -3548,7 +3548,15 @@
     "@navikt/fp-array-utils" "^1.0.3"
     "@navikt/fp-date-utils" "^1.0.3"
 
-"@navikt/fp-react-components@1.0.7", "@navikt/fp-react-components@^1.0.7":
+"@navikt/fp-react-components@1.0.11":
+  version "1.0.11"
+  resolved "https://npm.pkg.github.com/download/@navikt/fp-react-components/1.0.11/08bdfcdf7b9fea1563ab21072efaac888d8b2839d00e6f3d83299ee69516c88d#90a2d92268ee0f0f35db987324894f4ac63ba3eb"
+  integrity sha512-PXrbnq9Te7XMsdL3kqexyoQWMxfuYuH8mqlOuDDKCPK04LtiPS4Qf6Cv6yHRWBSg8d8b29wxzIhjscAgDTTJcw==
+  dependencies:
+    "@navikt/fp-bem-utils" "^1.0.3"
+    "@navikt/fp-period-utils" "^1.0.3"
+
+"@navikt/fp-react-components@^1.0.7":
   version "1.0.7"
   resolved "https://npm.pkg.github.com/download/@navikt/fp-react-components/1.0.7/d29a3772f19e25cd92d9688ac525f8169dabb3f4cdfd9c29afe834c15a54e030#f8493f76d71e2bdea13eb7fd3d21e3527bbf2953"
   integrity sha512-H3emVxNLoSnFqsu9BRSpe0wiiXMWivVx0Zn8pmx0USqS460BtDNR209xOg04R7xzVjqUXaFqtTOh3RuJ4XzzFg==
