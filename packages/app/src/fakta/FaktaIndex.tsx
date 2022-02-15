@@ -2,13 +2,12 @@ import React, {
   FunctionComponent, useEffect, useState, useMemo, useCallback,
 } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
+import { FlexContainer, FlexColumn, FlexRow } from '@navikt/fp-react-components';
 
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import {
-  FlexColumn, FlexContainer, FlexRow, LoadingPanel,
-} from '@fpsak-frontend/shared-components';
+import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import {
   Aksjonspunkt, FeilutbetalingFakta, AlleKodeverkTilbakekreving, Behandling, AlleKodeverk, AksessRettigheter,
 } from '@fpsak-frontend/types';

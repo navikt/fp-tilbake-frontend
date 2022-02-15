@@ -2,11 +2,12 @@ import React, {
   FunctionComponent, useCallback, useState, useMemo,
 } from 'react';
 import { useIntl } from 'react-intl';
+import { WarningModal } from '@navikt/fp-react-components';
 
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { LoadingPanel, AdvarselModal } from '@fpsak-frontend/shared-components';
+import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import {
   Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving,
 } from '@fpsak-frontend/types';
@@ -106,7 +107,7 @@ const VedtakTilbakekrevingProsessIndex: FunctionComponent<OwnProps> = ({
         tekst={intl.formatMessage({ id: 'FatterTilbakekrevingVedtakStatusModal.Sendt' })}
       />
       {visApenRevurderingModal && (
-        <AdvarselModal
+        <WarningModal
           headerText={intl.formatMessage({ id: 'BehandlingTilbakekrevingIndex.ApenRevurderingHeader' })}
           bodyText={intl.formatMessage({ id: 'BehandlingTilbakekrevingIndex.ApenRevurdering' })}
           showModal

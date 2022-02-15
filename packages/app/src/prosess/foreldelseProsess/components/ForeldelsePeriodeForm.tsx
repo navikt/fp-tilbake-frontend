@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
+import { FlexColumn, FlexRow } from '@navikt/fp-react-components';
 
 import {
   TextArea, Datepicker, Form, RadioGroupPanel,
@@ -13,7 +14,7 @@ import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurd
 import {
   dateBeforeOrEqualToToday, hasValidText, maxLength, minLength, required, hasValidDate,
 } from '@fpsak-frontend/utils';
-import { FlexColumn, FlexRow, VerticalSpacer } from '@fpsak-frontend/shared-components';
+import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import { AlleKodeverkTilbakekreving } from '@fpsak-frontend/types';
 

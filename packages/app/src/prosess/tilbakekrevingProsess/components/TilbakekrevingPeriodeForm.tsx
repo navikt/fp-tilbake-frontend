@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Element, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
+import { WarningModal, FlexColumn, FlexRow } from '@navikt/fp-react-components';
 
 import {
   TextArea, Select, Form, RadioGroupPanel,
@@ -12,9 +13,7 @@ import {
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
 } from '@fpsak-frontend/utils';
-import {
-  AdvarselModal, FlexColumn, FlexRow, VerticalSpacer, usePrevious,
-} from '@fpsak-frontend/shared-components';
+import { VerticalSpacer, usePrevious } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import {
   FeilutbetalingPerioderWrapper, KodeverkMedNavn, DetaljertFeilutbetalingPeriode, AlleKodeverkTilbakekreving,
@@ -316,7 +315,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
         </FlexColumn>
       </FlexRow>
       { showModal
-        && <AdvarselModal bodyText={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.TotalbelopetUnder4Rettsgebyr' })} showModal submit={saveForm} />}
+        && <WarningModal bodyText={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.TotalbelopetUnder4Rettsgebyr' })} showModal submit={saveForm} />}
     </Form>
   );
 };
