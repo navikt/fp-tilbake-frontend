@@ -38,7 +38,7 @@
     "@formatjs/intl-datetimeformat": "^5.0.0",
     "@formatjs/intl-numberformat": "^7.4.2",
     "axios": "0.25.0",
-    "core-js": "^3.21.0",
+    "core-js": "^3.21.1",
     "dayjs": "^1.10.6",
     "dotenv": "^16.0.0",
     "history": "^5.2.0",
