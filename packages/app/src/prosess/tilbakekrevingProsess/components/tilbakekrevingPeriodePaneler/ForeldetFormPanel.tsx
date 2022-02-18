@@ -2,8 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
-
-import { RadioGroupPanel, TextArea } from '@fpsak-frontend/form-hooks';
+import { RadioGroupPanel, TextArea } from '@navikt/fp-form';
 
 const ForeldetFormPanel = () => (
   <Row>

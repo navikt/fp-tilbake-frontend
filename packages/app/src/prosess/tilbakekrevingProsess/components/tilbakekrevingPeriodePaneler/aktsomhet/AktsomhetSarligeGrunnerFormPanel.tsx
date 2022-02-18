@@ -3,9 +3,9 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import { useFormContext, UseFormGetValues } from 'react-hook-form';
 import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
+import { Checkbox, TextArea, SkjemaGruppeMedFeilviser } from '@navikt/fp-form';
 
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { Checkbox, TextArea, SkjemaGruppeMedFeilviser } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';

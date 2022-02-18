@@ -3,9 +3,9 @@ import { FormattedMessage, useIntl, IntlShape } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { FlexColumn, FlexRow } from '@navikt/fp-react-components';
+import { InputField, Select, RadioGroupPanel } from '@navikt/fp-form';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { InputField, Select, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 import {
   formatCurrencyNoKr, minValue, maxValue, required,
 } from '@fpsak-frontend/utils';

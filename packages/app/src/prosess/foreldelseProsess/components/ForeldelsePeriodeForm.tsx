@@ -6,10 +6,10 @@ import { Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import { FlexColumn, FlexRow } from '@navikt/fp-react-components';
-
 import {
   TextArea, Datepicker, Form, RadioGroupPanel,
-} from '@fpsak-frontend/form-hooks';
+} from '@navikt/fp-form';
+
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
   dateBeforeOrEqualToToday, hasValidText, maxLength, minLength, required, hasValidDate,

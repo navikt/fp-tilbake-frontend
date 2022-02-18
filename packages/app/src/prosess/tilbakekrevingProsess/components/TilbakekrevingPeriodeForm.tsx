@@ -6,10 +6,10 @@ import { Element, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import { WarningModal, FlexColumn, FlexRow } from '@navikt/fp-react-components';
-
 import {
   TextArea, Select, Form, RadioGroupPanel,
-} from '@fpsak-frontend/form-hooks';
+} from '@navikt/fp-form';
+
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
 } from '@fpsak-frontend/utils';

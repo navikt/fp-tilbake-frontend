@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { useIntl } from 'react-intl';
+import { TextArea } from '@navikt/fp-form';
 
 import {
   decodeHtmlEntity, hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';
-import { TextArea } from '@fpsak-frontend/form-hooks';
 import { Aksjonspunkt } from '@fpsak-frontend/types';
 
 import styles from './faktaBegrunnelseTextField.less';

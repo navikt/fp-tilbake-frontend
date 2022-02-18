@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import { Undertekst, Normaltekst } from 'nav-frontend-typografi';
+import { InputField, RadioGroupPanel } from '@navikt/fp-form';
 
 import {
   minValue, required, removeSpacesFromNumber, formatCurrencyNoKr,
 } from '@fpsak-frontend/utils';
 import { ArrowBox } from '@fpsak-frontend/shared-components';
-import { InputField, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 
 import styles from './belopetMottattIGodTroFormPanel.less';
 

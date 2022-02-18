@@ -7,10 +7,10 @@ import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Modal from 'nav-frontend-modal';
 import { Image } from '@navikt/fp-react-components';
+import { Datepicker, Select, Form } from '@navikt/fp-form';
 
 import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import innvilgetImageUrl from '@fpsak-frontend/assets/images/innvilget_valgt.svg';
-import { Datepicker, Select, Form } from '@fpsak-frontend/form-hooks';
 import {
   ariaCheck, dateAfterOrEqualToToday, hasValidDate, required, dateBeforeToday,
 } from '@fpsak-frontend/utils';
@@ -151,6 +151,7 @@ const SettPaVentModal: FunctionComponent<PureOwnProps> = ({
                   <Datepicker
                     name="frist"
                     validate={[required, hasValidDate, dateAfterOrEqualToToday]}
+                    label=""
                   />
                 </div>
               </Column>

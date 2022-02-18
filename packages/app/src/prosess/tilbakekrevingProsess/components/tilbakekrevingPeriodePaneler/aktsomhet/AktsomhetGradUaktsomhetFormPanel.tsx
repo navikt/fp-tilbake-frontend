@@ -3,9 +3,9 @@ import {
   FormattedMessage, injectIntl, IntlShape, WrappedComponentProps,
 } from 'react-intl';
 import { Element, Undertekst } from 'nav-frontend-typografi';
+import { RadioGroupPanel, TextArea } from '@navikt/fp-form';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupPanel, TextArea } from '@fpsak-frontend/form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
 } from '@fpsak-frontend/utils';

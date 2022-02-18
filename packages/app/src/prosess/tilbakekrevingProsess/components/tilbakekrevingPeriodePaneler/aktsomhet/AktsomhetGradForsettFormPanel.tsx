@@ -2,9 +2,9 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import { RadioGroupPanel } from '@navikt/fp-form';
 
 import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupPanel } from '@fpsak-frontend/form-hooks';
 import { required } from '@fpsak-frontend/utils';
 
 import styles from './aktsomhetReduksjonAvBelopFormPanel.less';

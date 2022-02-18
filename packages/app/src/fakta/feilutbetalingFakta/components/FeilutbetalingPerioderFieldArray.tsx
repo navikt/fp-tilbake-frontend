@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import moment from 'moment';
+import { Select } from '@navikt/fp-form';
 
 import { Table, TableRow, TableColumn } from '@fpsak-frontend/shared-components';
 import { FeilutbetalingAarsak, FeilutbetalingFakta } from '@fpsak-frontend/types';
 import { DDMMYYYY_DATE_FORMAT, required } from '@fpsak-frontend/utils';
-import { Select } from '@fpsak-frontend/form-hooks';
 import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
 
 import styles from './feilutbetalingPerioderFieldArray.less';
