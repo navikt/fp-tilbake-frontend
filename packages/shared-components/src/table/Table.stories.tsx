@@ -10,7 +10,7 @@ export default {
 };
 
 export const TabellMedRadhoover = () => (
-  <Table headerColumnContent={[<div>Navn</div>, <div>Alder</div>]}>
+  <Table headerColumnContent={[<div key="1">Navn</div>, <div key="2">Alder</div>]}>
     <TableRow isDashedBottomBorder>
       <TableColumn>
         Espen Utvikler
@@ -31,7 +31,7 @@ export const TabellMedRadhoover = () => (
 );
 
 export const TabellUtenRadhoover = () => (
-  <Table headerColumnContent={[<div>Navn</div>, <div>Alder</div>]} noHover>
+  <Table headerColumnContent={[<div key="1">Navn</div>, <div key="2">Alder</div>]} noHover>
     <TableRow isSelected>
       <TableColumn>
         Espen Utvikler
