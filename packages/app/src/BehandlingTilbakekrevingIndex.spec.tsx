@@ -21,14 +21,8 @@ describe('<BehandlingTilbakekrevingIndex>', () => {
         data: {
           uuid: 'test-uuid',
           versjon: 1,
-          status: {
-            kode: behandlingStatus.OPPRETTET,
-            kodeverk: '',
-          },
-          type: {
-            kode: behandlingType.TILBAKEKREVING,
-            kodeverk: '',
-          },
+          status: behandlingStatus.OPPRETTET,
+          type: behandlingType.TILBAKEKREVING,
           links: [{
             href: TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD.name,
             rel: 'update',
@@ -57,10 +51,7 @@ describe('<BehandlingTilbakekrevingIndex>', () => {
           // @ts-ignore
           kodeverk={alleKodeverk as AlleKodeverk}
           fagsak={{
-            fagsakYtelseType: {
-              kode: fagsakYtelseType.FORELDREPENGER,
-              kodeverk: '',
-            },
+            fagsakYtelseType: fagsakYtelseType.FORELDREPENGER,
           } as Fagsak}
           rettigheter={{
             writeAccess: {
@@ -75,10 +66,7 @@ describe('<BehandlingTilbakekrevingIndex>', () => {
           valgtFaktaSteg="default"
           opneSokeside={() => {}}
           setRequestPendingMessage={() => {}}
-          fagsakKjønn={{
-            kode: navBrukerKjonn.KVINNE,
-            kodeverk: '',
-          }}
+          fagsakKjønn={navBrukerKjonn.KVINNE}
           harApenRevurdering={false}
         />
       </RestApiMock>,
