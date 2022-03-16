@@ -16,10 +16,7 @@ import messages from '../i18n/nb_NO.json';
 const intl = createIntl(messages);
 
 interface OwnProps {
-  fagsakKjønn: {
-    kode: string;
-    kodeverk: string;
-  } | string;
+  fagsakKjønn: string;
   harApenRevurdering: boolean;
 }
 
@@ -77,7 +74,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
       />
       <ProsessIndex
         behandling={behandling}
-        fagsakKjønn={typeof fagsakKjønn === 'string' ? fagsakKjønn : fagsakKjønn.kode}
+        fagsakKjønn={fagsakKjønn}
         tilbakekrevingKodeverk={tilbakekrevingKodeverk}
         valgtProsessSteg={valgtProsessSteg}
         oppdaterProsessPanelIUrl={oppdaterProsessPanelIUrl}
@@ -89,7 +86,7 @@ const BehandlingTilbakekrevingIndex: FunctionComponent<OwnProps & StandardBehand
         toggleOppdatereFagsakContext={toggleOppdateringAvFagsakOgBehandling}
       />
       <FaktaIndex
-        fagsakYtelseTypeKode={typeof fagsak.fagsakYtelseType === 'string' ? fagsak.fagsakYtelseType : fagsak.fagsakYtelseType?.kode}
+        fagsakYtelseTypeKode={fagsak.fagsakYtelseType}
         behandling={behandling}
         tilbakekrevingKodeverk={tilbakekrevingKodeverk}
         fpsakKodeverk={fpsakKodeverk}

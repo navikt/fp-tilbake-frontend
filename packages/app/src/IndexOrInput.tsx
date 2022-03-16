@@ -38,19 +38,10 @@ const IndexOrInput: FunctionComponent = () => {
       behandlingUuid={behandlingUuid}
       fagsak={{
         dekningsgrad: 100,
-        fagsakYtelseType: {
-          kode: 'FP',
-          kodeverk: 'FAGSAK_YTELSE',
-        },
-        relasjonsRolleType: {
-          kode: 'MORA',
-          kodeverk: 'RELASJONSROLLE_TYPE',
-        },
+        fagsakYtelseType: 'FP',
+        relasjonsRolleType: 'MORA',
         saksnummer: '152001002',
-        status: {
-          kode: 'LOP',
-          kodeverk: 'FAGSAK_STATUS',
-        },
+        status: 'LOP',
       }}
       rettigheter={{
         kanOverstyreAccess: {
@@ -71,10 +62,7 @@ const IndexOrInput: FunctionComponent = () => {
       setRequestPendingMessage={() => undefined}
       // @ts-ignore
       kodeverk={alleKodeverk}
-      fagsakKjønn={{
-        kode: 'K',
-        kodeverk: 'KJONN',
-      }}
+      fagsakKjønn="K"
       harApenRevurdering={false}
     />
   );
