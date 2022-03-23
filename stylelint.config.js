@@ -42,7 +42,6 @@ module.exports = {
         ignore: ['after-comment', 'inside-single-line-block'],
       },
     ],
-    'declaration-no-important': true,
     'declaration-block-no-duplicate-properties': true,
     'declaration-bang-space-after': 'never',
     'declaration-bang-space-before': 'always',

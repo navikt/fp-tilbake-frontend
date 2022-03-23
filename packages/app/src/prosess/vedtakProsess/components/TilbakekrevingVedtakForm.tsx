@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
@@ -127,9 +127,12 @@ const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
 }) => {
   const vedtaksbrevAvsnitt = avsnittsliste;
 
+  const defaultValues = useMemo(() => formData || TilbakekrevingEditerVedtaksbrevPanel.buildInitialValues(vedtaksbrevAvsnitt),
+    [formData, vedtaksbrevAvsnitt]);
+
   const intl = useIntl();
   const formMethods = useForm<FormValues>({
-    defaultValues: formData || TilbakekrevingEditerVedtaksbrevPanel.buildInitialValues(vedtaksbrevAvsnitt),
+    defaultValues,
   });
 
   const formVerdier = formMethods.watch();
@@ -151,7 +154,7 @@ const TilbakekrevingVedtakForm: FunctionComponent<OwnProps> = ({
         vedtaksbrevAvsnitt={vedtaksbrevAvsnitt}
         formName={formName}
         readOnly={readOnly}
-        perioderSomIkkeHarUtfyltObligatoriskVerdi={perioderSomIkkeHarUtfyltObligatoriskVerdi}
+        perioderSomIkkeHarUtfyltObligatoriskVerdi={useMemo(() => perioderSomIkkeHarUtfyltObligatoriskVerdi, [])}
         fritekstOppsummeringPakrevdMenIkkeUtfylt={fritekstOppsummeringPakrevdMenIkkeUtfylt}
         erRevurderingTilbakekrevingFeilBeløpBortfalt={erRevurderingTilbakekrevingFeilBeløpBortfalt}
       />
