@@ -1,0 +1,6705 @@
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+:export {
+  navRod: #c30000;
+  navOransje: #ff9100;
+  navLimeGronn: #a2ad00;
+  navGronn: #06893a;
+  navLilla: #634689;
+  navDypBla: #005b82;
+  navBla: #0067c5;
+  navLysBla: #66cbec;
+  navMorkGra: #262626;
+  navGra80: #4f4f4f;
+  navGra60: #6a6a6a;
+  navGra40: #a0a0a0;
+  navGra20: #c9c9c9;
+  navLysGra: #f1f1f1;
+  navBakgrunn: #ffffff;
+  navGraBakgrunn: #f1f1f1;
+  fokusFarge: #00347d;
+  redError: #ba3a26;
+  white: #fff;
+  grayBackground: #f1f1f1;
+  grayIcon: #a0a0a0;
+  grayModia: #333333;
+  grayInactive: #6a6a6a;
+  pinkErrorBg: #f3e3e3;
+  navGronnLighten80: #ccf1d6;
+  navGronnLighten60: #99dead;
+  navGronnLighten40: #66c786;
+  navGronnLighten20: #33aa5f;
+  navGronnDarken20: #007c2e;
+  navGronnDarken40: #006a23;
+  navGronnDarken60: #005519;
+  navGronnDarken80: #003b0f;
+  navLimeGronnLighten80: #f9fccc;
+  navLimeGronnLighten60: #ecf399;
+  navLimeGronnLighten40: #d9e366;
+  navLimeGronnLighten20: #c1cb33;
+  navLimeGronnDarken20: #939e00;
+  navLimeGronnDarken40: #7f8900;
+  navLimeGronnDarken60: #666e00;
+  navLimeGronnDarken80: #474e00;
+  navLysBlaLighten80: #d8f9ff;
+  navLysBlaLighten60: #b5f1ff;
+  navLysBlaLighten40: #97e6ff;
+  navLysBlaLighten20: #7cdaf8;
+  navLysBlaDarken20: #4cadcd;
+  navLysBlaDarken40: #368da8;
+  navLysBlaDarken60: #236b7d;
+  navLysBlaDarken80: #134852;
+  navBlaLighten80: #cce1ff;
+  navBlaLighten60: #99c3ff;
+  navBlaLighten40: #66a5f4;
+  navBlaLighten20: #3386e0;
+  navBlaDarken20: #0056b4;
+  navBlaDarken40: #00459c;
+  navBlaDarken60: #00347d;
+  navBlaDarken80: #002252;
+  navDypBlaLighten80: #cce2f0;
+  navDypBlaLighten60: #99c4dd;
+  navDypBlaLighten40: #66a3c4;
+  navDypBlaLighten20: #3380a5;
+  navDypBlaDarken20: #005077;
+  navDypBlaDarken40: #004367;
+  navDypBlaDarken60: #003453;
+  navDypBlaDarken80: #00243a;
+  navLillaLighten80: #e0d8e9;
+  navLillaLighten60: #c0b2d2;
+  navLillaLighten40: #a18dbb;
+  navLillaLighten20: #8269a2;
+  navLillaDarken20: #523874;
+  navLillaDarken40: #412b5d;
+  navLillaDarken60: #301f46;
+  navLillaDarken80: #1f142f;
+  redErrorLighten80: #f9d2cc;
+  redErrorLighten60: #efa89d;
+  redErrorLighten40: #e18071;
+  redErrorLighten20: #d05c4a;
+  redErrorDarken20: #a32a17;
+  redErrorDarken40: #881d0c;
+  redErrorDarken60: #6a1204;
+  redErrorDarken80: #480900;
+  navOransjeLighten80: #ffeccc;
+  navOransjeLighten60: #ffd799;
+  navOransjeLighten40: #ffc166;
+  navOransjeLighten20: #ffaa33;
+  navOransjeDarken20: #d47b00;
+  navOransjeDarken40: #a86400;
+  navOransjeDarken60: #7d4c00;
+  navOransjeDarken80: #523300;
+  screenSm: 768px;
+  screenSmMin: 768px;
+  screenTablet: 768px;
+  screenMd: 992px;
+  screenMdMin: 992px;
+  screenDesktop: 992px;
+  screenLg: 1200px;
+  screenLgMin: 1200px;
+  screenLgDesktop: 1200px;
+  screenXsMax: 767px;
+  screenSmMax: 991px;
+  screenMdMax: 1199px;
+  containerTablet: 736px;
+  containerSm: 736px;
+  containerDesktop: 956px;
+  containerMd: 956px;
+  containerLargeDesktop: 1156px;
+  containerLg: 1156px;
+  gridColumns: 12;
+  gridGutterWidth: 16px;
+  gridFloatBreakpoint: 768px;
+  gridFloatBreakpointMax: 767px;
+  paddingBaseVertical: 6px;
+  paddingBaseHorizontal: 12px;
+  paddingLargeVertical: 10px;
+  paddingLargeHorizontal: 16px;
+  paddingSmallVertical: 5px;
+  paddingSmallHorizontal: 10px;
+  paddingXsVertical: 1px;
+  paddingXsHorizontal: 5px;
+  lineHeightLarge: 1.3333333;
+  lineHeightSmall: 1.5;
+  borderRadiusSmall: 2px;
+  borderRadiusBase: 4px;
+  borderRadiusLarge: 6px;
+}
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*
+-------------
+CLEARFIX
+-------------
+*/
+/* stylelint-disable */
+/* stylelint-enable */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  font-family: sans-serif;
+  /* 3 */
+}
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+figure {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.img-rounded {
+  border-radius: 6px;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+[role="button"] {
+  cursor: pointer;
+}
+body .clearfix::before,
+body .clearfix::after {
+  content: " ";
+  display: table;
+}
+body .clearfix::after {
+  clear: both;
+}
+body .center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+body .pull-right {
+  float: right !important;
+}
+body .pull-left {
+  float: left !important;
+}
+body .hide {
+  display: none !important;
+}
+body .show {
+  display: block !important;
+}
+body .hidden {
+  display: none !important;
+}
+body .invisible {
+  visibility: hidden;
+}
+body .text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+body .ustilet {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body .blokk {
+  margin-bottom: 2rem;
+}
+body .blokk-null {
+  margin-bottom: 0;
+}
+body .blokk-xxxs {
+  margin-bottom: 4px;
+}
+body .blokk-xxs {
+  margin-bottom: 0.5rem;
+}
+body .blokk-xs {
+  margin-bottom: 1rem;
+}
+body .blokk-s {
+  margin-bottom: 20px;
+}
+body .blokk-m {
+  margin-bottom: 2rem;
+}
+body .blokk-l {
+  margin-bottom: 2.5rem;
+}
+body .blokk-xl {
+  margin-bottom: 4rem;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .hidden-sm {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none !important;
+  }
+}
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.DayPickerInput-OverlayWrapper {
+  height: 0;
+  position: relative;
+  top: -12px;
+  width: 0;
+}
+.DayPickerInput-Overlay {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1010;
+}
+.calendarWrapper {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 302px;
+}
+.calendarWrapper.calendarWrapper--2 {
+  width: 610px;
+}
+.calendarWrapper.calendarWrapper--3 {
+  width: 915px;
+}
+.calendarWrapper:focus {
+  outline: none;
+}
+.DayPicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0;
+  position: relative;
+  user-select: none;
+}
+.DayPicker:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.DayPicker-Months {
+  display: flex;
+}
+.DayPicker-Month {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  margin: 1rem 1em 0;
+  user-select: none;
+}
+.DayPicker-NavBar {
+  left: 0;
+  padding: 0 0.5em;
+  position: absolute;
+  right: 0;
+}
+.DayPicker-NavButton {
+  background: transparent url(./pil-videre_ec8cc346983573bb966d..svg) no-repeat center;
+  background-size: 1.25em 1.25em;
+  border: 0;
+  cursor: pointer;
+  height: 2em;
+  position: absolute;
+  width: 2em;
+}
+.DayPicker-NavButton:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.DayPicker-NavButton:focus,
+.DayPicker-NavButton:hover {
+  background-image: url(./pil-videre--hover_da2ae4f50e0a19b89d18..svg);
+}
+.DayPicker-NavButton--prev {
+  left: 1em;
+  transform: rotate(180deg);
+}
+.DayPicker-NavButton--next {
+  right: 1em;
+}
+.DayPicker-Caption {
+  display: table-caption;
+  font-size: 1.25rem;
+  font-weight: 600;
+  height: 2em;
+  line-height: 2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.DayPicker-Weekdays {
+  border-top: 1px solid #a0a0a0;
+  display: table-header-group;
+}
+.DayPicker-WeekdaysRow {
+  display: table-row;
+}
+.DayPicker-Weekday {
+  display: table-cell;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
+}
+.DayPicker-Weekday abbr {
+  text-decoration: none;
+}
+.DayPicker-Body {
+  display: table-row-group;
+}
+.DayPicker-Week {
+  display: table-row;
+}
+.DayPicker-Day {
+  cursor: pointer;
+  display: table-cell;
+  font-weight: 600;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+.DayPicker-Day:focus {
+  background-color: #ffc166;
+  outline: none;
+}
+.DayPicker-Day:hover {
+  background-color: #f1f1f1;
+}
+.DayPicker-Day:empty:hover {
+  background-color: transparent;
+}
+.DayPicker-Day:last-child {
+  color: #c30000;
+}
+.DayPicker--interactionDisabled .DayPicker-Day {
+  cursor: default;
+}
+/* Default modifiers */
+.DayPicker-Day--disabled,
+.DayPicker-Day--disabled:last-child {
+  color: #a0a0a0;
+  cursor: default;
+  font-weight: normal;
+}
+.DayPicker-Day--disabled:focus,
+.DayPicker-Day--disabled:last-child:focus {
+  color: #6a6a6a;
+}
+.DayPicker-Day--disabled:hover {
+  background-color: transparent;
+}
+.DayPicker-Day--outside {
+  color: #6a6a6a;
+  cursor: default;
+}
+.DayPicker-Day--sunday {
+  background-color: #f1f1f1;
+}
+.DayPicker-Day--today {
+  border: 1px solid #a0a0a0;
+}
+.DayPicker-Day--sunday:not(.DayPicker-Day--today) {
+  color: #c30000;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: #005b82;
+  color: #fff;
+}
+/* TODO Mesteparten i denne fila bør ikkje ligga her */
+html {
+  height: 100%;
+}
+body {
+  background-color: #fff;
+  color: #262626;
+  height: 100%;
+  line-height: 1.42857143;
+  margin: 0;
+}
+:global(#app) {
+  height: 100%;
+}
+/*
+CSS-endringer för felleskomponenter og globaler så
+som fra core/og muligen import fra alla andra komponenter
+ */
+:global(.cal-wrap) {
+  width: 300px;
+}
+:global(.textarea--medMeta__teller) {
+  color: #262626;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+:global(.skjemaelement > .skjemaelement)__feilmelding {
+  margin-top: 1rem;
+}
+:global(.skjemaelement > .skjemaelement__input) {
+  padding: 9px;
+}
+:global(.vis-timeline) {
+  border: 0;
+}
+:global(.currentDate) {
+  display: none;
+}
+:global(.soknad) {
+  background-color: #0056b4;
+  pointer-events: none;
+  top: 6px !important;
+}
+:global(.soknad):after {
+  background: transparent url(./soknad_e5fb9d64a39df5f77a92..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+:global(.fodsel) {
+  background-color: #a32a17;
+  pointer-events: none;
+  top: 0 !important;
+}
+:global(.fodsel):after {
+  background: transparent url(./fodsel_10867cb8fac55f31b8e7..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+:global(.revurdering) {
+  background-color: #007c2e;
+  pointer-events: none;
+  top: 12px !important;
+}
+:global(.revurdering):after {
+  background: transparent url(./endringstidspunkt_263b34be1a4927cfeb89..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+:global(.lastDateInSoknad) {
+  display: none;
+}
+:global(.vis-foreground .vis-group) {
+  border-bottom: 0;
+}
+:global(.vis-text.vis-major > div) {
+  margin-top: 12px;
+}
+:global(.opptjening .vis-text.vis-major > div) {
+  margin-top: 0;
+}
+:global(.uttakTimeline .vis-text.vis-major > div) {
+  margin-top: 0;
+}
+:global(.vis-item.vis-selected) {
+  border: 1px solid #4a4a4a;
+}
+:global(.vis-item.vis-range) {
+  border-radius: 6px;
+}
+:global(.vis-label .vis-inner) {
+  max-height: 50px;
+}
+:global(.vis-custom-time) {
+  width: 1px;
+}
+:global(.vis-item) {
+  top: 5px;
+  transition: transform 0.2s;
+}
+:global(.vis-item):hover {
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+  filter: brightness(80%);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+:global(.vis-item):active {
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  filter: brightness(95%);
+  transform: translateY(-2px);
+}
+:global(.grey) {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+:global(.grey.vis-item.vis-selected) {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+:global(.gradert) {
+  background: #06893a repeating-linear-gradient(45deg, #fff, #fff 20%, transparent 20%, transparent 50%, #fff 50%);
+  background-size: 12px 12px;
+  opacity: 0.9;
+}
+:global(.gradert.vis-item.vis-selected) {
+  background-color: #06893a;
+  opacity: 1;
+}
+:global(.gradert.vis-item.vis-selected):hover {
+  transform: translateY(-1px);
+}
+:global(.avslatt) {
+  background-color: transparent;
+  border-color: rgba(186, 58, 38, 0.5);
+  border-radius: 6px;
+}
+:global(.avslatt):active {
+  background-color: transparent;
+}
+:global(.avvistPeriode) {
+  background-color: rgba(186, 58, 38, 0.5);
+  border-color: rgba(201, 201, 201, 0.5);
+  border-radius: 6px;
+}
+:global(.avvistPeriode):active {
+  background-color: #ba3a26;
+  border-color: #c9c9c9;
+}
+:global(.undefined) {
+  background-color: rgba(255, 145, 0, 0.8);
+  border-color: rgba(255, 145, 0, 0.8);
+  border-radius: 8px;
+}
+:global(.undefined):active {
+  background-color: #ffd799;
+  border-color: #ff9100;
+}
+:global(.undefined.vis-item.vis-selected) {
+  background-color: #ff9100;
+  border: 1px solid #4a4a4a;
+}
+:global(.avslatt.vis-item.vis-selected) {
+  background-color: #ba3a26;
+}
+:global(.avvistPeriode.vis-item.vis-selected) {
+  background-color: #ba3a26;
+}
+:global(.innvilget) {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+:global(.godkjentPeriode) {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+:global(.godkjentPeriode):active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+:global(.vis-current-time) {
+  width: 0;
+}
+:global(.godkjentPeriode.vis-item.vis-selected) {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+:global(.mellomliggendePeriode) {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+  height: 12px;
+  top: 12px !important;
+}
+:global(.mellomliggendePeriode):active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+:global(.mellomliggendePeriode.vis-item.vis-selected) {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+:global(.innvilget.vis-item.vis-selected) {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+:global(.innvilgetnullprosent) {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 8px;
+}
+:global(.innvilgetnullprosent.vis-item.vis-selected) {
+  background-color: transparent;
+  border-radius: 8px;
+}
+:global(.opphold-manuell) {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+}
+:global(.opphold-manuell.vis-item.vis-range) {
+  border-style: dashed;
+}
+:global(.opphold-manuell.vis-item.vis-selected) {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+:global(.opphold) {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+}
+:global(.opphold.vis-item.vis-range) {
+  border-style: dashed;
+}
+:global(.opphold.vis-item.vis-selected) {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+:global(.vis-item.endretPeriode) {
+  border-top-color: #ff9100;
+  border-top-width: 5px;
+}
+:global(.opptjening .vis-center) {
+  border-bottom: 1px solid grey;
+  border-left-style: none;
+  border-right-style: none;
+}
+:global(.opptjening .vis-text) {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+:global(.uttakTimeline .vis-time-axis .vis-text.vis-minor) {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+:global(.opptjening .vis-label) {
+  border-bottom: 0 solid;
+  text-align: right;
+}
+:global(.opptjening .vis-panel.vis-left) {
+  border-top-style: hidden;
+  max-width: 150px;
+}
+:global(.opptjening .vis-panel.vis-left .vis-label) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:global(.opptjening > .timeLineLight .vis-panel.vis-left) {
+  width: 0;
+}
+:global(.opptjening .vis-panel.vis-top) {
+  margin-left: -1px;
+}
+:global(.opptjening .timeLineLight .vis-panel.vis-top) {
+  margin-left: 0;
+}
+:global(.opptjening .vis-panel > .vis-content) {
+  border-left: 0 solid;
+}
+:global(.opptjening .vis-panel.vis-center) {
+  border-top-style: hidden;
+}
+:global(.opptjening .vis-itemset > .vis-background) {
+  border-top: 1px solid darkgray;
+}
+:global(.vis-timeline.vis-bottom) {
+  animation-duration: 2s;
+  animation-name: fadeIn;
+}
+@media all and (-ms-high-contrast: none) {
+  :global(.vis-timeline.vis-bottom) {
+    animation-duration: 0s;
+    animation-name: none;
+  }
+  :global(.opptjening .vis-labelset .vis-label .vis-inner) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  :global(.opptjening .vis-labelset .vis-label .vis-inner) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+:global(.opptjening .vis-foreground .vis-group:last-child) {
+  border-bottom: 1px solid darkgray;
+}
+:global(.timeLineLight .vis-foreground .vis-group:last-child) {
+  border-left: 1px solid darkgray;
+}
+:global(.opptjening .vis-january > div) {
+  display: none;
+}
+:global(.opptjening .vis-content) {
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+}
+:global(.opptjening .currentDate) {
+  display: none;
+}
+:global(.opptjening .currentDate):after {
+  display: none;
+}
+:global(.godkjent) {
+  background-color: #99dead;
+}
+:global(.avvist) {
+  background-color: #efa89d;
+}
+:global(div .vis-tooltip) {
+  font-size: 10px;
+  max-width: 300px;
+  padding: 0 4px 0 4px;
+  white-space: normal;
+}
+:global(.tableRowHighlight) {
+  background-color: #ffeccc;
+}
+:global(.tableRowHighlight):hover {
+  background-color: #ffeccc !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+div[class^='SjekkFodselDokForm'] [class^='periodFieldArray_buttonRemove'] {
+  margin-top: 42px;
+}
+:global(.dodSoker) {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+:global(.dodSoker):after {
+  background-color: black;
+  color: white;
+  content: 'Søker død';
+  height: 20px;
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+:global([class^="vis-custom-time barndod"]) {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+:global([class^="vis-custom-time barndod"]):after {
+  background-color: black;
+  color: white;
+  content: 'Barn død';
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.aksjonspunktHelpTextHTML_container_z8fB0 {
+  background-color: #ffeccc;
+  border: 1px solid #d47b00;
+  border-radius: 4px;
+}
+.aksjonspunktHelpTextHTML_divider_fWVKC {
+  border-left: 1px solid #a0a0a0;
+  border-right: 0 solid #a0a0a0;
+  height: 100%;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.aksjonspunktHelpTextHTML_image_QSbmN {
+  margin-left: 10px;
+  margin-top: 8px;
+}
+.aksjonspunktHelpTextHTML_oneElement_mBYro {
+  margin-bottom: 9px;
+  margin-left: 0;
+  margin-top: 9px;
+}
+.aksjonspunktHelpTextHTML_severalElements_gWXU6 {
+  margin-left: 0;
+  margin-top: 0;
+}
+.aksjonspunktHelpTextHTML_aksjonspunktText_AfJ3J {
+  max-width: 100%;
+  padding-right: 20px;
+}
+.aksjonspunktHelpTextHTML_wordwrap_qOY0m {
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+.AksjonspunktHelpTextTemp_wordwrap_nDGcj {
+  word-wrap: break-word;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.borderBox_borderbox_AP0dU {
+  margin-top: 16px;
+}
+.borderBox_error_F7Spz {
+  border: 2px solid #ba3a26;
+}
+.borderBox_warning_v1TcK {
+  border: 2px solid #ffc166;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.aksjonspunktBox_aksjonspunkt_uFIKT {
+  padding: 20px;
+}
+.aksjonspunktBox_aksjonspunkt_uFIKT.aksjonspunktBox_erAksjonspunktApent_Fdmu0 {
+  border: 3px solid #ffaa33;
+  border-radius: 4px;
+}
+.aksjonspunktBox_aksjonspunkt_uFIKT.aksjonspunktBox_erIkkeGodkjentAvBeslutter_jkqnG {
+  border: 3px solid #ba3a26;
+  border-radius: 4px;
+}
+
+.fadingPanel_container_Fv7Kv {
+  animation-duration: 300ms;
+  animation-name: fadingPanel_fadein_NOoQ9;
+  animation-timing-function: ease-out;
+  padding: 40px;
+}
+@keyframes fadingPanel_fadein_NOoQ9 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.floatRight_floatRight_eXjUB {
+  float: right;
+}
+
+.loadingPanel_container_NDCRL {
+  text-align: center;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.tableRow_rowHeader_ewO6n {
+  cursor: default;
+  font-weight: bold;
+}
+.tableRow_rowContent_U38xb {
+  cursor: pointer;
+}
+.tableRow_selected_rxi2V {
+  background-color: #f5f5f5;
+  cursor: default;
+}
+.tableRow_bold_RUUbJ {
+  font-weight: bold;
+}
+.tableRow_dashedBottomBorder_ZSxAM {
+  border-bottom: dashed 1px #a0a0a0;
+}
+.tableRow_solidBottomBorder_WsTpG {
+  border-bottom: solid 1px #a0a0a0;
+}
+.tableRow_apLeftBorder_hOzDm {
+  border-left: solid 5px #ffaa33;
+}
+
+.tableColumn_columnStyle_UaZLw {
+  border-bottom: 1px solid #b7b1a9;
+  line-height: 1.42857143;
+  padding: 8px 8px 8px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.table_table_TgSx5 {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  width: 100%;
+}
+.table_table_TgSx5 thead {
+  display: table-header-group;
+}
+.table_table_TgSx5 caption {
+  color: #6a6a6a;
+  left: -3000px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  position: absolute;
+  text-align: left;
+}
+.table_table_TgSx5 tbody tr:first-child th,
+.table_table_TgSx5 tbody tr:first-child td {
+  border-top: 1px solid #a0a0a0;
+  border-top-width: 2px;
+}
+.table_table_TgSx5 tbody tr:hover {
+  background-color: #cce2f0;
+}
+.table_table_TgSx5.table_noHover_uDj8e tbody tr:hover {
+  background-color: transparent;
+}
+
+.verticalSpacer_fourPx_NHgTy {
+  margin-bottom: 4px;
+}
+.verticalSpacer_eightPx_ommTp {
+  margin-bottom: 8px;
+}
+.verticalSpacer_sixteenPx_OWFzF {
+  margin-bottom: 16px;
+}
+.verticalSpacer_twentyPx_bt371 {
+  margin-bottom: 20px;
+}
+.verticalSpacer_thirtyTwoPx_iQTJC {
+  margin-bottom: 32px;
+}
+.verticalSpacer_fourtyPx_mMXPq {
+  margin-bottom: 40px;
+}
+
+.fieldError_fieldError_BAJ11 {
+  color: #ba3a26;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0.5rem 0 0;
+}
+
+.datepicker_datepicker_vVHiu {
+  display: flex;
+  flex-direction: column;
+}
+
+.label_labelWrapper_H1BXQ > .label_label_GON1S {
+  line-height: 1.15rem;
+}
+.label_readOnly_O7tHg {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.readOnlyField_readOnlyContainer_qU35o {
+  display: inline-block;
+}
+.readOnlyField_readOnlyContainer_qU35o .readOnlyField_readOnlyContent_OMBZx {
+  margin-bottom: 16px;
+  padding-bottom: 0.45rem;
+  white-space: pre-wrap;
+}
+
+.select_navSelect_ZGv7p select {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.select_navSelect_ZGv7p select:required:invalid {
+  color: gray;
+}
+.select_navSelect_ZGv7p option {
+  color: black;
+}
+.select_navSelect_ZGv7p option[disabled] {
+  color: gray;
+}
+.select_navSelect_ZGv7p select:disabled {
+  background: none;
+  background-color: #e9e7e7;
+  border: 0;
+  border-color: #b7b1a9;
+  box-shadow: none;
+  color: #3e3832;
+  padding-left: 0;
+  padding-right: 0;
+}
+.select_navSelectReadOnly_SpLsn > div:before,
+.select_navSelectReadOnly_SpLsn > div:after {
+  display: none;
+}
+
+.textArea_textAreaFieldWithBadges_vUI9H {
+  position: relative;
+}
+.textArea_textAreaFieldWithBadges_vUI9H .textArea_etikettWrapper_hGW0L {
+  position: absolute;
+  right: 0;
+  top: -4px;
+  z-index: 1;
+}
+.textArea_textAreaFieldWithBadges_vUI9H label {
+  max-width: calc(100% - 100px);
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.periodFieldArray_buttonRemove_u84Pl {
+  background: #fff url(./remove_036f5db2fef3a813a8a3..svg) no-repeat;
+  background-size: 100% 100%;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  height: 17px;
+  margin-top: 20px;
+  padding: 0;
+  vertical-align: top;
+  width: 17px;
+}
+.periodFieldArray_buttonAdd_CpZk0 {
+  background: #fff url(./add-circle_375f29cf317195c4fefa..svg) no-repeat;
+  background-size: contain;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  height: 23px;
+  padding-left: 7px;
+  width: 100px;
+}
+.periodFieldArray_addCircleIcon_ViueR,
+.periodFieldArray_imageText_C0V9p {
+  display: inline-block;
+  margin-right: 1ex;
+  vertical-align: text-bottom;
+}
+.periodFieldArray_addPeriode_Hret4 {
+  cursor: pointer;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.feilutbetalingPerioderFieldArray_feilutbetalingTable_j4Zhx td:first-child {
+  padding-left: 0;
+}
+.feilutbetalingPerioderFieldArray_feilutbetalingTable_j4Zhx td:last-child {
+  padding-right: 0;
+  text-align: right;
+}
+.feilutbetalingPerioderFieldArray_redText_xgAYZ {
+  color: #c30000;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.feilutbetalingInfoPanel_smallMarginBottom_JukGU {
+  margin-bottom: 16px;
+}
+.feilutbetalingInfoPanel_smallMarginTop_4LUvH {
+  margin-top: 16px;
+}
+.feilutbetalingInfoPanel_undertekstMarginBottom_lPHD5 {
+  margin-bottom: 8px;
+}
+.feilutbetalingInfoPanel_smallPaddingRight_UnDz5 {
+  padding-right: 8px;
+}
+.feilutbetalingInfoPanel_redText_fs82J {
+  color: #c30000;
+  font-weight: bold;
+}
+
+.faktaBegrunnelseTextField_begrunnelseTextField_kZ3x0 {
+  width: 50%;
+}
+.faktaBegrunnelseTextField_explanationTextarea_XjLU4 {
+  resize: none;
+}
+.faktaBegrunnelseTextField_explanationTextareaReadOnly_ACn_j {
+  padding-top: 0;
+  resize: none;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.faktaIndex_container_alAUy {
+  background-color: #fff;
+  height: 100%;
+}
+.faktaIndex_content_iL0FV {
+  flex: 1 1 auto;
+  padding-bottom: 40px;
+  padding-left: 24px;
+  padding-right: 40px;
+  padding-top: 40px;
+}
+.faktaIndex_sideMenu_BeS9C {
+  flex: 0 0 auto;
+}
+
+:export {
+  navRod: #c30000;
+  navOransje: #ff9100;
+  navLimeGronn: #a2ad00;
+  navGronn: #06893a;
+  navLilla: #634689;
+  navDypBla: #005b82;
+  navBla: #0067c5;
+  navLysBla: #66cbec;
+  navMorkGra: #262626;
+  navGra80: #4f4f4f;
+  navGra60: #6a6a6a;
+  navGra40: #a0a0a0;
+  navGra20: #c9c9c9;
+  navLysGra: #f1f1f1;
+  navBakgrunn: #ffffff;
+  navGraBakgrunn: #f1f1f1;
+  fokusFarge: #00347d;
+  redError: #ba3a26;
+  white: #fff;
+  grayBackground: #f1f1f1;
+  grayIcon: #a0a0a0;
+  grayModia: #333333;
+  grayInactive: #6a6a6a;
+  pinkErrorBg: #f3e3e3;
+  navGronnLighten80: #ccf1d6;
+  navGronnLighten60: #99dead;
+  navGronnLighten40: #66c786;
+  navGronnLighten20: #33aa5f;
+  navGronnDarken20: #007c2e;
+  navGronnDarken40: #006a23;
+  navGronnDarken60: #005519;
+  navGronnDarken80: #003b0f;
+  navLimeGronnLighten80: #f9fccc;
+  navLimeGronnLighten60: #ecf399;
+  navLimeGronnLighten40: #d9e366;
+  navLimeGronnLighten20: #c1cb33;
+  navLimeGronnDarken20: #939e00;
+  navLimeGronnDarken40: #7f8900;
+  navLimeGronnDarken60: #666e00;
+  navLimeGronnDarken80: #474e00;
+  navLysBlaLighten80: #d8f9ff;
+  navLysBlaLighten60: #b5f1ff;
+  navLysBlaLighten40: #97e6ff;
+  navLysBlaLighten20: #7cdaf8;
+  navLysBlaDarken20: #4cadcd;
+  navLysBlaDarken40: #368da8;
+  navLysBlaDarken60: #236b7d;
+  navLysBlaDarken80: #134852;
+  navBlaLighten80: #cce1ff;
+  navBlaLighten60: #99c3ff;
+  navBlaLighten40: #66a5f4;
+  navBlaLighten20: #3386e0;
+  navBlaDarken20: #0056b4;
+  navBlaDarken40: #00459c;
+  navBlaDarken60: #00347d;
+  navBlaDarken80: #002252;
+  navDypBlaLighten80: #cce2f0;
+  navDypBlaLighten60: #99c4dd;
+  navDypBlaLighten40: #66a3c4;
+  navDypBlaLighten20: #3380a5;
+  navDypBlaDarken20: #005077;
+  navDypBlaDarken40: #004367;
+  navDypBlaDarken60: #003453;
+  navDypBlaDarken80: #00243a;
+  navLillaLighten80: #e0d8e9;
+  navLillaLighten60: #c0b2d2;
+  navLillaLighten40: #a18dbb;
+  navLillaLighten20: #8269a2;
+  navLillaDarken20: #523874;
+  navLillaDarken40: #412b5d;
+  navLillaDarken60: #301f46;
+  navLillaDarken80: #1f142f;
+  redErrorLighten80: #f9d2cc;
+  redErrorLighten60: #efa89d;
+  redErrorLighten40: #e18071;
+  redErrorLighten20: #d05c4a;
+  redErrorDarken20: #a32a17;
+  redErrorDarken40: #881d0c;
+  redErrorDarken60: #6a1204;
+  redErrorDarken80: #480900;
+  navOransjeLighten80: #ffeccc;
+  navOransjeLighten60: #ffd799;
+  navOransjeLighten40: #ffc166;
+  navOransjeLighten20: #ffaa33;
+  navOransjeDarken20: #d47b00;
+  navOransjeDarken40: #a86400;
+  navOransjeDarken60: #7d4c00;
+  navOransjeDarken80: #523300;
+  screenSm: 768px;
+  screenSmMin: 768px;
+  screenTablet: 768px;
+  screenMd: 992px;
+  screenMdMin: 992px;
+  screenDesktop: 992px;
+  screenLg: 1200px;
+  screenLgMin: 1200px;
+  screenLgDesktop: 1200px;
+  screenXsMax: 767px;
+  screenSmMax: 991px;
+  screenMdMax: 1199px;
+  containerTablet: 736px;
+  containerSm: 736px;
+  containerDesktop: 956px;
+  containerMd: 956px;
+  containerLargeDesktop: 1156px;
+  containerLg: 1156px;
+  gridColumns: 12;
+  gridGutterWidth: 16px;
+  gridFloatBreakpoint: 768px;
+  gridFloatBreakpointMax: 767px;
+  paddingBaseVertical: 6px;
+  paddingBaseHorizontal: 12px;
+  paddingLargeVertical: 10px;
+  paddingLargeHorizontal: 16px;
+  paddingSmallVertical: 5px;
+  paddingSmallHorizontal: 10px;
+  paddingXsVertical: 1px;
+  paddingXsHorizontal: 5px;
+  lineHeightLarge: 1.3333333;
+  lineHeightSmall: 1.5;
+  borderRadiusSmall: 2px;
+  borderRadiusBase: 4px;
+  borderRadiusLarge: 6px;
+}
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.step__arrow-container {
+  bottom: -24px !important;
+  filter: drop-shadow(0 -3px 2px rgba(0, 0, 0, 0.1));
+  z-index: 1;
+}
+.step__arrow-container .step__arrow {
+  position: relative;
+}
+.step__arrow-container .step__arrow:after,
+.step__arrow-container .step__arrow:before {
+  border: solid transparent;
+  bottom: 100%;
+  content: " ";
+  height: 0;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+}
+.step__arrow-container .step__arrow:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #fff;
+  border-width: 12px;
+  margin-left: -12px;
+}
+.step__arrow-container .step__arrow:before {
+  border-color: rgba(0, 0, 0, 0);
+  border-bottom-color: #6a6a6a;
+  border-width: 13px;
+  margin-left: -13px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.timeLineButton_timeLineButton_xgRhb {
+  background-color: #fff;
+  border: 0 solid;
+  height: 26px;
+  margin-left: 4px;
+  margin-top: 0;
+  padding: 0;
+  width: 26px;
+}
+.timeLineButton_timeLineButton_xgRhb:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.timeLineButton_timeLineButton_xgRhb img:last-child {
+  display: none;
+}
+.timeLineButton_timeLineButton_xgRhb:hover img:first-child {
+  display: none;
+}
+.timeLineButton_timeLineButton_xgRhb:hover img:last-child {
+  display: inline-block;
+}
+.timeLineButton_timeLineButton_xgRhb:active img:last-child {
+  display: inline-block;
+}
+.timeLineButton_timeLineButtonInverted_iVIVQ {
+  background-color: #fff;
+  border: 0 solid;
+  height: 26px;
+  margin: 4px;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+  transform: rotate(180deg);
+  width: 26px;
+}
+.timeLineButton_timeLineButtonInverted_iVIVQ:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.legendBox_legendBoxContainer_p3Hdi {
+  display: flex;
+  flex-wrap: wrap;
+}
+.legendBox_legendBoxLegend_O7cmR {
+  margin-bottom: 8px;
+  width: 50%;
+}
+.legendBox_legendBoxIcon_vof7Y {
+  background-color: #fff;
+  border: 0 solid;
+  height: 26px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 0;
+  width: 26px;
+}
+.legendBox_popUnder_PYDrF {
+  margin-right: 20px;
+  position: relative;
+}
+.legendBox_popUnderContent_MtoFt {
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  left: -40px;
+  min-width: 560px;
+  padding: 12px;
+  position: absolute;
+  top: 54px;
+  transform: translate(0, 10px);
+  visibility: hidden;
+  width: auto;
+}
+.legendBox_popUnderContent_MtoFt:before {
+  border-color: transparent transparent lightgrey;
+  border-style: solid;
+  border-width: 0 19px 9px 19px;
+  content: '';
+  left: 37px;
+  position: absolute;
+  top: -9px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+}
+.legendBox_popUnderContent_MtoFt:after {
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 19px 9px 19px;
+  content: '';
+  left: 37px;
+  position: absolute;
+  top: -8px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+}
+.legendBox_popUnder_PYDrF:hover .legendBox_popUnderContent_MtoFt {
+  opacity: 1;
+  transform: translate(0, -20px);
+  transition: all 0.5s;
+  visibility: visible;
+  z-index: 10;
+}
+.legendBox_popUnderContentAlignLeft__4C8z {
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  left: -320px;
+  min-width: 560px;
+  padding: 12px;
+  position: absolute;
+  top: 54px;
+  transform: translate(0, 10px);
+  visibility: hidden;
+  width: auto;
+}
+.legendBox_popUnderContentAlignLeft__4C8z:before {
+  border-color: transparent transparent lightgrey;
+  border-style: solid;
+  border-width: 0 19px 9px 19px;
+  content: '';
+  left: 318px;
+  position: absolute;
+  top: -9px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+}
+.legendBox_popUnderContentAlignLeft__4C8z:after {
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 19px 9px 19px;
+  content: '';
+  left: 318px;
+  position: absolute;
+  top: -8px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+}
+.legendBox_popUnder_PYDrF:hover .legendBox_popUnderContentAlignLeft__4C8z {
+  opacity: 1;
+  transform: translate(0, -20px);
+  transition: all 0.5s;
+  visibility: visible;
+  z-index: 10;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.timeLineControl_timelineControlContatiner_LCfzT {
+  border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  height: 141px;
+  margin-bottom: 20px;
+  margin-left: -17px;
+  position: relative;
+}
+.timeLineControl_upperTimeLine_Jmxno {
+  margin-top: 16px;
+}
+.timeLineControl_upperTimeLine_Jmxno:after {
+  border-bottom: 1px solid lightgrey;
+  content: '';
+  position: absolute;
+  top: 56px;
+  width: 100%;
+}
+.timeLineControl_scrollButtonContainer_aMGBc {
+  float: right;
+  margin-bottom: 8px;
+  margin-right: 4px;
+  margin-top: 8px;
+}
+.timeLineControl_controlButtonsContainer_fQU41 {
+  float: right;
+}
+.timeLineControl_buttonSpacing_KbKGS {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.timeLineControl_popUnder_jNLuO {
+  margin-right: 20px;
+  position: relative;
+}
+.timeLineControl_popUnderContent_vFRqX {
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  left: -40px;
+  min-width: 560px;
+  padding: 12px;
+  position: absolute;
+  top: 54px;
+  transform: translate(0, 10px);
+  visibility: hidden;
+  width: auto;
+}
+.timeLineControl_popUnderContent_vFRqX:before {
+  border-color: transparent transparent lightgrey;
+  border-style: solid;
+  border-width: 0 19px 9px 19px;
+  content: '';
+  left: 37px;
+  position: absolute;
+  top: -9px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+}
+.timeLineControl_popUnderContent_vFRqX:after {
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 19px 9px 19px;
+  content: '';
+  left: 37px;
+  position: absolute;
+  top: -8px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+}
+.timeLineControl_popUnder_jNLuO:hover .timeLineControl_popUnderContent_vFRqX {
+  opacity: 1;
+  transform: translate(0, -20px);
+  transition: all 0.5s;
+  visibility: visible;
+  z-index: 10;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .timeLineControl_upperTimeLine_Jmxno:after {
+    top: 58px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .timeLineControl_timelineSokerContatiner_aNCmo:after {
+    top: 58px;
+  }
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.timeLineSoker_iconHovedsoker_M61KW {
+  position: absolute;
+  top: 50px;
+  width: 25px;
+}
+.timeLineSoker_iconMedsoker_nnrjt {
+  position: absolute;
+  top: 65px;
+  width: 25px;
+}
+.timeLineSoker_infoPlaceholder_Ja_h9 {
+  display: flex;
+  margin-left: 50px;
+}
+.timeLineSoker_timelineSokerContatiner_KeMN2 {
+  height: 144px;
+  margin-bottom: 20px;
+}
+.timeLineSoker_timelineSokerContatiner_KeMN2:after {
+  border-top: 1px solid lightgrey;
+  content: '';
+  height: 10px;
+  position: absolute;
+  top: 56px;
+  width: 84px;
+}
+.timeLineSoker_scrollButton_Dt3fZ {
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-bottom: 1px solid lightgrey;
+  border-image: none;
+  color: cornflowerblue;
+  margin-bottom: 2px;
+  margin-top: 20px;
+  padding-left: 0;
+  width: 20px;
+}
+.timeLineSoker_scrollButton_Dt3fZ:focus {
+  background-color: #ffc166;
+  border-bottom: 2px solid #0067c5;
+  color: #0067c5;
+  padding-bottom: 4px;
+  text-decoration: none;
+}
+.timeLineSoker_scrollButton_Dt3fZ:focus:hover {
+  color: #0067c5;
+}
+.timeLineSoker_chevronLeft_LoV9B {
+  margin-left: -2px;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .timeLineSoker_timelineSokerContatiner_KeMN2:after {
+    top: 58px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .timeLineSoker_timelineSokerContatiner_KeMN2:after {
+    top: 58px;
+  }
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.timeLineSokerEnsamSoker_iconHovedsoker_rN0yf {
+  position: absolute;
+  right: 25px;
+  top: 102px;
+  width: 25px;
+}
+.timeLineSokerEnsamSoker_iconMedsoker_ZRWXn {
+  position: absolute;
+  top: 64px;
+  width: 25px;
+}
+.timeLineSokerEnsamSoker_infoPlaceholder_z0VNX {
+  display: flex;
+  margin-left: 50px;
+}
+.timeLineSokerEnsamSoker_scrollButton_owQGg {
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-bottom: 1px solid lightgrey;
+  border-image: none;
+  color: cornflowerblue;
+  margin-bottom: 2px;
+  margin-top: 20px;
+  padding-left: 0;
+  width: 20px;
+}
+.timeLineSokerEnsamSoker_scrollButton_owQGg:focus {
+  background-color: #ffc166;
+  border-bottom: 2px solid #0067c5;
+  color: #0067c5;
+  padding-bottom: 4px;
+  text-decoration: none;
+}
+.timeLineSokerEnsamSoker_scrollButton_owQGg:focus:hover {
+  color: #0067c5;
+}
+.timeLineSokerEnsamSoker_chevronLeft_fb1eV {
+  margin-left: -2px;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .timeLineSokerEnsamSoker_timelineSokerContatiner_XYkjl:after {
+    top: 58px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .timeLineSokerEnsamSoker_timelineSokerContatiner_XYkjl:after {
+    top: 58px;
+  }
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*
+-------------
+CLEARFIX
+-------------
+*/
+/* stylelint-disable */
+/* stylelint-enable */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  font-family: sans-serif;
+  /* 3 */
+}
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+figure {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
+.tidslinje_img-responsive_dU3e_ {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.tidslinje_img-rounded_myeun {
+  border-radius: 6px;
+}
+.tidslinje_img-circle_Z7khn {
+  border-radius: 50%;
+}
+.tidslinje_sr-only_Wzc0v {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+.tidslinje_sr-only-focusable_pq2YA:active,
+.tidslinje_sr-only-focusable_pq2YA:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+[role="button"] {
+  cursor: pointer;
+}
+body .tidslinje_clearfix_Ydi_s::before,
+body .tidslinje_clearfix_Ydi_s::after {
+  content: " ";
+  display: table;
+}
+body .tidslinje_clearfix_Ydi_s::after {
+  clear: both;
+}
+body .tidslinje_center-block_GH2Fc {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+body .tidslinje_pull-right_p4xat {
+  float: right !important;
+}
+body .tidslinje_pull-left_Eefz_ {
+  float: left !important;
+}
+body .tidslinje_hide_as8Yl {
+  display: none !important;
+}
+body .tidslinje_show_aftCN {
+  display: block !important;
+}
+body .tidslinje_hidden_siowf {
+  display: none !important;
+}
+body .tidslinje_invisible_DA4Ny {
+  visibility: hidden;
+}
+body .tidslinje_text-hide_lo4zh {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+body .tidslinje_ustilet_A3FLL {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body .tidslinje_blokk_mS_ZA {
+  margin-bottom: 2rem;
+}
+body .tidslinje_blokk-null_qEPko {
+  margin-bottom: 0;
+}
+body .tidslinje_blokk-xxxs_jPiDM {
+  margin-bottom: 4px;
+}
+body .tidslinje_blokk-xxs_NJA38 {
+  margin-bottom: 0.5rem;
+}
+body .tidslinje_blokk-xs_F71Gd {
+  margin-bottom: 1rem;
+}
+body .tidslinje_blokk-s_AAzgj {
+  margin-bottom: 20px;
+}
+body .tidslinje_blokk-m_yFu5u {
+  margin-bottom: 2rem;
+}
+body .tidslinje_blokk-l_AxOSr {
+  margin-bottom: 2.5rem;
+}
+body .tidslinje_blokk-xl_uJHpS {
+  margin-bottom: 4rem;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@media (max-width: 767px) {
+  .tidslinje_hidden-xs_jewBC {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .tidslinje_hidden-sm_GmoMb {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .tidslinje_hidden-md_ZJEEr {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .tidslinje_hidden-lg_nSCmk {
+    display: none !important;
+  }
+}
+.tidslinje_DayPickerInput-OverlayWrapper_NxfOt {
+  height: 0;
+  position: relative;
+  top: -12px;
+  width: 0;
+}
+.tidslinje_DayPickerInput-Overlay_wbL9G {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1010;
+}
+.tidslinje_calendarWrapper_Zfeua {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 302px;
+}
+.tidslinje_calendarWrapper_Zfeua.tidslinje_calendarWrapper--2_EL6rD {
+  width: 610px;
+}
+.tidslinje_calendarWrapper_Zfeua.tidslinje_calendarWrapper--3_N1mWH {
+  width: 915px;
+}
+.tidslinje_calendarWrapper_Zfeua:focus {
+  outline: none;
+}
+.tidslinje_DayPicker_xuLZE {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0;
+  position: relative;
+  user-select: none;
+}
+.tidslinje_DayPicker_xuLZE:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.tidslinje_DayPicker-Months_PItv_ {
+  display: flex;
+}
+.tidslinje_DayPicker-Month_rC24U {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  margin: 1rem 1em 0;
+  user-select: none;
+}
+.tidslinje_DayPicker-NavBar_RYy7p {
+  left: 0;
+  padding: 0 0.5em;
+  position: absolute;
+  right: 0;
+}
+.tidslinje_DayPicker-NavButton_bmBTF {
+  background: transparent url(./pil-videre_ec8cc346983573bb966d..svg) no-repeat center;
+  background-size: 1.25em 1.25em;
+  border: 0;
+  cursor: pointer;
+  height: 2em;
+  position: absolute;
+  width: 2em;
+}
+.tidslinje_DayPicker-NavButton_bmBTF:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.tidslinje_DayPicker-NavButton_bmBTF:focus,
+.tidslinje_DayPicker-NavButton_bmBTF:hover {
+  background-image: url(./pil-videre--hover_da2ae4f50e0a19b89d18..svg);
+}
+.tidslinje_DayPicker-NavButton--prev_aMWTA {
+  left: 1em;
+  transform: rotate(180deg);
+}
+.tidslinje_DayPicker-NavButton--next_wbEYv {
+  right: 1em;
+}
+.tidslinje_DayPicker-Caption__ZMCA {
+  display: table-caption;
+  font-size: 1.25rem;
+  font-weight: 600;
+  height: 2em;
+  line-height: 2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.tidslinje_DayPicker-Weekdays_jYpze {
+  border-top: 1px solid #a0a0a0;
+  display: table-header-group;
+}
+.tidslinje_DayPicker-WeekdaysRow_Fy4hJ {
+  display: table-row;
+}
+.tidslinje_DayPicker-Weekday_xL0g9 {
+  display: table-cell;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
+}
+.tidslinje_DayPicker-Weekday_xL0g9 abbr {
+  text-decoration: none;
+}
+.tidslinje_DayPicker-Body_Zlob3 {
+  display: table-row-group;
+}
+.tidslinje_DayPicker-Week_hAWTj {
+  display: table-row;
+}
+.tidslinje_DayPicker-Day_s9ELh {
+  cursor: pointer;
+  display: table-cell;
+  font-weight: 600;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+.tidslinje_DayPicker-Day_s9ELh:focus {
+  background-color: #ffc166;
+  outline: none;
+}
+.tidslinje_DayPicker-Day_s9ELh:hover {
+  background-color: #f1f1f1;
+}
+.tidslinje_DayPicker-Day_s9ELh:empty:hover {
+  background-color: transparent;
+}
+.tidslinje_DayPicker-Day_s9ELh:last-child {
+  color: #c30000;
+}
+.tidslinje_DayPicker--interactionDisabled_Yp3sG .tidslinje_DayPicker-Day_s9ELh {
+  cursor: default;
+}
+/* Default modifiers */
+.tidslinje_DayPicker-Day--disabled_s24wR,
+.tidslinje_DayPicker-Day--disabled_s24wR:last-child {
+  color: #a0a0a0;
+  cursor: default;
+  font-weight: normal;
+}
+.tidslinje_DayPicker-Day--disabled_s24wR:focus,
+.tidslinje_DayPicker-Day--disabled_s24wR:last-child:focus {
+  color: #6a6a6a;
+}
+.tidslinje_DayPicker-Day--disabled_s24wR:hover {
+  background-color: transparent;
+}
+.tidslinje_DayPicker-Day--outside_JQt72 {
+  color: #6a6a6a;
+  cursor: default;
+}
+.tidslinje_DayPicker-Day--sunday_YthuF {
+  background-color: #f1f1f1;
+}
+.tidslinje_DayPicker-Day--today_KfR7u {
+  border: 1px solid #a0a0a0;
+}
+.tidslinje_DayPicker-Day--sunday_YthuF:not(.tidslinje_DayPicker-Day--today_KfR7u) {
+  color: #c30000;
+}
+.tidslinje_DayPicker-Day--selected_pXSF2:not(.tidslinje_DayPicker-Day--disabled_s24wR):not(.tidslinje_DayPicker-Day--outside_JQt72) {
+  background-color: #005b82;
+  color: #fff;
+}
+/* TODO Mesteparten i denne fila bør ikkje ligga her */
+html {
+  height: 100%;
+}
+body {
+  background-color: #fff;
+  color: #262626;
+  height: 100%;
+  line-height: 1.42857143;
+  margin: 0;
+}
+#app {
+  height: 100%;
+}
+/*
+CSS-endringer för felleskomponenter og globaler så
+som fra core/og muligen import fra alla andra komponenter
+ */
+.cal-wrap {
+  width: 300px;
+}
+.textarea--medMeta__teller {
+  color: #262626;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.skjemaelement > .skjemaelement__feilmelding {
+  margin-top: 1rem;
+}
+.skjemaelement > .skjemaelement__input {
+  padding: 9px;
+}
+.vis-timeline {
+  border: 0;
+}
+.currentDate {
+  display: none;
+}
+.soknad {
+  background-color: #0056b4;
+  pointer-events: none;
+  top: 6px !important;
+}
+.soknad:after {
+  background: transparent url(./soknad_e5fb9d64a39df5f77a92..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.fodsel {
+  background-color: #a32a17;
+  pointer-events: none;
+  top: 0 !important;
+}
+.fodsel:after {
+  background: transparent url(./fodsel_10867cb8fac55f31b8e7..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.revurdering {
+  background-color: #007c2e;
+  pointer-events: none;
+  top: 12px !important;
+}
+.revurdering:after {
+  background: transparent url(./endringstidspunkt_263b34be1a4927cfeb89..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.lastDateInSoknad {
+  display: none;
+}
+.vis-foreground .vis-group {
+  border-bottom: 0;
+}
+.vis-text.vis-major > div {
+  margin-top: 12px;
+}
+.opptjening .vis-text.vis-major > div {
+  margin-top: 0;
+}
+.uttakTimeline .vis-text.vis-major > div {
+  margin-top: 0;
+}
+.vis-item.vis-selected {
+  border: 1px solid #4a4a4a;
+}
+.vis-item.vis-range {
+  border-radius: 6px;
+}
+.vis-label .vis-inner {
+  max-height: 50px;
+}
+.vis-custom-time {
+  width: 1px;
+}
+.vis-item {
+  top: 5px;
+  transition: transform 0.2s;
+}
+.vis-item:hover {
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+  filter: brightness(80%);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+.vis-item:active {
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  filter: brightness(95%);
+  transform: translateY(-2px);
+}
+.grey {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+.grey.vis-item.vis-selected {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+.gradert {
+  background: #06893a repeating-linear-gradient(45deg, #fff, #fff 20%, transparent 20%, transparent 50%, #fff 50%);
+  background-size: 12px 12px;
+  opacity: 0.9;
+}
+.gradert.vis-item.vis-selected {
+  background-color: #06893a;
+  opacity: 1;
+}
+.gradert.vis-item.vis-selected:hover {
+  transform: translateY(-1px);
+}
+.avslatt {
+  background-color: transparent;
+  border-color: rgba(186, 58, 38, 0.5);
+  border-radius: 6px;
+}
+.avslatt:active {
+  background-color: transparent;
+}
+.avvistPeriode {
+  background-color: rgba(186, 58, 38, 0.5);
+  border-color: rgba(201, 201, 201, 0.5);
+  border-radius: 6px;
+}
+.avvistPeriode:active {
+  background-color: #ba3a26;
+  border-color: #c9c9c9;
+}
+.undefined {
+  background-color: rgba(255, 145, 0, 0.8);
+  border-color: rgba(255, 145, 0, 0.8);
+  border-radius: 8px;
+}
+.undefined:active {
+  background-color: #ffd799;
+  border-color: #ff9100;
+}
+.undefined.vis-item.vis-selected {
+  background-color: #ff9100;
+  border: 1px solid #4a4a4a;
+}
+.avslatt.vis-item.vis-selected {
+  background-color: #ba3a26;
+}
+.avvistPeriode.vis-item.vis-selected {
+  background-color: #ba3a26;
+}
+.innvilget {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+.godkjentPeriode {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+.godkjentPeriode:active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+.vis-current-time {
+  width: 0;
+}
+.godkjentPeriode.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.mellomliggendePeriode {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+  height: 12px;
+  top: 12px !important;
+}
+.mellomliggendePeriode:active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+.mellomliggendePeriode.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.innvilget.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.innvilgetnullprosent {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 8px;
+}
+.innvilgetnullprosent.vis-item.vis-selected {
+  background-color: transparent;
+  border-radius: 8px;
+}
+.opphold-manuell {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+}
+.opphold-manuell.vis-item.vis-range {
+  border-style: dashed;
+}
+.opphold-manuell.vis-item.vis-selected {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+.opphold {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+}
+.opphold.vis-item.vis-range {
+  border-style: dashed;
+}
+.opphold.vis-item.vis-selected {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+.vis-item.endretPeriode {
+  border-top-color: #ff9100;
+  border-top-width: 5px;
+}
+.opptjening .vis-center {
+  border-bottom: 1px solid grey;
+  border-left-style: none;
+  border-right-style: none;
+}
+.opptjening .vis-text {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+.uttakTimeline .vis-time-axis .vis-text.vis-minor {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+.opptjening .vis-label {
+  border-bottom: 0 solid;
+  text-align: right;
+}
+.opptjening .vis-panel.vis-left {
+  border-top-style: hidden;
+  max-width: 150px;
+}
+.opptjening .vis-panel.vis-left .vis-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.opptjening > .timeLineLight .vis-panel.vis-left {
+  width: 0;
+}
+.opptjening .vis-panel.vis-top {
+  margin-left: -1px;
+}
+.opptjening .timeLineLight .vis-panel.vis-top {
+  margin-left: 0;
+}
+.opptjening .vis-panel > .vis-content {
+  border-left: 0 solid;
+}
+.opptjening .vis-panel.vis-center {
+  border-top-style: hidden;
+}
+.opptjening .vis-itemset > .vis-background {
+  border-top: 1px solid darkgray;
+}
+.vis-timeline.vis-bottom {
+  animation-duration: 2s;
+  animation-name: tidslinje_fadeIn_xkzZS;
+}
+@media all and (-ms-high-contrast: none) {
+  .vis-timeline.vis-bottom {
+    animation-duration: 0s;
+    animation-name: tidslinje_none_QHzXJ;
+  }
+  .opptjening .vis-labelset .vis-label .vis-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .opptjening .vis-labelset .vis-label .vis-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+.opptjening .vis-foreground .vis-group:last-child {
+  border-bottom: 1px solid darkgray;
+}
+.timeLineLight .vis-foreground .vis-group:last-child {
+  border-left: 1px solid darkgray;
+}
+.opptjening .vis-january > div {
+  display: none;
+}
+.opptjening .vis-content {
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+}
+.opptjening .currentDate {
+  display: none;
+}
+.opptjening .currentDate:after {
+  display: none;
+}
+.godkjent {
+  background-color: #99dead;
+}
+.avvist {
+  background-color: #efa89d;
+}
+div .vis-tooltip {
+  font-size: 10px;
+  max-width: 300px;
+  padding: 0 4px 0 4px;
+  white-space: normal;
+}
+.tableRowHighlight {
+  background-color: #ffeccc;
+}
+.tableRowHighlight:hover {
+  background-color: #ffeccc !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+div[class^='SjekkFodselDokForm'] [class^='periodFieldArray_buttonRemove'] {
+  margin-top: 42px;
+}
+.dodSoker {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+.dodSoker:after {
+  background-color: black;
+  color: white;
+  content: 'Søker død';
+  height: 20px;
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+[class^="vis-custom-time barndod"] {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+[class^="vis-custom-time barndod"]:after {
+  background-color: black;
+  color: white;
+  content: 'Barn død';
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+/* TODO (TOR) Fjern import av global.less etter refaktorering av timeline. Hack for å tving korrekt rekkefølge etter splitt av css */
+.tidslinje_vis-item_kmO4g.tidslinje_vis-dot_BFpaN {
+  border-width: 1px;
+}
+/* our custom classes overrule the styles for selected events,
+   so lets define a new style for the selected events */
+.tidslinje_vis-item_kmO4g.tidslinje_vis-selected_Qdz3l {
+  background-color: #fff;
+  border-color: black;
+  box-shadow: 0 0 10px gray;
+  color: black;
+}
+.tidslinje_vis-timeline_IPRVA {
+  border: 0;
+}
+.tidslinje_timelineContainer_N1XcR {
+  animation-duration: 400ms;
+  animation-name: tidslinje_fadein_sQinV;
+  animation-timing-function: ease-out;
+  background-color: #fff;
+  max-height: 1600px;
+  position: relative;
+  transition: all 400ms;
+  width: 100%;
+}
+.tidslinje_timelineContainerExpanded_vlc8l {
+  animation: tidslinje_open_m5Zge;
+  animation-duration: 200ms;
+  max-height: 1600px;
+  transition: all 300ms;
+}
+.tidslinje_iconContainer_UWotu {
+  width: 100px;
+}
+.tidslinje_timeLineWrapper_XVKgz {
+  border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  margin-left: -17px;
+  padding-right: 0;
+}
+.tidslinje_timeLineWrapper_XVKgz:before {
+  border-bottom: 1px solid lightgrey;
+  bottom: 0;
+  content: '';
+  left: -70px;
+  position: absolute;
+  width: 70px;
+}
+.tidslinje_sokerContainer_a3KwV {
+  max-width: 100px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.timelineDataContainer_showDataContainer_wd7q_ {
+  animation-duration: 1s;
+  animation-name: timelineDataContainer_fadein_z63Qm;
+  border: 1px solid #c9c9c9;
+  border-radius: 4px;
+  color: black;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  padding: 20px;
+}
+@keyframes timelineDataContainer_fadein_z63Qm {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.8;
+    top: 0;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    max-height: 1000px;
+    opacity: 1;
+    top: 0;
+  }
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*
+-------------
+CLEARFIX
+-------------
+*/
+/* stylelint-disable */
+/* stylelint-enable */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  font-family: sans-serif;
+  /* 3 */
+}
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+figure {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
+.tilbakekrevingTimeline_img-responsive_Y1tOe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.tilbakekrevingTimeline_img-rounded_vtlpq {
+  border-radius: 6px;
+}
+.tilbakekrevingTimeline_img-circle_yT1b5 {
+  border-radius: 50%;
+}
+.tilbakekrevingTimeline_sr-only_pHgH9 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+.tilbakekrevingTimeline_sr-only-focusable_Em6Yl:active,
+.tilbakekrevingTimeline_sr-only-focusable_Em6Yl:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+[role="button"] {
+  cursor: pointer;
+}
+body .tilbakekrevingTimeline_clearfix_AlcLA::before,
+body .tilbakekrevingTimeline_clearfix_AlcLA::after {
+  content: " ";
+  display: table;
+}
+body .tilbakekrevingTimeline_clearfix_AlcLA::after {
+  clear: both;
+}
+body .tilbakekrevingTimeline_center-block_urjGp {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+body .tilbakekrevingTimeline_pull-right_QTwgC {
+  float: right !important;
+}
+body .tilbakekrevingTimeline_pull-left_XQjDB {
+  float: left !important;
+}
+body .tilbakekrevingTimeline_hide_ZDhlz {
+  display: none !important;
+}
+body .tilbakekrevingTimeline_show_ycz0f {
+  display: block !important;
+}
+body .tilbakekrevingTimeline_hidden_TwCr5 {
+  display: none !important;
+}
+body .tilbakekrevingTimeline_invisible_OSejl {
+  visibility: hidden;
+}
+body .tilbakekrevingTimeline_text-hide_SgOtK {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+body .tilbakekrevingTimeline_ustilet_ST4IO {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body .tilbakekrevingTimeline_blokk_sS6vb {
+  margin-bottom: 2rem;
+}
+body .tilbakekrevingTimeline_blokk-null__cCVa {
+  margin-bottom: 0;
+}
+body .tilbakekrevingTimeline_blokk-xxxs_QkSaI {
+  margin-bottom: 4px;
+}
+body .tilbakekrevingTimeline_blokk-xxs_VpzwD {
+  margin-bottom: 0.5rem;
+}
+body .tilbakekrevingTimeline_blokk-xs_zchQF {
+  margin-bottom: 1rem;
+}
+body .tilbakekrevingTimeline_blokk-s_jsbeN {
+  margin-bottom: 20px;
+}
+body .tilbakekrevingTimeline_blokk-m_nOgQh {
+  margin-bottom: 2rem;
+}
+body .tilbakekrevingTimeline_blokk-l_vsdqh {
+  margin-bottom: 2.5rem;
+}
+body .tilbakekrevingTimeline_blokk-xl_VRUYU {
+  margin-bottom: 4rem;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@media (max-width: 767px) {
+  .tilbakekrevingTimeline_hidden-xs_eI_vO {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .tilbakekrevingTimeline_hidden-sm_WvytM {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .tilbakekrevingTimeline_hidden-md_uDM9K {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .tilbakekrevingTimeline_hidden-lg_URSbJ {
+    display: none !important;
+  }
+}
+.tilbakekrevingTimeline_DayPickerInput-OverlayWrapper_bfKUI {
+  height: 0;
+  position: relative;
+  top: -12px;
+  width: 0;
+}
+.tilbakekrevingTimeline_DayPickerInput-Overlay_gFPnv {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1010;
+}
+.tilbakekrevingTimeline_calendarWrapper_Gug7Y {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 302px;
+}
+.tilbakekrevingTimeline_calendarWrapper_Gug7Y.tilbakekrevingTimeline_calendarWrapper--2_jgUbz {
+  width: 610px;
+}
+.tilbakekrevingTimeline_calendarWrapper_Gug7Y.tilbakekrevingTimeline_calendarWrapper--3_CA81Z {
+  width: 915px;
+}
+.tilbakekrevingTimeline_calendarWrapper_Gug7Y:focus {
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker_gN1kw {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0;
+  position: relative;
+  user-select: none;
+}
+.tilbakekrevingTimeline_DayPicker_gN1kw:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker-Months_ErGwP {
+  display: flex;
+}
+.tilbakekrevingTimeline_DayPicker-Month_nS908 {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  margin: 1rem 1em 0;
+  user-select: none;
+}
+.tilbakekrevingTimeline_DayPicker-NavBar_TtM4H {
+  left: 0;
+  padding: 0 0.5em;
+  position: absolute;
+  right: 0;
+}
+.tilbakekrevingTimeline_DayPicker-NavButton_Vuwtu {
+  background: transparent url(./pil-videre_ec8cc346983573bb966d..svg) no-repeat center;
+  background-size: 1.25em 1.25em;
+  border: 0;
+  cursor: pointer;
+  height: 2em;
+  position: absolute;
+  width: 2em;
+}
+.tilbakekrevingTimeline_DayPicker-NavButton_Vuwtu:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker-NavButton_Vuwtu:focus,
+.tilbakekrevingTimeline_DayPicker-NavButton_Vuwtu:hover {
+  background-image: url(./pil-videre--hover_da2ae4f50e0a19b89d18..svg);
+}
+.tilbakekrevingTimeline_DayPicker-NavButton--prev_I6Dd8 {
+  left: 1em;
+  transform: rotate(180deg);
+}
+.tilbakekrevingTimeline_DayPicker-NavButton--next_NoLve {
+  right: 1em;
+}
+.tilbakekrevingTimeline_DayPicker-Caption_IzigX {
+  display: table-caption;
+  font-size: 1.25rem;
+  font-weight: 600;
+  height: 2em;
+  line-height: 2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.tilbakekrevingTimeline_DayPicker-Weekdays_TituS {
+  border-top: 1px solid #a0a0a0;
+  display: table-header-group;
+}
+.tilbakekrevingTimeline_DayPicker-WeekdaysRow_sF3wD {
+  display: table-row;
+}
+.tilbakekrevingTimeline_DayPicker-Weekday_eRP11 {
+  display: table-cell;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
+}
+.tilbakekrevingTimeline_DayPicker-Weekday_eRP11 abbr {
+  text-decoration: none;
+}
+.tilbakekrevingTimeline_DayPicker-Body_pL7s8 {
+  display: table-row-group;
+}
+.tilbakekrevingTimeline_DayPicker-Week_q20DT {
+  display: table-row;
+}
+.tilbakekrevingTimeline_DayPicker-Day_wLwE5 {
+  cursor: pointer;
+  display: table-cell;
+  font-weight: 600;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+.tilbakekrevingTimeline_DayPicker-Day_wLwE5:focus {
+  background-color: #ffc166;
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker-Day_wLwE5:hover {
+  background-color: #f1f1f1;
+}
+.tilbakekrevingTimeline_DayPicker-Day_wLwE5:empty:hover {
+  background-color: transparent;
+}
+.tilbakekrevingTimeline_DayPicker-Day_wLwE5:last-child {
+  color: #c30000;
+}
+.tilbakekrevingTimeline_DayPicker--interactionDisabled_MCfuM .tilbakekrevingTimeline_DayPicker-Day_wLwE5 {
+  cursor: default;
+}
+/* Default modifiers */
+.tilbakekrevingTimeline_DayPicker-Day--disabled_SC9t7,
+.tilbakekrevingTimeline_DayPicker-Day--disabled_SC9t7:last-child {
+  color: #a0a0a0;
+  cursor: default;
+  font-weight: normal;
+}
+.tilbakekrevingTimeline_DayPicker-Day--disabled_SC9t7:focus,
+.tilbakekrevingTimeline_DayPicker-Day--disabled_SC9t7:last-child:focus {
+  color: #6a6a6a;
+}
+.tilbakekrevingTimeline_DayPicker-Day--disabled_SC9t7:hover {
+  background-color: transparent;
+}
+.tilbakekrevingTimeline_DayPicker-Day--outside_xpx6Q {
+  color: #6a6a6a;
+  cursor: default;
+}
+.tilbakekrevingTimeline_DayPicker-Day--sunday_ZPlYe {
+  background-color: #f1f1f1;
+}
+.tilbakekrevingTimeline_DayPicker-Day--today_MjSAU {
+  border: 1px solid #a0a0a0;
+}
+.tilbakekrevingTimeline_DayPicker-Day--sunday_ZPlYe:not(.tilbakekrevingTimeline_DayPicker-Day--today_MjSAU) {
+  color: #c30000;
+}
+.tilbakekrevingTimeline_DayPicker-Day--selected_QkOvP:not(.tilbakekrevingTimeline_DayPicker-Day--disabled_SC9t7):not(.tilbakekrevingTimeline_DayPicker-Day--outside_xpx6Q) {
+  background-color: #005b82;
+  color: #fff;
+}
+/* TODO Mesteparten i denne fila bør ikkje ligga her */
+html {
+  height: 100%;
+}
+body {
+  background-color: #fff;
+  color: #262626;
+  height: 100%;
+  line-height: 1.42857143;
+  margin: 0;
+}
+#app {
+  height: 100%;
+}
+/*
+CSS-endringer för felleskomponenter og globaler så
+som fra core/og muligen import fra alla andra komponenter
+ */
+.cal-wrap {
+  width: 300px;
+}
+.textarea--medMeta__teller {
+  color: #262626;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.skjemaelement > .skjemaelement__feilmelding {
+  margin-top: 1rem;
+}
+.skjemaelement > .skjemaelement__input {
+  padding: 9px;
+}
+.vis-timeline {
+  border: 0;
+}
+.currentDate {
+  display: none;
+}
+.soknad {
+  background-color: #0056b4;
+  pointer-events: none;
+  top: 6px !important;
+}
+.soknad:after {
+  background: transparent url(./soknad_e5fb9d64a39df5f77a92..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.fodsel {
+  background-color: #a32a17;
+  pointer-events: none;
+  top: 0 !important;
+}
+.fodsel:after {
+  background: transparent url(./fodsel_10867cb8fac55f31b8e7..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.revurdering {
+  background-color: #007c2e;
+  pointer-events: none;
+  top: 12px !important;
+}
+.revurdering:after {
+  background: transparent url(./endringstidspunkt_263b34be1a4927cfeb89..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.lastDateInSoknad {
+  display: none;
+}
+.vis-foreground .vis-group {
+  border-bottom: 0;
+}
+.vis-text.vis-major > div {
+  margin-top: 12px;
+}
+.opptjening .vis-text.vis-major > div {
+  margin-top: 0;
+}
+.uttakTimeline .vis-text.vis-major > div {
+  margin-top: 0;
+}
+.vis-item.vis-selected {
+  border: 1px solid #4a4a4a;
+}
+.vis-item.vis-range {
+  border-radius: 6px;
+}
+.vis-label .vis-inner {
+  max-height: 50px;
+}
+.vis-custom-time {
+  width: 1px;
+}
+.vis-item {
+  top: 5px;
+  transition: transform 0.2s;
+}
+.vis-item:hover {
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+  filter: brightness(80%);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+.vis-item:active {
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  filter: brightness(95%);
+  transform: translateY(-2px);
+}
+.grey {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+.grey.vis-item.vis-selected {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+.gradert {
+  background: #06893a repeating-linear-gradient(45deg, #fff, #fff 20%, transparent 20%, transparent 50%, #fff 50%);
+  background-size: 12px 12px;
+  opacity: 0.9;
+}
+.gradert.vis-item.vis-selected {
+  background-color: #06893a;
+  opacity: 1;
+}
+.gradert.vis-item.vis-selected:hover {
+  transform: translateY(-1px);
+}
+.avslatt {
+  background-color: transparent;
+  border-color: rgba(186, 58, 38, 0.5);
+  border-radius: 6px;
+}
+.avslatt:active {
+  background-color: transparent;
+}
+.avvistPeriode {
+  background-color: rgba(186, 58, 38, 0.5);
+  border-color: rgba(201, 201, 201, 0.5);
+  border-radius: 6px;
+}
+.avvistPeriode:active {
+  background-color: #ba3a26;
+  border-color: #c9c9c9;
+}
+.undefined {
+  background-color: rgba(255, 145, 0, 0.8);
+  border-color: rgba(255, 145, 0, 0.8);
+  border-radius: 8px;
+}
+.undefined:active {
+  background-color: #ffd799;
+  border-color: #ff9100;
+}
+.undefined.vis-item.vis-selected {
+  background-color: #ff9100;
+  border: 1px solid #4a4a4a;
+}
+.avslatt.vis-item.vis-selected {
+  background-color: #ba3a26;
+}
+.avvistPeriode.vis-item.vis-selected {
+  background-color: #ba3a26;
+}
+.innvilget {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+.godkjentPeriode {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+.godkjentPeriode:active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+.vis-current-time {
+  width: 0;
+}
+.godkjentPeriode.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.mellomliggendePeriode {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+  height: 12px;
+  top: 12px !important;
+}
+.mellomliggendePeriode:active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+.mellomliggendePeriode.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.innvilget.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.innvilgetnullprosent {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 8px;
+}
+.innvilgetnullprosent.vis-item.vis-selected {
+  background-color: transparent;
+  border-radius: 8px;
+}
+.opphold-manuell {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+}
+.opphold-manuell.vis-item.vis-range {
+  border-style: dashed;
+}
+.opphold-manuell.vis-item.vis-selected {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+.opphold {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+}
+.opphold.vis-item.vis-range {
+  border-style: dashed;
+}
+.opphold.vis-item.vis-selected {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+.vis-item.endretPeriode {
+  border-top-color: #ff9100;
+  border-top-width: 5px;
+}
+.opptjening .vis-center {
+  border-bottom: 1px solid grey;
+  border-left-style: none;
+  border-right-style: none;
+}
+.opptjening .vis-text {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+.uttakTimeline .vis-time-axis .vis-text.vis-minor {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+.opptjening .vis-label {
+  border-bottom: 0 solid;
+  text-align: right;
+}
+.opptjening .vis-panel.vis-left {
+  border-top-style: hidden;
+  max-width: 150px;
+}
+.opptjening .vis-panel.vis-left .vis-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.opptjening > .timeLineLight .vis-panel.vis-left {
+  width: 0;
+}
+.opptjening .vis-panel.vis-top {
+  margin-left: -1px;
+}
+.opptjening .timeLineLight .vis-panel.vis-top {
+  margin-left: 0;
+}
+.opptjening .vis-panel > .vis-content {
+  border-left: 0 solid;
+}
+.opptjening .vis-panel.vis-center {
+  border-top-style: hidden;
+}
+.opptjening .vis-itemset > .vis-background {
+  border-top: 1px solid darkgray;
+}
+.vis-timeline.vis-bottom {
+  animation-duration: 2s;
+  animation-name: tilbakekrevingTimeline_fadeIn_fdrId;
+}
+@media all and (-ms-high-contrast: none) {
+  .vis-timeline.vis-bottom {
+    animation-duration: 0s;
+    animation-name: tilbakekrevingTimeline_none_CkXAm;
+  }
+  .opptjening .vis-labelset .vis-label .vis-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .opptjening .vis-labelset .vis-label .vis-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+.opptjening .vis-foreground .vis-group:last-child {
+  border-bottom: 1px solid darkgray;
+}
+.timeLineLight .vis-foreground .vis-group:last-child {
+  border-left: 1px solid darkgray;
+}
+.opptjening .vis-january > div {
+  display: none;
+}
+.opptjening .vis-content {
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+}
+.opptjening .currentDate {
+  display: none;
+}
+.opptjening .currentDate:after {
+  display: none;
+}
+.godkjent {
+  background-color: #99dead;
+}
+.avvist {
+  background-color: #efa89d;
+}
+div .vis-tooltip {
+  font-size: 10px;
+  max-width: 300px;
+  padding: 0 4px 0 4px;
+  white-space: normal;
+}
+.tableRowHighlight {
+  background-color: #ffeccc;
+}
+.tableRowHighlight:hover {
+  background-color: #ffeccc !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+div[class^='SjekkFodselDokForm'] [class^='periodFieldArray_buttonRemove'] {
+  margin-top: 42px;
+}
+.dodSoker {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+.dodSoker:after {
+  background-color: black;
+  color: white;
+  content: 'Søker død';
+  height: 20px;
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+[class^="vis-custom-time barndod"] {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+[class^="vis-custom-time barndod"]:after {
+  background-color: black;
+  color: white;
+  content: 'Barn død';
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+/* TODO (TOR) Fjern import av global.less etter refaktorering av timeline. Hack for å tving korrekt rekkefølge etter splitt av css */
+.tilbakekrevingTimeline_vis-item_dblsA.tilbakekrevingTimeline_vis-dot_WLqPf {
+  border-width: 1px;
+}
+/* our custom classes overrule the styles for selected events,
+   so lets define a new style for the selected events */
+.tilbakekrevingTimeline_vis-item_dblsA.tilbakekrevingTimeline_vis-selected_YPfm6 {
+  background-color: #fff;
+  border-color: black;
+  box-shadow: 0 0 10px gray;
+  color: black;
+}
+.tilbakekrevingTimeline_vis-timeline_TMrOE {
+  border: 0;
+}
+.tilbakekrevingTimeline_timelineContainer_GsQhs {
+  animation-duration: 2s;
+  animation-name: tilbakekrevingTimeline_fadein_JBOOa;
+  animation-timing-function: ease-out;
+  background-color: #fff;
+  max-height: 1600px;
+  position: relative;
+  transition: all 2s;
+  width: 100%;
+}
+.tilbakekrevingTimeline_timelineContainerExpanded_YX5pv {
+  animation: tilbakekrevingTimeline_open_Gl6Kc;
+  animation-duration: 0.8s;
+  max-height: 1600px;
+  transition: all 2s;
+}
+.tilbakekrevingTimeline_iconContainer_rI7CG {
+  width: 100px;
+}
+.tilbakekrevingTimeline_timeLineWrapper_QsNMp {
+  border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  margin-left: -17px;
+  padding-right: 0;
+}
+.tilbakekrevingTimeline_timeLineWrapper_QsNMp:before {
+  border-bottom: 1px solid lightgrey;
+  bottom: 0;
+  content: '';
+  left: -70px;
+  position: absolute;
+  width: 70px;
+}
+.tilbakekrevingTimeline_sokerContainer_kqMXK {
+  max-width: 100px;
+}
+.tilbakekrevingTimeline_iconMedsoker_IBFQh {
+  position: absolute;
+  top: 64px;
+  width: 25px;
+}
+
+.delOppPeriodeModal_modal_JXD3X {
+  overflow: visible;
+  width: 400px;
+}
+.delOppPeriodeModal_button_VyznZ {
+  padding-left: 36px;
+  padding-right: 36px;
+}
+.delOppPeriodeModal_cancelButton_Mafk_ {
+  margin: 0 10px 0 10px;
+}
+.delOppPeriodeModal_marginTop_gSSCN {
+  margin-top: 10px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.periodeController_timeLineButton_yxlXb {
+  background-color: #fff;
+  border: 0 solid;
+  height: 26px;
+  margin-left: 8px;
+  width: 26px;
+}
+.periodeController_timeLineButton_yxlXb:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.periodeController_timeLineButton_yxlXb img:last-child {
+  display: none;
+}
+.periodeController_timeLineButton_yxlXb:hover img:first-child {
+  display: none;
+}
+.periodeController_timeLineButton_yxlXb:hover img:last-child {
+  display: inline-block;
+}
+.periodeController_timeLineButton_yxlXb:active img:last-child {
+  display: inline-block;
+}
+.periodeController_splitPeriodImage_wD9zu {
+  cursor: pointer;
+  margin-left: 12px;
+  margin-right: 4px;
+  padding-bottom: 4px;
+}
+.periodeController_splitPeriodPosition_I7nMV {
+  margin-left: -30px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.periodeInformasjon_infoSummary_LRjFO {
+  background-color: #ffd799;
+  height: auto;
+  max-width: 500px;
+  padding: 10px 20px 10px;
+  top: 0;
+}
+.periodeInformasjon_ingenPerioder_Upgro {
+  font-weight: bold;
+}
+.periodeInformasjon_resultSum_uZ7EC {
+  margin-top: 15px;
+}
+.periodeInformasjon_resultSum_uZ7EC .periodeInformasjon_number_KxVXW {
+  float: left;
+  font-weight: bold;
+}
+.periodeInformasjon_resultSum_uZ7EC .periodeInformasjon_redNumbers_Suo3t .periodeInformasjon_positivNumber_YzjIp {
+  font-weight: bold;
+  margin-left: 8px;
+}
+.periodeInformasjon_resultSum_uZ7EC .periodeInformasjon_redNumbers_Suo3t .periodeInformasjon_redNumber_UP2LY {
+  color: #c30000;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.periodeInformasjon_resultSum_uZ7EC .periodeInformasjon_redNumbers_Suo3t .periodeInformasjon_lastNumberRed_MKYEq {
+  color: #c30000;
+  font-weight: bold;
+  padding-left: 15px;
+}
+.periodeInformasjon_resultSum_uZ7EC .periodeInformasjon_redNumbers_Suo3t .periodeInformasjon_lastNumberPositiv_Z_BwI {
+  font-weight: bold;
+  padding-left: 15px;
+}
+.periodeInformasjon_resultName_kyxqv {
+  width: 170px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.foreldelseForm_container_A8n8D {
+  animation-duration: 1s;
+  animation-name: foreldelseForm_fadein_djRuN;
+  border: 1px solid #c9c9c9;
+  border-radius: 4px;
+  color: black;
+  margin-top: 8px;
+  padding: 20px;
+}
+.foreldelseForm_bold_hVrFJ {
+  font-weight: bold;
+}
+
+.delOppPeriodeModal_modal_CtlEN {
+  overflow: visible;
+  width: 400px;
+}
+.delOppPeriodeModal_button_F_baI {
+  padding-left: 36px;
+  padding-right: 36px;
+}
+.delOppPeriodeModal_cancelButton_DID2b {
+  margin: 0 10px 0 10px;
+}
+.delOppPeriodeModal_marginTop_YV4GQ {
+  margin-top: 10px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.periodeController_timeLineButton_mJUYo {
+  background-color: #fff;
+  border: 0 solid;
+  height: 26px;
+  margin-left: 8px;
+  width: 26px;
+}
+.periodeController_timeLineButton_mJUYo:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.periodeController_timeLineButton_mJUYo img:last-child {
+  display: none;
+}
+.periodeController_timeLineButton_mJUYo:hover img:first-child {
+  display: none;
+}
+.periodeController_timeLineButton_mJUYo:hover img:last-child {
+  display: inline-block;
+}
+.periodeController_timeLineButton_mJUYo:active img:last-child {
+  display: inline-block;
+}
+.periodeController_splitPeriodImage_lIYAy {
+  cursor: pointer;
+  margin-left: 12px;
+  margin-right: 4px;
+  padding-bottom: 4px;
+}
+.periodeController_splitPeriodPosition_UkBGU {
+  margin-left: -30px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.periodeInformasjon_infoSummary_d5FTo {
+  background-color: #ffd799;
+  height: auto;
+  max-width: 500px;
+  padding: 10px 20px 10px;
+  top: 0;
+}
+.periodeInformasjon_ingenPerioder_BkD8I {
+  font-weight: bold;
+}
+.periodeInformasjon_resultSum_fRDIe {
+  margin-top: 15px;
+}
+.periodeInformasjon_resultSum_fRDIe .periodeInformasjon_number_Tyx4i {
+  float: left;
+  font-weight: bold;
+}
+.periodeInformasjon_resultSum_fRDIe .periodeInformasjon_redNumbers_Q04Yw .periodeInformasjon_positivNumber_MVNAO {
+  font-weight: bold;
+  margin-left: 8px;
+}
+.periodeInformasjon_resultSum_fRDIe .periodeInformasjon_redNumbers_Q04Yw .periodeInformasjon_redNumber_GtdbF {
+  color: #c30000;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.periodeInformasjon_resultSum_fRDIe .periodeInformasjon_redNumbers_Q04Yw .periodeInformasjon_lastNumberRed_ALi7g {
+  color: #c30000;
+  font-weight: bold;
+  padding-left: 15px;
+}
+.periodeInformasjon_resultSum_fRDIe .periodeInformasjon_redNumbers_Q04Yw .periodeInformasjon_lastNumberPositiv_Ji9wv {
+  font-weight: bold;
+  padding-left: 15px;
+}
+.periodeInformasjon_resultName_dK0kd {
+  width: 170px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+/*
+-------------
+CLEARFIX
+-------------
+*/
+/* stylelint-disable */
+/* stylelint-enable */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  font-family: sans-serif;
+  /* 3 */
+}
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+figure {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
+.tilbakekrevingTimeline_img-responsive_f4R6d {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.tilbakekrevingTimeline_img-rounded_Yq2Ta {
+  border-radius: 6px;
+}
+.tilbakekrevingTimeline_img-circle_jmGm8 {
+  border-radius: 50%;
+}
+.tilbakekrevingTimeline_sr-only_XEwLO {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+.tilbakekrevingTimeline_sr-only-focusable_Iw56f:active,
+.tilbakekrevingTimeline_sr-only-focusable_Iw56f:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+[role="button"] {
+  cursor: pointer;
+}
+body .tilbakekrevingTimeline_clearfix_ia5ab::before,
+body .tilbakekrevingTimeline_clearfix_ia5ab::after {
+  content: " ";
+  display: table;
+}
+body .tilbakekrevingTimeline_clearfix_ia5ab::after {
+  clear: both;
+}
+body .tilbakekrevingTimeline_center-block_MjaAQ {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+body .tilbakekrevingTimeline_pull-right_ATvWp {
+  float: right !important;
+}
+body .tilbakekrevingTimeline_pull-left_fw5DR {
+  float: left !important;
+}
+body .tilbakekrevingTimeline_hide_KX2L9 {
+  display: none !important;
+}
+body .tilbakekrevingTimeline_show_eOkwT {
+  display: block !important;
+}
+body .tilbakekrevingTimeline_hidden_DlT_h {
+  display: none !important;
+}
+body .tilbakekrevingTimeline_invisible_v8iTO {
+  visibility: hidden;
+}
+body .tilbakekrevingTimeline_text-hide_DGYl6 {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+body .tilbakekrevingTimeline_ustilet_A9xxQ {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body .tilbakekrevingTimeline_blokk_Y5NU1 {
+  margin-bottom: 2rem;
+}
+body .tilbakekrevingTimeline_blokk-null_MSSkc {
+  margin-bottom: 0;
+}
+body .tilbakekrevingTimeline_blokk-xxxs_Q5Q_y {
+  margin-bottom: 4px;
+}
+body .tilbakekrevingTimeline_blokk-xxs_LJL2I {
+  margin-bottom: 0.5rem;
+}
+body .tilbakekrevingTimeline_blokk-xs_dv658 {
+  margin-bottom: 1rem;
+}
+body .tilbakekrevingTimeline_blokk-s_WvQGO {
+  margin-bottom: 20px;
+}
+body .tilbakekrevingTimeline_blokk-m_zVsha {
+  margin-bottom: 2rem;
+}
+body .tilbakekrevingTimeline_blokk-l_kOnqW {
+  margin-bottom: 2.5rem;
+}
+body .tilbakekrevingTimeline_blokk-xl_llIab {
+  margin-bottom: 4rem;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@media (max-width: 767px) {
+  .tilbakekrevingTimeline_hidden-xs_FVKyd {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .tilbakekrevingTimeline_hidden-sm_bHQYz {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .tilbakekrevingTimeline_hidden-md_zwfJY {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .tilbakekrevingTimeline_hidden-lg__oNUD {
+    display: none !important;
+  }
+}
+.tilbakekrevingTimeline_DayPickerInput-OverlayWrapper_rpHcW {
+  height: 0;
+  position: relative;
+  top: -12px;
+  width: 0;
+}
+.tilbakekrevingTimeline_DayPickerInput-Overlay_YGgIt {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1010;
+}
+.tilbakekrevingTimeline_calendarWrapper_vFLSL {
+  background: #fff;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 302px;
+}
+.tilbakekrevingTimeline_calendarWrapper_vFLSL.tilbakekrevingTimeline_calendarWrapper--2_KyN2M {
+  width: 610px;
+}
+.tilbakekrevingTimeline_calendarWrapper_vFLSL.tilbakekrevingTimeline_calendarWrapper--3_FJHpw {
+  width: 915px;
+}
+.tilbakekrevingTimeline_calendarWrapper_vFLSL:focus {
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker_d_Dky {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0;
+  position: relative;
+  user-select: none;
+}
+.tilbakekrevingTimeline_DayPicker_d_Dky:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker-Months_PLjJp {
+  display: flex;
+}
+.tilbakekrevingTimeline_DayPicker-Month_eF3e3 {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  margin: 1rem 1em 0;
+  user-select: none;
+}
+.tilbakekrevingTimeline_DayPicker-NavBar_kUtU3 {
+  left: 0;
+  padding: 0 0.5em;
+  position: absolute;
+  right: 0;
+}
+.tilbakekrevingTimeline_DayPicker-NavButton_oohXk {
+  background: transparent url(./pil-videre_ec8cc346983573bb966d..svg) no-repeat center;
+  background-size: 1.25em 1.25em;
+  border: 0;
+  cursor: pointer;
+  height: 2em;
+  position: absolute;
+  width: 2em;
+}
+.tilbakekrevingTimeline_DayPicker-NavButton_oohXk:focus {
+  box-shadow: 0 0 0 3px #ffc166;
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker-NavButton_oohXk:focus,
+.tilbakekrevingTimeline_DayPicker-NavButton_oohXk:hover {
+  background-image: url(./pil-videre--hover_da2ae4f50e0a19b89d18..svg);
+}
+.tilbakekrevingTimeline_DayPicker-NavButton--prev_w91Ps {
+  left: 1em;
+  transform: rotate(180deg);
+}
+.tilbakekrevingTimeline_DayPicker-NavButton--next_hbwMy {
+  right: 1em;
+}
+.tilbakekrevingTimeline_DayPicker-Caption_Uci31 {
+  display: table-caption;
+  font-size: 1.25rem;
+  font-weight: 600;
+  height: 2em;
+  line-height: 2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.tilbakekrevingTimeline_DayPicker-Weekdays_ydUyC {
+  border-top: 1px solid #a0a0a0;
+  display: table-header-group;
+}
+.tilbakekrevingTimeline_DayPicker-WeekdaysRow_PHIe7 {
+  display: table-row;
+}
+.tilbakekrevingTimeline_DayPicker-Weekday_gHbfO {
+  display: table-cell;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
+}
+.tilbakekrevingTimeline_DayPicker-Weekday_gHbfO abbr {
+  text-decoration: none;
+}
+.tilbakekrevingTimeline_DayPicker-Body_a8Ckd {
+  display: table-row-group;
+}
+.tilbakekrevingTimeline_DayPicker-Week_c6AcN {
+  display: table-row;
+}
+.tilbakekrevingTimeline_DayPicker-Day_OkggF {
+  cursor: pointer;
+  display: table-cell;
+  font-weight: 600;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+.tilbakekrevingTimeline_DayPicker-Day_OkggF:focus {
+  background-color: #ffc166;
+  outline: none;
+}
+.tilbakekrevingTimeline_DayPicker-Day_OkggF:hover {
+  background-color: #f1f1f1;
+}
+.tilbakekrevingTimeline_DayPicker-Day_OkggF:empty:hover {
+  background-color: transparent;
+}
+.tilbakekrevingTimeline_DayPicker-Day_OkggF:last-child {
+  color: #c30000;
+}
+.tilbakekrevingTimeline_DayPicker--interactionDisabled_OIVRB .tilbakekrevingTimeline_DayPicker-Day_OkggF {
+  cursor: default;
+}
+/* Default modifiers */
+.tilbakekrevingTimeline_DayPicker-Day--disabled_MvLmd,
+.tilbakekrevingTimeline_DayPicker-Day--disabled_MvLmd:last-child {
+  color: #a0a0a0;
+  cursor: default;
+  font-weight: normal;
+}
+.tilbakekrevingTimeline_DayPicker-Day--disabled_MvLmd:focus,
+.tilbakekrevingTimeline_DayPicker-Day--disabled_MvLmd:last-child:focus {
+  color: #6a6a6a;
+}
+.tilbakekrevingTimeline_DayPicker-Day--disabled_MvLmd:hover {
+  background-color: transparent;
+}
+.tilbakekrevingTimeline_DayPicker-Day--outside_gcVDd {
+  color: #6a6a6a;
+  cursor: default;
+}
+.tilbakekrevingTimeline_DayPicker-Day--sunday_Wxnhe {
+  background-color: #f1f1f1;
+}
+.tilbakekrevingTimeline_DayPicker-Day--today_NRbvT {
+  border: 1px solid #a0a0a0;
+}
+.tilbakekrevingTimeline_DayPicker-Day--sunday_Wxnhe:not(.tilbakekrevingTimeline_DayPicker-Day--today_NRbvT) {
+  color: #c30000;
+}
+.tilbakekrevingTimeline_DayPicker-Day--selected_FwuX7:not(.tilbakekrevingTimeline_DayPicker-Day--disabled_MvLmd):not(.tilbakekrevingTimeline_DayPicker-Day--outside_gcVDd) {
+  background-color: #005b82;
+  color: #fff;
+}
+/* TODO Mesteparten i denne fila bør ikkje ligga her */
+html {
+  height: 100%;
+}
+body {
+  background-color: #fff;
+  color: #262626;
+  height: 100%;
+  line-height: 1.42857143;
+  margin: 0;
+}
+#app {
+  height: 100%;
+}
+/*
+CSS-endringer för felleskomponenter og globaler så
+som fra core/og muligen import fra alla andra komponenter
+ */
+.cal-wrap {
+  width: 300px;
+}
+.textarea--medMeta__teller {
+  color: #262626;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.skjemaelement > .skjemaelement__feilmelding {
+  margin-top: 1rem;
+}
+.skjemaelement > .skjemaelement__input {
+  padding: 9px;
+}
+.vis-timeline {
+  border: 0;
+}
+.currentDate {
+  display: none;
+}
+.soknad {
+  background-color: #0056b4;
+  pointer-events: none;
+  top: 6px !important;
+}
+.soknad:after {
+  background: transparent url(./soknad_e5fb9d64a39df5f77a92..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.fodsel {
+  background-color: #a32a17;
+  pointer-events: none;
+  top: 0 !important;
+}
+.fodsel:after {
+  background: transparent url(./fodsel_10867cb8fac55f31b8e7..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.revurdering {
+  background-color: #007c2e;
+  pointer-events: none;
+  top: 12px !important;
+}
+.revurdering:after {
+  background: transparent url(./endringstidspunkt_263b34be1a4927cfeb89..svg) no-repeat;
+  content: '';
+  height: 20px;
+  left: -8px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.lastDateInSoknad {
+  display: none;
+}
+.vis-foreground .vis-group {
+  border-bottom: 0;
+}
+.vis-text.vis-major > div {
+  margin-top: 12px;
+}
+.opptjening .vis-text.vis-major > div {
+  margin-top: 0;
+}
+.uttakTimeline .vis-text.vis-major > div {
+  margin-top: 0;
+}
+.vis-item.vis-selected {
+  border: 1px solid #4a4a4a;
+}
+.vis-item.vis-range {
+  border-radius: 6px;
+}
+.vis-label .vis-inner {
+  max-height: 50px;
+}
+.vis-custom-time {
+  width: 1px;
+}
+.vis-item {
+  top: 5px;
+  transition: transform 0.2s;
+}
+.vis-item:hover {
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+  filter: brightness(80%);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+.vis-item:active {
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  filter: brightness(95%);
+  transform: translateY(-2px);
+}
+.grey {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+.grey.vis-item.vis-selected {
+  background-color: #c9c9c9;
+  border-color: #a0a0a0;
+  border-radius: 8px;
+  opacity: 0.7;
+}
+.gradert {
+  background: #06893a repeating-linear-gradient(45deg, #fff, #fff 20%, transparent 20%, transparent 50%, #fff 50%);
+  background-size: 12px 12px;
+  opacity: 0.9;
+}
+.gradert.vis-item.vis-selected {
+  background-color: #06893a;
+  opacity: 1;
+}
+.gradert.vis-item.vis-selected:hover {
+  transform: translateY(-1px);
+}
+.avslatt {
+  background-color: transparent;
+  border-color: rgba(186, 58, 38, 0.5);
+  border-radius: 6px;
+}
+.avslatt:active {
+  background-color: transparent;
+}
+.avvistPeriode {
+  background-color: rgba(186, 58, 38, 0.5);
+  border-color: rgba(201, 201, 201, 0.5);
+  border-radius: 6px;
+}
+.avvistPeriode:active {
+  background-color: #ba3a26;
+  border-color: #c9c9c9;
+}
+.undefined {
+  background-color: rgba(255, 145, 0, 0.8);
+  border-color: rgba(255, 145, 0, 0.8);
+  border-radius: 8px;
+}
+.undefined:active {
+  background-color: #ffd799;
+  border-color: #ff9100;
+}
+.undefined.vis-item.vis-selected {
+  background-color: #ff9100;
+  border: 1px solid #4a4a4a;
+}
+.avslatt.vis-item.vis-selected {
+  background-color: #ba3a26;
+}
+.avvistPeriode.vis-item.vis-selected {
+  background-color: #ba3a26;
+}
+.innvilget {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+.godkjentPeriode {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+}
+.godkjentPeriode:active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+.vis-current-time {
+  width: 0;
+}
+.godkjentPeriode.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.mellomliggendePeriode {
+  background-color: rgba(6, 137, 58, 0.5);
+  border-color: rgba(6, 137, 58, 0.5);
+  border-radius: 8px;
+  height: 12px;
+  top: 12px !important;
+}
+.mellomliggendePeriode:active {
+  background-color: #06893a;
+  border-color: #06893a;
+}
+.mellomliggendePeriode.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.innvilget.vis-item.vis-selected {
+  background-color: #06893a;
+  border-radius: 6px;
+}
+.innvilgetnullprosent {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 8px;
+}
+.innvilgetnullprosent.vis-item.vis-selected {
+  background-color: transparent;
+  border-radius: 8px;
+}
+.opphold-manuell {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+}
+.opphold-manuell.vis-item.vis-range {
+  border-style: dashed;
+}
+.opphold-manuell.vis-item.vis-selected {
+  background-color: transparent;
+  border-color: #ff9100;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+.opphold {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+}
+.opphold.vis-item.vis-range {
+  border-style: dashed;
+}
+.opphold.vis-item.vis-selected {
+  background-color: transparent;
+  border-color: #06893a;
+  border-radius: 6px;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+.vis-item.endretPeriode {
+  border-top-color: #ff9100;
+  border-top-width: 5px;
+}
+.opptjening .vis-center {
+  border-bottom: 1px solid grey;
+  border-left-style: none;
+  border-right-style: none;
+}
+.opptjening .vis-text {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+.uttakTimeline .vis-time-axis .vis-text.vis-minor {
+  border-top: 1px solid darkgrey;
+  text-align: center;
+}
+.opptjening .vis-label {
+  border-bottom: 0 solid;
+  text-align: right;
+}
+.opptjening .vis-panel.vis-left {
+  border-top-style: hidden;
+  max-width: 150px;
+}
+.opptjening .vis-panel.vis-left .vis-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.opptjening > .timeLineLight .vis-panel.vis-left {
+  width: 0;
+}
+.opptjening .vis-panel.vis-top {
+  margin-left: -1px;
+}
+.opptjening .timeLineLight .vis-panel.vis-top {
+  margin-left: 0;
+}
+.opptjening .vis-panel > .vis-content {
+  border-left: 0 solid;
+}
+.opptjening .vis-panel.vis-center {
+  border-top-style: hidden;
+}
+.opptjening .vis-itemset > .vis-background {
+  border-top: 1px solid darkgray;
+}
+.vis-timeline.vis-bottom {
+  animation-duration: 2s;
+  animation-name: tilbakekrevingTimeline_fadeIn_fj8SN;
+}
+@media all and (-ms-high-contrast: none) {
+  .vis-timeline.vis-bottom {
+    animation-duration: 0s;
+    animation-name: tilbakekrevingTimeline_none_nGxYN;
+  }
+  .opptjening .vis-labelset .vis-label .vis-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .opptjening .vis-labelset .vis-label .vis-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+  }
+}
+.opptjening .vis-foreground .vis-group:last-child {
+  border-bottom: 1px solid darkgray;
+}
+.timeLineLight .vis-foreground .vis-group:last-child {
+  border-left: 1px solid darkgray;
+}
+.opptjening .vis-january > div {
+  display: none;
+}
+.opptjening .vis-content {
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+}
+.opptjening .currentDate {
+  display: none;
+}
+.opptjening .currentDate:after {
+  display: none;
+}
+.godkjent {
+  background-color: #99dead;
+}
+.avvist {
+  background-color: #efa89d;
+}
+div .vis-tooltip {
+  font-size: 10px;
+  max-width: 300px;
+  padding: 0 4px 0 4px;
+  white-space: normal;
+}
+.tableRowHighlight {
+  background-color: #ffeccc;
+}
+.tableRowHighlight:hover {
+  background-color: #ffeccc !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+div[class^='SjekkFodselDokForm'] [class^='periodFieldArray_buttonRemove'] {
+  margin-top: 42px;
+}
+.dodSoker {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+.dodSoker:after {
+  background-color: black;
+  color: white;
+  content: 'Søker død';
+  height: 20px;
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+[class^="vis-custom-time barndod"] {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+  z-index: 0;
+}
+[class^="vis-custom-time barndod"]:after {
+  background-color: black;
+  color: white;
+  content: 'Barn død';
+  left: -40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 80px;
+}
+/* TODO (TOR) Fjern import av global.less etter refaktorering av timeline. Hack for å tving korrekt rekkefølge etter splitt av css */
+.tilbakekrevingTimeline_vis-item_F5972.tilbakekrevingTimeline_vis-dot_p46LR {
+  border-width: 1px;
+}
+/* our custom classes overrule the styles for selected events,
+   so lets define a new style for the selected events */
+.tilbakekrevingTimeline_vis-item_F5972.tilbakekrevingTimeline_vis-selected_mUcTH {
+  background-color: #fff;
+  border-color: black;
+  box-shadow: 0 0 10px gray;
+  color: black;
+}
+.tilbakekrevingTimeline_vis-timeline_iNDtU {
+  border: 0;
+}
+.tilbakekrevingTimeline_timelineContainer_h5jeV {
+  animation-duration: 2s;
+  animation-name: tilbakekrevingTimeline_fadein_k9Y3J;
+  animation-timing-function: ease-out;
+  background-color: #fff;
+  max-height: 1600px;
+  position: relative;
+  transition: all 2s;
+  width: 100%;
+}
+.tilbakekrevingTimeline_timelineContainerExpanded_iOSkW {
+  animation: tilbakekrevingTimeline_open_iiJSF;
+  animation-duration: 0.8s;
+  max-height: 1600px;
+  transition: all 2s;
+}
+.tilbakekrevingTimeline_iconContainer_efqPI {
+  width: 100px;
+}
+.tilbakekrevingTimeline_timeLineWrapper_jKLgp {
+  border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  margin-left: -17px;
+  padding-right: 0;
+}
+.tilbakekrevingTimeline_timeLineWrapper_jKLgp:before {
+  border-bottom: 1px solid lightgrey;
+  bottom: 0;
+  content: '';
+  left: -70px;
+  position: absolute;
+  width: 70px;
+}
+.tilbakekrevingTimeline_sokerContainer_OaQ7i {
+  max-width: 100px;
+}
+.tilbakekrevingTimeline_iconMedsoker_EwFRj {
+  position: absolute;
+  top: 64px;
+  width: 25px;
+}
+
+.tilbakekrevingAktivitetTabell_feilutbetalingTable_DGKp7 {
+  width: 400px;
+}
+.tilbakekrevingAktivitetTabell_feilutbetalingTable_DGKp7 td:first-child {
+  padding-left: 5;
+}
+.tilbakekrevingAktivitetTabell_feilutbetalingTable_DGKp7 td:last-child {
+  padding-right: 5;
+  text-align: right;
+}
+
+.belopetMottattIGodTroFormPanel_arrowbox_vP8bw {
+  width: 300px;
+}
+
+.aktsomhetReduksjonAvBelopFormPanel_suffix_SZdHT {
+  align-content: center;
+  margin: auto;
+  margin-left: -8px;
+  padding-bottom: 8px;
+}
+.aktsomhetReduksjonAvBelopFormPanel_suffixGrovText_wbI8H {
+  align-content: center;
+  margin: auto;
+  margin-left: -8px;
+}
+.aktsomhetReduksjonAvBelopFormPanel_labelPadding_mBhox {
+  padding-top: 15px;
+}
+
+.aktsomhetGradUaktsomhetFormPanel_explanationTextarea_Uxgt5 {
+  min-height: 120px;
+  resize: none;
+}
+
+.tilbakekrevingPeriodeForm_explanationTextarea_Vq0pP {
+  min-height: 100px;
+  resize: none;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.tilbakekrevingForm_container_FtJVU {
+  animation-duration: 1s;
+  animation-name: tilbakekrevingForm_fadein_sc8nh;
+  border: 1px solid #c9c9c9;
+  border-radius: 4px;
+  color: black;
+  margin-top: 8px;
+  padding: 20px;
+}
+
+.tilbakekrevingVedtakPeriodeTabell_table_eJ0GO {
+  max-width: 1000px;
+}
+
+.tilbakekrevingVedtakUtdypendeTekstPanel_addCircleIcon_qnUFa,
+.tilbakekrevingVedtakUtdypendeTekstPanel_imageText_n3GYh {
+  display: inline-block;
+  margin-right: 1ex;
+  vertical-align: text-bottom;
+}
+.tilbakekrevingVedtakUtdypendeTekstPanel_addPeriode_i_bLR {
+  cursor: pointer;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.tilbakekrevingEditerVedtaksbrevPanel_container_mpVrY {
+  max-width: 1000px;
+}
+.tilbakekrevingEditerVedtaksbrevPanel_panel_V_eco {
+  border: 1px solid black;
+  padding: 1px 1px 1px 1px;
+}
+.tilbakekrevingEditerVedtaksbrevPanel_panelMedGulmarkering_cAhjR {
+  border: 1px solid black;
+  border-left-color: #ffaa33 !important;
+  border-left-width: 5px !important;
+  padding: 1px 1px 1px 1px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.tilbakekrevingVedtakForm_buttonLink_shQMV {
+  background: none;
+  border: 0;
+  color: #0067c5;
+  cursor: pointer;
+  font: inherit;
+}
+.tilbakekrevingVedtakForm_padding_AJ_sK {
+  padding-top: 7px;
+}
+.tilbakekrevingVedtakForm_infoTextContainer_rKCES {
+  max-width: 710px;
+}
+.tilbakekrevingVedtakForm_infoTextIconColumn_kYGhn {
+  padding-left: 16px;
+  padding-right: 0;
+}
+.tilbakekrevingVedtakForm_infoTextIcon_ygbQv {
+  display: inline-block;
+  margin-right: 1ex;
+  vertical-align: text-bottom;
+}
+.tilbakekrevingVedtakForm_infotextColumn_sDgvb {
+  font-weight: normal;
+  padding-left: 0;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.fatterVedtakStatusModal_button_GvmDA {
+  margin-top: 10px;
+}
+.fatterVedtakStatusModal_divider_c5LcY {
+  border-left: 1px solid #a0a0a0;
+  border-right: 0 solid #a0a0a0;
+  display: inline;
+  float: right;
+  height: 37px;
+  margin-left: 15px;
+  position: absolute;
+  top: 5px;
+}
+.fatterVedtakStatusModal_image_gV5mX {
+  height: 25px;
+  margin-top: 10px;
+  width: 25px;
+}
+.fatterVedtakStatusModal_modal_TZiCH {
+  width: 750px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.prosessPanelWrapper_steg_lIa8V {
+  background-color: #fff;
+  border-top: 1px solid #6a6a6a;
+  box-shadow: -4px 1px 6px 1px rgba(0, 0, 0, 0.23);
+  position: relative;
+  width: 100%;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.prosessIndex_container_fMtqt {
+  border-bottom: 1px solid #6a6a6a;
+}
+.prosessIndex_meny_eHn3h {
+  margin-bottom: 23px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 15px;
+}
+
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
+.settPaVentModal_divider_dX_hJ {
+  border-left: 1px solid #a0a0a0;
+  border-right: 0 solid #a0a0a0;
+  display: inline;
+  float: right;
+  height: 37px;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: absolute;
+  top: 5px;
+}
+.settPaVentModal_image_m_2sg {
+  height: 25px;
+  margin-top: 10px;
+  width: 25px;
+}
+.settPaVentModal_modal_Jvrpo {
+  overflow: visible;
+  width: 550px;
+}
+.settPaVentModal_label_wLSUB {
+  margin-top: 11px;
+}
+.settPaVentModal_button_BGPw4 {
+  padding-left: 36px;
+  padding-right: 36px;
+}
+.settPaVentModal_cancelButton_KYsIz {
+  margin: 0 10px 0 10px;
+}
+.settPaVentModal_marginTop_O_jYA {
+  margin-top: 20px;
+}
+.settPaVentModal_datePicker_n1f5Y {
+  display: inline-block;
+  margin-left: -25px;
+  margin-top: -4px;
+  position: absolute;
+}
+
