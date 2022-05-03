@@ -2,7 +2,7 @@ import React, {
   FunctionComponent, useEffect, useState, useMemo, useCallback,
 } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import { FlexContainer, FlexColumn, FlexRow } from '@navikt/fp-react-components';
+import { FlexContainer, FlexColumn, FlexRow } from '@navikt/ft-ui-komponenter';
 
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';

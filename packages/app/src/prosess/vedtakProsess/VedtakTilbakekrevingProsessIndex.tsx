@@ -2,12 +2,11 @@ import React, {
   FunctionComponent, useCallback, useState, useMemo,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { WarningModal } from '@navikt/fp-react-components';
 
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { LoadingPanel } from '@fpsak-frontend/shared-components';
+import { LoadingPanel, WarningModal } from '@fpsak-frontend/shared-components';
 import {
   Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving,
 } from '@fpsak-frontend/types';

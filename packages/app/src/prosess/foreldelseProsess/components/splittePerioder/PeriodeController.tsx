@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Column, Row } from 'nav-frontend-grid';
 import { Element } from 'nav-frontend-typografi';
 import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
-import { Image, EditedIcon } from '@navikt/fp-react-components';
+import { Image, EditedIcon } from '@navikt/ft-ui-komponenter';
 
 import { FloatRight } from '@fpsak-frontend/shared-components';
 import splitPeriodImageHoverUrl from '@fpsak-frontend/assets/images/splitt_hover.svg';

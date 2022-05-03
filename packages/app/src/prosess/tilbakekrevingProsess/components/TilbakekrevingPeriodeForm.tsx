@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Element, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
-import { WarningModal, FlexColumn, FlexRow } from '@navikt/fp-react-components';
+import { FlexColumn, FlexRow } from '@navikt/ft-ui-komponenter';
 
 import {
   TextArea, Select, Form, RadioGroupPanel,
@@ -13,7 +13,7 @@ import {
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
 } from '@fpsak-frontend/utils';
-import { VerticalSpacer, usePrevious } from '@fpsak-frontend/shared-components';
+import { WarningModal, VerticalSpacer, usePrevious } from '@fpsak-frontend/shared-components';
 import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import {
   FeilutbetalingPerioderWrapper, KodeverkMedNavn, DetaljertFeilutbetalingPeriode, AlleKodeverkTilbakekreving,

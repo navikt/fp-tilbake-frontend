@@ -2,7 +2,7 @@ import React, { Component, MouseEvent, RefObject } from 'react';
 import moment from 'moment';
 import { Column, Row } from 'nav-frontend-grid';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
-import { Image } from '@navikt/fp-react-components';
+import { Image } from '@navikt/ft-ui-komponenter';
 
 import { ISO_DATE_FORMAT } from '@fpsak-frontend/utils';
 import navBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';

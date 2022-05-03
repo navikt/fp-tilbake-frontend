@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Column, Row } from 'nav-frontend-grid';
 import { WrappedComponentProps } from 'react-intl';
-import { FlexContainer, FlexColumn, FlexRow } from '@navikt/fp-react-components';
+import { FlexContainer, FlexColumn, FlexRow } from '@navikt/ft-ui-komponenter';
 
 import {
   hasValidDate, hasValidFodselsnummer, hasValidName, required,

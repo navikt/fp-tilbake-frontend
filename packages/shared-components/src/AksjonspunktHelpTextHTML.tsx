@@ -2,7 +2,7 @@ import React, { ReactNode, FunctionComponent } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import {
   Image, FlexContainer, FlexColumn, FlexRow,
-} from '@navikt/fp-react-components';
+} from '@navikt/ft-ui-komponenter';
 
 import advarselIkonUrl from '@fpsak-frontend/assets/images/advarsel2.svg';
 import { isObject, createIntl } from '@fpsak-frontend/utils';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { FlexContainer, Image } from '@navikt/fp-react-components';
+import { FlexContainer, Image } from '@navikt/ft-ui-komponenter';
 
 import { shallowWithIntl } from '@fpsak-frontend/utils-test/src/intl-enzyme-test-helper';
 

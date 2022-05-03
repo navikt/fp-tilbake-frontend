@@ -13,3 +13,4 @@ export { default as TableRow } from './src/table/TableRow';
 export { default as VerticalSpacer } from './src/VerticalSpacer';
 export { default as FaktaGruppe } from './src/FaktaGruppe';
 export { default as usePrevious } from './src/hooks/usePrevious';
+export { default as WarningModal } from './src/WarningModal';

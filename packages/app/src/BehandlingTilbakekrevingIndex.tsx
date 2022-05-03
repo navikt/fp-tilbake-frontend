@@ -13,6 +13,10 @@ import getBekreftAksjonspunktCallback from './felles/util/bekreftAksjonspunkter'
 import { useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger } from './felles/util/indexHooks';
 import messages from '../i18n/nb_NO.json';
 
+import '@navikt/ft-ui-komponenter/dist/style.css';
+import '@navikt/ft-form-hooks/dist/style.css';
+import '@navikt/ft-plattform-komponenter/dist/style.css';
+
 const intl = createIntl(messages);
 
 interface OwnProps {
