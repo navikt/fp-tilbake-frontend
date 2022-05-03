@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@fpsak-frontend/types": "1.0.0"
+    "@navikt/ft-types": "^1.0.4"
   },
   "devDependencies": {}
 }

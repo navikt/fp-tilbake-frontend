@@ -3,12 +3,13 @@ import { Story } from '@storybook/react'; // eslint-disable-line import/no-extra
 import { action } from '@storybook/addon-actions';
 import { RawIntlProvider } from 'react-intl';
 
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import vedtakResultatType from '@fpsak-frontend/kodeverk/src/vedtakResultatType';
 import { alleTilbakekrevingKodeverk } from '@fpsak-frontend/storybook-utils';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
-import { AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving } from '@fpsak-frontend/types';
+import { AlleKodeverkTilbakekreving, Behandling } from '@navikt/ft-types';
+import { BeregningsresultatTilbakekreving } from '@fpsak-frontend/types';
 import aktsomhet from './kodeverk/aktsomhet';
 import VedtakTilbakekrevingProsessIndex from './VedtakTilbakekrevingProsessIndex';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';

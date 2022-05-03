@@ -1,11 +1,14 @@
 import React, { FunctionComponent, useMemo, useCallback } from 'react';
 
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
+import { isAksjonspunktOpen } from '@navikt/ft-kodeverk';
 import {
-  FeilutbetalingFakta, AlleKodeverk, Behandling, Aksjonspunkt, AlleKodeverkTilbakekreving,
+  FeilutbetalingFakta,
 } from '@fpsak-frontend/types';
-import { LoadingPanel } from '@fpsak-frontend/shared-components';
+import {
+  AlleKodeverk, Behandling, Aksjonspunkt, AlleKodeverkTilbakekreving,
+} from '@navikt/ft-types';
+import { LoadingPanel } from '@navikt/ft-ui-komponenter';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
 import { FaktaPanelCode } from '@fpsak-frontend/konstanter';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';

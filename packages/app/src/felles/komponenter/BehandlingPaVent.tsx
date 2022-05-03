@@ -3,12 +3,11 @@ import React, {
 } from 'react';
 
 import SettPaVentModalIndex from '@fpsak-frontend/modal-sett-pa-vent';
-import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import { KodeverkType, isAksjonspunktOpen } from '@navikt/ft-kodeverk';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
-import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import {
   Behandling, Aksjonspunkt, AlleKodeverk, AlleKodeverkTilbakekreving,
-} from '@fpsak-frontend/types';
+} from '@navikt/ft-types';
 
 import { restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
 
@@ -62,7 +61,7 @@ const BehandlingPaVent: FunctionComponent<BehandlingPaVentProps> = ({
       frist={behandling.fristBehandlingPaaVent}
       ventearsak={behandling.venteArsakKode}
       hasManualPaVent={erManueltSattPaVent}
-      ventearsaker={kodeverk[kodeverkTyper.VENT_AARSAK]}
+      ventearsaker={kodeverk[KodeverkType.VENT_AARSAK]}
       erTilbakekreving={erTilbakekreving}
       showModal={skalViseModal}
     />

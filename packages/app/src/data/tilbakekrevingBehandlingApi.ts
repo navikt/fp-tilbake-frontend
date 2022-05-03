@@ -1,9 +1,12 @@
 import { RestApiConfigBuilder, createRequestApi, RestKey } from '@fpsak-frontend/rest-api';
 import { RestApiHooks } from '@fpsak-frontend/rest-api-hooks';
 import {
-  Aksjonspunkt, Behandling, BeregningsresultatTilbakekreving, DetaljerteFeilutbetalingsperioder, FeilutbetalingAarsak,
-  FeilutbetalingFakta, FeilutbetalingPerioderWrapper, Vedtaksbrev, Verge, VilkarsVurdertePerioderWrapper, AlleKodeverkTilbakekreving,
+  BeregningsresultatTilbakekreving, DetaljerteFeilutbetalingsperioder, FeilutbetalingAarsak,
+  FeilutbetalingFakta, FeilutbetalingPerioderWrapper, Vedtaksbrev, Verge, VilkarsVurdertePerioderWrapper,
 } from '@fpsak-frontend/types';
+import {
+  Aksjonspunkt, Behandling, AlleKodeverkTilbakekreving,
+} from '@navikt/ft-types';
 import { SettPaVentParams } from '../felles/komponenter/BehandlingPaVent';
 
 export const TilbakekrevingBehandlingApiKeys = {

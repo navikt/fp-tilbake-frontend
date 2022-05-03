@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { RawIntlProvider } from 'react-intl';
 
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
 import Modal from 'nav-frontend-modal';
 
 import FatterVedtakStatusModal from './FatterVedtakStatusModal';

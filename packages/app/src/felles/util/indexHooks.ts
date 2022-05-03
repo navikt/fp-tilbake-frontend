@@ -3,8 +3,9 @@ import {
 } from 'react';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { Behandling, BehandlingEventHandler } from '@fpsak-frontend/types';
-import { usePrevious } from '@fpsak-frontend/shared-components';
+import { BehandlingEventHandler } from '@fpsak-frontend/types';
+import { Behandling } from '@navikt/ft-types';
+import { usePrevious } from '@navikt/ft-ui-komponenter';
 
 import { requestTilbakekrevingApi, restApiTilbakekrevingHooks, TilbakekrevingBehandlingApiKeys } from '../../data/tilbakekrevingBehandlingApi';
 

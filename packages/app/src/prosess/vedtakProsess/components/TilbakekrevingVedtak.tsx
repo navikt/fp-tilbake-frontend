@@ -2,11 +2,12 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Undertittel, Undertekst, Normaltekst } from 'nav-frontend-typografi';
 
-import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { getKodeverknavnFn } from '@fpsak-frontend/utils';
+import { KodeverkType } from '@navikt/ft-kodeverk';
+import { VerticalSpacer } from '@navikt/ft-ui-komponenter';
+import { getKodeverknavnFn } from '@navikt/ft-utils';
+import { AlleKodeverkTilbakekreving } from '@navikt/ft-types';
 import {
-  BeregningResultatPeriode, VedtaksbrevAvsnitt, AlleKodeverkTilbakekreving,
+  BeregningResultatPeriode, VedtaksbrevAvsnitt,
 } from '@fpsak-frontend/types';
 import { ForeslaVedtakTilbakekrevingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 

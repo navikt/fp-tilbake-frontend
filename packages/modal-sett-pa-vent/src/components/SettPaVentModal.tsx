@@ -6,15 +6,14 @@ import { Column, Container, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Modal from 'nav-frontend-modal';
-import { Image } from '@navikt/fp-react-components';
+import { Image, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
 import innvilgetImageUrl from '@fpsak-frontend/assets/images/innvilget_valgt.svg';
-import { Datepicker, Select, Form } from '@fpsak-frontend/form-hooks';
+import { Datepicker, SelectField, Form } from '@navikt/ft-form-hooks';
 import {
   ariaCheck, dateAfterOrEqualToToday, hasValidDate, required, dateBeforeToday,
-} from '@fpsak-frontend/utils';
-import { KodeverkMedNavn } from '@fpsak-frontend/types';
+} from '@navikt/ft-utils';
+import { KodeverkMedNavn } from '@navikt/ft-types';
 import venteArsakType from '@fpsak-frontend/kodeverk/src/venteArsakType';
 
 import styles from './settPaVentModal.less';
@@ -159,7 +158,7 @@ const SettPaVentModal: FunctionComponent<PureOwnProps> = ({
           <Row className={styles.marginTop}>
             <Column xs="1" />
             <Column xs="11">
-              <Select
+              <SelectField
                 name="ventearsak"
                 label={intl.formatMessage({ id: 'SettPaVentModal.Arsak' })}
                 placeholder={intl.formatMessage({ id: 'SettPaVentModal.SelectPlaceholder' })}

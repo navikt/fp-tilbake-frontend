@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 
 import {
   decodeHtmlEntity, hasValidText, maxLength, minLength, required,
-} from '@fpsak-frontend/utils';
-import { TextArea } from '@fpsak-frontend/form-hooks';
-import { Aksjonspunkt } from '@fpsak-frontend/types';
+} from '@navikt/ft-utils';
+import { TextAreaField } from '@navikt/ft-form-hooks';
+import { Aksjonspunkt } from '@navikt/ft-types';
 
 import styles from './faktaBegrunnelseTextField.less';
 
@@ -52,7 +52,7 @@ const FaktaBegrunnelseTextField: FunctionComponent<OwnProps> & StaticFunctions =
   if (isSubmittable || hasBegrunnelse) {
     return (
       <div className={styles.begrunnelseTextField}>
-        <TextArea
+        <TextAreaField
           name={name}
           label={isReadOnly ? '' : textAreaLabel}
           validate={[required, minLength3, maxLength1500, hasValidText]}

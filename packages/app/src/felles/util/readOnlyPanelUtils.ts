@@ -1,6 +1,9 @@
 import {
-  Behandling, Aksjonspunkt, AksessRettigheter,
+  AksessRettigheter,
 } from '@fpsak-frontend/types';
+import {
+  Behandling, Aksjonspunkt,
+} from '@navikt/ft-types';
 
 export const harBehandlingReadOnlyStatus = (behandling: Behandling): boolean => (behandling.taskStatus && behandling.taskStatus.readOnly
   ? behandling.taskStatus.readOnly : false);

@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import { RawIntlProvider } from 'react-intl';
 
-import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import { StandardBehandlingProps } from '@fpsak-frontend/types';
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
+import { LoadingPanel } from '@navikt/ft-ui-komponenter';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
 import FaktaIndex from './fakta/FaktaIndex';
@@ -12,6 +12,10 @@ import BehandlingPaVent from './felles/komponenter/BehandlingPaVent';
 import getBekreftAksjonspunktCallback from './felles/util/bekreftAksjonspunkter';
 import { useLagreAksjonspunkt, useBehandling, useInitBehandlingHandlinger } from './felles/util/indexHooks';
 import messages from '../i18n/nb_NO.json';
+
+import '@navikt/ft-ui-komponenter/dist/style.css';
+import '@navikt/ft-form-hooks/dist/style.css';
+import '@navikt/ft-plattform-komponenter/dist/style.css';
 
 const intl = createIntl(messages);
 

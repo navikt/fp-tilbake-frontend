@@ -3,12 +3,12 @@ import { Story } from '@storybook/react'; // eslint-disable-line import/no-extra
 import { action } from '@storybook/addon-actions';
 import { RawIntlProvider } from 'react-intl';
 
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
+import { aksjonspunktStatus } from '@navikt/ft-kodeverk';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
-import { Behandling } from '@fpsak-frontend/types';
+import { Behandling } from '@navikt/ft-types';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 
 import VergeFaktaIndex from './VergeFaktaIndex';

@@ -3,19 +3,21 @@ import { Story } from '@storybook/react'; // eslint-disable-line import/no-extra
 import { action } from '@storybook/addon-actions';
 import { RawIntlProvider } from 'react-intl';
 
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
-import fagsakYtelseType from '@fpsak-frontend/kodeverk/src/fagsakYtelseType';
+import { fagsakYtelseType, aksjonspunktStatus } from '@navikt/ft-kodeverk';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import konsekvensForYtelsen from '@fpsak-frontend/kodeverk/src/konsekvensForYtelsen';
 import behandlingResultatType from '@fpsak-frontend/kodeverk/src/behandlingResultatType';
 import tilbakekrevingVidereBehandling from '@fpsak-frontend/kodeverk/src/tilbakekrevingVidereBehandling';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { FaktaAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import { alleTilbakekrevingKodeverk, alleKodeverk } from '@fpsak-frontend/storybook-utils';
 import {
-  FeilutbetalingFakta, FeilutbetalingAarsak, AlleKodeverkTilbakekreving, Behandling,
+  AlleKodeverkTilbakekreving, Behandling,
+} from '@navikt/ft-types';
+import {
+  FeilutbetalingFakta, FeilutbetalingAarsak,
 } from '@fpsak-frontend/types';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';

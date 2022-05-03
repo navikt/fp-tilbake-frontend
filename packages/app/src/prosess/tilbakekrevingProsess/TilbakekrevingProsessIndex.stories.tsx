@@ -3,12 +3,15 @@ import { Story } from '@storybook/react'; // eslint-disable-line import/no-extra
 import { action } from '@storybook/addon-actions';
 import { RawIntlProvider } from 'react-intl';
 
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import {
-  Behandling, FeilutbetalingPerioderWrapper, DetaljerteFeilutbetalingsperioder, AlleKodeverkTilbakekreving, Aksjonspunkt,
+  FeilutbetalingPerioderWrapper, DetaljerteFeilutbetalingsperioder,
 } from '@fpsak-frontend/types';
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
+import {
+  Behandling, AlleKodeverkTilbakekreving, Aksjonspunkt,
+} from '@navikt/ft-types';
+import { aksjonspunktStatus } from '@navikt/ft-kodeverk';
 import { alleTilbakekrevingKodeverk } from '@fpsak-frontend/storybook-utils';
 import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';

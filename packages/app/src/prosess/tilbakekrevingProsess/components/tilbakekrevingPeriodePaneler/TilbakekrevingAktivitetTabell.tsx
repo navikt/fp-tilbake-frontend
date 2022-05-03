@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-import { formatCurrencyNoKr } from '@fpsak-frontend/utils';
-import { Table, TableColumn, TableRow } from '@fpsak-frontend/shared-components';
+import { formatCurrencyNoKr } from '@navikt/ft-utils';
+import { Table, TableColumn, TableRow } from '@navikt/ft-ui-komponenter';
 
 import styles from './tilbakekrevingAktivitetTabell.less';
 

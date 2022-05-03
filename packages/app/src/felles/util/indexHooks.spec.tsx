@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { waitFor, act } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 
-import { Behandling } from '@fpsak-frontend/types';
+import { Behandling } from '@navikt/ft-types';
 
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
 

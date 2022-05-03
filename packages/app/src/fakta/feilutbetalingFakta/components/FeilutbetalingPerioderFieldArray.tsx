@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { useFormContext, useFieldArray } from 'react-hook-form';
 import moment from 'moment';
 
-import { Table, TableRow, TableColumn } from '@fpsak-frontend/shared-components';
+import { Table, TableRow, TableColumn } from '@navikt/ft-ui-komponenter';
 import { FeilutbetalingAarsak, FeilutbetalingFakta } from '@fpsak-frontend/types';
-import { DDMMYYYY_DATE_FORMAT, required } from '@fpsak-frontend/utils';
-import { Select } from '@fpsak-frontend/form-hooks';
-import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import { DDMMYYYY_DATE_FORMAT, required } from '@navikt/ft-utils';
+import { SelectField, formHooks } from '@navikt/ft-form-hooks';
+import { KodeverkType } from '@navikt/ft-kodeverk';
 
 import styles from './feilutbetalingPerioderFieldArray.less';
 
@@ -48,8 +47,8 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
 }) => {
   const {
     control, watch, setValue, getValues,
-  } = useFormContext<FormValues>();
-  const { fields } = useFieldArray({
+  } = formHooks.useFormContext<FormValues>();
+  const { fields } = formHooks.useFieldArray({
     control,
     name: FIELD_ARRAY_NAME,
   });
@@ -87,7 +86,7 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
                 {`${moment(periode.fom).format(DDMMYYYY_DATE_FORMAT)} - ${moment(periode.tom).format(DDMMYYYY_DATE_FORMAT)}`}
               </TableColumn>
               <TableColumn>
-                <Select
+                <SelectField
                   name={`${FIELD_ARRAY_NAME}.${index}.årsak`}
                   selectValues={årsaker.map((a) => (
                     <option key={a.hendelseType} value={a.hendelseType}>{getKodeverknavn(a.hendelseType, KodeverkType.HENDELSE_TYPE)}</option>
@@ -99,7 +98,7 @@ const FeilutbetalingPerioderFieldArray: FunctionComponent<OwnProps> = ({
                   label=""
                 />
                 {hendelseUndertyper && (
-                  <Select
+                  <SelectField
                     name={`${FIELD_ARRAY_NAME}.${index}.${årsak}.underÅrsak`}
                     selectValues={hendelseUndertyper.map((a) => <option key={a} value={a}>{getKodeverknavn(a, KodeverkType.HENDELSE_UNDERTYPE)}</option>)}
                     validate={[required]}

@@ -2,13 +2,14 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage, useIntl, IntlShape } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
-import { FlexColumn, FlexRow } from '@navikt/fp-react-components';
+import {
+  ArrowBox, VerticalSpacer, FlexColumn, FlexRow,
+} from '@navikt/ft-ui-komponenter';
 
-import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { InputField, Select, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
+import { InputField, SelectField, RadioGroupPanel } from '@navikt/ft-form-hooks';
 import {
   formatCurrencyNoKr, minValue, maxValue, required,
-} from '@fpsak-frontend/utils';
+} from '@navikt/ft-utils';
 
 import aktsomhet from '../../../kodeverk/aktsomhet';
 
@@ -87,7 +88,7 @@ const AktsomhetReduksjonAvBelopFormPanel: FunctionComponent<OwnProps> = ({
                   <Undertekst><FormattedMessage id="AktsomhetReduksjonAvBelopFormPanel.AngiAndelSomTilbakekreves" /></Undertekst>
                   <FlexRow>
                     <FlexColumn>
-                      <Select
+                      <SelectField
                         name={`${name}.andelSomTilbakekreves`}
                         label=""
                         validate={[required]}

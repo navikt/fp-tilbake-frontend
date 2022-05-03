@@ -4,12 +4,12 @@ import {
 } from 'react-intl';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 
-import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupPanel, TextArea } from '@fpsak-frontend/form-hooks';
+import { ArrowBox, VerticalSpacer } from '@navikt/ft-ui-komponenter';
+import { RadioGroupPanel, TextAreaField } from '@navikt/ft-form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
-} from '@fpsak-frontend/utils';
-import { KodeverkMedNavn } from '@fpsak-frontend/types';
+} from '@navikt/ft-utils';
+import { KodeverkMedNavn } from '@navikt/ft-types';
 
 import aktsomhet from '../../../kodeverk/aktsomhet';
 import AktsomhetSarligeGrunnerFormPanel from './AktsomhetSarligeGrunnerFormPanel';
@@ -29,7 +29,7 @@ const sarligGrunnerBegrunnelseDiv = (
       <FormattedMessage id="AktsomhetGradUaktsomhetFormPanel.SærligGrunner" />
     </Element>
     <VerticalSpacer eightPx />
-    <TextArea
+    <TextAreaField
       name={`${name}.sarligGrunnerBegrunnelse`}
       label={intl.formatMessage({ id: 'AktsomhetGradUaktsomhetFormPanel.VurderSærligGrunner' })}
       validate={[required, minLength3, maxLength1500, hasValidText]}

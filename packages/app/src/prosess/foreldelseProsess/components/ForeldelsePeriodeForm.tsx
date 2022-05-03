@@ -5,18 +5,17 @@ import moment from 'moment';
 import { Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
-import { FlexColumn, FlexRow } from '@navikt/fp-react-components';
+import { FlexColumn, FlexRow, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 
 import {
-  TextArea, Datepicker, Form, RadioGroupPanel,
-} from '@fpsak-frontend/form-hooks';
+  TextAreaField, Datepicker, Form, RadioGroupPanel,
+} from '@navikt/ft-form-hooks';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
   dateBeforeOrEqualToToday, hasValidText, maxLength, minLength, required, hasValidDate,
-} from '@fpsak-frontend/utils';
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
-import { AlleKodeverkTilbakekreving } from '@fpsak-frontend/types';
+} from '@navikt/ft-utils';
+import { TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
+import { AlleKodeverkTilbakekreving } from '@navikt/ft-types';
 
 import ForeldelsesresultatActivity from '../types/foreldelsesresultatActivitytsType';
 
@@ -58,7 +57,7 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
 
   const erForeldet = foreldet && foreldet === foreldelseVurderingType.FORELDET;
   const erMedTilleggsfrist = foreldet && foreldet === foreldelseVurderingType.TILLEGGSFRIST;
-  const foreldelseVurderingTyper = alleKodeverk[tilbakekrevingKodeverkTyper.FORELDELSE_VURDERING]
+  const foreldelseVurderingTyper = alleKodeverk[TilbakekrevingKodeverkType.FORELDELSE_VURDERING]
     .filter((fv) => fv.kode !== foreldelseVurderingType.IKKE_VURDERT);
 
   return (
@@ -66,7 +65,7 @@ const ForeldelsePeriodeForm: FunctionComponent<OwnProps> = ({
       <VerticalSpacer twentyPx />
       <Row>
         <Column md="8">
-          <TextArea
+          <TextAreaField
             name="begrunnelse"
             label={intl.formatMessage({ id: 'ForeldelsePeriodeForm.Vurdering' })}
             validate={[required, minLength3, maxLength1500, hasValidText]}

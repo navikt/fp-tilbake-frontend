@@ -1,15 +1,13 @@
 import React, { FunctionComponent, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useFormContext } from 'react-hook-form';
 import { Undertekst } from 'nav-frontend-typografi';
-import { Image } from '@navikt/fp-react-components';
+import { Image, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 
 import addCircleIcon from '@fpsak-frontend/assets/images/add-circle.svg';
 import {
   required, hasValidText, maxLength, minLength,
-} from '@fpsak-frontend/utils';
-import { TextArea } from '@fpsak-frontend/form-hooks';
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
+} from '@navikt/ft-utils';
+import { TextAreaField, formHooks } from '@navikt/ft-form-hooks';
 
 import styles from './tilbakekrevingVedtakUtdypendeTekstPanel.less';
 
@@ -34,7 +32,7 @@ export const TilbakekrevingVedtakUtdypendeTekstPanel: FunctionComponent<OwnProps
   maximumLength,
 }) => {
   const intl = useIntl();
-  const { watch } = useFormContext();
+  const { watch } = formHooks.useFormContext();
   const isEmpty = watch(type) === undefined;
 
   const [isTextfieldHidden, hideTextField] = useState(isEmpty && !fritekstPakrevet);
@@ -66,7 +64,7 @@ export const TilbakekrevingVedtakUtdypendeTekstPanel: FunctionComponent<OwnProps
       {!isTextfieldHidden && (
         <>
           <VerticalSpacer eightPx />
-          <TextArea
+          <TextAreaField
             name={type}
             label={intl.formatMessage({ id: 'TilbakekrevingVedtakUtdypendeTekstPanel.UtdypendeTekst' })}
             validate={valideringsRegler}

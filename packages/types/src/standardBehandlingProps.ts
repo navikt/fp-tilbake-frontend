@@ -1,5 +1,4 @@
-import Fagsak from './fagsakTsType';
-import AlleKodeverk from './kodeverkAlleTsType';
+import { Fagsak, AlleKodeverk } from '@navikt/ft-types';
 import AksessRettigheter from './aksessRettigheterTsType';
 
 export type BehandlingEventHandler = {

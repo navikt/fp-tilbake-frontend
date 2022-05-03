@@ -2,8 +2,11 @@ import React, { FunctionComponent, useCallback, useMemo } from 'react';
 
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import {
-  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper,
+  FeilutbetalingPerioderWrapper,
 } from '@fpsak-frontend/types';
+import {
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling,
+} from '@navikt/ft-types';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 

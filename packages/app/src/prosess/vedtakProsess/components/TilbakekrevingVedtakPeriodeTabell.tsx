@@ -2,12 +2,12 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 
-import { formatCurrencyNoKr } from '@fpsak-frontend/utils';
+import { formatCurrencyNoKr } from '@navikt/ft-utils';
 import {
   PeriodLabel, Table, TableColumn, TableRow,
-} from '@fpsak-frontend/shared-components';
+} from '@navikt/ft-ui-komponenter';
 import { BeregningResultatPeriode } from '@fpsak-frontend/types';
-import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import { KodeverkType } from '@navikt/ft-kodeverk';
 
 import styles from './tilbakekrevingVedtakPeriodeTabell.less';
 
