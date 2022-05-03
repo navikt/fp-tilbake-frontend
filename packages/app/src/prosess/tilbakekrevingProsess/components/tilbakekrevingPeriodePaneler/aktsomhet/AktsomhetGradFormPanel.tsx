@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { KodeverkMedNavn } from '@fpsak-frontend/types';
+import { KodeverkMedNavn } from '@navikt/ft-types';
 
 import Aktsomhet from '../../../kodeverk/aktsomhet';
 import AktsomhetGradForsettFormPanel from './AktsomhetGradForsettFormPanel';

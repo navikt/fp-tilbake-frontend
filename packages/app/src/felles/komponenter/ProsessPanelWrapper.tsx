@@ -4,8 +4,8 @@ import React, {
 import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-import { FadingPanel } from '@fpsak-frontend/shared-components';
-import vilkarUtfallType from '@fpsak-frontend/kodeverk/src/vilkarUtfallType';
+import { FadingPanel } from '@navikt/ft-ui-komponenter';
+import { vilkarUtfallType } from '@navikt/ft-kodeverk';
 
 import styles from './prosessPanelWrapper.less';
 

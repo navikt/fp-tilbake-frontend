@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Column, Row } from 'nav-frontend-grid';
 
-import { AlleKodeverkTilbakekreving } from '@fpsak-frontend/types';
-import { getKodeverknavnFn } from '@fpsak-frontend/utils';
-import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import { AlleKodeverkTilbakekreving } from '@navikt/ft-types';
+import { getKodeverknavnFn } from '@navikt/ft-utils';
+import { KodeverkType } from '@navikt/ft-kodeverk';
 
 import PeriodeController from './PeriodeController';
 import PeriodeInformasjon from './PeriodeInformasjon';

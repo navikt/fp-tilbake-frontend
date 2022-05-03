@@ -5,19 +5,23 @@ import moment from 'moment';
 import { Element, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
-import { FlexColumn, FlexRow } from '@navikt/ft-ui-komponenter';
 
 import {
-  TextArea, Select, Form, RadioGroupPanel,
-} from '@fpsak-frontend/form-hooks';
+  TextAreaField, SelectField, Form, RadioGroupPanel,
+} from '@navikt/ft-form-hooks';
 import {
   formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
-} from '@fpsak-frontend/utils';
-import { WarningModal, VerticalSpacer, usePrevious } from '@fpsak-frontend/shared-components';
-import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
+} from '@navikt/ft-utils';
 import {
-  FeilutbetalingPerioderWrapper, KodeverkMedNavn, DetaljertFeilutbetalingPeriode, AlleKodeverkTilbakekreving,
+  FlexColumn, FlexRow, WarningModal, VerticalSpacer, usePrevious,
+} from '@navikt/ft-ui-komponenter';
+import { TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
+import {
+  FeilutbetalingPerioderWrapper, DetaljertFeilutbetalingPeriode,
 } from '@fpsak-frontend/types';
+import {
+  KodeverkMedNavn, AlleKodeverkTilbakekreving,
+} from '@navikt/ft-types';
 
 import sarligGrunn from '../kodeverk/sarligGrunn';
 import Aktsomhet, { AKTSOMHET_REKKEFØLGE } from '../kodeverk/aktsomhet';
@@ -110,10 +114,10 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
   const forrigeHandletUaktsomhetsgrad = usePrevious(handletUaktsomhetsgrad);
 
   const reduserteBelop = data.redusertBeloper;
-  const sarligGrunnTyper = alleKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN];
-  const vilkarResultatTyper = alleKodeverk[tilbakekrevingKodeverkTyper.VILKAR_RESULTAT];
+  const sarligGrunnTyper = alleKodeverk[TilbakekrevingKodeverkType.SARLIG_GRUNN];
+  const vilkarResultatTyper = alleKodeverk[TilbakekrevingKodeverkType.VILKAR_RESULTAT];
   const aktsomhetTyper = AKTSOMHET_REKKEFØLGE
-    .map((a) => alleKodeverk[tilbakekrevingKodeverkTyper.AKTSOMHET].find((el: KodeverkMedNavn) => el.kode === a));
+    .map((a) => alleKodeverk[TilbakekrevingKodeverkType.AKTSOMHET].find((el: KodeverkMedNavn) => el.kode === a));
 
   const onEndrePeriodeForKopi = (event: any, vurdertePerioder: CustomVilkarsVurdertePeriode[]) => {
     const fomTom = event.target.value.split('_');
@@ -187,7 +191,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
               <Element>
                 <FormattedMessage id="TilbakekrevingPeriodeForm.KopierVilkårsvurdering" />
               </Element>
-              <Select
+              <SelectField
                 name="perioderForKopi"
                 selectValues={vurdertePerioder.map((per) => {
                   const perId = `${per.fom}_${per.tom}`;
@@ -217,7 +221,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                   <FormattedMessage id="TilbakekrevingPeriodeForm.VilkarForTilbakekreving" />
                 </Element>
                 <VerticalSpacer eightPx />
-                <TextArea
+                <TextAreaField
                   name="begrunnelse"
                   label={intl.formatMessage({ id: 'TilbakekrevingPeriodeForm.Vurdering' })}
                   validate={[required, minLength3, maxLength1500, hasValidText]}
@@ -253,7 +257,7 @@ const TilbakekrevingPeriodeForm: FunctionComponent<OwnProps> = ({
                     />
                   </Element>
                   <VerticalSpacer eightPx />
-                  <TextArea
+                  <TextAreaField
                     name="vurderingBegrunnelse"
                     label={intl.formatMessage({
                       id: valgtVilkarResultatType === VilkarResultat.GOD_TRO

@@ -4,9 +4,9 @@ import { Undertekst, Normaltekst } from 'nav-frontend-typografi';
 
 import {
   minValue, required, removeSpacesFromNumber, formatCurrencyNoKr,
-} from '@fpsak-frontend/utils';
-import { ArrowBox } from '@fpsak-frontend/shared-components';
-import { InputField, RadioGroupPanel } from '@fpsak-frontend/form-hooks';
+} from '@navikt/ft-utils';
+import { ArrowBox } from '@navikt/ft-ui-komponenter';
+import { InputField, RadioGroupPanel } from '@navikt/ft-form-hooks';
 
 import styles from './belopetMottattIGodTroFormPanel.less';
 

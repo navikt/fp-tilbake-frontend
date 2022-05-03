@@ -4,17 +4,19 @@ import React, {
 import { useIntl, IntlShape } from 'react-intl';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import vilkarUtfallType from '@fpsak-frontend/kodeverk/src/vilkarUtfallType';
+import { vilkarUtfallType, isAksjonspunktOpen } from '@navikt/ft-kodeverk';
 import VedtakResultatType from '@fpsak-frontend/kodeverk/src/vedtakResultatType';
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import {
   LoadingPanel,
-} from '@fpsak-frontend/shared-components';
+} from '@navikt/ft-ui-komponenter';
 import {
-  Aksjonspunkt, FeilutbetalingPerioderWrapper, AlleKodeverkTilbakekreving, Behandling, AksessRettigheter, BeregningsresultatTilbakekreving,
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling,
+} from '@navikt/ft-types';
+import {
+  FeilutbetalingPerioderWrapper, BeregningsresultatTilbakekreving, AksessRettigheter,
 } from '@fpsak-frontend/types';
-import { isAksjonspunktOpen } from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 

@@ -4,7 +4,7 @@ import { Column, Row } from 'nav-frontend-grid';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { Image } from '@navikt/ft-ui-komponenter';
 
-import { ISO_DATE_FORMAT } from '@fpsak-frontend/utils';
+import { ISO_DATE_FORMAT } from '@navikt/ft-utils';
 import navBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import urlMann from '@fpsak-frontend/assets/images/mann.svg';
 import urlKvinne from '@fpsak-frontend/assets/images/kvinne.svg';

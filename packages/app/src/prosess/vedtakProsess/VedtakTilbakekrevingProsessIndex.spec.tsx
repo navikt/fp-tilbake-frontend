@@ -16,14 +16,14 @@ describe('<VedtakTilbakekrevingProsessIndex>', () => {
     const utils = render(<Default bekreftAksjonspunkterMedSideeffekter={lagreMedSideeffekter} />);
 
     expect(await screen.findByText('Vedtak')).toBeInTheDocument();
-    expect(screen.getByText('01.10.2018-01.01.2019')).toBeInTheDocument();
+    expect(screen.getByText(/01.10.2018/)).toBeInTheDocument();
     expect(screen.getByText('10 000')).toBeInTheDocument();
     expect(screen.getAllByText('Forsett')).toHaveLength(2);
     expect(screen.getAllByText('50%')).toHaveLength(2);
     expect(screen.getByText('5 000')).toBeInTheDocument();
     expect(screen.getByText('4 000')).toBeInTheDocument();
 
-    expect(screen.getByText('01.01.2018-01.01.2019')).toBeInTheDocument();
+    expect(screen.getByText(/01.01.2018/)).toBeInTheDocument();
     expect(screen.getByText('1 000')).toBeInTheDocument();
     expect(screen.getByText('80%')).toBeInTheDocument();
     expect(screen.getByText('500')).toBeInTheDocument();

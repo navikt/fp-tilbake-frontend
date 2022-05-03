@@ -3,9 +3,9 @@ import { FormattedMessage } from 'react-intl';
 import { Column, Row } from 'nav-frontend-grid';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 
-import { ArrowBox, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { RadioGroupPanel } from '@fpsak-frontend/form-hooks';
-import { required } from '@fpsak-frontend/utils';
+import { ArrowBox, VerticalSpacer } from '@navikt/ft-ui-komponenter';
+import { RadioGroupPanel } from '@navikt/ft-form-hooks';
+import { required } from '@navikt/ft-utils';
 
 import styles from './aktsomhetReduksjonAvBelopFormPanel.less';
 

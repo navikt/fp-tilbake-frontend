@@ -7,17 +7,20 @@ import {
   Element, Normaltekst, Undertekst,
 } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { VerticalSpacer, AksjonspunktHelpTextTemp, FaktaGruppe } from '@navikt/ft-ui-komponenter';
 
-import KodeverkType from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
+import { KodeverkType } from '@navikt/ft-kodeverk';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import { TextArea, Checkbox, Form } from '@fpsak-frontend/form-hooks';
-import { VerticalSpacer, AksjonspunktHelpTextTemp, FaktaGruppe } from '@fpsak-frontend/shared-components';
+import { TextAreaField, CheckboxField, Form } from '@navikt/ft-form-hooks';
 import {
   DDMMYYYY_DATE_FORMAT, hasValidText, maxLength, minLength, required, getKodeverknavnFn, decodeHtmlEntity,
-} from '@fpsak-frontend/utils';
+} from '@navikt/ft-utils';
 import {
-  FeilutbetalingFakta, AlleKodeverk, FeilutbetalingAarsak, AlleKodeverkTilbakekreving,
+  FeilutbetalingFakta, FeilutbetalingAarsak,
 } from '@fpsak-frontend/types';
+import {
+  AlleKodeverk, AlleKodeverkTilbakekreving,
+} from '@navikt/ft-types';
 import { AvklartFaktaFeilutbetalingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import FeilutbetalingPerioderFieldArray, { FormValues as PeriodeFormValues } from './FeilutbetalingPerioderFieldArray';
@@ -210,7 +213,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
             </Row>
             <Row className={styles.smallMarginTop}>
               <Column xs="11">
-                <Checkbox
+                <CheckboxField
                   name="behandlePerioderSamlet"
                   label={intl.formatMessage({ id: 'FeilutbetalingInfoPanel.BehandlePerioderSamlet' })}
                   readOnly={readOnly}
@@ -304,7 +307,7 @@ const FeilutbetalingInfoPanel: FunctionComponent<OwnProps> = ({
         </Row>
         <Row>
           <Column md="6">
-            <TextArea
+            <TextAreaField
               name="begrunnelse"
               label={intl.formatMessage({ id: 'FeilutbetalingInfoPanel.Begrunnelse' })}
               validate={[required, minLength3, maxLength1500, hasValidText]}

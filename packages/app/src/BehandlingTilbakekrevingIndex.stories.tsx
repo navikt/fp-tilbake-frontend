@@ -6,18 +6,20 @@ import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjon
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
-import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
 import {
-  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper, Verge,
+  fagsakYtelseType, TilbakekrevingKodeverkType, behandlingType, aksjonspunktStatus,
+} from '@navikt/ft-kodeverk';
+import {
+  FeilutbetalingPerioderWrapper, Verge,
 } from '@fpsak-frontend/types';
+import {
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling,
+} from '@navikt/ft-types';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import behandlingResultatType from '@fpsak-frontend/kodeverk/src/behandlingResultatType';
 import konsekvensForYtelsen from '@fpsak-frontend/kodeverk/src/konsekvensForYtelsen';
 import tilbakekrevingVidereBehandling from '@fpsak-frontend/kodeverk/src/tilbakekrevingVidereBehandling';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
-import behandlingType from '@fpsak-frontend/kodeverk/src/behandlingType';
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
-import fagsakYtelseType from '@fpsak-frontend/kodeverk/src/fagsakYtelseType';
 
 import BehandlingEventHandler from './felles/util/BehandlingEventHandler';
 import BehandlingTilbakekrevingIndex from './BehandlingTilbakekrevingIndex';
@@ -181,8 +183,8 @@ const verge = {
 } as Verge;
 
 const tilbakeKodeverk = {
-  [tilbakekrevingKodeverkTyper.VENTEARSAK]: alleKodeverk.Venteårsak,
-  [tilbakekrevingKodeverkTyper.FORELDELSE_VURDERING]: [
+  [TilbakekrevingKodeverkType.VENTEARSAK]: alleKodeverk.Venteårsak,
+  [TilbakekrevingKodeverkType.FORELDELSE_VURDERING]: [
     {
       kode: foreldelseVurderingType.FORELDET,
       navn: 'Foreldet',

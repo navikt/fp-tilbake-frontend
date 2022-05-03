@@ -4,15 +4,17 @@ import { action } from '@storybook/addon-actions';
 import { RawIntlProvider } from 'react-intl';
 
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
-import { createIntl } from '@fpsak-frontend/utils';
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
-import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
+import { createIntl } from '@navikt/ft-utils';
+import { aksjonspunktStatus, TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
 import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
 import {
-  AlleKodeverkTilbakekreving, Behandling, FeilutbetalingPerioderWrapper, Aksjonspunkt,
+  AlleKodeverkTilbakekreving, Behandling, Aksjonspunkt,
+} from '@navikt/ft-types';
+import {
+  FeilutbetalingPerioderWrapper,
 } from '@fpsak-frontend/types';
 import { TilbakekrevingBehandlingApiKeys, requestTilbakekrevingApi } from '../../data/tilbakekrevingBehandlingApi';
 import ForeldelseProsessIndex from './ForeldelseProsessIndex';
@@ -50,7 +52,7 @@ const perioderForeldelse = {
 } as FeilutbetalingPerioderWrapper;
 
 const alleKodeverk = {
-  [tilbakekrevingKodeverkTyper.FORELDELSE_VURDERING]: [
+  [TilbakekrevingKodeverkType.FORELDELSE_VURDERING]: [
     {
       kode: foreldelseVurderingType.FORELDET,
       navn: 'Foreldet',

@@ -4,10 +4,13 @@ import React, {
 
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import {
-  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, DetaljerteFeilutbetalingsperioder, FeilutbetalingPerioderWrapper, VilkarsVurdertePerioderWrapper,
+  DetaljerteFeilutbetalingsperioder, FeilutbetalingPerioderWrapper, VilkarsVurdertePerioderWrapper,
 } from '@fpsak-frontend/types';
+import {
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling,
+} from '@navikt/ft-types';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { LoadingPanel } from '@fpsak-frontend/shared-components';
+import { LoadingPanel } from '@navikt/ft-ui-komponenter';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 

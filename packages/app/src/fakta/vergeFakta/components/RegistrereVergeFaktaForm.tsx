@@ -1,17 +1,19 @@
 import React, { FunctionComponent } from 'react';
 import { Column, Row } from 'nav-frontend-grid';
 import { WrappedComponentProps } from 'react-intl';
-import { FlexContainer, FlexColumn, FlexRow } from '@navikt/ft-ui-komponenter';
+import {
+  VerticalSpacer, FaktaGruppe, FlexContainer, FlexColumn, FlexRow,
+} from '@navikt/ft-ui-komponenter';
 
 import {
   hasValidDate, hasValidFodselsnummer, hasValidName, required,
-} from '@fpsak-frontend/utils';
-import { VerticalSpacer, FaktaGruppe } from '@fpsak-frontend/shared-components';
+} from '@navikt/ft-utils';
 import {
-  Datepicker, InputField, Select,
-} from '@fpsak-frontend/form-hooks';
+  Datepicker, InputField, SelectField,
+} from '@navikt/ft-form-hooks';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
-import { KodeverkMedNavn, Verge } from '@fpsak-frontend/types';
+import { KodeverkMedNavn } from '@navikt/ft-types';
+import { Verge } from '@fpsak-frontend/types';
 
 import VergeType from '../kodeverk/vergeType';
 
@@ -61,7 +63,7 @@ export const RegistrereVergeFaktaForm: FunctionComponent<OwnProps & WrappedCompo
   <FaktaGruppe merknaderFraBeslutter={alleMerknaderFraBeslutter[aksjonspunktCodes.AVKLAR_VERGE]}>
     <Row>
       <Column xs="5">
-        <Select
+        <SelectField
           name="vergeType"
           label={intl.formatMessage({ id: 'Verge.TypeVerge' })}
           placeholder={intl.formatMessage({ id: 'Verge.TypeVerge' })}

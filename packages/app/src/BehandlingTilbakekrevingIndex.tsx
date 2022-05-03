@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect, useCallback } from 'react';
 import { RawIntlProvider } from 'react-intl';
 
-import { LoadingPanel } from '@fpsak-frontend/shared-components';
 import { StandardBehandlingProps } from '@fpsak-frontend/types';
-import { createIntl } from '@fpsak-frontend/utils';
+import { createIntl } from '@navikt/ft-utils';
+import { LoadingPanel } from '@navikt/ft-ui-komponenter';
 
 import { restApiTilbakekrevingHooks, requestTilbakekrevingApi, TilbakekrevingBehandlingApiKeys } from './data/tilbakekrevingBehandlingApi';
 import FaktaIndex from './fakta/FaktaIndex';

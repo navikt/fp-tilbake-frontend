@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
-import behandlingType from '@fpsak-frontend/kodeverk/src/behandlingType';
-import { Aksjonspunkt, AlleKodeverk, Behandling } from '@fpsak-frontend/types';
+import { behandlingType } from '@navikt/ft-kodeverk';
+import { Aksjonspunkt, AlleKodeverk, Behandling } from '@navikt/ft-types';
 import Modal from 'nav-frontend-modal';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
 

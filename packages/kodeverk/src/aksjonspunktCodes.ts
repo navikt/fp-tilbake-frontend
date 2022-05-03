@@ -1,4 +1,4 @@
-import { Aksjonspunkt } from '@fpsak-frontend/types';
+import { Aksjonspunkt } from '@navikt/ft-types';
 
 enum AksjonspunktCode {
   FORESLA_VEDTAK = '5015',

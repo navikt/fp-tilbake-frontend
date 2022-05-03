@@ -2,13 +2,16 @@ import React, { FunctionComponent, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
-import { Form } from '@fpsak-frontend/form-hooks';
+import { Form } from '@navikt/ft-form-hooks';
 import {
-  Aksjonspunkt, Verge, AlleKodeverk, AlleKodeverkTilbakekreving,
+  Verge,
 } from '@fpsak-frontend/types';
+import {
+  Aksjonspunkt, AlleKodeverk, AlleKodeverkTilbakekreving,
+} from '@navikt/ft-types';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
-import kodeverkTyper from '@fpsak-frontend/kodeverk/src/kodeverkTyper';
-import { AksjonspunktHelpTextTemp, VerticalSpacer } from '@fpsak-frontend/shared-components';
+import { KodeverkType } from '@navikt/ft-kodeverk';
+import { AksjonspunktHelpTextTemp, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 import { AvklarVergeAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 import FaktaBegrunnelseTextField from './FaktaBegrunnelseTextField';
@@ -73,8 +76,8 @@ const RegistrereVergeInfoPanel: FunctionComponent<PureOwnProps> = ({
 
   const valgtVergeType = formMethods.watch('vergeType');
   const begrunnelse = formMethods.watch('begrunnelse');
-  const vergetyper = useMemo(() => alleKodeverk[kodeverkTyper.VERGE_TYPE].sort((k1, k2) => k1.navn.localeCompare(k2.navn)),
-    [alleKodeverk[kodeverkTyper.VERGE_TYPE]]);
+  const vergetyper = useMemo(() => alleKodeverk[KodeverkType.VERGE_TYPE].sort((k1, k2) => k1.navn.localeCompare(k2.navn)),
+    [alleKodeverk[KodeverkType.VERGE_TYPE]]);
 
   return (
     <>

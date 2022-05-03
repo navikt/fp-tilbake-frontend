@@ -2,9 +2,10 @@ import React, { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Undertekst } from 'nav-frontend-typografi';
 
-import { decodeHtmlEntity, removeSpacesFromNumber, required } from '@fpsak-frontend/utils';
-import { RadioGroupPanel } from '@fpsak-frontend/form-hooks';
-import { KodeverkMedNavn, AktsomhetInfo } from '@fpsak-frontend/types';
+import { decodeHtmlEntity, removeSpacesFromNumber, required } from '@navikt/ft-utils';
+import { RadioGroupPanel } from '@navikt/ft-form-hooks';
+import { AktsomhetInfo } from '@fpsak-frontend/types';
+import { KodeverkMedNavn } from '@navikt/ft-types';
 
 import Aktsomhet from '../../../kodeverk/aktsomhet';
 import AktsomhetGradFormPanel from './AktsomhetGradFormPanel';

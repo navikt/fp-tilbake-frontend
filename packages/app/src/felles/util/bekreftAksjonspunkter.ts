@@ -1,4 +1,4 @@
-import { Behandling } from '@fpsak-frontend/types';
+import { Behandling } from '@navikt/ft-types';
 import { FaktaAksjonspunkt, ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
 export const DEFAULT_FAKTA_KODE = 'default';

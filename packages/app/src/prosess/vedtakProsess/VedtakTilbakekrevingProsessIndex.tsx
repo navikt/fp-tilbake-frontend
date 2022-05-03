@@ -6,11 +6,12 @@ import { useIntl } from 'react-intl';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { LoadingPanel, WarningModal } from '@fpsak-frontend/shared-components';
+import { LoadingPanel, WarningModal } from '@navikt/ft-ui-komponenter';
 import {
-  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling, BeregningsresultatTilbakekreving,
-} from '@fpsak-frontend/types';
-import { forhandsvisDokument } from '@fpsak-frontend/utils';
+  Aksjonspunkt, AlleKodeverkTilbakekreving, Behandling,
+} from '@navikt/ft-types';
+import { BeregningsresultatTilbakekreving } from '@fpsak-frontend/types';
+import { forhandsvisDokument } from '@navikt/ft-utils';
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import { ProsessAksjonspunkt } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 

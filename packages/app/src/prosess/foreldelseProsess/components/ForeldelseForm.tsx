@@ -4,18 +4,22 @@ import React, {
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
-import { FlexColumn, FlexRow } from '@navikt/ft-ui-komponenter';
 
-import { DDMMYYYY_DATE_FORMAT, decodeHtmlEntity, omitOne } from '@fpsak-frontend/utils';
-import { AksjonspunktHelpTextTemp, VerticalSpacer, FaktaGruppe } from '@fpsak-frontend/shared-components';
+import { DDMMYYYY_DATE_FORMAT, decodeHtmlEntity, omitOne } from '@navikt/ft-utils';
+import {
+  FlexColumn, FlexRow, AksjonspunktHelpTextTemp, VerticalSpacer, FaktaGruppe,
+} from '@navikt/ft-ui-komponenter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
-  FeilutbetalingPeriode, FeilutbetalingPerioderWrapper, AlleKodeverkTilbakekreving, Aksjonspunkt,
+  FeilutbetalingPeriode, FeilutbetalingPerioderWrapper,
 } from '@fpsak-frontend/types';
+import {
+  AlleKodeverkTilbakekreving, Aksjonspunkt,
+} from '@navikt/ft-types';
 import { VurderForeldelseAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
-import aksjonspunktStatus from '@fpsak-frontend/kodeverk/src/aksjonspunktStatus';
+import { aksjonspunktStatus } from '@navikt/ft-kodeverk';
 import ForeldelsePeriodeForm, { FormValues as PeriodeFormValues } from './ForeldelsePeriodeForm';
 import TilbakekrevingTimelinePanel from './timeline/TilbakekrevingTimelinePanel';
 import ForeldelseTidslinjeHjelpetekster from './ForeldelseTidslinjeHjelpetekster';

@@ -1,15 +1,17 @@
 import React, { FunctionComponent } from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import { useFormContext, UseFormGetValues } from 'react-hook-form';
+import { UseFormGetValues } from 'react-hook-form';
 import { Column, Row } from 'nav-frontend-grid';
 import { Undertekst } from 'nav-frontend-typografi';
 
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { Checkbox, TextArea, SkjemaGruppeMedFeilviser } from '@fpsak-frontend/form-hooks';
+import { VerticalSpacer } from '@navikt/ft-ui-komponenter';
+import {
+  formHooks, CheckboxField, TextAreaField, SkjemaGruppeMedFeilviser,
+} from '@navikt/ft-form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
-} from '@fpsak-frontend/utils';
-import { KodeverkMedNavn } from '@fpsak-frontend/types';
+} from '@navikt/ft-utils';
+import { KodeverkMedNavn } from '@navikt/ft-types';
 
 import AktsomhetReduksjonAvBelopFormPanel from './AktsomhetReduksjonAvBelopFormPanel';
 
@@ -54,7 +56,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
   const intl = useIntl();
   const {
     getValues,
-  } = useFormContext();
+  } = formHooks.useFormContext();
   return (
     <div>
       <Undertekst>
@@ -67,7 +69,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
       >
         {sarligGrunnTyper.map((sgt: KodeverkMedNavn) => (
           <React.Fragment key={sgt.kode}>
-            <Checkbox
+            <CheckboxField
               key={sgt.kode}
               name={`${name}.${sgt.kode}`}
               label={sgt.navn}
@@ -80,7 +82,7 @@ const AktsomhetSarligeGrunnerFormPanel: FunctionComponent<OwnProps> = ({
           <Row>
             <Column md="1" />
             <Column md="10">
-              <TextArea
+              <TextAreaField
                 name={`${name}.annetBegrunnelse`}
                 label=""
                 validate={[required, minLength3, maxLength1500, hasValidText]}

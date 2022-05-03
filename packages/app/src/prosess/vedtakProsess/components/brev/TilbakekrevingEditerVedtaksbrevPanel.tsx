@@ -3,8 +3,8 @@ import { FormattedMessage, IntlShape } from 'react-intl';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
-import { VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { decodeHtmlEntity } from '@fpsak-frontend/utils';
+import { VerticalSpacer } from '@navikt/ft-ui-komponenter';
+import { decodeHtmlEntity } from '@navikt/ft-utils';
 import { VedtaksbrevAvsnitt } from '@fpsak-frontend/types';
 
 import TilbakekrevingVedtakUtdypendeTekstPanel from './TilbakekrevingVedtakUtdypendeTekstPanel';

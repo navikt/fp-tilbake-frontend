@@ -8,10 +8,10 @@ import { Column, Row } from 'nav-frontend-grid';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-import { Datepicker, Form } from '@fpsak-frontend/form-hooks';
+import { Datepicker, Form } from '@navikt/ft-form-hooks';
 import {
   dateAfterOrEqual, dateBeforeOrEqual, DDMMYYYY_DATE_FORMAT, hasValidDate, ISO_DATE_FORMAT, required,
-} from '@fpsak-frontend/utils';
+} from '@navikt/ft-utils';
 
 import styles from './delOppPeriodeModal.less';
 

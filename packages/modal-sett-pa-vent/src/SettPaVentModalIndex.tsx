@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { RawIntlProvider } from 'react-intl';
 
-import { KodeverkMedNavn } from '@fpsak-frontend/types';
-import { createIntl } from '@fpsak-frontend/utils';
+import { KodeverkMedNavn } from '@navikt/ft-types';
+import { createIntl } from '@navikt/ft-utils';
 
 import SettPaVentModal from './components/SettPaVentModal';
 import messages from '../i18n/nb_NO.json';

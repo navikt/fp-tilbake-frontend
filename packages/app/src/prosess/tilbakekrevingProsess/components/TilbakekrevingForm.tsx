@@ -7,13 +7,16 @@ import { Undertittel } from 'nav-frontend-typografi';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
-import { FaktaGruppe, AksjonspunktHelpTextTemp, VerticalSpacer } from '@fpsak-frontend/shared-components';
-import { omitOne } from '@fpsak-frontend/utils';
+import { FaktaGruppe, AksjonspunktHelpTextTemp, VerticalSpacer } from '@navikt/ft-ui-komponenter';
+import { omitOne } from '@navikt/ft-utils';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
-import tilbakekrevingKodeverkTyper from '@fpsak-frontend/kodeverk/src/tilbakekrevingKodeverkTyper';
+import { TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
 import {
-  FeilutbetalingPerioderWrapper, KodeverkMedNavn, VilkarsVurdertePerioderWrapper, VilkarsVurdertPeriode,
-  DetaljerteFeilutbetalingsperioder, DetaljertFeilutbetalingPeriode, AlleKodeverkTilbakekreving,
+  KodeverkMedNavn, AlleKodeverkTilbakekreving,
+} from '@navikt/ft-types';
+import {
+  FeilutbetalingPerioderWrapper, VilkarsVurdertePerioderWrapper, VilkarsVurdertPeriode,
+  DetaljerteFeilutbetalingsperioder, DetaljertFeilutbetalingPeriode,
 } from '@fpsak-frontend/types';
 import { VilkarsVurderingAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
@@ -247,7 +250,7 @@ const TilbakekrevingForm: FunctionComponent<OwnProps> = ({
 
   const lagrePerioder = useCallback(() => {
     setSubmitting(true);
-    submitCallback(transformValues(vilkårsvurdertePerioder, alleTilbakekrevingKodeverk[tilbakekrevingKodeverkTyper.SARLIG_GRUNN]));
+    submitCallback(transformValues(vilkårsvurdertePerioder, alleTilbakekrevingKodeverk[TilbakekrevingKodeverkType.SARLIG_GRUNN]));
   }, [vilkårsvurdertePerioder]);
 
   const perioderFormatertForTidslinje = formaterPerioderForTidslinje(vilkårsvurdertePerioder, dataForDetailForm);
