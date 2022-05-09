@@ -19,7 +19,7 @@ import {
 } from '@navikt/ft-types';
 import { VurderForeldelseAp } from '@fpsak-frontend/types-avklar-aksjonspunkter';
 
-import { aksjonspunktStatus } from '@navikt/ft-kodeverk';
+import { AksjonspunktStatus } from '@navikt/ft-kodeverk';
 import ForeldelsePeriodeForm, { FormValues as PeriodeFormValues } from './ForeldelsePeriodeForm';
 import TilbakekrevingTimelinePanel from './timeline/TilbakekrevingTimelinePanel';
 import ForeldelseTidslinjeHjelpetekster from './ForeldelseTidslinjeHjelpetekster';
@@ -173,7 +173,7 @@ const ForeldelseForm: FunctionComponent<OwnProps> = ({
   const merknaderFraBeslutter = alleMerknaderFraBeslutter[aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE];
 
   const perioderFormatertForTidslinje = formaterPerioderForTidslinje(foreldelseresultatAktiviteter);
-  const isApOpen = aksjonspunkt && aksjonspunkt.status === aksjonspunktStatus.OPPRETTET;
+  const isApOpen = aksjonspunkt && aksjonspunkt.status === AksjonspunktStatus.OPPRETTET;
   const erAlleAksjonspunktLøst = perioderFormatertForTidslinje.every((p) => !p.isAksjonspunktOpen);
   const valgtPeriodeFormatertForTidslinje = valgtPeriode
     ? perioderFormatertForTidslinje.find((p) => p.fom === valgtPeriode.fom && p.tom === valgtPeriode.tom)

@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { useIntl } from 'react-intl';
 
+import { decodeHtmlEntity } from '@navikt/ft-utils';
 import {
-  decodeHtmlEntity, hasValidText, maxLength, minLength, required,
-} from '@navikt/ft-utils';
+  hasValidText, maxLength, minLength, required,
+} from '@navikt/ft-form-validators';
 import { TextAreaField } from '@navikt/ft-form-hooks';
 import { Aksjonspunkt } from '@navikt/ft-types';
 

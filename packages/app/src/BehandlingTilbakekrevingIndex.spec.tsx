@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
-import { behandlingType, fagsakYtelseType } from '@navikt/ft-kodeverk';
+import { BehandlingType, FagsakYtelseType } from '@navikt/ft-kodeverk';
 import { AksessRettigheter } from '@fpsak-frontend/types';
 import { AlleKodeverk, Fagsak } from '@navikt/ft-types';
 import navBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
@@ -22,7 +22,7 @@ describe('<BehandlingTilbakekrevingIndex>', () => {
           uuid: 'test-uuid',
           versjon: 1,
           status: behandlingStatus.OPPRETTET,
-          type: behandlingType.TILBAKEKREVING,
+          type: BehandlingType.TILBAKEKREVING,
           links: [{
             href: TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD.name,
             rel: 'update',
@@ -51,7 +51,7 @@ describe('<BehandlingTilbakekrevingIndex>', () => {
           // @ts-ignore
           kodeverk={alleKodeverk as AlleKodeverk}
           fagsak={{
-            fagsakYtelseType: fagsakYtelseType.FORELDREPENGER,
+            fagsakYtelseType: FagsakYtelseType.FORELDREPENGER,
           } as Fagsak}
           rettigheter={{
             writeAccess: {

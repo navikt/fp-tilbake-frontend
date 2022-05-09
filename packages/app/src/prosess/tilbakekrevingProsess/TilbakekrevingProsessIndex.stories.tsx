@@ -11,7 +11,7 @@ import {
 import {
   Behandling, AlleKodeverkTilbakekreving, Aksjonspunkt,
 } from '@navikt/ft-types';
-import { aksjonspunktStatus } from '@navikt/ft-kodeverk';
+import { AksjonspunktStatus } from '@navikt/ft-kodeverk';
 import { alleTilbakekrevingKodeverk } from '@fpsak-frontend/storybook-utils';
 import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
@@ -109,7 +109,7 @@ Default.args = {
   submitCallback: action('button-click') as (data: any) => Promise<any>,
   aksjonspunkter: [{
     definisjon: aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING,
-    status: aksjonspunktStatus.OPPRETTET,
+    status: AksjonspunktStatus.OPPRETTET,
     begrunnelse: undefined,
     kanLoses: true,
     erAktivt: true,
@@ -122,7 +122,7 @@ MedToPerioder.args = {
   submitCallback: action('button-click') as (data: any) => Promise<any>,
   aksjonspunkter: [{
     definisjon: aksjonspunktCodesTilbakekreving.VURDER_TILBAKEKREVING,
-    status: aksjonspunktStatus.OPPRETTET,
+    status: AksjonspunktStatus.OPPRETTET,
     begrunnelse: undefined,
     kanLoses: true,
     erAktivt: true,

@@ -10,7 +10,10 @@ import {
   TextAreaField, SelectField, Form, RadioGroupPanel,
 } from '@navikt/ft-form-hooks';
 import {
-  formatCurrencyNoKr, hasValidText, maxLength, minLength, required, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
+  hasValidText, maxLength, minLength, required,
+} from '@navikt/ft-form-validators';
+import {
+  formatCurrencyNoKr, DDMMYYYY_DATE_FORMAT, decodeHtmlEntity,
 } from '@navikt/ft-utils';
 import {
   FlexColumn, FlexRow, WarningModal, VerticalSpacer, usePrevious,

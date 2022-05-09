@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import { ProcessMenuStepType, ProcessMenu } from '@navikt/ft-plattform-komponenter';
 
-import { vilkarUtfallType } from '@navikt/ft-kodeverk';
+import { VilkarUtfallType } from '@navikt/ft-kodeverk';
 import '@fpsak-frontend/assets/styles/arrowForProcessMenu.less';
 
 export type ProsessPanelMenyData = {
@@ -19,10 +19,10 @@ const finnProsessmenyType = (
   if (harApentAksjonspunkt) {
     return ProcessMenuStepType.warning;
   }
-  if (status === vilkarUtfallType.OPPFYLT) {
+  if (status === VilkarUtfallType.OPPFYLT) {
     return ProcessMenuStepType.success;
   }
-  if (status === vilkarUtfallType.IKKE_OPPFYLT) {
+  if (status === VilkarUtfallType.IKKE_OPPFYLT) {
     return ProcessMenuStepType.danger;
   }
   return ProcessMenuStepType.default;

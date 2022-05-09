@@ -7,7 +7,7 @@ import {
 
 import {
   hasValidDate, hasValidFodselsnummer, hasValidName, required,
-} from '@navikt/ft-utils';
+} from '@navikt/ft-form-validators';
 import {
   Datepicker, InputField, SelectField,
 } from '@navikt/ft-form-hooks';

@@ -6,7 +6,7 @@ import { RawIntlProvider } from 'react-intl';
 import { createIntl } from '@navikt/ft-utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
-import { aksjonspunktStatus } from '@navikt/ft-kodeverk';
+import { AksjonspunktStatus } from '@navikt/ft-kodeverk';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
 import { Behandling } from '@navikt/ft-types';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
@@ -20,7 +20,7 @@ const intl = createIntl(messages);
 
 const aksjonspunkter = [{
   definisjon: aksjonspunktCodes.AVKLAR_VERGE,
-  status: aksjonspunktStatus.OPPRETTET,
+  status: AksjonspunktStatus.OPPRETTET,
   begrunnelse: undefined,
   kanLoses: true,
   erAktivt: true,

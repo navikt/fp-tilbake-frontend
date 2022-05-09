@@ -7,7 +7,7 @@ import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
 import {
-  fagsakYtelseType, TilbakekrevingKodeverkType, behandlingType, aksjonspunktStatus,
+  FagsakYtelseType, TilbakekrevingKodeverkType, BehandlingType, AksjonspunktStatus,
 } from '@navikt/ft-kodeverk';
 import {
   FeilutbetalingPerioderWrapper, Verge,
@@ -35,7 +35,7 @@ const defaultBehandling = {
   uuid: 'test-uuid',
   versjon: 1,
   status: behandlingStatus.OPPRETTET,
-  type: behandlingType.TILBAKEKREVING,
+  type: BehandlingType.TILBAKEKREVING,
   behandlingPaaVent: false,
   links: [{
     href: TilbakekrevingBehandlingApiKeys.UPDATE_ON_HOLD.name,
@@ -67,11 +67,11 @@ const defaultBehandling = {
 
 const faktaAksjonspunkter = [{
   definisjon: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
-  status: aksjonspunktStatus.OPPRETTET,
+  status: AksjonspunktStatus.OPPRETTET,
   kanLoses: true,
 }, {
   definisjon: aksjonspunktCodes.AVKLAR_VERGE,
-  status: aksjonspunktStatus.UTFORT,
+  status: AksjonspunktStatus.UTFORT,
   begrunnelse: 'Dette er en begrunnelse',
   kanLoses: true,
   erAktivt: false,
@@ -79,7 +79,7 @@ const faktaAksjonspunkter = [{
 
 const prosessAksjonspunkter = [{
   definisjon: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
-  status: aksjonspunktStatus.OPPRETTET,
+  status: AksjonspunktStatus.OPPRETTET,
   kanLoses: true,
   erAktivt: true,
 }] as Aksjonspunkt[];
@@ -133,7 +133,7 @@ const feilutbetalingFakta = {
 };
 
 const feilutbetalingAarsak = [{
-  ytelseType: fagsakYtelseType.FORELDREPENGER,
+  ytelseType: FagsakYtelseType.FORELDREPENGER,
   hendelseTyper: [{
     hendelseType: 'OPPTJENING',
     hendelseUndertyper: [],
@@ -292,6 +292,6 @@ HenlagtBehandling.args = {
   },
   aksjonspunkter: [{
     ...prosessAksjonspunkter[0],
-    status: aksjonspunktStatus.UTFORT,
+    status: AksjonspunktStatus.UTFORT,
   }],
 };

@@ -1,5 +1,5 @@
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
-import { aksjonspunktStatus, behandlingType } from '@navikt/ft-kodeverk';
+import { AksjonspunktStatus, BehandlingType } from '@navikt/ft-kodeverk';
 import aksjonspunktCodes from '@fpsak-frontend/kodeverk/src/aksjonspunktCodes';
 import { Behandling } from '@navikt/ft-types';
 
@@ -10,13 +10,13 @@ describe('<readOnlyUtils>', () => {
     uuid: '1',
     versjon: 1,
     status: behandlingStatus.BEHANDLING_UTREDES,
-    type: behandlingType.FORSTEGANGSSOKNAD,
+    type: BehandlingType.FORSTEGANGSSOKNAD,
     behandlingPaaVent: false,
     behandlingHenlagt: false,
   };
 
   const aksjonspunkter = [{
-    status: aksjonspunktStatus.OPPRETTET,
+    status: AksjonspunktStatus.OPPRETTET,
     definisjon: aksjonspunktCodes.FORESLA_VEDTAK,
     kanLoses: true,
     erAktivt: true,

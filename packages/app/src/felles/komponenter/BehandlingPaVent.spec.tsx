@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import behandlingStatus from '@fpsak-frontend/kodeverk/src/behandlingStatus';
-import { behandlingType } from '@navikt/ft-kodeverk';
+import { BehandlingType } from '@navikt/ft-kodeverk';
 import { Aksjonspunkt, AlleKodeverk, Behandling } from '@navikt/ft-types';
 import Modal from 'nav-frontend-modal';
 import { alleKodeverk } from '@fpsak-frontend/storybook-utils';
@@ -19,7 +19,7 @@ describe('<BehandlingPaVent>', () => {
     uuid: '1',
     versjon: 1,
     status: behandlingStatus.BEHANDLING_UTREDES,
-    type: behandlingType.FORSTEGANGSSOKNAD,
+    type: BehandlingType.FORSTEGANGSSOKNAD,
     behandlingPaaVent: false,
     behandlingHenlagt: false,
     fristBehandlingPaaVent: '2030-10-10',

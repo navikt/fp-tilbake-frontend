@@ -6,7 +6,7 @@ import { Image, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 import addCircleIcon from '@fpsak-frontend/assets/images/add-circle.svg';
 import {
   required, hasValidText, maxLength, minLength,
-} from '@navikt/ft-utils';
+} from '@navikt/ft-form-validators';
 import { TextAreaField, formHooks } from '@navikt/ft-form-hooks';
 
 import styles from './tilbakekrevingVedtakUtdypendeTekstPanel.less';

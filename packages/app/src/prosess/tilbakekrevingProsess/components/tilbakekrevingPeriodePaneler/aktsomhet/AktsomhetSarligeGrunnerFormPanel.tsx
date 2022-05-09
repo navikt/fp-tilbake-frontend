@@ -10,7 +10,7 @@ import {
 } from '@navikt/ft-form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
-} from '@navikt/ft-utils';
+} from '@navikt/ft-form-validators';
 import { KodeverkMedNavn } from '@navikt/ft-types';
 
 import AktsomhetReduksjonAvBelopFormPanel from './AktsomhetReduksjonAvBelopFormPanel';

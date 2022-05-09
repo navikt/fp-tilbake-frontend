@@ -13,7 +13,10 @@ import { KodeverkType } from '@navikt/ft-kodeverk';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
 import { TextAreaField, CheckboxField, Form } from '@navikt/ft-form-hooks';
 import {
-  DDMMYYYY_DATE_FORMAT, hasValidText, maxLength, minLength, required, getKodeverknavnFn, decodeHtmlEntity,
+  hasValidText, maxLength, minLength, required,
+} from '@navikt/ft-form-validators';
+import {
+  DDMMYYYY_DATE_FORMAT, getKodeverknavnFn, decodeHtmlEntity,
 } from '@navikt/ft-utils';
 import {
   FeilutbetalingFakta, FeilutbetalingAarsak,
