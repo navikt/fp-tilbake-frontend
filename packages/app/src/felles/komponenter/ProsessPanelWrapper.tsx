@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { FadingPanel } from '@navikt/ft-ui-komponenter';
-import { vilkarUtfallType } from '@navikt/ft-kodeverk';
+import { VilkarUtfallType } from '@navikt/ft-kodeverk';
 
 import styles from './prosessPanelWrapper.less';
 
@@ -45,7 +45,7 @@ const ProsessPanelWrapper: FunctionComponent<OwnProps> = ({
       </PanelContainer>
     );
   }
-  if (status === vilkarUtfallType.IKKE_VURDERT && !erAksjonspunktOpent) {
+  if (status === VilkarUtfallType.IKKE_VURDERT && !erAksjonspunktOpent) {
     return (
       <PanelContainer>
         <Normaltekst>

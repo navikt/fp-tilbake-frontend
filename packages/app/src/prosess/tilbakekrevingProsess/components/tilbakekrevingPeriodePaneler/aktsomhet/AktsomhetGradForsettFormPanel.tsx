@@ -5,7 +5,7 @@ import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 
 import { ArrowBox, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 import { RadioGroupPanel } from '@navikt/ft-form-hooks';
-import { required } from '@navikt/ft-utils';
+import { required } from '@navikt/ft-form-validators';
 
 import styles from './aktsomhetReduksjonAvBelopFormPanel.less';
 

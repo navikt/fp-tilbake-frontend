@@ -3,7 +3,8 @@ import moment from 'moment';
 
 import { Table, TableRow, TableColumn } from '@navikt/ft-ui-komponenter';
 import { FeilutbetalingAarsak, FeilutbetalingFakta } from '@fpsak-frontend/types';
-import { DDMMYYYY_DATE_FORMAT, required } from '@navikt/ft-utils';
+import { required } from '@navikt/ft-form-validators';
+import { DDMMYYYY_DATE_FORMAT } from '@navikt/ft-utils';
 import { SelectField, formHooks } from '@navikt/ft-form-hooks';
 import { KodeverkType } from '@navikt/ft-kodeverk';
 

@@ -10,8 +10,11 @@ import AlertStripe from 'nav-frontend-alertstriper';
 
 import { Datepicker, Form } from '@navikt/ft-form-hooks';
 import {
-  dateAfterOrEqual, dateBeforeOrEqual, DDMMYYYY_DATE_FORMAT, hasValidDate, ISO_DATE_FORMAT, required,
+  DDMMYYYY_DATE_FORMAT, ISO_DATE_FORMAT,
 } from '@navikt/ft-utils';
+import {
+  dateAfterOrEqual, dateBeforeOrEqual, hasValidDate, required,
+} from '@navikt/ft-form-validators';
 
 import styles from './delOppPeriodeModal.less';
 

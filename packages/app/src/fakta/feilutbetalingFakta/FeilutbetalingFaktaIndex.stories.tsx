@@ -5,7 +5,7 @@ import { RawIntlProvider } from 'react-intl';
 
 import { createIntl } from '@navikt/ft-utils';
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
-import { fagsakYtelseType, aksjonspunktStatus } from '@navikt/ft-kodeverk';
+import { FagsakYtelseType, AksjonspunktStatus } from '@navikt/ft-kodeverk';
 import behandlingArsakType from '@fpsak-frontend/kodeverk/src/behandlingArsakType';
 import konsekvensForYtelsen from '@fpsak-frontend/kodeverk/src/konsekvensForYtelsen';
 import behandlingResultatType from '@fpsak-frontend/kodeverk/src/behandlingResultatType';
@@ -61,7 +61,7 @@ const feilutbetalingFakta = {
 };
 
 const feilutbetalingAarsak = [{
-  ytelseType: fagsakYtelseType.FORELDREPENGER,
+  ytelseType: FagsakYtelseType.FORELDREPENGER,
   hendelseTyper: [{
     hendelseType: 'MEDLEMSKAP',
     hendelseUndertyper: [],
@@ -105,14 +105,14 @@ const Template: Story<{
           feilutbetalingFakta={feilutbetalingFakta as FeilutbetalingFakta}
           aksjonspunkter={[{
             definisjon: aksjonspunktCodesTilbakekreving.AVKLAR_FAKTA_FOR_FEILUTBETALING,
-            status: aksjonspunktStatus.OPPRETTET,
+            status: AksjonspunktStatus.OPPRETTET,
             begrunnelse: undefined,
             kanLoses: true,
             erAktivt: true,
           }]}
           alleKodeverk={fpTilbakekrevingAlleKodeverk}
           fpsakKodeverk={fpSakAlleKodeverk}
-          fagsakYtelseTypeKode={fagsakYtelseType.FORELDREPENGER}
+          fagsakYtelseTypeKode={FagsakYtelseType.FORELDREPENGER}
         />
       </RestApiMock>
     </RawIntlProvider>

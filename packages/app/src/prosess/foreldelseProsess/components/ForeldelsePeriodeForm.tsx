@@ -13,7 +13,7 @@ import {
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import {
   dateBeforeOrEqualToToday, hasValidText, maxLength, minLength, required, hasValidDate,
-} from '@navikt/ft-utils';
+} from '@navikt/ft-form-validators';
 import { TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
 import { AlleKodeverkTilbakekreving } from '@navikt/ft-types';
 

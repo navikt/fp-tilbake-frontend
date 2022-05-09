@@ -7,9 +7,8 @@ import {
 } from '@navikt/ft-ui-komponenter';
 
 import { InputField, SelectField, RadioGroupPanel } from '@navikt/ft-form-hooks';
-import {
-  formatCurrencyNoKr, minValue, maxValue, required,
-} from '@navikt/ft-utils';
+import { minValue, maxValue, required } from '@navikt/ft-form-validators';
+import { formatCurrencyNoKr } from '@navikt/ft-utils';
 
 import aktsomhet from '../../../kodeverk/aktsomhet';
 

@@ -4,7 +4,7 @@ import React, {
 import { useIntl, IntlShape } from 'react-intl';
 
 import { RestApiState } from '@fpsak-frontend/rest-api-hooks';
-import { vilkarUtfallType, isAksjonspunktOpen } from '@navikt/ft-kodeverk';
+import { VilkarUtfallType, isAksjonspunktOpen } from '@navikt/ft-kodeverk';
 import VedtakResultatType from '@fpsak-frontend/kodeverk/src/vedtakResultatType';
 import { ProsessStegCode } from '@fpsak-frontend/konstanter';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
@@ -45,17 +45,17 @@ type EndepunktInitData = {
 
 const finnTilbakekrevingStatus = (aksjonspunkter: Aksjonspunkt[]): string => {
   if (aksjonspunkter.length > 0) {
-    return aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status)) ? vilkarUtfallType.IKKE_VURDERT : vilkarUtfallType.OPPFYLT;
+    return aksjonspunkter.some((ap) => isAksjonspunktOpen(ap.status)) ? VilkarUtfallType.IKKE_VURDERT : VilkarUtfallType.OPPFYLT;
   }
-  return vilkarUtfallType.IKKE_VURDERT;
+  return VilkarUtfallType.IKKE_VURDERT;
 };
 
 const getVedtakStatus = (beregningsresultat?: BeregningsresultatTilbakekreving): string => {
   if (!beregningsresultat) {
-    return vilkarUtfallType.IKKE_VURDERT;
+    return VilkarUtfallType.IKKE_VURDERT;
   }
   const { vedtakResultatType } = beregningsresultat;
-  return vedtakResultatType === VedtakResultatType.INGEN_TILBAKEBETALING ? vilkarUtfallType.IKKE_OPPFYLT : vilkarUtfallType.OPPFYLT;
+  return vedtakResultatType === VedtakResultatType.INGEN_TILBAKEBETALING ? VilkarUtfallType.IKKE_OPPFYLT : VilkarUtfallType.OPPFYLT;
 };
 
 const hentAksjonspunkterFor = (
@@ -95,7 +95,7 @@ const utledProsessPaneler = (
       ProsessStegCode.FORELDELSE,
       intl.formatMessage({ id: 'Behandlingspunkt.Foreldelse' }),
       hentAksjonspunkterFor(aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE, initData?.aksjonspunkter),
-      initData?.perioderForeldelse ? vilkarUtfallType.OPPFYLT : vilkarUtfallType.IKKE_VURDERT,
+      initData?.perioderForeldelse ? VilkarUtfallType.OPPFYLT : VilkarUtfallType.IKKE_VURDERT,
       valgtProsessSteg,
     ),
     leggTilProsessPanel(

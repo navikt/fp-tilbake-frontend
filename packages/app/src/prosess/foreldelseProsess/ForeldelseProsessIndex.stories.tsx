@@ -5,7 +5,7 @@ import { RawIntlProvider } from 'react-intl';
 
 import RestApiMock from '@fpsak-frontend/utils-test/src/rest/RestApiMock';
 import { createIntl } from '@navikt/ft-utils';
-import { aksjonspunktStatus, TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
+import { AksjonspunktStatus, TilbakekrevingKodeverkType } from '@navikt/ft-kodeverk';
 import NavBrukerKjonn from '@fpsak-frontend/kodeverk/src/navBrukerKjonn';
 import foreldelseVurderingType from '@fpsak-frontend/kodeverk/src/foreldelseVurderingType';
 import aksjonspunktCodesTilbakekreving from '@fpsak-frontend/kodeverk/src/aksjonspunktCodesTilbakekreving';
@@ -115,7 +115,7 @@ Default.args = {
   submitCallback: action('button-click') as (data: any) => Promise<any>,
   aksjonspunkter: [{
     definisjon: aksjonspunktCodesTilbakekreving.VURDER_FORELDELSE,
-    status: aksjonspunktStatus.OPPRETTET,
+    status: AksjonspunktStatus.OPPRETTET,
     begrunnelse: undefined,
     kanLoses: true,
     erAktivt: true,

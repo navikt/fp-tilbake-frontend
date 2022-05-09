@@ -8,7 +8,7 @@ import { ArrowBox, VerticalSpacer } from '@navikt/ft-ui-komponenter';
 import { RadioGroupPanel, TextAreaField } from '@navikt/ft-form-hooks';
 import {
   hasValidText, maxLength, minLength, required,
-} from '@navikt/ft-utils';
+} from '@navikt/ft-form-validators';
 import { KodeverkMedNavn } from '@navikt/ft-types';
 
 import aktsomhet from '../../../kodeverk/aktsomhet';
