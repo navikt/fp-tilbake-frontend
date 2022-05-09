@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@navikt/ft-types": "^1.0.6"
+    "@navikt/ft-types": "^1.0.7"
   },
   "devDependencies": {}
 }
